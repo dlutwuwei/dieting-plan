@@ -72,7 +72,8 @@
     data() {
       return {
         selected: '1',
-        msg: 'Use Vue 2.0 Today!'
+        msg: 'Use Vue 2.0 Today!',
+        
       }
     },
 

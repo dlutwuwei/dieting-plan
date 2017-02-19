@@ -1,5 +1,6 @@
 <template>
     <div style="height: 100%;">
+        <nv-head page-type="关于" :fix-head="true" :need-add="true" ></nv-head>
         
         <dl class="about-info">
 
@@ -28,6 +29,13 @@
 <script>
     import nvHead from '../components/header.vue';
     export default {
+        mounted() {
+            setTimeout(() => {
+                this.$router.push({
+                    name: 'foo'
+                });
+            }, 2000);
+        },
         components: {
             nvHead
         }

@@ -13,7 +13,8 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMmianrod
 module.exports = {
   entry: {
     main: './src/main.js',
-    index: './src/index.js'
+    index: './src/index.js',
+    detail: './src/detail'
   },
   output: {
     path: config.build.assetsRoot,
