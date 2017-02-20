@@ -6,8 +6,13 @@ import routes from './routes/detail-routers';
 import Alert from './libs/alert';
 import store from './vuex/user';
 import FastClick from 'fastclick';
+import MintUI from 'mint-ui';
+import 'mint-ui/lib/style.css';
+import './assets/scss/common/reset.scss';
+
 Vue.use(VueRouter);
 Vue.use(Alert);
+Vue.use(MintUI);
 
 $.ajaxSettings.crossDomain = true;
 
@@ -19,7 +24,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/about')
+router.replace('/input_info');
 
 FastClick.attach(document.body);
 
