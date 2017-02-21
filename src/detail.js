@@ -22,7 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-
+router.replace('input_info')
 FastClick.attach(document.body);
 
 // 处理刷新的时候vuex被清空但是用户已经登录的情况

@@ -48,21 +48,18 @@
         },
         methods: {
             post_info: function (e) {
-                debugger
-                setTimeout(() => {
-                    this.$router.push({
-                        path: 'bmi'
-                    });
-                }, 2000);
-                // this.$http.post('/user/info').then(response => {
-                //     let data = response.body;
-                //     if (data.success) {
-                //         location.href = '/buy';
-                //     }
+                this.$router.push({
+                    path: 'bmi'
+                });
+                this.$http.post('/user/info').then(response => {
+                    let data = response.body;
+                    if (data.success) {
+                        location.href = '/buy';
+                    }
 
-                // }, response => {
+                }, response => {
 
-                // });
+                });
             }
         },
         created() {
