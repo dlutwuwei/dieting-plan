@@ -25,7 +25,12 @@
                 <option value="1">即节食又运动</option>
             </select>
         </div>
-        <mt-button type="default" size="normal">下一步</mt-button>
+        <div class="bottom-cell">
+            <mt-button type="primary" size="normal" v-on:click="post_info">下一步</mt-button>
+            <div class="notice">
+                <span>填写详细的健康资料 ，有利于系统为您定制专属的私人健康减肥 方案</span>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -38,8 +43,26 @@
                 method: 0,
                 age: 0,
                 height: 0,
-                weight: 0,
+                weight: 0
+            }
+        },
+        methods: {
+            post_info: function (e) {
+                debugger
+                setTimeout(() => {
+                    this.$router.push({
+                        path: 'bmi'
+                    });
+                }, 2000);
+                // this.$http.post('/user/info').then(response => {
+                //     let data = response.body;
+                //     if (data.success) {
+                //         location.href = '/buy';
+                //     }
 
+                // }, response => {
+
+                // });
             }
         },
         created() {
@@ -68,5 +91,14 @@
 
 </script>
 <style>
-
+    .bottom-cell {
+        text-align: center;
+    }
+    
+    .notice {
+        color: #ff0000;
+        font-size: 12px;
+        padding: 15px 16px;
+        text-align: left;
+    }
 </style>

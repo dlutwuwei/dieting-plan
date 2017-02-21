@@ -1,13 +1,16 @@
-
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-
+const input = require('../views/input_info.vue');
+const bmi = require('../views/bmi.vue');
 const routers = [{
-    path: '/input_info',
-    component: require('../views/input_info.vue')
+    path: '/',
+    component: input
 },
-{ path: '/foo', component: Foo },
-{ path: '/bar', component: Bar }
-];
+{
+    path: '/input_info',
+    component: input
+},
+{
+    path: '/bmi',
+    component: bmi
+}];
 
 export default routers;
