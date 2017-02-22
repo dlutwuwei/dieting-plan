@@ -53,9 +53,16 @@ module.exports = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'detail.html',
       template: './page/index.html',
       chunks: ['detail'],
+      inject: true,
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './page/index.html',
+      chunks: ['prefer'],
       inject: true,
       chunksSortMode: 'dependency'
     }),
