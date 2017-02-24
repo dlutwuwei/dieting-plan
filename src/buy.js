@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import $ from 'webpack-zepto';
 import VueRouter from 'vue-router';
-import routes from './routes/detail-routers';
+import routes from './routes/buy-routers';
 import Alert from './libs/alert';
 import store from './vuex/user';
 import FastClick from 'fastclick';
@@ -22,7 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/');
+router.replace('/buy');
 
 FastClick.attach(document.body);
 
