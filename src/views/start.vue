@@ -18,7 +18,7 @@
                 <p>用户通过思维必体质检测，了解实时身体营养素含量状况，精 准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳 食纤维和微量元用户通过思维必体质检测，了解实时身体营养素含量状况，精 准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳 食纤维和微量元</p>
             </div>
             <div class="cell bottom">
-                <mt-button type="primary" size="normal" v-on:click="post_prefer">下一步</mt-button>
+                <mt-button type="primary" size="normal" v-on:click="post_prefer">付款</mt-button>
             </div>
         </div>
     </div>
@@ -77,6 +77,10 @@
             background-color: #fff;
             border: 1px solid #47a304;
             color: #47a304;
+        }
+        .mint-button--primary:active {
+            background-color: #47a304;
+            color: #fff!important;
         }
     }
     
