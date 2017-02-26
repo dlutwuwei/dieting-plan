@@ -1,26 +1,39 @@
 <template>
     <div class="detail">
-        <mt-header title="鸣鹿健康">
+        <mt-header title="">
             <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
+                <mt-button icon="back">填写个人信息</mt-button>
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-        <mt-radio title="性别" v-model="gender" :options="gender_options">
-        </mt-radio>
-        <mt-field v-model="age" label="年龄" placeholder="           岁" type="number"></mt-field>
-        <mt-field v-model="height" label="身高" placeholder="           cm" type="number"></mt-field>
-        <mt-field v-model="weight" label="体重" placeholder="           kg" type="number"></mt-field>
-        <mt-checklist title="疾病史" v-model="diseases" :options="disease_options">
-        </mt-checklist>
-        <div class="cell">
-            <select v-model="exercise">
+        <div class="gender detail-item">
+            <div class="detail-title">性别</div>
+            <div class="detail-options">
+                <span class="check-item"><input class="checkbox" type="checkbox" id="male"><label for="male">男</label></span>
+                <span class="check-item"><input class="checkbox" type="checkbox" id="female"><label for="female">女</label></span>
+            </div>
+        </div>
+        <mt-field class="detail-item" v-model="age" label="年龄" placeholder="           岁" type="number"></mt-field>
+        <mt-field class="detail-item" v-model="height" label="身高" placeholder="           cm" type="number"></mt-field>
+        <mt-field class="detail-item" v-model="weight" label="体重" placeholder="           kg" type="number"></mt-field>
+        <div class="detail-item">
+            <div class="detail-title">疾病史</div>
+            <div class="detail-options">
+                <span class="check-item" v-for="(item, index) in disease_options">
+                    <input class="checkbox" type="checkbox" :id="index"><label :for="index">{{item}}</label>
+                </span>
+            </div>
+        </div>        </mt-checklist>
+        <div class="detail-item">
+            <div class="detail-title">目前活动量</div>
+            <select class="select-item" v-model="exercise">
                 <option value="0">少量活动</option>
                 <option value="1">大量活动</option>
             </select>
         </div>
-        <div class="cell">
-            <select v-model="method">
+        <div class="detail-item">
+            <div class="detail-title">想怎么减</div>
+            <select class="select-item" v-model="method">
                 <option value="0">只节食不运动</option>
                 <option value="1">即节食又运动</option>
             </select>
@@ -41,9 +54,9 @@
                 exercise: 0,
                 diseases: [],
                 method: 0,
-                age: 0,
-                height: 0,
-                weight: 0
+                age: '',
+                height: '',
+                weight: ''
             }
         },
         methods: {
@@ -87,11 +100,65 @@
     };
 
 </script>
-<style>
+<style lang="scss">
     .bottom-cell {
+        margin-top: 30px;
+        margin-bottom: 10px;
         text-align: center;
     }
-    
+    .detail {
+        .detail-item.gender {
+            .detail-options {
+                padding-top: 0;
+            }
+        }
+        .detail-item {
+            background: #fff;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-left: none;
+            display: flex;
+            .select-item {
+                width: 125px;
+                height: 30px;
+                margin-top: 10px;
+            }
+            .detail-title {
+                white-space: nowrap;
+                line-height: 50px;
+                padding-left: 50px;
+                padding-right: 20px;
+            }
+            .detail-options {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-top: 10px;
+                .check-item{
+                    line-height: 36px;
+                    white-space: nowrap;
+                }
+                .checkbox {
+                    height: 16px;
+                    width: 16px;
+                    background: #fff;
+                    margin-right: 10px;
+                    vertical-align: -2px;
+                }
+                label {
+                    margin-right: 20px;
+                }
+            }
+        }
+        .mint-cell-text{
+            padding-left: 38px;
+        }
+        .mint-cell-wrapper {
+            background-image: none;
+        }
+    }
     .notice {
         color: #ff0000;
         font-size: 12px;

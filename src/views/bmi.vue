@@ -1,5 +1,5 @@
 <template>
-    <div class="app bmi-background">
+    <div class="app bmi-page">
         <mt-header title="鸣鹿健康">
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
@@ -16,7 +16,7 @@
             <div class="description">您目前的体重属于瘦弱，请加强营养，健康增重。</div>
             <div class="buy-notice">若想获得专属个性化减肥方案，请 购买思维必专业减肥。<span class="text">点击购买</span></div>
         </div>
-        <div class="terms"><input type="checkbox">同意<span class="text">《鸣鹿减肥法用户协议》</span></div>
+        <div class="terms"><input type="checkbox" id="terms">同意<label class="text" for="terms">《鸣鹿减肥法用户协议》</span></div>
         <div class="next-btn"><mt-button type="primary">开始减肥</mt-button></div>
     </div>
 </template>
@@ -39,6 +39,9 @@ export default {
 <style lang="scss">
     .next-btn {
         text-align: center;
+    }
+    .bmi-page {
+        padding-bottom: 80px;
     }
     .terms {
         margin: 17px 0 40px 0;

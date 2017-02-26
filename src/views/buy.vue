@@ -104,17 +104,6 @@
             margin-top: 60px;
             margin-bottom: 50px;
         }
-        .mint-button--primary {
-            height: 40px;
-            width: 180px;
-            background-color: #fff;
-            border: 1px solid #47a304;
-            color: #47a304;
-        }
-        .mint-button--primary:active {
-            background-color: #47a304;
-            color: #fff!important;
-        }
     }
     
 </style>
