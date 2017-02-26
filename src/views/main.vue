@@ -271,4 +271,29 @@
     max-width: 400px;
     margin: auto;
   }
+
+  .page-swipe {
+    height: 100px;
+  }
+
+  .page-swipe .slide1 {
+    background-color: #0089dc;
+    color: #fff;
+  }
+
+  .page-swipe .slide2 {
+    background-color: #ffd705;
+    color: #000;
+  }
+
+  .page-swipe .slide3 {
+    background-color: #ff2d4b;
+    color: #fff;
+  }
+
+  .page-swipe-desc {
+    text-align: center;
+    color: #666;
+    margin-bottom: 5px;
+  }
 </style>
