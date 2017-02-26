@@ -9,8 +9,8 @@
         <div class="gender detail-item">
             <div class="detail-title">性别</div>
             <div class="detail-options">
-                <span class="check-item"><input class="checkbox" type="checkbox" id="male"><label for="male">男</label></span>
-                <span class="check-item"><input class="checkbox" type="checkbox" id="female"><label for="female">女</label></span>
+                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="male"><label for="male">男</label></span>
+                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female"><label for="female">女</label></span>
             </div>
         </div>
         <mt-field class="detail-item" v-model="age" label="年龄" placeholder="           岁" type="number"></mt-field>
