@@ -13,7 +13,6 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMmianrod
 module.exports = {
   entry: {
     main: './src/main.js',
-    index: './src/index.js',
     detail: './src/detail',
     prefer: './src/prefer.js',
     share: './src/share.js',
@@ -21,7 +20,7 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
-    publicPath: config.build.assetsPublicPath,
+    publicPath: config.dev.assetsPublicPath,
     filename: '[name].js'
   },
   resolve: {
