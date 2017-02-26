@@ -79,3 +79,18 @@ select {
     appearance: none;
     background-color: #fff;
 }
+
+.ncf-box {
+  display: box;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  box-align: center;
+  text-align: center;
+  -webkit-box-pack: justify;
+  box-pack: justify;
+  .item {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    display: block;
+  }
+}

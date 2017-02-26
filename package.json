@@ -17,10 +17,13 @@
     "vue.js"
   ],
   "dependencies": {
+    "echarts": "^3.4.0",
     "element-ui": "^1.1.5",
     "mint-ui": "^2.1.1",
+    "swiper": "^3.4.1",
     "timeago.js": "^2.0.3",
     "vue": "^2.0.8",
+    "vue-date": "^1.1.5",
     "vue-router": "^2.0.3",
     "vuex": "^2.0.0"
   },
