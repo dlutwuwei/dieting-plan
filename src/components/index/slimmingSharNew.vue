@@ -62,7 +62,7 @@
 </style>
 <template>
   <div class="slimming-share">
-      <div class="hd"><span class="ico ico-1"></span>瘦身分享<span class="ico ico-2"></span></div>
+      <div class="hd"><router-link to="/share/list"><span class="ico ico-1"></span>瘦身分享</router-link><router-link to="/share/editor"><span class="ico ico-2"></span></router-link></div>
       <div class="bd">
           <div class="share" v-for="(item, index) in shareList">
               <a :href="item.target_url">

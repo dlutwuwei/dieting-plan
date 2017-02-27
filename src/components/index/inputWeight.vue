@@ -103,6 +103,12 @@
 </style>
 <template>
     <div class="input-weight">
+        <mt-header title="鸣鹿健康">
+            <router-link to="/" slot="left">
+                <mt-button icon="back">返回</mt-button>
+            </router-link>
+            <mt-button icon="more" slot="right"></mt-button>
+        </mt-header>
         <div class="hd"><span class="lt-btn"></span>2017年2月<span class="rt-btn"></span></div>
         <div class="bd">
             <div class="bd-hd">

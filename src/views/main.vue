@@ -34,10 +34,10 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
 
-      <InputWeight v-if="false"></InputWeight>
+      <!--<InputWeight v-if="false"></InputWeight>-->
       <!--e:录入体重日历-->
 
-      <InputWeightPop v-if="false"></InputWeightPop>
+      <!--<InputWeightPop v-if="false"></InputWeightPop>-->
       <!--e:录入体重日历弹窗-->
 
       <BottomBar></BottomBar>
