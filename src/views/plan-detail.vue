@@ -6,14 +6,19 @@
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-        <list-tab></list-tab>
+         <HeatPlate :heat-plate="heatPlate"></HeatPlate>
+            <!--e:能量盘-->
     </div>
 </template>
 <script>
-    import listTab from '../components/plan/list-tab.vue';
+    import HeatPlate from '../components/index/heatPlate.vue';//能量盘
+
     export default {
+        created() {
+            this.heatPlate = window.heatPlate;
+        },
         components: {
-            listTab
+            HeatPlate
         }
     };
 </script>

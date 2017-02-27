@@ -7,10 +7,10 @@
             <mt-button slot="right">直接购买</mt-button>
       </mt-header>
       <div class="plan-card food">
-        <span>饮食计划</span>
+          <a href="/plan.html"><span>饮食计划</span></a> 
       </div>
       <div class="plan-card sport">
-        <span>运动计划</span>
+          <a href="/plan.html"><span>运动计划</span></a>
       </div>
     </div>
 </template>
