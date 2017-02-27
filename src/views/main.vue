@@ -4,7 +4,9 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
+     <router-link to="/plan" slot="right">
+        <mt-button>我的计划</mt-button>
+      </router-link>
     </mt-header>
 
     <!--s:鸣鹿轮播图-->
@@ -32,10 +34,10 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
 
-      <InputWeight></InputWeight>
+      <InputWeight v-if="false"></InputWeight>
       <!--e:录入体重日历-->
 
-      <InputWeightPop></InputWeightPop>
+      <InputWeightPop v-if="false"></InputWeightPop>
       <!--e:录入体重日历弹窗-->
 
       <BottomBar></BottomBar>

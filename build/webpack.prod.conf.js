@@ -51,14 +51,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'cnode.html',
-      template: './page/index.html',
-      chunks: ['index'],
-      inject: true,
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'main.html',
+      filename: 'index.html',
       template: './page/main.html',
       chunks: ['main'],
       inject: true,
@@ -86,7 +79,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'buy.html',
       template: './page/index.html',
       chunks: ['buy'],
       inject: true,
