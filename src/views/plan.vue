@@ -29,10 +29,11 @@
       background-repeat: no-repeat;
       height: 220px;
       text-align: center;
-      color: #fff;
       span {
         line-height: 220px;
         text-align: center;
+        font-size: 18px;
+        color: #fff;
       }
     }
     .food {
