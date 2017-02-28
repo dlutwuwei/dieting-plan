@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="cell bottom">
-      <router-link to="/food/add" slot="left">
+      <router-link to="/plan/add" slot="left">
         <mt-button type="primary" size="normal">记录饮食</mt-button>
       </router-link>
     </div>

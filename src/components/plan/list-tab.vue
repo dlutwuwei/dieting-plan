@@ -2,8 +2,8 @@
 <template>
   <div class="plan-list">
       <div class="tab-hd">
-          <span class="hd-item curr" v-on:click.stop="tab(0)">本月排行</span>
-          <span class="hd-item" v-on:click.stop="tab(1)">我的排行</span>
+          <span class="hd-item curr" v-on:click.stop="tab(0)">饮食</span>
+          <span class="hd-item" v-on:click.stop="tab(1)">运动</span>
       </div>
       <div class="bd">
           <div class="list-content" style="display:block">
