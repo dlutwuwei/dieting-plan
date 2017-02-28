@@ -1,57 +1,206 @@
 <template>
-  <div>
-      <div class="input-weight-pop">
-          <div class="cen">
-              <div class="hd">今天</div>
-              <div class="bd">
-                  <div class="weight"><em id="value">55.4</em> <span>kg</span></div>
-                  <div class="calipers"><input id="range" type="range" min="0" max="50000" value="5" step="10"></div>
-              </div>
-              <div class="bot"><span>取消</span><span>保存</span></div>
-          </div>
-      </div>
-      <div class="mask"></div>
-  </div>
+    <div class="add-food">
+        <div class="date">2月8日/早餐</div>
+        <div class="food-item">
+            <img src="../../assets/images/jianfei/apple.jpg" alt="">
+            <div class="food-info">
+                <div class="food-name">苹果</div>
+                <div class="food-energy">100千卡/100克</div>
+            </div>
+        </div>
+        <div class="weight-select">
+            <div class="food-text">
+                <div>53千卡</div>
+                <div>100克</div>
+            </div>
+            <div class="bd">
+                <div class="weight"><input type="number" @keyup="getNum" value="100" id="ruler-input" /><span>g</span></div>
+                <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
+            </div>
+        </div>
+        <div class="bottom-btn"><span v-on:click="cancel">取消</span><span v-on:click="save">保存</span></div>
+    </div>
 </template>
-<style lang="scss" scoped>
-   
-    .input-weight-pop{
-        width:100%;
-        padding: 0 35px;
-        .cen{
-            background:#fff;
-            border-radius:4px 4px 0px 0px;
-        }
-        .hd{
-            height:57px;
-            line-height:57px;
-            border-bottom:1px solid #dfdfdf;
-        }
-        .bd{
-            padding:45px 0;
-            .weight{
-                position:relative;
-                color:#47a304;
-                em{
-                    font-size:36px;
+<script>
+    export default {
+        data() {
+        },
+        props: ['popupVisible'],
+        methods: {
+            cancel: function () {
+                this.$emit('popClose');
+            },
+            save: function () {
+                this.$emit('popClose');
+            },
+            getNum: function (event) {
+                let rulerNum = event.target.value;
+                let rulerEm = document.getElementById('ruler-em');
+                let rumberOne = document.querySelector('.one');
+                let rumberTwo = document.querySelector('.two');
+                let rumberThree = document.querySelector('.three');
+                let samllNum = rulerNum - parseInt(rulerNum);
+
+                if (rulerNum == '' || rulerNum <= 0) {
+                    rumberOne.innerHTML = 0;
+                    rumberTwo.innerHTML = 1;
+                    rumberThree.innerHTML = 2;
+                    rulerEm.style.left = '150px';
+                } else {
+                    rumberOne.innerHTML = parseInt(rulerNum) - 1;
+                    rumberTwo.innerHTML = parseInt(rulerNum);
+                    rumberThree.innerHTML = parseInt(rulerNum) + 1;
+                    rulerEm.style.left = (rulerNum - parseInt(rulerNum)) * 102 + 150 + 'px';
                 }
-                span{
-                    position:absolute;
+            }
+        },
+        mounted() {
+
+        }
+    }
+
+</script>
+<style lang="scss" scoped>
+    .add-food {
+        width: 100%;
+        .date {
+            line-height: 70px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .bottom-btn {
+            bottom: 0;
+            height: 50px;
+            background: #47a304;
+            position: relative;
+            &:before {
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 50%;
+                height: 30px;
+                width: 1px;
+                background: #fff;
+            }
+            span {
+                display: inline-block;
+                text-align: center;
+                line-height: 50px;
+                font-size: 14px;
+                width: 50%;
+                color: #fff;
+            }
+        }
+        .food-item {
+            padding: 0 18px;
+            height: 80px;
+            border-bottom: 1px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            img {
+                height: 50px;
+                width: 50px;
+                margin: 15px 0;
+            }
+            .food-info {
+                flex: 1;
+                line-height: 30px;
+                margin-left: 10px;
+                .food-name {
+                    font-size: 20px;
+                }
+                .food-energy {
+                    font-size: 14px;
+                    color: #999;
+                }
+            }
+            .food-calories {
+                text-align: right;
+                font-size: 9px;
+                line-height: 45px;
+                color: #999;
+            }
+        }
+    }
+    
+    .weight-select {
+        position: relative;
+        .food-text {
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            font-size: 16px;
+            color: #999;
+        }
+        .hd {
+            height: 57px;
+            line-height: 57px;
+            border-bottom: 1px solid #dfdfdf;
+        }
+        .bd {
+            padding: 50px 0;
+            text-align: center;
+            .weight {
+                position: relative;
+                color: #47a304;
+                input {
+                    width: 55px;
+                    height: 45px;
+                    // border: 1px solid #47a304;
+                    font-size: 30px;
+                    color: #47a304;
+                }
+                span {
+                    position: absolute;
                     top: 0px;
-                    font-size: 15px;
+                    font-size: 5px;
                     margin-left: 10px;
                 }
             }
-        }
-        .bot{
-            height:50px;
-            background:#47a304;
-            line-height:50px;
-            color:#fff;
-            span{
-                display:inline-block;
-                wdith:50%;
+            .calipers {
+                position: relative;
+                width: 288px;
+                height: 88px;
+                margin-top: 15px;
+                background: url(../../assets/images/jianfei/ruler.png) no-repeat;
+                background-size: 288px auto;
+                margin: auto;
+                em {
+                    position: absolute;
+                    left: 150px;
+                    top: 0px;
+                    display: block;
+                    width: 3px;
+                    height: 46px;
+                    background: #47a304;
+                    border-radius: 2px;
+                }
+                span {
+                    position: absolute;
+                    top: 58px;
+                    font-size: 18px;
+                    color: #333;
+                }
+                .one {
+                    left: 37px;
+                }
+                .two {
+                    left: 142px;
+                }
+                .three {
+                    left: 247px;
+                }
             }
         }
+    }
+    
+    .ruler {
+        position: relative;
+        width: 288px;
+        height: 88px;
+        margin-top: 38px;
+        background: url(../../assets/images/jianfei/ruler.png) no-repeat;
+        background-size: 288px auto;
     }
 </style>

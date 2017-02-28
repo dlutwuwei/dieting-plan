@@ -21,7 +21,7 @@
             </div>
         </div>
         <mt-popup class="food-popup" v-model="popupVisible" position="bottom">
-            <addFood></addFood>
+            <addFood v-on:popClose="popClose"></addFood>
         </mt-popup>
     </div>
 </template>
@@ -36,6 +36,9 @@
         methods: {
             popUp: function () {
                 this.popupVisible = true;
+            },
+            popClose: function() {
+                this.popupVisible = false;
             }
         },
         components: {
