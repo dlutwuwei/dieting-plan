@@ -18,6 +18,10 @@ module.exports = {
     prefer: './src/prefer.js',
     share: './src/share.js',
     buy: './src/buy.js',
+<<<<<<< Updated upstream
+=======
+    inputWeight: './src/record_weight.js',
+>>>>>>> Stashed changes
   },
   output: {
     path: config.build.assetsRoot,
