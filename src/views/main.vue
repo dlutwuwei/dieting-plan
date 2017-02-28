@@ -12,7 +12,7 @@
     <!--e:鸣鹿轮播图-->
 
     <!--s:瘦身分享-->
-    <SlimmingSharNew :share-list="shareList"></SlimmingSharNew>
+    <SlimmingShar :share-list="shareList"></SlimmingShar>
     <!--e:瘦身分享-->
 
     <!--s:瘦身达人榜-->
@@ -46,7 +46,7 @@
 
   import "../assets/scss/common/reset.scss";
   import MlSwiper from '../components/index/mlSwiper.vue';//轮播图
-  import SlimmingSharNew from '../components/index/slimmingSharNew.vue';//瘦身分享
+  import SlimmingShar from '../components/index/slimmingShar.vue';//瘦身分享
   import ReduceWeight from '../components/index/reduceWeight.vue';//一分钟减肥计划
   import DarenList from '../components/index/darenList.vue';//瘦身达人榜
   import HeatPlate from '../components/index/heatPlate.vue';//能量盘
@@ -76,7 +76,7 @@
     },
 
     components: {
-      SlimmingSharNew,
+      SlimmingShar,
       ReduceWeight,
       DarenList,
       MlSwiper,

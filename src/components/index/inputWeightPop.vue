@@ -40,7 +40,8 @@
                 input{
                     width:100px;
                     height:45px;
-                    border:1px solid #47a304;
+                    border:none;
+                    border-bottom:1px solid #47a304;
                     font-size:36px;
                     color:#47a304;
                 }
@@ -99,19 +100,18 @@
 
 </style>
 <template>
-  <div class="">
-      <div class="input-weight-pop">
-          <div class="cen">
-              <div class="hd">今天</div>
-              <div class="bd">
-                  <div class="weight"><input type="number" @keyup="getNum" value="55.5" id="ruler-input"/> <span>kg</span></div>
-                  <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
-              </div>
-              <div class="bot"><span>取消</span><span>保存</span></div>
-          </div>
-      </div>
-      <div class="mask"></div>
-  </div>
+    <mt-popup v-model="popupVisible">
+        <div class="input-weight-pop">
+            <div class="cen">
+                <div class="hd">今天</div>
+                <div class="bd">
+                    <div class="weight"><input type="number" @keyup="getNum" value="55.5" id="ruler-input"/> <span>kg</span></div>
+                    <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
+                </div>
+                <div class="bot"><span>取消</span><span>保存</span></div>
+            </div>
+        </div>
+    </mt-popup>
 </template>
 <script>
 
@@ -121,8 +121,6 @@
                 popupVisible: false,
             }
         },
-
-        props: ['ncfList'],
 
         methods:{
             popView: function(){
