@@ -12,6 +12,7 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMmianrod
 
 module.exports = {
   entry: {
+    plan: './src/plan.js',
     main: './src/main.js',
     detail: './src/detail',
     prefer: './src/prefer.js',

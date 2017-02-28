@@ -7,10 +7,10 @@
             <mt-button slot="right">直接购买</mt-button>
       </mt-header>
       <div class="plan-card food">
-        <span>饮食计划</span>
+          <a href="/plan.html"><span>饮食计划</span></a> 
       </div>
       <div class="plan-card sport">
-        <span>运动计划</span>
+          <a href="/plan.html"><span>运动计划</span></a>
       </div>
     </div>
 </template>
@@ -29,10 +29,11 @@
       background-repeat: no-repeat;
       height: 220px;
       text-align: center;
-      color: #fff;
       span {
         line-height: 220px;
         text-align: center;
+        font-size: 18px;
+        color: #fff;
       }
     }
     .food {

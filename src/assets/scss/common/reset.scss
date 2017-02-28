@@ -106,7 +106,18 @@ select {
     border: 1px solid #47a304;
     color: #47a304;
 }
+ .mint-button--danger {
+    height: 40px;
+    width: 180px;
+    background-color: #fe950f;
+    border: 1px solid #fe950f;
+    color: #fff;
+}
 .mint-button--primary:active {
     background-color: #47a304;
     color: #fff!important;
+}
+
+body a {
+    color: #333;
 }

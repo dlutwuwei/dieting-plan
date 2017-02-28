@@ -7,6 +7,22 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="buy-card">
+            <div class="cell1 bottom">
+                <mt-button type="primary" size="normal" v-on:click="post_prefer">15天免费试用</mt-button>
+            </div>
+            <div>
+                运用德国体质检测大数据库，制作针对东方人饮食习惯及体质特 点的短期减肥计划，定期推送专业指导！！
+            </div>
+        </div>
+        <div class="buy-card">
+            <div class="cell1 bottom">
+                <mt-button type="danger" size="normal" v-on:click="post_prefer">购买鹿鸣减肥计划</mt-button>
+            </div>
+            <div>
+                用户通过思维必体质检测，了解实时身体营养素含量状况，精准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳食纤维和微量元素等营养物质的比值和含量，针对性提高用户身体新陈代谢机能，结合运算并达到最佳燃脂比率。让您在有限的热量摄入范围内吃您所缺的，补您该补的！从而达到全面有效的体重管理、健康减肥效果 ----你的专属减肥计划！
+            </div>
+        </div>
+        <div class="buy-card">
              <div class="address-title">请确认收货地址信息</div>
              <div class="address-notice">说明：鸣鹿将为您邮寄头发采集器及相关说明，请按 照要求完成采集！鸣鹿将在7日后开始为您推送减肥 计划！</div>
         </div>
@@ -103,6 +119,10 @@
             text-align: center;
             margin-top: 60px;
             margin-bottom: 50px;
+        }
+        .cell1 {
+            text-align: center;
+            margin: 30px 0 20px 0;
         }
     }
     
