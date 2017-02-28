@@ -17,7 +17,7 @@ module.exports = {
     detail: './src/detail',
     prefer: './src/prefer.js',
     share: './src/share.js',
-    buy: './src/buy.js'
+    buy: './src/buy.js',
   },
   output: {
     path: config.build.assetsRoot,

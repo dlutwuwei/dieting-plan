@@ -4,9 +4,7 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-     <router-link to="/plan" slot="right">
-        <mt-button>我的计划</mt-button>
-      </router-link>
+      <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
 
     <!--s:鸣鹿轮播图-->
@@ -34,11 +32,11 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
 
-      <!--<InputWeight v-if="false"></InputWeight>-->
-      <!--e:录入体重日历-->
+      <InputWeight></InputWeight>
+      <!--e:体重录入-->
 
-      <!--<InputWeightPop v-if="false"></InputWeightPop>-->
-      <!--e:录入体重日历弹窗-->
+      <InputWeightPop></InputWeightPop>
+      <!--e:体重录入-->
 
       <BottomBar></BottomBar>
   </div>
@@ -55,9 +53,8 @@
   import WeightCurve from '../components/index/weightCurve.vue';//能量盘
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
-  import InputWeight from '../components/index/inputWeight.vue';//录入体重日历
-  import InputWeightPop from '../components/index/inputWeightPop.vue';//录入体重日历弹窗
-
+  import InputWeight from '../components/index/inputWeight.vue';//日历
+  import InputWeightPop from '../components/index/inputWeightPop.vue';//日历
   export default {
     data() {
       return {
