@@ -11,8 +11,8 @@
                 <input type="text">
             </div>
         </div>
-        <div class="result-list">
-            <div class="line result-item" v-for="item in data" v-on:click="popUp">
+        <div class="food-list">
+            <div class="line food-item" v-for="(item, index) in data" v-on:click="popUp(index)">
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
@@ -36,11 +36,13 @@
             return {
                 buttonBottom: 0,
                 popupVisible: false,
-                data: []
+                data: [],
+                selected: {}
             }
         },
         methods: {
-            popUp: function () {
+            popUp: function (index) {
+                this.selected = this.data[index];
                 this.popupVisible = true;
             },
             popClose: function() {

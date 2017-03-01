@@ -7,10 +7,10 @@
       <img src="../../assets/images/jianfei/apple.jpg" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>
-        <div class="food-weight">{{item.weight}}克</div>
+        <div class="food-weight">{{item.value}}克</div>
       </div>
       <div class="food-calories">
-        {{item.calories}}千卡
+        {{item.value * item.unit/100}}千卡
       </div>
     </div>
     <div class="cell bottom">

@@ -17,6 +17,7 @@
     import sportCard from '../components/plan/sport-card.vue';
     export default {
         created() {
+            console.log('detail created')
             this.heatPlate = window.heatPlate;
             this.foodList = window.foodList;
             this.sportList = window.sportList;
@@ -27,6 +28,9 @@
                 supper: '晚餐'
             }
             this.type = this.$route.params.type;
+        },
+        mounted() {
+            console.log('detail mounted')
         },
         watch: {
             // 如果路由有变化，会再次执行该方法

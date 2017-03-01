@@ -11,10 +11,10 @@
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.weight || item.duration}}{{type=='sport'?'分钟':'克'}}</div>
+                    <div class="food-weight">{{item.value}}{{type=='sport'?'分钟':'克'}}</div>
                 </div>
                 <div class="food-calories">
-                    {{item.calories}}千卡
+                    {{item.value * item.unit}}千卡
                 </div>
             </div>
             <div class="cell bottom">

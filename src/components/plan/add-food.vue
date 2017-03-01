@@ -2,19 +2,19 @@
     <div class="add-food">
         <div class="date">2月8日/早餐</div>
         <div class="food-item">
-            <img src="../../assets/images/jianfei/apple.jpg" alt="">
+            <img :src="item.icon" alt="">
             <div class="food-info">
-                <div class="food-name">苹果</div>
-                <div class="food-energy">100千卡/100克</div>
+                <div class="food-name">{{item.name}}</div>
+                <div class="food-energy">{{item.unit}}千卡/100克</div>
             </div>
         </div>
         <div class="weight-select">
             <div class="food-text">
-                <div>53千卡</div>
-                <div>100克</div>
+                <div>{{total}}千卡</div>
+                <div>{{item.value}}克</div>
             </div>
             <div class="bd">
-                <div class="weight"><input type="number" @keyup="getNum" value="100" id="ruler-input" /><span>g</span></div>
+                <div class="weight"><input type="number" @keyup="getNum" v-model="item.value" id="ruler-input" /><span>g</span></div>
                 <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
             </div>
         </div>
@@ -25,13 +25,20 @@
     export default {
         data() {
         },
-        props: ['popupVisible'],
+        props: ['item', 'list'],
+        computed: {
+            total: function () {
+                return this.item.unit * this.item.value / 100;
+            }
+        },
         methods: {
             cancel: function () {
                 this.$emit('popClose');
             },
             save: function () {
+                this.$router.push('/plan/detail/' + this.type );
                 this.$emit('popClose');
+                this.list.push(this.item);
             },
             getNum: function (event) {
                 let rulerNum = event.target.value;
@@ -54,8 +61,12 @@
                 }
             }
         },
+        created() {
+            this.type = this.$route.params.type;
+        },
+        beforeUpdate() {
+        },
         mounted() {
-
         }
     }
 
