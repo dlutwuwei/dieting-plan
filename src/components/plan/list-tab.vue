@@ -8,7 +8,7 @@
       <div class="bd">
           <div class="list-content" style="display:block">
               <div class="list-item" v-for="(item, index) in planList.food">
-                <router-link to="/plan/detail" slot="left">
+                <router-link to="/plan/detail/food" slot="left">
                     <div class="date">{{item.date}}</div>
                     <div>食物：{{item.food_count}}种</div>
                     <div>摄入：{{item.input}}千卡</div>
@@ -17,7 +17,7 @@
           </div>
           <div class="list-content">
               <div class="list-item" v-for="(item, index) in planList.sport">
-                <router-link to="/plan/detail" slot="left">
+                <router-link to="/plan/detail/sport" slot="left">
                       <div class="date">{{item.date}}</div>
                       <div>运动时长：{{item.duration}}分钟</div>
                       <div>运动消耗：{{item.consume}}千卡</div>
