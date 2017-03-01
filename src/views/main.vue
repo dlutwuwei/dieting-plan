@@ -32,15 +32,6 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
 
-<<<<<<< Updated upstream
-      <InputWeight></InputWeight>
-      <!--e:体重录入-->
-
-      <InputWeightPop></InputWeightPop>
-      <!--e:体重录入-->
-
-=======
->>>>>>> Stashed changes
       <BottomBar></BottomBar>
   </div>
 </template>
@@ -56,12 +47,6 @@
   import WeightCurve from '../components/index/weightCurve.vue';//能量盘
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
-<<<<<<< Updated upstream
-  import InputWeight from '../components/index/inputWeight.vue';//日历
-  import InputWeightPop from '../components/index/inputWeightPop.vue';//日历
-=======
-
->>>>>>> Stashed changes
   export default {
     data() {
       return {

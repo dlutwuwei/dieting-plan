@@ -1,14 +1,16 @@
 <template>
     <div class="share-wapper">
         <div class="share-hd">
-            <div class="go-back"></div>
+            <router-link to="/" slot="left">
+                <div class="go-back ico"></div>
+            </router-link>
             <div class="share-tab">
                 <mt-navbar v-model="selected">
-                    <mt-tab-item id="1">选项一</mt-tab-item>
-                    <mt-tab-item id="2">选项二</mt-tab-item>
+                    <mt-tab-item id="1">推荐</mt-tab-item>
+                    <mt-tab-item id="2">我的</mt-tab-item>
                 </mt-navbar>
             </div>
-            <div class="ico ico-1"></div>
+            <router-link to="/share/edit"><div class="ico ico-1"></div></router-link>
         </div>
 
         <!-- tab-container -->
@@ -19,7 +21,13 @@
                 <!--e:瘦身分享-->
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
-                <mt-cell v-for="n in 4" :title="'测试 ' + n" />
+                <template v-if="myShareList && myShareList.length > 0">
+                    <SlimmingShar :share-list="myShareList"></SlimmingShar>
+                </template>
+                <div class="write-share" v-else>
+                    <h5>还没写过瘦身分享哦，赶紧去写分享吧！</h5>
+                    <router-link to="/weight"><span>写分享</span></router-link>
+                </div>
             </mt-tab-container-item>
         </mt-tab-container>
     </div>
@@ -33,6 +41,7 @@
             return {
                 selected: '1',
                 shareList: window.shareList,
+                myShareList: window.myShareList,
             }
         },
         components: {
@@ -57,21 +66,24 @@
         background:url(../assets/images/ico-02.png) no-repeat;
         background-size:100% auto;
     }
+    body{
+        background:#f7f7f7;
+    }
     .share-hd{
         psition:relative;
         padding:10px 0;
+        .go-back:before{
+            background-position: -125px 0px;
+        }
         .go-back{
             position:absolute;
             left:10px;
-            top:10px;
-            vertical-align:middle;
-            height: 20px;
-            width: 20px;
-            display: inline-block;
-            border-bottom: 2px solid #999;
-            border-right: 2px solid #999;
-            transform: rotate(135deg) scale(0.5);
-            -webkit-transform: rotate(135deg) scale(0.5);
+            top:13px;
+            display:inline-block;
+            width:10px;
+            height:20px;
+            overflow:hidden;
+            vertical-align: middle;
         }
         .ico-1:before{
             background-position: -100px -25px;
@@ -93,13 +105,16 @@
         margin:0 auto;
         line-height:30px;
         border:1px solid #fe950f;
-        border-radius:5px;
+        border-radius:10px;
         .mint-tab-item{
             .mint-tab-item-label{
                 font-size:15px;
                 height:28px;
                 line-height:28px;
             }
+        }
+        .mint-navbar{
+            border-radius: 10px;
         }
         .mint-navbar .mint-tab-item.is-selected {
             border-bottom: 0px solid #26a2ff;
@@ -110,11 +125,29 @@
         padding:0px;
         height:28px;
         line-height:28px;
+        border-radius:9px;
     }
     .mint-navbar .mint-tab-item.is-selected{
         background:#fe950f;
     }
 
-
+    .write-share{
+        text-align:center;
+        h5{
+            padding:74px 0 162px;
+           font-size:15px;
+            color:#999;
+        }
+        span{
+            display:inline-block;
+            width:235px;
+            height:40px;
+            line-height:40px;
+            border:1px solid #47a304;
+            border-radius:30px;
+            font-size:18px;
+            color:#47a304;
+        }
+    }
 
 </style>
