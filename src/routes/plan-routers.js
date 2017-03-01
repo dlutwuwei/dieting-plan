@@ -16,11 +16,11 @@ const routers = [{
     component: planAdd
 },
 {
-    path: '/plan/diet',
+    path: '/plan/diet/:type',
     component: planDiet
 },
 {
-    path: '/plan/detail',
+    path: '/plan/detail/:type',
     component: planDetail
 }];
 
