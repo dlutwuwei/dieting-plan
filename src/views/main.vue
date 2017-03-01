@@ -12,7 +12,7 @@
     <!--e:鸣鹿轮播图-->
 
     <!--s:瘦身分享-->
-    <SlimmingSharNew :share-list="shareList"></SlimmingSharNew>
+    <SlimmingShar :share-list="shareList"></SlimmingShar>
     <!--e:瘦身分享-->
 
     <!--s:瘦身达人榜-->
@@ -32,12 +32,6 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
 
-      <InputWeight></InputWeight>
-      <!--e:体重录入-->
-
-      <InputWeightPop></InputWeightPop>
-      <!--e:体重录入-->
-
       <BottomBar></BottomBar>
   </div>
 </template>
@@ -46,15 +40,13 @@
 
   import "../assets/scss/common/reset.scss";
   import MlSwiper from '../components/index/mlSwiper.vue';//轮播图
-  import SlimmingSharNew from '../components/index/slimmingSharNew.vue';//瘦身分享
+  import SlimmingShar from '../components/index/slimmingShar.vue';//瘦身分享
   import ReduceWeight from '../components/index/reduceWeight.vue';//一分钟减肥计划
   import DarenList from '../components/index/darenList.vue';//瘦身达人榜
   import HeatPlate from '../components/index/heatPlate.vue';//能量盘
   import WeightCurve from '../components/index/weightCurve.vue';//能量盘
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
-  import InputWeight from '../components/index/inputWeight.vue';//日历
-  import InputWeightPop from '../components/index/inputWeightPop.vue';//日历
   export default {
     data() {
       return {
@@ -76,7 +68,7 @@
     },
 
     components: {
-      SlimmingSharNew,
+      SlimmingShar,
       ReduceWeight,
       DarenList,
       MlSwiper,
@@ -84,8 +76,6 @@
       WeightCurve,
       BottomBar,
       OldUserPop,
-      InputWeight,
-      InputWeightPop,
     }
   }
 
