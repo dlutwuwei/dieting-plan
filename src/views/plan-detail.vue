@@ -8,7 +8,7 @@
         </mt-header>
         <HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>
         <sportCard :data="sportList" v-if="type=='sport'"></sportCard>
-        <foodCard v-if="type=='food'" :title="titleMap[index]" :calories="calories[index]" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :calories="calories[index]" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
 <script>

@@ -4,7 +4,7 @@
       {{title}}<span>（建议摄入{{calories}}千卡）</span>
     </div>
     <div class="food-item" v-for="item in data">
-      <img src="../../assets/images/jianfei/apple.jpg" alt="">
+      <img :src="item.icon" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>
         <div class="food-weight">{{item.value}}克</div>
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="cell bottom">
-      <router-link to="/plan/diet/food" slot="left">
+      <router-link :to="url" slot="left">
         <mt-button type="primary" size="normal">记录饮食</mt-button>
       </router-link>
     </div>
@@ -23,11 +23,14 @@
 <script>
   export default {
     created() {
+      this.type = this.$route.params.type;
+      this.url = '/plan/diet/' + this.type;
     },
     props: {
       data: Array,
       title: String,
-      calories: String
+      calories: String,
+      type: String
     },
   }
 

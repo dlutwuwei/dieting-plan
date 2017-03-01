@@ -52,7 +52,7 @@
                 if(this.type == 'sport') {
                     this.data = window.sportList;
                 } else {
-                    this.data = window.foodList.breakfast;
+                    this.data = window.foodList['breakfast'];
                 }
             }
         },
