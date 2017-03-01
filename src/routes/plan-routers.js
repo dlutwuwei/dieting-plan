@@ -12,7 +12,7 @@ const routers = [{
     component: planList
 },
 {
-    path: '/plan/add',
+    path: '/plan/add/:type',
     component: planAdd
 },
 {

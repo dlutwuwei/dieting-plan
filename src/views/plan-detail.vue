@@ -6,9 +6,9 @@
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-        <HeatPlate :heat-plate="heatPlate"></HeatPlate>
-        <sportCard :data="sportList"></sportCard>
-        <foodCard :title="titleMap[index]" :calories="calories[index]" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>
+        <sportCard :data="sportList" v-if="type=='sport'"></sportCard>
+        <foodCard v-if="type=='food'" :title="titleMap[index]" :calories="calories[index]" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
 <script>
@@ -26,6 +26,11 @@
                 lunch: '午餐',
                 supper: '晚餐'
             }
+            this.type = this.$route.params.type;
+        },
+        watch: {
+            // 如果路由有变化，会再次执行该方法
+            '$route': 'fetchData'
         },
         components: {
             HeatPlate,

@@ -12,11 +12,11 @@
             </div>
         </div>
         <div class="food-list">
-            <div class="line food-item" v-for="item in 10" v-on:click="popUp">
+            <div class="line food-item" v-for="item in data" v-on:click="popUp">
                 <img src="../assets/images/jianfei/apple.jpg" alt="">
                 <div class="food-info">
-                    <div class="food-name">苹果</div>
-                    <div class="food-energy">100千卡/100克</div>
+                    <div class="food-name">{{item.name}}</div>
+                    <div class="food-energy">{{item.unit}}/{{type=='sport'?'分钟':'100克'}}</div>
                 </div>
             </div>
         </div>
@@ -30,7 +30,8 @@
     export default {
         data() {
             return {
-                popupVisible: false
+                popupVisible: false,
+                data: []
             }
         },
         methods: {
@@ -39,10 +40,23 @@
             },
             popClose: function() {
                 this.popupVisible = false;
+            },
+            fetchData: function() {
+                if(this.type == 'sport') {
+                    this.data = window.sportList;
+                } else {
+                    this.data = window.foodList.breakfast;
+                }
             }
         },
         components: {
             addFood
+        },
+        created() {
+            this.type = this.$route.params.type;
+        },
+        mounted() {
+            this.fetchData();
         }
     };
 

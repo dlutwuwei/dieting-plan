@@ -11,14 +11,14 @@
                 <img src="../assets/images/jianfei/apple.jpg" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.weight}}克</div>
+                    <div class="food-weight">{{item.weight || item.duration}}{{type=='sport'?'分钟':'克'}}</div>
                 </div>
                 <div class="food-calories">
                     {{item.calories}}千卡
                 </div>
             </div>
             <div class="cell bottom">
-                <router-link to="/plan/add" slot="left">
+                <router-link :to="addUrl" slot="left">
                     <mt-button type="primary" size="normal">自定义添加</mt-button>
                 </router-link>
             </div>
@@ -29,15 +29,25 @@
     export default {
         data() {
             return {
-                data: window.foodList.breakfast
+                data:[]
             }
         },
+        methods: {
+            fetchData: function() {
+                if(this.type == 'sport') {
+                    this.data = window.sportList;
+                } else {
+                    this.data = window.foodList.breakfast;
+                }
+            }
+        },
+        mounted() {
+            this.fetchData();
+        },
         created() {
-        },
-        watch: {
-            // 如果路由有变化，会再次执行该方法
-            '$route': 'fetchData'
-        },
+            this.type = this.$route.params.type;
+            this.addUrl = '/plan/add/' + this.type;
+        }
     }
 
 </script>
