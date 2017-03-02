@@ -70,7 +70,7 @@
         background:#f7f7f7;
     }
     .share-hd{
-        psition:relative;
+        position:relative;
         padding:10px 0;
         .go-back:before{
             background-position: -125px 0px;

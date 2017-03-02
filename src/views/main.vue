@@ -47,6 +47,7 @@
   import WeightCurve from '../components/index/weightCurve.vue';//能量盘
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
+
   export default {
     data() {
       return {
