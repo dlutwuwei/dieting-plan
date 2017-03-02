@@ -1,24 +1,27 @@
 <template>
-    <div class="add-food">
-        <div class="date">2月8日/早餐</div>
-        <div class="food-item">
+    <div class="add-sport">
+        <div class="sport-head">
+            <span class="cancel orange" v-on:click="cancel">取消</span>
+            <span class="title">添加运动</span>
+            <span class="confirm orange" v-on:click="save">确定</span>
+        </div>
+        <div class="sport-item line">
             <img src="../../assets/images/jianfei/apple.jpg" alt="">
-            <div class="food-info">
-                <div class="food-name">苹果</div>
-                <div class="food-energy">100千卡/100克</div>
+            <div class="food-name">爬楼梯</div>
+            <div class="food-energy"><span class="orange">407</span>千卡/60分钟</div>
+        </div>
+        <div class="sport-select line">
+            <div class="sport-quantity">
+                <span class="duration red">30<span class="unit">分钟</span></span>
+                <span class="amount">204千卡</span>
+            </div>
+            <div class="key-board">
+                <div class="key-button" v-for="item in 9">{{item+1}}</div>
+                <div class="key-button" value=".">.</div>
+                <div class="key-button" value="0">0</div>
+                <div class="key-button" value="del">=</div>
             </div>
         </div>
-        <div class="weight-select">
-            <div class="food-text">
-                <div>53千卡</div>
-                <div>100克</div>
-            </div>
-            <div class="bd">
-                <div class="weight"><input type="number" @keyup="getNum" value="100" id="ruler-input" /><span>g</span></div>
-                <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
-            </div>
-        </div>
-        <div class="bottom-btn"><span v-on:click="cancel">取消</span><span v-on:click="save">保存</span></div>
     </div>
 </template>
 <script>
@@ -32,26 +35,6 @@
             },
             save: function () {
                 this.$emit('popClose');
-            },
-            getNum: function (event) {
-                let rulerNum = event.target.value;
-                let rulerEm = document.getElementById('ruler-em');
-                let rumberOne = document.querySelector('.one');
-                let rumberTwo = document.querySelector('.two');
-                let rumberThree = document.querySelector('.three');
-                let samllNum = rulerNum - parseInt(rulerNum);
-
-                if (rulerNum == '' || rulerNum <= 0) {
-                    rumberOne.innerHTML = 0;
-                    rumberTwo.innerHTML = 1;
-                    rumberThree.innerHTML = 2;
-                    rulerEm.style.left = '150px';
-                } else {
-                    rumberOne.innerHTML = parseInt(rulerNum) - 1;
-                    rumberTwo.innerHTML = parseInt(rulerNum);
-                    rumberThree.innerHTML = parseInt(rulerNum) + 1;
-                    rulerEm.style.left = (rulerNum - parseInt(rulerNum)) * 102 + 150 + 'px';
-                }
             }
         },
         mounted() {
@@ -61,146 +44,92 @@
 
 </script>
 <style lang="scss" scoped>
-    .add-food {
-        width: 100%;
-        .date {
-            line-height: 70px;
-            font-size: 18px;
-            text-align: center;
-        }
-        .bottom-btn {
-            bottom: 0;
-            height: 50px;
-            background: #47a304;
+    .add-sport {
+        .line {
             position: relative;
             &:before {
                 content: '';
+                display: block;
                 position: absolute;
-                top: 10px;
-                left: 50%;
-                height: 30px;
-                width: 1px;
-                background: #fff;
-            }
-            span {
-                display: inline-block;
-                text-align: center;
-                line-height: 50px;
-                font-size: 14px;
-                width: 50%;
-                color: #fff;
+                left: 0;
+                top: 0;
+                height: 1px;
+                width: 100%;
+                background: #dfdfdf;
+                transform-origin: 0;
+                transform: scaleY(0.5);
             }
         }
-        .food-item {
-            padding: 0 18px;
-            height: 80px;
-            border-bottom: 1px solid #dfdfdf;
+        .red {
+            color: #ff0101;
+        }
+        .orange {
+            color: #f68e1f;
+        }
+        width: 290px;
+        height: 492px;
+        background: #f8f8f8;
+        .sport-head {
+            background: #fff;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            img {
-                height: 50px;
-                width: 50px;
-                margin: 15px 0;
+            padding:0 10px;
+            .cancel, .confirm {
+
+                font-size: 16px;
             }
-            .food-info {
-                flex: 1;
-                line-height: 30px;
-                margin-left: 10px;
-                .food-name {
-                    font-size: 20px;
+            .title {
+                font-size: 18px;
+            }
+        }
+        .sport-item {
+            height: 180px;
+            padding-top: 45px;
+            text-align: center;
+            font-size: 16px;
+            img {
+                width: 40px;
+            }
+        }
+        .sport-select {
+            background: #fff;
+            text-align: center;
+            height: 54px;
+            line-height: 54px;
+            .sport-quantity {
+                height: 54px;
+                .duration {
+                    font-size: 30px;
                 }
-                .food-energy {
+                .unit {
                     font-size: 14px;
+                    vertical-align: top;
+                }
+                .amount {
                     color: #999;
                 }
             }
-            .food-calories {
-                text-align: right;
-                font-size: 9px;
-                line-height: 45px;
-                color: #999;
+        }
+        .key-board {
+            height: 400px;
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            width: 200%;
+            transform: scale(.5);
+            transform-origin: 0 0;
+            .key-button {
+                border: 1px solid #e0e0e0;
+                width: 33.3%;
+                font-size: 40px;
+                height: 100px;
+                line-height: 100px;
+                color: black;
             }
         }
-    }
-    
-    .weight-select {
-        position: relative;
-        .food-text {
-            position: absolute;
-            left: 40px;
-            top: 40px;
-            font-size: 16px;
-            color: #999;
-        }
-        .hd {
-            height: 57px;
-            line-height: 57px;
-            border-bottom: 1px solid #dfdfdf;
-        }
-        .bd {
-            padding: 50px 0;
-            text-align: center;
-            .weight {
-                position: relative;
-                color: #47a304;
-                input {
-                    width: 55px;
-                    height: 45px;
-                    // border: 1px solid #47a304;
-                    font-size: 30px;
-                    color: #47a304;
-                }
-                span {
-                    position: absolute;
-                    top: 0px;
-                    font-size: 5px;
-                    margin-left: 10px;
-                }
-            }
-            .calipers {
-                position: relative;
-                width: 288px;
-                height: 88px;
-                margin-top: 15px;
-                background: url(../../assets/images/jianfei/ruler.png) no-repeat;
-                background-size: 288px auto;
-                margin: auto;
-                em {
-                    position: absolute;
-                    left: 150px;
-                    top: 0px;
-                    display: block;
-                    width: 3px;
-                    height: 46px;
-                    background: #47a304;
-                    border-radius: 2px;
-                }
-                span {
-                    position: absolute;
-                    top: 58px;
-                    font-size: 18px;
-                    color: #333;
-                }
-                .one {
-                    left: 37px;
-                }
-                .two {
-                    left: 142px;
-                }
-                .three {
-                    left: 247px;
-                }
-            }
-        }
-    }
-    
-    .ruler {
-        position: relative;
-        width: 288px;
-        height: 88px;
-        margin-top: 38px;
-        background: url(../../assets/images/jianfei/ruler.png) no-repeat;
-        background-size: 288px auto;
+        
+       
     }
 </style>

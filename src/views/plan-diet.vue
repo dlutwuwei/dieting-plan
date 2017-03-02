@@ -8,7 +8,7 @@
         </mt-header>
         <div class="food-card">
             <div class="food-item" v-for="item in data">
-                <img src="../assets/images/jianfei/apple.jpg" alt="">
+                <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
                     <div class="food-weight">{{item.weight || item.duration}}{{type=='sport'?'分钟':'克'}}</div>

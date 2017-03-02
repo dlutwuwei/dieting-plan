@@ -1,5 +1,5 @@
 <template>
-    <div class="food-add">
+    <div class="plan-add">
         <mt-header title="添加食物">
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
@@ -11,25 +11,30 @@
                 <input type="text">
             </div>
         </div>
-        <div class="food-list">
-            <div class="line food-item" v-for="item in data" v-on:click="popUp">
-                <img src="../assets/images/jianfei/apple.jpg" alt="">
+        <div class="result-list">
+            <div class="line result-item" v-for="item in data" v-on:click="popUp">
+                <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
                     <div class="food-energy">{{item.unit}}/{{type=='sport'?'分钟':'100克'}}</div>
                 </div>
             </div>
         </div>
-        <mt-popup class="food-popup" v-model="popupVisible" position="bottom">
+        <mt-popup v-if="type=='food'" class="select-popup" v-model="popupVisible" position="bottom">
             <addFood v-on:popClose="popClose"></addFood>
+        </mt-popup>
+        <mt-popup v-if="type=='sport'" class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
+            <addSport v-on:popClose="popClose"></addSport>
         </mt-popup>
     </div>
 </template>
 <script>
     import addFood from '../components/plan/add-food.vue';
+    import addSport from '../components/plan/add-sport.vue';
     export default {
         data() {
             return {
+                buttonBottom: 0,
                 popupVisible: false,
                 data: []
             }
@@ -50,7 +55,8 @@
             }
         },
         components: {
-            addFood
+            addFood,
+            addSport
         },
         created() {
             this.type = this.$route.params.type;
@@ -62,12 +68,15 @@
 
 </script>
 <style lang="scss">
-    .food-popup {
+    .select-popup {
         width: 100%;
     }
+    .select-popup1{
+        border-radius: 8px;
+    }
     
-    .food-list {
-        .food-item {
+    .result-list {
+        .result-item {
             height: 60px;
             padding: 0 18px;
             align-items: center;
