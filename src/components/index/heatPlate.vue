@@ -62,23 +62,25 @@
             <div class="date ncf-box">
                 <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>
             </div>
-            <div class="bd-bot" v-for="item in heatPlate">
-                <div class="info ncf-box">
-                    <div class="item">
-                        <h5>摄入</h5>
-                        <p>{{item.left}}</p>
+            <router-link to="/record">
+                <div class="bd-bot" v-for="item in heatPlate">
+                    <div class="info ncf-box">
+                        <div class="item">
+                            <h5>摄入</h5>
+                            <p>{{item.left}}</p>
+                        </div>
+                        <div class="item">
+                            <h5>还可以吃/千卡</h5>
+                            <p>{{item.obtain}}</p>
+                        </div>
+                        <div class="item">
+                            <h5>运动</h5>
+                            <p>{{item.consume}}</p>
+                        </div>
                     </div>
-                    <div class="item">
-                        <h5>还可以吃/千卡</h5>
-                        <p>{{item.obtain}}</p>
-                    </div>
-                    <div class="item">
-                        <h5>运动</h5>
-                        <p>{{item.consume}}</p>
-                    </div>
+                    <div class="evaluate">{{item.metrology}}</div>
                 </div>
-                <div class="evaluate">{{item.metrology}}</div>
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
