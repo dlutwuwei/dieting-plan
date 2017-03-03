@@ -39,7 +39,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.NoErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'plan.html',
+      filename: 'index.html',
       template: './page/plan.html',
       chunks: ['plan'],
       inject: true,
@@ -67,7 +67,7 @@ module.exports = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: 'share.html',
       template: './page/share.html',
       chunks: ['share'],
       inject: true,

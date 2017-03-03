@@ -6,20 +6,20 @@
             <span class="confirm orange" v-on:click="save">确定</span>
         </div>
         <div class="sport-item line">
-            <img src="../../assets/images/jianfei/apple.jpg" alt="">
-            <div class="food-name">爬楼梯</div>
-            <div class="food-energy"><span class="orange">407</span>千卡/60分钟</div>
+            <img :src="item.icon" alt="">
+            <div class="food-name">{{item.name}}</div>
+            <div class="food-energy"><span class="orange">{{item.unit}}</span>千卡/60分钟</div>
         </div>
         <div class="sport-select line">
             <div class="sport-quantity">
-                <span class="duration red">30<span class="unit">分钟</span></span>
-                <span class="amount">204千卡</span>
+                <span class="duration red">{{value}}<span class="unit">分钟</span></span>
+                <span class="amount">{{total}}千卡</span>
             </div>
-            <div class="key-board">
-                <div class="key-button" v-for="item in 9">{{item+1}}</div>
+            <div class="key-board" @click="onClickValue">
+                <div class="key-button" :value="item" v-for="(item, index) in 9">{{item}}</div>
                 <div class="key-button" value=".">.</div>
                 <div class="key-button" value="0">0</div>
-                <div class="key-button" value="del">=</div>
+                <div class="key-button" value="del" @click="onDelete">DEL</div>
             </div>
         </div>
     </div>
@@ -27,18 +27,44 @@
 <script>
     export default {
         data() {
+            return {
+                item: this.data,
+                inputVal: '',
+            }
         },
-        props: ['popupVisible'],
+        computed: {
+            total: function () {
+                return this.item.unit * this.value / 60;
+            },
+            value: function() {
+                return parseFloat(this.inputVal||0);
+            }
+        },
+        props: ['data'],
+        watch: {
+            data(val) {
+                this.item = val;//新增result的watch，监听变更并同步到myResult上
+            }
+        },
         methods: {
             cancel: function () {
                 this.$emit('popClose');
             },
             save: function () {
                 this.$emit('popClose');
+            },
+            onClickValue: function(e) {
+                let val = e.target.getAttribute('value');
+                this.inputVal += val;
+            },
+            onDelete: function(e) {
+                e.stopPropagation();
+                let val = this.inputVal;
+                this.inputVal = val.substring(0, val.length-1);
             }
         },
         mounted() {
-
+            console.log(this.data)
         }
     }
 

@@ -21,10 +21,10 @@
             </div>
         </div>
         <mt-popup v-if="type=='food'" class="select-popup" v-model="popupVisible" position="bottom">
-            <addFood v-on:popClose="popClose"></addFood>
+            <addFood v-on:popClose="popClose" :data="selected"></addFood>
         </mt-popup>
         <mt-popup v-if="type=='sport'" class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
-            <addSport v-on:popClose="popClose"></addSport>
+            <addSport v-on:popClose="popClose" :data="selected"></addSport>
         </mt-popup>
     </div>
 </template>
@@ -43,6 +43,7 @@
         methods: {
             popUp: function (index) {
                 this.selected = this.data[index];
+                debugger
                 this.popupVisible = true;
             },
             popClose: function() {

@@ -24,11 +24,19 @@
 <script>
     export default {
         data() {
+            return {
+                item: this.data
+            }
         },
-        props: ['item', 'list'],
+        props: ['data', 'list'],
         computed: {
             total: function () {
                 return this.item.unit * this.item.value / 100;
+            }
+        },
+        watch: {
+            data(val) {
+                this.item = val;//新增result的watch，监听变更并同步到myResult上
             }
         },
         methods: {

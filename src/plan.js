@@ -22,7 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/plan/list');
+router.replace('/plan/add/sport');
 
 FastClick.attach(document.body);
 
