@@ -55,7 +55,7 @@
         display:inline-block;
         width:150px;
         height:150px;
-        background:url(../assets/images/ico-01.png) no-repeat;
+        background:url(./../assets/images/ico-01.png) no-repeat;
         background-size:100% auto;
     }
     .ico2:before{
@@ -63,14 +63,14 @@
         display:inline-block;
         width:165px;
         height:165px;
-        background:url(../assets/images/ico-02.png) no-repeat;
+        background:url(./../assets/images/ico-02.png) no-repeat;
         background-size:100% auto;
     }
     body{
         background:#f7f7f7;
     }
     .share-hd{
-        psition:relative;
+        position:relative;
         padding:10px 0;
         .go-back:before{
             background-position: -125px 0px;

@@ -122,6 +122,7 @@
                 popupVisible: false,
             }
         },
+
         props: ['ncfList'],
 
         methods:{

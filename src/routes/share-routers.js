@@ -1,16 +1,21 @@
-const list = require('../views/share-list.vue');
-const editor = require('../views/share-editor.vue');
+const shareList = require('../views/share-list.vue');
+const shareEditor = require('../views/share-editor.vue');
+const shareDetail = require('../views/share-detail.vue');
 const routers = [{
     path: '/',
-    component: list
+    component: shareList
 },
 {
     path: '/share/list',
-    component: list
+    component: shareList
 },
 {
     path: '/share/edit',
-    component: editor
+    component: shareEditor
+},
+{
+    path: '/share/detail/:id',
+    component: shareDetail
 }];
 
 export default routers;

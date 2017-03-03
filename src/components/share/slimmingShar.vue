@@ -71,7 +71,7 @@
 <template>
   <div class="slimming-share">
       <div class="share" v-for="(item, index) in shareList">
-              <a :href="item.target_url">
+              <router-link :to="'/share/detail/'+ item.id" slot="left">
                   <img :src="item.image_url" class="share-pic" alt=""/>
                   <h5>{{item.title}}</h5>
                   <div class="share-info">
@@ -81,7 +81,7 @@
                       <img :src="item.author.avatar_url" alt=""/>
                       <p>{{item.author.name}}</p>
                   </div>
-              </a>
+              </router-link>
           </div>
   </div>
 </template>

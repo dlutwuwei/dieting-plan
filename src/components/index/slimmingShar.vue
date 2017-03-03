@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
     .slimming-share{
         margin-top:15px;
+
         .hd{
             height: 45px;
             line-height: 45px;
@@ -121,7 +122,7 @@
       <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
       <div class="bd">
           <div class="share" v-for="(item, index) in shareList">
-              <a :href="item.target_url">
+              <router-link to="'/share/detail/'+ item.id" slot="left">
                   <img :src="item.image_url" class="share-pic" alt=""/>
                   <h5>{{item.title}}</h5>
                   <div class="share-info">
@@ -136,7 +137,7 @@
                           {{item.author.description}}
                       </div>
                   </div>
-              </a>
+              </router-link>
           </div>
       </div>
   </div>
