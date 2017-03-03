@@ -23,7 +23,9 @@
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
     <!--e:一分钟减肥方案-->
 
+    <router-link to="/record">
       <HeatPlate :heat-plate="heatPlate"></HeatPlate>
+    </router-link>
     <!--e:能量盘-->
 
       <WeightCurve :weight-curve="weightCurve"></WeightCurve>
