@@ -8,11 +8,11 @@
         </mt-header>
         <div class="line search-card">
             <div class="search-bar">
-                <input type="text">
+                <input type="text" v-model="search">
             </div>
         </div>
-        <div class="food-list">
-            <div class="line food-item" v-for="(item, index) in data" v-on:click="popUp(index)">
+        <div class="result-list">
+            <div class="line result-item" v-for="(item, index) in data" v-on:click="popUp(index)">
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
@@ -37,7 +37,17 @@
                 buttonBottom: 0,
                 popupVisible: false,
                 data: [],
-                selected: {}
+                selected: {},
+                search: ''
+            }
+        },
+        watch: {
+            search(val) {
+                if(this.type == 'sport') {
+                    this.data.push(window.sportList[0]);
+                } else {
+                    this.data.push(window.foodList['breakfast'][0]);
+                }
             }
         },
         methods: {
