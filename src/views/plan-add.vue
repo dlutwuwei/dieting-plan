@@ -53,7 +53,6 @@
         methods: {
             popUp: function (index) {
                 this.selected = this.data[index];
-                debugger
                 this.popupVisible = true;
             },
             popClose: function() {

@@ -1,26 +1,6 @@
 <style lang="scss" scoped>
-    .isHide{
-        display:none;
-    }
-    .mask{
-        position:fixed;
-        width:100%;
-        height:100%;
-        left:0px;
-        top:0px;
-        right:0px;
-        bottom:0px;
-        background:#333;
-        filter:alpha(opacity=80);
-        opacity:0.8;
-        z-index:10000;
-    }
     .input-weight-pop{
-        position:absolute;
-        left:50%;
-        top:180px;
         width:288px;
-        margin-left:-144px;
         z-index:10002;
         text-align:center;
         .cen{
@@ -93,7 +73,8 @@
             color:#fff;
             span{
                 display:inline-block;
-                wdith:50%;
+                width:50%;
+                text-align: center;
             }
         }
     }
@@ -111,7 +92,6 @@
               <div class="bot"><span>取消</span><span>保存</span></div>
           </div>
       </div>
-      <div class="mask"></div>
   </div>
 </template>
 <script>

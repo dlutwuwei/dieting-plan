@@ -104,12 +104,18 @@
 <template>
     <div>
         <div class="input-weight">
+            <mt-header title="鸣鹿健康">
+                <router-link to="/" slot="left">
+                    <mt-button icon="back">返回</mt-button>
+                </router-link>
+                <mt-button icon="more" slot="right"></mt-button>
+            </mt-header>
             <div class="hd"><span class="lt-btn"></span>2017年2月<span class="rt-btn"></span></div>
             <div class="bd">
                 <div class="bd-hd">
                     <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
                 </div>
-                <ul>
+                <ul @click="onPopup">
                     <li>
                         <span class="gray">29</span><span class="gray">30</span><span class="gray">31</span><span>1</span><span>2</span><span>3</span><span>4</span>
                     </li>
@@ -128,9 +134,9 @@
                 </ul>
             </div>
         </div>
-
-        <InputWeightPop></InputWeightPop>
-    <!--e:录入体重日历弹窗-->
+        <mt-popup class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
+            <InputWeightPop v-on:popClose="popClose" :data="selected"></InputWeightPop>
+        </mt-popup>
     </div>
 </template>
 <script>
@@ -139,20 +145,21 @@
     export default {
         data() {
             return {
-                showPop: false,
+                popupVisible: false
             }
         },
-
         methods:{
+            onPopup: function(e) {
+                this.popupVisible = true;
+            },
+            popClose: function() {
+                this.popupVisible = false;
+            },
         },
-
         components: {
             InputWeightPop,
         },
-
         mounted(){
-
-
         },
     }
 
