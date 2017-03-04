@@ -50,6 +50,13 @@ var webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
+new HtmlWebpackPlugin({
+      filename: 'plan.html',
+      template: './page/plan.html',
+      chunks: ['plan'],
+      inject: true,
+      chunksSortMode: 'dependency'
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './page/main.html',
@@ -59,7 +66,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: 'detail.html',
-      template: './page/index.html',
+      template: './page/detail.html',
       chunks: ['detail'],
       inject: true,
       chunksSortMode: 'dependency'
@@ -73,7 +80,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: 'share.html',
-      template: './page/index.html',
+      template: './page/share.html',
       chunks: ['share'],
       inject: true,
       chunksSortMode: 'dependency'
@@ -84,6 +91,13 @@ var webpackConfig = merge(baseWebpackConfig, {
       chunks: ['buy'],
       inject: true,
       chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'record_weight.html',
+        template: './page/record_weight.html',
+        chunks: ['inputWeight'],
+        inject: true,
+        chunksSortMode: 'dependency'
     }),
     // // split vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
