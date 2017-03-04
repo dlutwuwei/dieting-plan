@@ -18,7 +18,6 @@ module.exports = {
     prefer: './src/prefer.js',
     share: './src/share.js',
     buy: './src/buy.js',
-    inputWeight: './src/record_weight.js',
     loading: './src/loading.js',
   },
   output: {
