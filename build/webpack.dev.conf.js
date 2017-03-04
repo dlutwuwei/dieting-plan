@@ -80,6 +80,20 @@ module.exports = merge(baseWebpackConfig, {
       inject: true,
       chunksSortMode: 'dependency'
     }),
+      new HtmlWebpackPlugin({
+          filename: 'record_weight.html',
+          template: './page/record_weight.html',
+          chunks: ['inputWeight'],
+          inject: true,
+          chunksSortMode: 'dependency'
+      }),
+      new HtmlWebpackPlugin({
+          filename: 'loading.html',
+          template: './page/loading.html',
+          chunks: ['loading'],
+          inject: true,
+          chunksSortMode: 'dependency'
+      }),
     // split vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'vendor',

@@ -1,18 +1,17 @@
-<style lang="scss" scoped>
+<style lang="scss">
     .page-swipe{
         height:101px;
-       a{
-           display:block;
-           img{
-               width:100%;
-               height:101px;
-           }
+       img{
+           width:100%;
+           height:101px;
        }
         .mint-swipe-indicator{
-            background:#fff!important;
+            background:#fff;
+            opacity: 0.9;
         }
         .mint-swipe-indicator.is-active{
-            background:#fe970e!important;
+            background:#fe970e;
+            opacity: 0.9;
         }
     }
 
