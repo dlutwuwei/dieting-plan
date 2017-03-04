@@ -7,7 +7,8 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" v-for="item in data">
+            <div class="food-item" v-for="(item,index) in data">
+                <span class="food-delete" @click="deleteItem"></span>
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
@@ -33,6 +34,9 @@
             }
         },
         methods: {
+            deleteItem: function(i) {
+                this.data.splice(i, 1);
+            },
             fetchData: function() {
                 if(this.type == 'sport') {
                     this.data = window.sportList;
@@ -75,11 +79,27 @@
             border-bottom: 1px solid #dfdfdf;
         }
         .food-item {
-            height: 46px;
+            height: 50px;
             border-bottom: 1px solid #dfdfdf;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .food-delete {
+                &:before {
+                    display: block;
+                    content: '';
+                    width: 9px;
+                    height: 1px;
+                    background: #fff;
+                    margin: 11px auto;
+                }
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                background: #fe0100;
+                text-align: center;
+                margin-right: 20px;
+            }
             img {
                 height: 30px;
                 width: 30px;
