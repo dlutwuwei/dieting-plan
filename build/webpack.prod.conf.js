@@ -92,13 +92,6 @@ new HtmlWebpackPlugin({
       inject: true,
       chunksSortMode: 'dependency'
     }),
-    new HtmlWebpackPlugin({
-        filename: 'record_weight.html',
-        template: './page/record_weight.html',
-        chunks: ['inputWeight'],
-        inject: true,
-        chunksSortMode: 'dependency'
-    }),
     // // split vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'vendor',
