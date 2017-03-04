@@ -1,7 +1,6 @@
 <style lang="scss" scoped>
     .input-weight-pop{
         width:288px;
-        z-index:10002;
         text-align:center;
         .cen{
             background:#fff;
