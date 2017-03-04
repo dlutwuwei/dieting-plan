@@ -4,7 +4,9 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"></mt-button>
+      <router-link to="/myplan" slot="right">
+        <mt-button>我的计划</mt-button>
+      </router-link>
     </mt-header>
 
     <!--s:鸣鹿轮播图-->

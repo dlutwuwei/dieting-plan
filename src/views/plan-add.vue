@@ -85,6 +85,7 @@
     }
     .select-popup1{
         border-radius: 8px;
+        overflow: hidden;
     }
     
     .result-list {

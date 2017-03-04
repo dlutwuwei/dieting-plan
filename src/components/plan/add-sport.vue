@@ -37,7 +37,7 @@
                 return this.item.unit * this.value / 60;
             },
             value: function() {
-                return parseFloat(this.inputVal||0);
+                return parseInt(this.inputVal||0);
             }
         },
         props: ['data'],
