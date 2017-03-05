@@ -72,7 +72,7 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url',
         query: {
-          limit: 10000,
+          limit: 20000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
