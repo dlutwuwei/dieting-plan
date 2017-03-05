@@ -34,7 +34,7 @@
         },
         computed: {
             total: function () {
-                return this.item.unit * this.value / 60;
+                return parseInt(this.item.unit * this.value / 60);
             },
             value: function() {
                 return parseInt(this.inputVal||0);
