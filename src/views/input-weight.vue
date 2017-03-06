@@ -1,15 +1,15 @@
 <style lang="scss" scoped>
-    .input-weight{
-    background:#f7f7f7;
-        .hd{
-            position:relative;
-            height:60px;
-            text-align:center;
-            font-size:18px;
-            color:#333;
-            line-height:60px;
-            span{
-                vertical-align:middle;
+    .input-weight {
+        background: #f7f7f7;
+        .hd {
+            position: relative;
+            height: 60px;
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            line-height: 60px;
+            span {
+                vertical-align: middle;
                 height: 20px;
                 width: 20px;
                 display: inline-block;
@@ -18,16 +18,16 @@
                 transform: rotate(-45deg) scale(0.5);
                 -webkit-transform: rotate(-45deg) scale(0.5);
             }
-            .lt-btn{
-                margin-right:10px;
+            .lt-btn {
+                margin-right: 10px;
                 transform: rotate(135deg) scale(0.5);
                 -webkit-transform: rotate(135deg) scale(0.5);
             }
-            .rt-btn{
-                margin-left:10px;
+            .rt-btn {
+                margin-left: 10px;
             }
         }
-        .hd:before{
+        .hd:before {
             content: " ";
             position: absolute;
             background-color: #e6e6e6;
@@ -39,11 +39,12 @@
             -webkit-transform: scaleY(0.5);
             transform: scaleY(0.5);
         }
-        .bd{
-            .bd-hd{
-                padding-top:10px;
+        .bd {
+            .bd-hd {
+                padding-top: 10px;
             }
-            .bd-hd,li{
+            .bd-hd,
+            li {
                 display: box;
                 display: -webkit-box;
                 -webkit-box-align: center;
@@ -51,41 +52,41 @@
                 text-align: center;
                 -webkit-box-pack: justify;
                 box-pack: justify;
-                font-size:15px;
-                color:#333;
-                span{
-                    width:100px;
+                font-size: 15px;
+                color: #333;
+                span {
+                    width: 100px;
                     box-flex: 1;
                     -webkit-box-flex: 1;
                     display: block;
-                    text-align:center;
+                    text-align: center;
                 }
             }
-            li{
-                position:relative;
-                span{
-                   height:55px;
-                   padding-top: 12px;
-                   line-height: 1.2;
+            li {
+                position: relative;
+                span {
+                    height: 55px;
+                    padding-top: 12px;
+                    line-height: 1.2;
                 }
-                .gray{
-                    color:#999;
+                .gray {
+                    color: #999;
                 }
-                em{
-                    display:block;
+                em {
+                    display: block;
                     font-style: normal;
-                    font-size:12px;
-                    color:#47a304;
+                    font-size: 12px;
+                    color: #47a304;
                 }
-                .curr{
-                    background:#f2901e;
-                    border-radius:9999px;
-                   em{
-                       color:#fff;
-                   }
+                .curr {
+                    background: #f2901e;
+                    border-radius: 9999px;
+                    em {
+                        color: #fff;
+                    }
                 }
             }
-            li:before{
+            li:before {
                 content: " ";
                 position: absolute;
                 background-color: #e6e6e6;
@@ -98,7 +99,6 @@
                 transform: scaleY(0.5);
             }
         }
-
     }
 </style>
 <template>
@@ -110,26 +110,16 @@
                 </router-link>
                 <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
-            <div class="hd"><span class="lt-btn"></span>2017年2月<span class="rt-btn"></span></div>
+            <div class="hd"><span class="lt-btn" @click="prevMonth"></span>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<span class="rt-btn" @click="nextMonth"></span></div>
             <div class="bd">
                 <div class="bd-hd">
                     <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
                 </div>
                 <ul @click="onPopup">
-                    <li>
-                        <span class="gray">29</span><span class="gray">30</span><span class="gray">31</span><span>1</span><span>2</span><span>3</span><span>4</span>
-                    </li>
-                    <li>
-                        <span>5</span><span>6</span><span>7</span><span>8 <em>56.3</em></span><span>9<em>54.9</em></span><span class="curr">10<em>55.1</em></span><span>11</span>
-                    </li>
-                    <li>
-                        <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-                    </li>
-                    <li>
-                        <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-                    </li>
-                    <li>
-                        <span>26</span><span>27</span><span>28</span><span class="gray">1</span><span class="gray">2</span><span class="gray">3</span><span class="gray">4</span>
+                    <li v-for="(i, l) in dateList.length/7">
+                        <span v-for="item in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth())}">
+                            {{item.date}}<em v-if="item.value">55.1</em>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -145,21 +135,67 @@
     export default {
         data() {
             return {
-                popupVisible: false
+                popupVisible: false,
+                selected: {},
+                now: new Date()
             }
         },
-        methods:{
-            onPopup: function(e) {
-                this.popupVisible = true;
+        created() {
+            this.now = new Date();
+            this.weightList = window.weightCurveData;
+        },
+        computed: {
+            dateList() {
+                let now = this.now;
+                let year = now.getFullYear();
+                let tmpMonth = now.getMonth();
+                let date = now.getDate();
+                //获取当月的天数
+                let currentMonthLength = new Date(year, tmpMonth + 1, 0).getDate()
+                //先将当月的日期塞入dateList
+                let dateList = Array.from({ length: currentMonthLength }, (val, index) => {
+                    return {
+                        currentMonth: true,
+                        date: index + 1,
+                        value: this.weightList[0]
+                    }
+                });
+                //获取当月1号的星期是为了确定在1号前需要插多少天
+                let startDay = new Date(year, tmpMonth, 1).getDay();
+                // //确认上个月一共多少天
+                let previousMongthLength = new Date(year, tmpMonth, 0).getDate();
+
+                //在1号前插入上个月日期
+                for (let i = 0, len = startDay; i < len; i++) {
+                    dateList = [{ previousMonth: true, date: previousMongthLength - i }].concat(dateList)
+                }
+                //补全剩余位置
+                let rest = (7 -  dateList.length%7);
+                for (let i = 0; i< rest; i++) {
+                    dateList[dateList.length] = { nextMonth: true, date: i + 1 }
+                }
+                return dateList;
+            }
+        },
+        methods: {
+            prevMonth: function(e){
+                this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
             },
-            popClose: function() {
+            nextMonth: function(e) {
+                this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
+            },
+            onPopup: function (e) {
+                this.popupVisible = true;
+                this.selected = {};
+            },
+            popClose: function () {
                 this.popupVisible = false;
             },
         },
         components: {
             InputWeightPop,
         },
-        mounted(){
+        mounted() {
         },
     }
 
