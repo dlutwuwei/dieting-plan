@@ -26,7 +26,7 @@
                 </template>
                 <div class="write-share" v-else>
                     <h5>还没写过瘦身分享哦，赶紧去写分享吧！</h5>
-                    <router-link to="/weight"><span>写分享</span></router-link>
+                    <router-link to="/share/edit"><span>写分享</span></router-link>
                 </div>
             </mt-tab-container-item>
         </mt-tab-container>
