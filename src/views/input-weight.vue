@@ -142,6 +142,8 @@
         },
         created() {
             this.now = new Date();
+            this.data = {}; // store all data for month weight records;
+            this.data[new Date().toLocaleDateString()] = window.weightCurveData;
             this.weightList = window.weightCurveData;
         },
         computed: {
@@ -179,10 +181,26 @@
         },
         methods: {
             prevMonth: function(e){
-                this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
+                if (Date.now() > new Date(new Date().getFullYear()-1, 0, 1)) {
+                    this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
+                    this.$http.get('/someUrl').then(response => {
+                        // get body data
+                        this.weightList = response.body;
+                    }, response => {
+                        // error callback
+                    });
+                }
             },
             nextMonth: function(e) {
-                this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
+                if (this.now.getTime() < Date.now()) {
+                    this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
+                    this.$http.get('/someUrl').then(response => {
+                        // get body data
+                        this.weightList = response.body;
+                    }, response => {
+                        // error callback
+                    });
+                }
             },
             onPopup: function (e) {
                 this.popupVisible = true;
