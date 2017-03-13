@@ -115,10 +115,10 @@
                 <div class="bd-hd">
                     <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
                 </div>
-                <ul @click="onPopup">
+                <ul>
                     <li v-for="(i, l) in dateList.length/7">
-                        <span v-for="item in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth())}">
-                            {{item.date}}<em v-if="item.value">55.1</em>
+                        <span @click="onPopup(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth())}">
+                            {{item.date}}<em v-if="item.value">{{item.value}}</em>
                         </span>
                     </li>
                 </ul>
@@ -159,7 +159,7 @@
                     return {
                         currentMonth: true,
                         date: index + 1,
-                        value: this.weightList[0]
+                        value: ''
                     }
                 });
                 //获取当月1号的星期是为了确定在1号前需要插多少天
@@ -202,9 +202,9 @@
                     });
                 }
             },
-            onPopup: function (e) {
+            onPopup: function (item) {
                 this.popupVisible = true;
-                this.selected = {};
+                this.selected = item;
             },
             popClose: function () {
                 this.popupVisible = false;
