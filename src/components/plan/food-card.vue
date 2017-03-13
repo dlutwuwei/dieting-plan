@@ -10,7 +10,7 @@
         <div class="food-weight">{{item.value}}克</div>
       </div>
       <div class="food-calories">
-        {{item.value * item.unit/100}}千卡
+        {{item.value * item.energy/100}}千卡
       </div>
     </div>
     <div class="cell bottom">

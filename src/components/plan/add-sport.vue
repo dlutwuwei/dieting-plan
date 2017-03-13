@@ -8,7 +8,7 @@
         <div class="sport-item line">
             <img :src="item.icon" alt="">
             <div class="food-name">{{item.name}}</div>
-            <div class="food-energy"><span class="orange">{{item.unit}}</span>千卡/60分钟</div>
+            <div class="food-energy"><span class="orange">{{item.energy}}</span>千卡/60分钟</div>
         </div>
         <div class="sport-select line">
             <div class="sport-quantity">
@@ -34,7 +34,7 @@
         },
         computed: {
             total: function () {
-                return parseInt(this.item.unit * this.value / 60);
+                return parseInt(this.item.energy * this.value / 60);
             },
             value: function() {
                 return parseInt(this.inputVal||0);

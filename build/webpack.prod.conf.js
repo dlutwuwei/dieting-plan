@@ -92,6 +92,13 @@ new HtmlWebpackPlugin({
       inject: true,
       chunksSortMode: 'dependency'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'loading.html',
+      template: './page/loading.html',
+      chunks: ['loading'],
+      inject: true,
+      chunksSortMode: 'dependency'
+    }),
     // // split vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
     //   name: 'vendor',

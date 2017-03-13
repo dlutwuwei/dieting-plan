@@ -12,11 +12,11 @@
             </div>
         </div>
         <div class="result-list">
-            <div class="line result-item" v-for="(item, index) in data" v-on:click="popUp(index)">
+            <div class="line result-item" id="item.pid" v-for="(item, index) in data" v-on:click="popUp(index)">
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-energy">{{item.unit}}/{{type=='sport'?'分钟':'100克'}}</div>
+                    <div class="food-energy">{{item.energy}}/{{type=='sport'?'分钟':'100克'}}</div>
                 </div>
             </div>
         </div>
@@ -43,11 +43,7 @@
         },
         watch: {
             search(val) {
-                if(this.type == 'sport') {
-                    this.data.push(window.sportList[0]);
-                } else {
-                    this.data.push(window.foodList['breakfast'][0]);
-                }
+                this.fetchData(val, this.type);
             }
         },
         methods: {
@@ -58,12 +54,16 @@
             popClose: function() {
                 this.popupVisible = false;
             },
-            fetchData: function() {
-                if(this.type == 'sport') {
-                    this.data = window.sportList;
-                } else {
-                    this.data = window.foodList['breakfast'];
-                }
+            fetchData: function(val, type) {
+                
+                this.$http.get(`/lion/index.php/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val}`).then(response => {
+                    // get body data
+                    if(response.body!=='null') {
+                        this.data = response.body;
+                    }
+                }, response => {
+                    // error callback
+                });
             }
         },
         components: {
@@ -74,7 +74,12 @@
             this.type = this.$route.params.type;
         },
         mounted() {
-            this.fetchData();
+            // init data
+            if(this.type == 'sport') {
+                this.data = window.sportList || [];
+            } else {
+                this.data = window.foodList['breakfast'] || [];
+            }
         }
     };
 

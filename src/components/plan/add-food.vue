@@ -5,7 +5,7 @@
             <img :src="item.icon" alt="">
             <div class="food-info">
                 <div class="food-name">{{item.name}}</div>
-                <div class="food-energy">{{item.unit}}千卡/100克</div>
+                <div class="food-energy">{{item.energy}}千卡/100克</div>
             </div>
         </div>
         <div class="weight-select">
@@ -31,12 +31,12 @@
         props: ['data', 'list'],
         computed: {
             total: function () {
-                return this.item.unit * this.item.value / 100;
+                return this.item.energy * this.item.value / 100;
             }
         },
         watch: {
             data(val) {
-                this.item = val;//新增result的watch，监听变更并同步到myResult上
+                this.item = val;
             }
         },
         methods: {

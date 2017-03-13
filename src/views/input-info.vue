@@ -9,8 +9,8 @@
         <div class="gender detail-item">
             <div class="detail-title">性别</div>
             <div class="detail-options">
-                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="male"><label for="male">男</label></span>
-                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female"><label for="female">女</label></span>
+                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="male" value="1" v-model="gender"><label for="male">男</label></span>
+                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female" value="0" v-model="gender"><label for="female">女</label></span>
             </div>
         </div>
         <mt-field class="detail-item" v-model="age" label="年龄" placeholder="           岁" type="number"></mt-field>
@@ -20,20 +20,20 @@
             <div class="detail-title">疾病史</div>
             <div class="detail-options">
                 <span class="check-item" v-for="(item, index) in disease_options">
-                    <input class="checkbox" type="checkbox" :id="index"><label :for="index">{{item}}</label>
+                    <input class="checkbox" v-model="diseases" type="checkbox" :id="index" :value="index"><label :for="index">{{item}}</label>
                 </span>
             </div>
-        </div>        </mt-checklist>
+        </div>
         <div class="detail-item">
             <div class="detail-title">目前活动量</div>
-            <select class="select-item" v-model="exercise">
+            <select class="select-item" v-model="activity">
                 <option value="0">少量活动</option>
                 <option value="1">大量活动</option>
             </select>
         </div>
         <div class="detail-item">
             <div class="detail-title">想怎么减</div>
-            <select class="select-item" v-model="method">
+            <select class="select-item" v-model="reduce">
                 <option value="0">只节食不运动</option>
                 <option value="1">即节食又运动</option>
             </select>
@@ -47,32 +47,51 @@
     </div>
 </template>
 <script>
+    function getQuery(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
     export default {
         data() {
             return {
                 gender: '',
-                exercise: 0,
+                activity: 0,
                 diseases: [],
                 method: 0,
                 age: '',
                 height: '',
-                weight: ''
+                weight: '',
+                reduce: 0
             }
         },
         methods: {
             post_info: function (e) {
                 this.$router.push({
-                    path: 'bmi'
+                    path: `bmi?w=${this.weight}&h=${this.height}`
                 });
-                this.$http.post('/user/info').then(response => {
+                this.$http.post('/lion/index.php/Info/infoadd', {
+                    "sex": this.gender, // 性别
+                    "age": this.age, // 年龄
+                    "height": this.height, //身高
+                    "weight": this.weight, //体重
+                    "disease": this.diseases, //疾病史
+                    "activity": this.activity, //目前活动量
+                    "reduce": this.reduce, //  想怎么减
+                    "classid": this.classid // 减肥计划类型id
+                }).then(response => {
                     let data = response.body;
                     if (data.success) {
                         location.href = '/buy';
                     }
-
                 }, response => {
 
                 });
+
             }
         },
         created() {
@@ -95,7 +114,7 @@
             ];
         },
         mounted() {
-
+            this.classid = getQuery('plan_id')
         }
     };
 
@@ -106,6 +125,7 @@
         margin-bottom: 10px;
         text-align: center;
     }
+    
     .detail {
         .detail-item.gender {
             .detail-options {
@@ -136,7 +156,7 @@
                 align-items: center;
                 flex-wrap: wrap;
                 padding-top: 10px;
-                .check-item{
+                .check-item {
                     line-height: 36px;
                     white-space: nowrap;
                 }
@@ -152,13 +172,14 @@
                 }
             }
         }
-        .mint-cell-text{
+        .mint-cell-text {
             padding-left: 38px;
         }
         .mint-cell-wrapper {
             background-image: none;
         }
     }
+    
     .notice {
         color: #ff0000;
         font-size: 12px;

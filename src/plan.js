@@ -22,8 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/');
-
+router.replace('/plan/add/food')
 FastClick.attach(document.body);
 
 new Vue({
