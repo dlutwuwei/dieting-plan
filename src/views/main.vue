@@ -21,10 +21,14 @@
     <DarenList :daren-list="darenList"></DarenList>
     <!--e:瘦身达人榜-->
 
-    <!--s:一分钟减肥方案-->
+    <template v-if="userInfo.type == 0">
+    <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
     <!--e:一分钟减肥方案-->
+    </template>
 
+     <template v-else>
+     <!--老用户-->
      <HeatPlate :heat-plate="heatPlate"></HeatPlate>
     <!--e:能量盘-->
 
@@ -33,6 +37,7 @@
 
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
+     </template>
 
       <BottomBar></BottomBar>
   </div>
@@ -55,6 +60,7 @@
       return {
         selected: '1',
         msg: 'Use Vue 2.0 Today!',
+          userInfo: window.userInfo,
         shareList: window.shareList,
         reduceList: window.reduceList,
         darenList: window.darenList,
