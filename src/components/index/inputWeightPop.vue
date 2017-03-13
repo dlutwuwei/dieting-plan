@@ -88,7 +88,7 @@
                   <div class="weight"><input type="number" @keyup="getNum" v-model="item.value" id="ruler-input"/> <span>kg</span></div>
                   <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
               </div>
-              <div class="bot"><span @click="cancel">取消</span><span @click="cancel">保存</span></div>
+              <div class="bot"><span @click="cancel">取消</span><span @click="save">保存</span></div>
           </div>
       </div>
   </div>
@@ -99,18 +99,27 @@
         data(){
             return {
                 popupVisible: false,
+<<<<<<< Updated upstream
                 item: this.data
+=======
+                item: this.data,
+>>>>>>> Stashed changes
             }
         },
         props: ['popClose', 'data'],
         watch: {
+<<<<<<< Updated upstream
             data(val) {
+=======
+            data(val){
+>>>>>>> Stashed changes
                 this.item = val;
             }
         },
         methods:{
             cancel: function () {
                 this.$emit('popClose');
+                this.item.value = this.oldData;
             },
             save: function () {
                 this.$emit('popClose');
@@ -140,7 +149,7 @@
             }
         },
         mounted(){
-
+            this.oldData = this.data.value;
         }
     }
 

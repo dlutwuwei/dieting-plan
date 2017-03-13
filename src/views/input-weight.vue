@@ -13,18 +13,22 @@
                 height: 20px;
                 width: 20px;
                 display: inline-block;
+                margin:0 auto;
                 border-bottom: 2px solid #999;
                 border-right: 2px solid #999;
                 transform: rotate(-45deg) scale(0.5);
                 -webkit-transform: rotate(-45deg) scale(0.5);
             }
             .lt-btn {
-                margin-right: 10px;
                 transform: rotate(135deg) scale(0.5);
                 -webkit-transform: rotate(135deg) scale(0.5);
             }
-            .rt-btn {
-                margin-left: 10px;
+            em{
+                vertical-align: middle;
+                height: 35px;
+                width: 35px;
+                display: inline-block;
+                line-height:30px;
             }
         }
         .hd:before {
@@ -110,7 +114,7 @@
                 </router-link>
                 <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
-            <div class="hd"><span class="lt-btn" @click="prevMonth"></span>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<span class="rt-btn" @click="nextMonth"></span></div>
+            <div class="hd"><em class="lt-hander" @click="prevMonth"><span class="lt-btn"></span></em>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<em class="rt-hander" @click="nextMonth"><span class="rt-btn"></span></em></div>
             <div class="bd">
                 <div class="bd-hd">
                     <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
@@ -131,6 +135,7 @@
 </template>
 <script>
     import InputWeightPop from '../components/index/inputWeightPop.vue';//录入体重日历弹窗
+    import $ from 'webpack-zepto';
 
     export default {
         data() {
@@ -183,23 +188,23 @@
             prevMonth: function(e){
                 if (Date.now() > new Date(new Date().getFullYear()-1, 0, 1)) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
-                    this.$http.get('/someUrl').then(response => {
-                        // get body data
-                        this.weightList = response.body;
-                    }, response => {
-                        // error callback
-                    });
+                    /*this.$http.get('/someUrl').then(response => {
+                     // get body data
+                     this.weightList = response.body;
+                     }, response => {
+                     // error callback
+                     });*/
                 }
             },
             nextMonth: function(e) {
                 if (this.now.getTime() < Date.now()) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
-                    this.$http.get('/someUrl').then(response => {
-                        // get body data
-                        this.weightList = response.body;
-                    }, response => {
-                        // error callback
-                    });
+                    /*this.$http.get('/someUrl').then(response => {
+                     // get body data
+                     this.weightList = response.body;
+                     }, response => {
+                     // error callback
+                     });*/
                 }
             },
             onPopup: function (item) {
@@ -214,6 +219,7 @@
             InputWeightPop,
         },
         mounted() {
+
         },
     }
 
