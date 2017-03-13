@@ -24,7 +24,7 @@
             }
         }
         .tab-hd{
-            background:#47a304;
+            background:#f0ffdd;
             border-bottom:1px solid #dbe729;
             display: box;
             display: -webkit-box;
@@ -41,12 +41,12 @@
                 line-height:39px;
                 width:33.3%;
                 font-size:17px;
-                color:#fff;
+                color:#47a304;
                 text-align:center;
             }
             .curr{
-                background:#f0ffdd;
-                color:#47a304;
+                background:#47a304;
+                color:#fff;
             }
         }
         .bd{
