@@ -99,20 +99,12 @@
         data(){
             return {
                 popupVisible: false,
-<<<<<<< Updated upstream
                 item: this.data
-=======
-                item: this.data,
->>>>>>> Stashed changes
             }
         },
         props: ['popClose', 'data'],
         watch: {
-<<<<<<< Updated upstream
             data(val) {
-=======
-            data(val){
->>>>>>> Stashed changes
                 this.item = val;
             }
         },
