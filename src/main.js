@@ -22,7 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/');
+router.replace('/weight');
 
 FastClick.attach(document.body);
 
