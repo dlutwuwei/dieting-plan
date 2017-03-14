@@ -2,11 +2,11 @@ const shareList = require('../views/share-list.vue');
 const shareEditor = require('../views/share-editor.vue');
 const shareDetail = require('../views/share-detail.vue');
 const routers = [{
-    path: '/',
+    path: '/share',
     component: shareList
 },
 {
-    path: '/share/list',
+    path: '/share/listt',
     component: shareList
 },
 {
