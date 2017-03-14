@@ -129,7 +129,7 @@
       <div class="hd"><span class="ico ico-1"></span>瘦身达人榜</div>
       <div class="tab-hd">
           <span class="curr" v-on:click.stop="tab(0)">本月排行</span>
-          <span v-on:click.stop="tab(1)">我的排行</span>
+          <span v-on:click.stop="tab(1)" v-if="userInfo.type != 0">我的排行</span>
       </div>
       <div class="bd">
           <div class="daren" style="display:block">
@@ -141,7 +141,7 @@
                   </div>
               </div>
           </div>
-          <div class="daren">
+          <div class="daren"  v-if="userInfo.type != 0">
               <div class="daren-cen" v-for="(item, index) in darenList.mine">
                   <div :class="index==0?'red':''">0{{index+1}}</div>
                   <div>
@@ -158,6 +158,7 @@
         data() {
             return {
                 isTrue: true,
+                userInfo: window.userInfo,
             }
         },
         props: ['darenList'],
@@ -174,6 +175,10 @@
                 navTabsA[index].className='curr';
             }
         },
+        mounted() {
+            // init data
+            console.log(userInfo.type)
+        }
     }
 
 </script>
