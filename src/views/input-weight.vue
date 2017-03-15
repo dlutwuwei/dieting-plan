@@ -136,6 +136,8 @@
 <script>
     import InputWeightPop from '../components/index/inputWeightPop.vue';//录入体重日历弹窗
     import $ from 'webpack-zepto';
+    import {fmtDate} from  "../libs/utils.js";
+    import { MessageBox } from 'mint-ui';
 
     export default {
         data() {
@@ -188,23 +190,25 @@
             prevMonth: function(e){
                 if (Date.now() > new Date(new Date().getFullYear()-1, 0, 1)) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
-                    /*this.$http.get('/someUrl').then(response => {
-                     // get body data
-                     this.weightList = response.body;
-                     }, response => {
-                     // error callback
-                     });*/
+                    let prevData = fmtDate(this.now, 'yyyy-MM');
+
+                    this.$http.get(`/Weight/weightsearch?time=${prevData}`).then(res => {
+                        this.weightList = res.data;
+                    }, res=>{
+                        MessageBox('注意', '获取信息失败');
+                    });
                 }
             },
             nextMonth: function(e) {
                 if (this.now.getTime() < Date.now()) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
-                    /*this.$http.get('/someUrl').then(response => {
-                     // get body data
-                     this.weightList = response.body;
-                     }, response => {
-                     // error callback
-                     });*/
+                    let nextData = fmtDate(this.now, 'yyyy-MM');
+
+                    this.$http.get(`/Weight/weightsearch?time=${nextData}`).then(res => {
+                        this.weightList = res.data;
+                    }, res=>{
+                        MessageBox('注意', '获取信息失败');
+                    });
                 }
             },
             onPopup: function (item) {
@@ -214,12 +218,21 @@
             popClose: function () {
                 this.popupVisible = false;
             },
+            getMothInfo: function(){
+
+                let postData = fmtDate(new Date(), 'yyyy-MM');
+                this.$http.get(`/Weight/weightsearch?time=${postData}`).then(res => {
+                    this.weightList = res.data;
+                }, res=>{
+                    MessageBox('注意', '获取信息失败');
+                });
+            }
         },
         components: {
             InputWeightPop,
         },
         mounted() {
-
+            this.getMothInfo();
         },
     }
 
