@@ -38,10 +38,11 @@
                 this.data.splice(i, 1);
             },
             fetchData: function() {
+                console.log('mounted', this.data, window.sportList);
                 if(this.type == 'sport') {
                     this.data = window.sportList;
                 } else {
-                    this.data = window.foodList.breakfast;
+                    this.data = window.foodList[this.type];
                 }
             }
         },

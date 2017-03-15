@@ -40,10 +40,13 @@
                 return parseInt(this.inputVal||0);
             }
         },
-        props: ['data'],
+        props: ['data', 'type', 'list'],
         watch: {
             data(val) {
                 this.item = val;//新增result的watch，监听变更并同步到myResult上
+            },
+            list(val) {
+                this.list = val;
             }
         },
         methods: {
@@ -52,6 +55,7 @@
             },
             save: function () {
                 this.$emit('popClose');
+                this.$router.push('/plan/diet/' + this.type );
             },
             onClickValue: function(e) {
                 let val = e.target.getAttribute('value');

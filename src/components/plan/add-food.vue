@@ -28,7 +28,7 @@
                 item: this.data
             }
         },
-        props: ['data', 'list'],
+        props: ['data', 'list', 'type'],
         computed: {
             total: function () {
                 return this.item.energy * this.item.value / 100;
@@ -44,9 +44,8 @@
                 this.$emit('popClose');
             },
             save: function () {
-                this.$router.push('/plan/detail/' + this.type );
+                this.$router.push('/plan/diet/' + this.type );
                 this.$emit('popClose');
-                this.list.push(this.item);
             },
             getNum: function (event) {
                 let rulerNum = event.target.value;
@@ -70,7 +69,6 @@
             }
         },
         created() {
-            this.type = this.$route.params.type;
         },
         beforeUpdate() {
         },

@@ -23,7 +23,6 @@
 <script>
   export default {
     created() {
-      this.type = this.$route.params.type;
       this.url = '/plan/diet/' + this.type;
     },
     props: {

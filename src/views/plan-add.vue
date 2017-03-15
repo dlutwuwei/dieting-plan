@@ -20,11 +20,11 @@
                 </div>
             </div>
         </div>
-        <mt-popup v-if="type=='food'" class="select-popup" v-model="popupVisible" position="bottom">
-            <addFood v-on:popClose="popClose" :data="selected"></addFood>
+        <mt-popup v-if="type!='sport'" class="select-popup" v-model="popupVisible" position="bottom">
+            <addFood v-on:popClose="popClose" :data="selected" :type="type" :list="data"></addFood>
         </mt-popup>
         <mt-popup v-if="type=='sport'" class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
-            <addSport v-on:popClose="popClose" :data="selected"></addSport>
+            <addSport v-on:popClose="popClose" :data="selected" type="sport" :list="data"></addSport>
         </mt-popup>
     </div>
 </template>
@@ -49,6 +49,7 @@
         methods: {
             popUp: function (index) {
                 this.selected = this.data[index];
+                console.log(this.data, index)
                 this.popupVisible = true;
             },
             popClose: function() {
@@ -82,7 +83,7 @@
             if(this.type == 'sport') {
                 this.data = window.sportList || [];
             } else {
-                this.data = window.foodList['breakfast'] || [];
+                this.data = window.foodList[this.type] || [];
             }
         }
     };
