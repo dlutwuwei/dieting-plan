@@ -31,11 +31,15 @@
 
      <template v-else>
      <!--老用户-->
-     <HeatPlate :heat-plate="heatPlate"></HeatPlate>
-    <!--e:能量盘-->
+     <router-link to="/index/record">
+      <HeatPlate :heat-plate="heatPlate"></HeatPlate>
+      <!--e:能量盘-->
+     </router-link>
 
+    <router-link to="/index/record">
       <WeightCurve :weight-curve="weightCurve"></WeightCurve>
       <!--e:体重曲线-->
+    </router-link>
 
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
