@@ -21,7 +21,6 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/share/listt')
 FastClick.attach(document.body);
 
 new Vue({
