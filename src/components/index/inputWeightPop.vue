@@ -94,6 +94,8 @@
   </div>
 </template>
 <script>
+    import {fmtDate} from  "../../libs/utils.js";
+    import { MessageBox } from 'mint-ui';
 
     export default {
         data(){
@@ -114,6 +116,18 @@
                 this.item.value = this.oldData;
             },
             save: function () {
+                let noData = fmtDate(new Date(), 'yyyy-mm-dd');
+
+                let postdata = {
+                    weight: this.item.value,
+                    time: noData,
+                }
+                this.$http.post(
+                    '/Weight/weightadd', postdata).then(res=>{
+                    console,log(res)
+                }).then(res=>{
+                    MessageBox('注意', '保存信息失败');
+                });
                 this.$emit('popClose');
             },
             popView: function(){
@@ -138,10 +152,22 @@
                     rumberThree.innerHTML = parseInt(rulerNum) + 1;
                     rulerEm.style.left = (rulerNum-parseInt(rulerNum))*102 + 150 + 'px';
                 }
+            },
+            getMothInfo: function(){
+
+                this.$http.get(
+                    '/Weight/weightsearch', {time: 'yyyy-mm'}).then(res=>{
+                        console,log(res)
+                    }).then(res=>{
+
+                    MessageBox('注意', '获取信息失败');
+                });
             }
         },
         mounted(){
             this.oldData = this.data.value;
+            this.getMothInfo();
+
         }
     }
 

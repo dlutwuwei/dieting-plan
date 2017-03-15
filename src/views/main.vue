@@ -4,9 +4,11 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-      <router-link to="/myplan" slot="right">
-        <mt-button>我的计划</mt-button>
-      </router-link>
+        <template v-if="userInfo.type > 1">
+              <router-link to="/myplan" slot="right">
+                <mt-button>我的计划</mt-button>
+              </router-link>
+        </template>
     </mt-header>
 
     <!--s:鸣鹿轮播图-->
@@ -21,7 +23,7 @@
     <DarenList :daren-list="darenList"></DarenList>
     <!--e:瘦身达人榜-->
 
-    <template v-if="userInfo.type == 0">
+    <template v-if="+userInfo.type > 1">
     <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
     <!--e:一分钟减肥方案-->

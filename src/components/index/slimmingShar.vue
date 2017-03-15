@@ -27,6 +27,7 @@
             .share{
                 position:relative;
                 margin-bottom:13px;
+                min-height:160px;
                 color:#fff;
                 a{
                     color:#fff;
@@ -72,7 +73,7 @@
                 .author-info{
                     position:absolute;
                     left:20px;
-                    top:159px;
+                    bottom:10px;
                     overflow:hidden;
                     div:first-child{
                         float:left;
