@@ -155,8 +155,9 @@
             },
             getMothInfo: function(){
 
+                let postData = fmtDate(new Date(), 'yyyy-mm');
                 this.$http.get(
-                    '/Weight/weightsearch', {time: 'yyyy-mm'}).then(res=>{
+                    '/Weight/weightsearch', {time: postData}).then(res=>{
                         console,log(res)
                     }).then(res=>{
 
