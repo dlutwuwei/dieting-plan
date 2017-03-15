@@ -20,7 +20,7 @@
             <div class="detail-title">疾病史</div>
             <div class="detail-options">
                 <span class="check-item" v-for="(item, index) in disease_options">
-                    <input class="checkbox" v-model="diseases" type="checkbox" :id="index" :value="index"><label :for="index">{{item}}</label>
+                    <input class="checkbox" v-model="diseases" type="checkbox" :id="index" :value="item"><label :for="index">{{item}}</label>
                 </span>
             </div>
         </div>
