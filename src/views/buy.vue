@@ -22,7 +22,7 @@
                 用户通过思维必体质检测，了解实时身体营养素含量状况，精准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳食纤维和微量元素等营养物质的比值和含量，针对性提高用户身体新陈代谢机能，结合运算并达到最佳燃脂比率。让您在有限的热量摄入范围内吃您所缺的，补您该补的！从而达到全面有效的体重管理、健康减肥效果 ----你的专属减肥计划！
             </div>
         </div>
-        <div class="buy-card">
+        <!--<div class="buy-card">
              <div class="address-title">请确认收货地址信息</div>
              <div class="address-notice">说明：鸣鹿将为您邮寄头发采集器及相关说明，请按 照要求完成采集！鸣鹿将在7日后开始为您推送减肥 计划！</div>
         </div>
@@ -30,7 +30,7 @@
              <div class="address-receiver"><span class="name">收件人：杨萍</span><span class="phone">18510793512</span></div>
              <div class="address-text">收货地址：北京市朝阳区酒仙桥路20号颐堤港605-606</div>
         </div>
-        <div class="buy-bill"><input type="checkbox" id="bill"><label for="bill">是否需要发票</label></div>
+        <div class="buy-bill"><input type="checkbox" id="bill"><label for="bill">是否需要发票</label></div>-->
         <div class="buy-card">
             <div class="buy-header">
                 <img src="../assets/images/jianfei/buy-head.png" alt="">

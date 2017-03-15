@@ -69,7 +69,7 @@
         },
         methods: {
             start: function() {
-                location.href = '/';
+                location.href = '/buy/buy';
             }
         }
     }
