@@ -84,7 +84,7 @@
                     "classid": this.classid // 减肥计划类型id
                 }).then(response => {
                     let data = response.body;
-                    if (data.success !== 'false' || !data.success) {
+                    if (data.success) {
                         this.$router.push({
                             path: `bmi?w=${this.weight}&h=${this.height}`
                         });

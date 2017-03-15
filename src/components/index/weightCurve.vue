@@ -34,7 +34,7 @@
 </style>
 <template>
   <div class="weight-curve">
-    <div class="hd">体重曲线 <router-link to="/weight"><span class="ico ico-1"></span></router-link></div>
+    <div class="hd">体重曲线 <router-link to="/index/weight"><span class="ico ico-1"></span></router-link></div>
     <div class="bd" id="rada-block" style="width:100%px;height:120px;"></div>
   </div>
 </template>

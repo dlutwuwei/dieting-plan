@@ -122,7 +122,7 @@
       <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
       <div class="bd">
           <div class="share" v-for="(item, index) in shareList">
-              <router-link :to="'/share/detail/'+ item.id" slot="left">
+              <a :to="'/share/detail/'+ item.id" slot="left">
                   <img :src="item.image_url" class="share-pic" alt=""/>
                   <h5>{{item.title}}</h5>
                   <div class="share-info">
@@ -137,7 +137,7 @@
                           {{item.author.description}}
                       </div>
                   </div>
-              </router-link>
+              </a>
           </div>
       </div>
   </div>
