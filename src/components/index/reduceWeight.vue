@@ -114,7 +114,7 @@
   <div class="reduce-weight">
       <div class="hd">一分钟定制减肥方案</div>
       <div class="bd">
-          <div class="reduce-style" @click="redirect(plan_id)" v-for="(item, index) in reduceList">
+          <div class="reduce-style" @click="redirect(item.plan_id)" v-for="(item, index) in reduceList">
               <div :plan-id="item.plan_id"><span class="ico2"></span></div>
               <div>
                   <span>{{item.plan_name}}</span>
