@@ -1,10 +1,10 @@
 const buy = require('../views/buy.vue');
 const routers = [{
-    path: '/',
+    path: '/buy',
     component: buy
 },
 {
-    path: '/buy',
+    path: '/buy/buy',
     component: buy
 }];
 

@@ -9,19 +9,19 @@ const routers = [{
     component: main
 },
 {
-    path: '/myplan',
+    path: '/index/myplan',
     component: plan
 },
 {
-    path: '/weight',
+    path: '/index/weight',
     component: weight
 },
 {
-    path: '/record',
+    path: '/index/record',
     component: record
 },
 {
-    path: '/sliderInfo/:id',
+    path: '/index/sliderInfo/:id',
     component: sliderInfo
 }];
 

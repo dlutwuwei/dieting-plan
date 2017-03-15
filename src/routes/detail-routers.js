@@ -1,11 +1,11 @@
 const input = require('../views/input-info.vue');
 const bmi = require('../views/bmi.vue');
 const routers = [{
-    path: '/input',
+    path: '/detail/input',
     component: input
 },
 {
-    path: '/bmi',
+    path: '/detail/bmi',
     component: bmi
 }];
 
