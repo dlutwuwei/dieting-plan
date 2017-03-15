@@ -153,22 +153,10 @@
                     rulerEm.style.left = (rulerNum-parseInt(rulerNum))*102 + 150 + 'px';
                 }
             },
-            getMothInfo: function(){
 
-                let postData = fmtDate(new Date(), 'yyyy-MM');
-                console.log(postData)
-                this.$http.get(
-                    `/Weight/weightsearch?time=${postData}`).then(res=>{
-                        console,log(res)
-                    }).then(res=>{
-
-                    MessageBox('注意', '获取信息失败');
-                });
-            }
         },
         mounted(){
             this.oldData = this.data.value;
-            this.getMothInfo();
 
         }
     }
