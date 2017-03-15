@@ -49,17 +49,21 @@
         methods: {
             popUp: function (index) {
                 this.selected = this.data[index];
+                console.log(this.selected);
                 this.popupVisible = true;
             },
             popClose: function() {
                 this.popupVisible = false;
             },
             fetchData: function(val, type) {
-                
-                this.$http.get(`/lion/index.php/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val}`).then(response => {
+                this.$http.get(`/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val.trim()}`).then(response => {
                     // get body data
-                    if(response.body!=='null') {
-                        this.data = response.body;
+                    let res = response.body;
+                    if(res.success) {
+                        res.data.forEach(item => {
+                            item.value = 0;
+                        })
+                        this.data = res.data;
                     }
                 }, response => {
                     // error callback

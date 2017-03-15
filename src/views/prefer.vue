@@ -14,7 +14,7 @@
                 <div class="name">{{item.name}}</div>
             </div>
             <div class="add-item">
-                <div class="icon"><img src="../assets/images/jianfei/add.png" alt=""></div>
+                <div class="icon"><a href="/plan/add/food"><img src="../assets/images/jianfei/add.png" alt=""></a></div>
                 <div class="name">自定义</div>
             </div>
         </div>
@@ -25,6 +25,11 @@
     </transition>
 </template>
 <script>
+    const next = {
+        breakfast: 'lunch',
+        lunch: 'supper',
+        supper: 'sports'
+    };
     export default {
         data() {
             return {
@@ -34,7 +39,7 @@
         },
         methods: {
             post_prefer: function (e) {
-                let target = window.next[this.$route.params.type || 'breakfast'];
+                let target = '/prefer/' + next[this.$route.params.type || 'breakfast'];
                 this.$router.push({
                     path: target
                 });
@@ -59,11 +64,7 @@
                 supper: '晚餐选择',
                 sports: '运动选择'
             };
-            window.next = {
-                breakfast: 'lunch',
-                lunch: 'supper',
-                supper: 'sports'
-            }
+            
             window.data = {
                 breakfast: [
                     {
