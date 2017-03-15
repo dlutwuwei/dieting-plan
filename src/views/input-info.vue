@@ -27,15 +27,21 @@
         <div class="detail-item">
             <div class="detail-title">目前活动量</div>
             <select class="select-item" v-model="activity">
-                <option value="0">少量活动</option>
-                <option value="1">大量活动</option>
+                <option value="1">少量活动</option>
+                <option value="2">轻度活动</option>
+                <option value="3">中度活动</option>
+                <option value="4">重度活动</option>
+
             </select>
         </div>
         <div class="detail-item">
             <div class="detail-title">想怎么减</div>
             <select class="select-item" v-model="reduce">
-                <option value="0">只节食不运动</option>
-                <option value="1">即节食又运动</option>
+                <option value="1">只节食不运动</option>
+                <option value="2">大量节食稍微运动</option>
+                <option value="3">节食运动一半一半</option>
+                <option value="4">多运动稍微节食</option>
+                <option value="5">只运动不节食</option>
             </select>
         </div>
         <div class="bottom-cell">
@@ -78,7 +84,7 @@
                     "age": this.age, // 年龄
                     "height": this.height, //身高
                     "weight": this.weight, //体重
-                    "disease": this.diseases, //疾病史
+                    "disease": this.diseases.join(','), //疾病史
                     "activity": this.activity, //目前活动量
                     "reduce": this.reduce, //  想怎么减
                     "classid": this.classid // 减肥计划类型id
