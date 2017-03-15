@@ -16,7 +16,7 @@
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-energy">{{item.energy}}/{{type=='sport'?'分钟':'100克'}}</div>
+                    <div class="food-energy">{{item.energy||item.kcal}}千卡/{{type=='sport'?'60分钟':'100克'}}</div>
                 </div>
             </div>
         </div>
@@ -49,13 +49,13 @@
         methods: {
             popUp: function (index) {
                 this.selected = this.data[index];
-                console.log(this.selected);
                 this.popupVisible = true;
             },
             popClose: function() {
                 this.popupVisible = false;
             },
             fetchData: function(val, type) {
+                if(val.trim()==='') return;
                 this.$http.get(`/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val.trim()}`).then(response => {
                     // get body data
                     let res = response.body;
