@@ -26,7 +26,7 @@
                 </div>
                 <div class="name">运动</div>
             </router-link>
-             <router-link to="/weight">
+             <router-link to="/index/weight">
                 <div class="btn weight">
                 </div>
                 <div class="name">体重</div>

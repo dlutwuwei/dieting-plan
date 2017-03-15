@@ -36,7 +36,7 @@
       <!--e:能量盘-->
      </router-link>
 
-    <router-link to="/index/record">
+    <router-link to="/index/weight">
       <WeightCurve :weight-curve="weightCurve"></WeightCurve>
       <!--e:体重曲线-->
     </router-link>
