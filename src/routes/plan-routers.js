@@ -8,7 +8,7 @@ const routers = [{
     component: planList
 },
 {
-    path: '/plan/list',
+    path: '/plan/listt',
     component: planList
 },
 {

@@ -136,7 +136,7 @@
         },
         methods:{
             redirect(id) {
-                location.href = '/detail.html?plan_id=' + id;
+                location.href = '/detail/input/';
             },
             //添加样式
             addIdClass(){
