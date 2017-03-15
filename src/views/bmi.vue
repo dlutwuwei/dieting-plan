@@ -69,7 +69,7 @@
         },
         methods: {
             start: function() {
-                location.href = '/buy/buy';
+                location.href = '/prefer/prefer';
             }
         }
     }

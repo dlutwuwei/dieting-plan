@@ -92,7 +92,7 @@
                     let data = response.body;
                     if (data.success) {
                         this.$router.push({
-                            path: `bmi?w=${this.weight}&h=${this.height}`
+                            path: `/detail/bmi?w=${this.weight}&h=${this.height}`
                         });
                     } else {
                         MessageBox('注意', '信息没有填写完整');
@@ -100,7 +100,9 @@
                 }, response => {
                     MessageBox('注意', '抱歉，链接出现问题');
                 });
-
+                this.$router.push({
+                    path: `/detail/bmi?w=${this.weight}&h=${this.height}`
+                });
             }
         },
         created() {

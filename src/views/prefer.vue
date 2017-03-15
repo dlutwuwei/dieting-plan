@@ -39,10 +39,15 @@
         },
         methods: {
             post_prefer: function (e) {
-                let target = '/prefer/' + next[this.$route.params.type || 'breakfast'];
-                this.$router.push({
-                    path: target
-                });
+                let target;
+                if(next[this.$route.params.type || 'breakfast'] == null) {
+                    location.href = '/';
+                } else {
+                    target = '/prefer/' + next[this.$route.params.type || 'breakfast'];
+                    this.$router.push({
+                        path: target
+                    });
+                }
             },
             fetchData: function(e) {
                 this.items = window.data[this.$route.params.type || 'breakfast'];

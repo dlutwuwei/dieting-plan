@@ -144,7 +144,16 @@
             return {
                 popupVisible: false,
                 selected: {},
-                now: new Date()
+                now: new Date(),
+                weightList: [],
+            }
+        },
+        watch: {
+            weightList(val) {
+                val.forEach((item, index) => {
+                    this.weightData[item.time] = item.weight
+                });
+                this.weightList = val;
             }
         },
         created() {
@@ -153,9 +162,6 @@
             this.data[new Date().toLocaleDateString()] = window.weightCurveData;
             this.weightList = window.weightCurveData;
             this.weightData = {};
-            this.weightList.forEach((item, index) => {
-                this.weightData[item.time] = item.weight
-            });
         },
         computed: {
             dateList() {
