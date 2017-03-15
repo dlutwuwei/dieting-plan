@@ -33,7 +33,7 @@
     }
 </style>
 <template>
-  <div class="weight-curve" v-if="chartShow">
+  <div class="weight-curve">
     <div class="hd">体重曲线 <router-link to="/index/weight"><span class="ico ico-1"></span></router-link></div>
     <div class="bd" id="rada-block" style="width:100%px;height:120px;"></div>
   </div>
@@ -45,7 +45,6 @@
         data() {
             return {
                 myChart: null,
-                chartShow: true,
             }
         },
         props: ['weightCurve'],
@@ -136,8 +135,6 @@
             // 异步加载图表
             if(this.weightCurve && this.weightCurve.length > 0){
                 this.showChart(this.weightCurve);
-            } else {
-                this.chartShow = false;
             }
 
         },
