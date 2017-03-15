@@ -4,7 +4,7 @@ const planDetail = require('../views/plan-detail.vue');
 const planDiet = require('../views/plan-diet.vue');
 
 const routers = [{
-    path: '/',
+    path: '/plan',
     component: planList
 },
 {
