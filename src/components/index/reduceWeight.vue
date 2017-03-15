@@ -136,7 +136,7 @@
         },
         methods:{
             redirect(id) {
-                location.href = '/detail/input/';
+                location.href = '/detail/input/?classid=' + id;
             },
             //添加样式
             addIdClass(){

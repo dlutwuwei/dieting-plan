@@ -117,7 +117,7 @@
             ];
         },
         mounted() {
-            this.classid = getQuery('plan_id')
+            this.classid = getQuery('classid')
         }
     };
 
