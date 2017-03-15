@@ -25,7 +25,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/');
+router.replace('/loading');
 
 FastClick.attach(document.body);
 

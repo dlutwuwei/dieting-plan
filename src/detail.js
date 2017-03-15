@@ -22,6 +22,7 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
+router.replace('/input');
 
 FastClick.attach(document.body);
 

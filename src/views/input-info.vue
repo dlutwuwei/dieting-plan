@@ -56,6 +56,7 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+    import { MessageBox } from 'mint-ui';
     export default {
         data() {
             return {
@@ -71,10 +72,8 @@
         },
         methods: {
             post_info: function (e) {
-                this.$router.push({
-                    path: `bmi?w=${this.weight}&h=${this.height}`
-                });
-                this.$http.post('/lion/index.php/Info/infoadd', {
+
+                this.$http.post('/Info/infoadd', {
                     "sex": this.gender, // 性别
                     "age": this.age, // 年龄
                     "height": this.height, //身高
@@ -85,11 +84,16 @@
                     "classid": this.classid // 减肥计划类型id
                 }).then(response => {
                     let data = response.body;
-                    if (data.success) {
-                        location.href = '/buy';
+                    debugger
+                    if (data.success !== 'false' || !data.success) {
+                        this.$router.push({
+                            path: `bmi?w=${this.weight}&h=${this.height}`
+                        });
+                    } else {
+                        MessageBox('注意', '信息没有填写完整');
                     }
                 }, response => {
-
+                    MessageBox('注意', '抱歉，链接出现问题');
                 });
 
             }

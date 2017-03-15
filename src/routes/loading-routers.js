@@ -5,11 +5,11 @@ const routers = [{
     component: laoding
 },
 {
-    path: '/laoding',
+    path: '/loading',
     component: laoding
 },
 {
-    path: '/laodingInfo',
+    path: '/loadingInfo',
     component: laodingInfo
 }];
 

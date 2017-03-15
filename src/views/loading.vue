@@ -4,7 +4,7 @@
             <mt-swipe-item>
                 <div class="swipe-bd">
                         <h5>量子检测+营养均衡+热量控制+合理运动</h5>
-                        <router-link to="/laodingInfo"><p>详情</p></router-link>
+                        <router-link to="/loadingInfo"><p>详情</p></router-link>
                     <div>
                         <img src="../assets/images/loading-1.png"  alt=""/>
                     </div>
