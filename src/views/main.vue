@@ -23,7 +23,7 @@
     <DarenList :daren-list="darenList"></DarenList>
     <!--e:瘦身达人榜-->
 
-    <template v-if="+userInfo.type > 1">
+    <template v-if="+userInfo.type == 1">
     <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
     <!--e:一分钟减肥方案-->
