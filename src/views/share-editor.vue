@@ -18,7 +18,7 @@
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>
-                <div class="sample id-no-uploaded"><img src="../assets/images/upload-btn.png" alt="身份证样例"><span class="sample-tips">请选择5M以下图片上传！</span></div>
+                <div class="sample id-no-uploaded"><img src="../assets/images/upload-btn.png" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
                 <h5>正文 <span>(文字和图片都可以)</span></h5>
