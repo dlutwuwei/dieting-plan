@@ -152,6 +152,10 @@
             this.data = {}; // store all data for month weight records;
             this.data[new Date().toLocaleDateString()] = window.weightCurveData;
             this.weightList = window.weightCurveData;
+            this.weightData = {};
+            this.weightList.forEach((item, index) => {
+                this.weightData[item.time] = item.weight
+            });
         },
         computed: {
             dateList() {
@@ -166,7 +170,7 @@
                     return {
                         currentMonth: true,
                         date: index + 1,
-                        value: ''
+                        value: this.weightData[year+'-'+(tmpMonth<=9 ? '0' + tmpMonth: tmpMonth)+'-'+ (index+1)]
                     }
                 });
                 //获取当月1号的星期是为了确定在1号前需要插多少天
