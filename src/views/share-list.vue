@@ -52,7 +52,7 @@
             getShareList() {
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
-                    this.shareList = response.massages;
+                    this.shareList = JSON.parse(response.massages);
                 }, response => {
                     // error callback
                     MessageBox('注意', '获取信息失败');
@@ -61,7 +61,7 @@
             getMyShareList() {
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
-                    this.myShareList = response.massages;
+                    this.myShareList = JSON.parse(response.massages);
                 }, response => {
                     // error callback
                     MessageBox('注意', '获取信息失败');
