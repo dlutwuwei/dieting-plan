@@ -6,17 +6,17 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <router-link to="/plan/detial/breakfast">
+            <router-link to="/plan/diet/breakfast">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </router-link>
-             <router-link to="/plan/detial/lunch">
+             <router-link to="/plan/diet/lunch">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </router-link>
-             <router-link to="/plan/detial/supper">
+             <router-link to="/plan/diet/supper">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>

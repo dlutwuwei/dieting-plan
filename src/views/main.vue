@@ -2,7 +2,6 @@
   <div id="app" class="wrapper">
     <mt-header title="鸣鹿健康">
       <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
       </router-link>
         <template v-if="userInfo.type > 1">
               <router-link to="/index/myplan" slot="right">

@@ -37,10 +37,10 @@
       }
     }
     .food {
-      background-image: url('../assets/images/share1.png');
+      background-image: url('../assets/images/food.png');
     }
     .sport {
-      background-image: url('../assets/images/share2.png');
+      background-image: url('../assets/images/sports.png');
     }
   }
 </style>
