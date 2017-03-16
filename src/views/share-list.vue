@@ -50,7 +50,7 @@
         },
         methods: {
             getShareList() {
-                this.$http.get('http://w.cellwellbeing.cn/Share/sharelist').then(response => {
+                this.$http.get('/Share/sharelist').then(response => {
                     // get body data
                     this.shareList = response.massages;
                 }, response => {
@@ -59,7 +59,7 @@
                 });
             },
             getMyShareList() {
-                this.$http.get('http://w.cellwellbeing.cn/Share/sharelist').then(response => {
+                this.$http.get('/Share/sharelist').then(response => {
                     // get body data
                     this.myShareList = response.massages;
                 }, response => {
