@@ -1,9 +1,7 @@
 <template>
     <div style="height: 100%;">
         <mt-header title="鸣鹿健康">
-            <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
+            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>
@@ -17,7 +15,6 @@
     import sportCard from '../components/plan/sport-card.vue';
     export default {
         created() {
-            console.log('detail created')
             this.heatPlate = window.heatPlate;
             this.foodList = window.foodList;
             this.sportList = window.sportList;
@@ -31,6 +28,11 @@
         },
         mounted() {
             console.log('detail mounted')
+        },
+        methods: {
+            goback: function () {
+                history.back();
+            }
         },
         watch: {
             // 如果路由有变化，会再次执行该方法

@@ -2,7 +2,7 @@
     <div class="share-wapper">
         <div class="share-hd">
             <router-link to="/" slot="left">
-                <div class="go-back ico"></div>
+                <div class="go-back ico" @click="goback"></div>
             </router-link>
             <span>写分享</span>
             <em @click="releaseShare">发布</em>
@@ -41,6 +41,9 @@
 
         },
         methods: {
+            goback: function () {
+                history.back();
+            },
             uploadFile(data, callback) {
                 $.ajax({
                     url: '/Share/fileimg',

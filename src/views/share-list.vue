@@ -2,7 +2,7 @@
     <div class="share-wapper">
         <div class="share-hd">
             <router-link to="/" slot="left">
-                <div class="go-back ico"></div>
+                <div class="go-back ico" @click="goback"></div>
             </router-link>
             <div class="share-tab">
                 <mt-navbar v-model="selected">
@@ -67,10 +67,13 @@
                     MessageBox('注意', '获取信息失败');
                 });
             },
+            goback: function () {
+                history.back();
+            }
         },
         mounted() {
             this.getShareList();
-            this.getMyShareList();
+            this.getMyShareList();  
         }
     };
 </script>

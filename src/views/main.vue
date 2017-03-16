@@ -2,10 +2,9 @@
   <div id="app" class="wrapper">
     <mt-header title="鸣鹿健康">
       <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
       </router-link>
         <template v-if="userInfo.type > 1">
-              <router-link to="/myplan" slot="right">
+              <router-link to="/index/myplan" slot="right">
                 <mt-button>我的计划</mt-button>
               </router-link>
         </template>
@@ -36,7 +35,7 @@
       <!--e:能量盘-->
      </router-link>
 
-    <router-link to="/index/record">
+    <router-link to="/index/weight">
       <WeightCurve :weight-curve="weightCurve"></WeightCurve>
       <!--e:体重曲线-->
     </router-link>
