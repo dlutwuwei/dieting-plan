@@ -10,12 +10,12 @@
             <div class="title">{{title}}</div>
             <div class="select-items">
                 <div class="item" v-for="item in items">
-                    <div class="icon"><img src="../assets/images/jianfei/food.png" alt=""></div>
+                    <div class="icon"><img :src="'../assets/images/sports/'+item.icon" alt=""></div>
                     <div class="name">{{item.name}}</div>
                 </div>
                 <div class="add-item">
                     <div class="icon">
-                        <a href="/plan/add/food"><img :src="'../assets/images/sports/'+item.icon" alt=""></a>
+                        <a href="/plan/add/food"><img src="../assets/images/jianfei/add.png" alt=""></a></a>
                     </div>
                     <div class="name">自定义</div>
                 </div>
