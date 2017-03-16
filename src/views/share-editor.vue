@@ -18,7 +18,7 @@
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>
-                <div class="sample id-no-uploaded"><img src="../assets/images/upload-btn.png" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
+                <div class="sample id-no-uploaded"><img src="" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
                 <h5>正文 <span>(文字和图片都可以)</span></h5>
@@ -30,6 +30,8 @@
 <script>
 
     import $ from 'webpack-zepto';
+    import { MessageBox } from 'mint-ui';
+
     export default {
         name: 'page-navbar',
         data() {
@@ -119,8 +121,12 @@
                     '/Share/shareadd',
                     reqBody
                 ).then(res=>{
-                    return res.json()
+                    /* 发布成功 */
+                    $('.mint-field-core').val('');
+                    $('.sample').find('img').attr('src', '');
+                    $('.editor-textarea').val('');
                 }).then(res=>{
+                    MessageBox('注意', '发布失败');
                 });
             }
         },
