@@ -41,12 +41,13 @@
             return 0;
         }
     }
+    import { MessageBox } from 'mint-ui';
     export default {
         data() {
             return {
                 weight: getQuery('w'),
                 height: getQuery('h'),
-                agree: 0
+                agree: false
             }
         },
         computed: {
@@ -69,8 +70,8 @@
         },
         methods: {
             start: function() {
-                if(!this.agreee) {
-                    MessageBox('注意', '抱歉，链接出现问题');
+                if(!this.agree) {
+                    MessageBox('注意', '请同意协议');
                     return;
                 }
                 location.href = '/prefer/prefer';
