@@ -1,9 +1,7 @@
 <template>
     <div>
         <mt-header title="添加食物">
-            <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
+            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
@@ -38,7 +36,6 @@
                 this.data.splice(i, 1);
             },
             fetchData: function() {
-                console.log('mounted', this.data, window.sportList);
                 if(this.type == 'sport') {
                     this.data = window.sportList;
                 } else {

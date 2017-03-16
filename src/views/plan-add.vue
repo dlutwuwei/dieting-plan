@@ -1,9 +1,7 @@
 <template>
     <div class="plan-add">
         <mt-header title="添加食物">
-            <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
+            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="line search-card">
@@ -47,6 +45,9 @@
             }
         },
         methods: {
+            goback: function() {
+                history.back();
+            },
             popUp: function (index) {
                 this.selected = this.data[index];
                 console.log(this.data, index)
