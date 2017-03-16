@@ -49,7 +49,6 @@
             SlimmingShar,
         },
         methods: {
-<<<<<<< HEAD
             getShareList() {
                 this.$http.post('/Share/sharelist').then(response => {
                     // get body data
@@ -68,15 +67,13 @@
                     MessageBox('注意', '获取信息失败');
                 });
             },
+            goback: function () {
+                history.back();
+            }
         },
         mounted() {
             this.getShareList();
             this.getMyShareList();
-=======
-            goback: function () {
-                history.back();
-            }
->>>>>>> wuwei/master
         }
     };
 </script>

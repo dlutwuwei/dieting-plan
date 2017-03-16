@@ -84,21 +84,21 @@
     .next-btn {
         text-align: center;
     }
-    
+
     .bmi-page {
         padding-bottom: 80px;
     }
-    
+
     .terms {
         margin: 17px 0 40px 0;
         text-align: center;
     }
-    
+
     .buy-notice {
         margin-bottom: 50px;
         padding: 0 12px;
     }
-    
+
     .description {
         font-size: 15px;
         padding: 18px 0;
@@ -107,11 +107,11 @@
         margin: 35px 10px 0 10px;
         color: #333;
     }
-    
+
     body {
         background: #f7f7f7;
     }
-    
+
     .bmi-container {
         overflow: hidden;
         margin: 15px 16px;
