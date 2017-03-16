@@ -16,7 +16,7 @@
             <div class="description">您目前的体重属于瘦弱，请加强营养，健康增重。</div>
             <div class="buy-notice">若想获得专属个性化减肥方案，请 购买思维必专业减肥。<span class="text">点击购买</span></div>
         </div>
-        <div class="terms"><input type="checkbox" id="terms">同意<label class="text" for="terms">《鸣鹿减肥法用户协议</label></div>
+        <div class="terms"><input type="checkbox" v-model="agree" id="terms">同意<label class="text" for="terms">《鸣鹿减肥法用户协议</label></div>
         <div class="next-btn">
             <mt-button type="primary" @click="start">开始减肥</mt-button>
         </div>
@@ -46,7 +46,7 @@
             return {
                 weight: getQuery('w'),
                 height: getQuery('h'),
-                perform: ''
+                agree: 0
             }
         },
         computed: {
@@ -69,6 +69,10 @@
         },
         methods: {
             start: function() {
+                if(!this.agreee) {
+                    MessageBox('注意', '抱歉，链接出现问题');
+                    return;
+                }
                 location.href = '/prefer/prefer';
             }
         }

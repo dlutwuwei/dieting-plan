@@ -22,7 +22,6 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-
 FastClick.attach(document.body);
 
 new Vue({

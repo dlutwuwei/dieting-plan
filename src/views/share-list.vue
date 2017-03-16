@@ -2,7 +2,7 @@
     <div class="share-wapper">
         <div class="share-hd">
             <router-link to="/" slot="left">
-                <div class="go-back ico"></div>
+                <div class="go-back ico" @click="goback"></div>
             </router-link>
             <div class="share-tab">
                 <mt-navbar v-model="selected">
@@ -49,6 +49,7 @@
             SlimmingShar,
         },
         methods: {
+<<<<<<< HEAD
             getShareList() {
                 this.$http.post('/Share/sharelist').then(response => {
                     // get body data
@@ -71,6 +72,11 @@
         mounted() {
             this.getShareList();
             this.getMyShareList();
+=======
+            goback: function () {
+                history.back();
+            }
+>>>>>>> wuwei/master
         }
     };
 </script>

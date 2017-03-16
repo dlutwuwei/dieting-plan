@@ -117,9 +117,7 @@
 <template>
     <div class="share-detail">
         <div class="share-detail-pic">
-            <router-link to="/" slot="left">
-                <div class="go-back ico"></div>
-            </router-link>
+            <div class="go-back ico" @click="goback"></div>
             <span class="ico">....</span>
             <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1034097970,1628516374&fm=23&gp=0.jpg" class="share-pic" alt=""/>
             <div class="author-info">
@@ -151,7 +149,11 @@
 </template>
 <script>
     export default {
-
+        methods: {
+            goback: function () {
+                history.back();
+            }
+        }
     }
 
 </script>
