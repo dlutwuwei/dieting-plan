@@ -3,11 +3,11 @@
     <mt-header title="鸣鹿健康">
       <router-link to="/" slot="left">
       </router-link>
-        <template v-if="userInfo.type > 1">
-              <router-link to="/index/myplan" slot="right">
-                <mt-button>我的计划</mt-button>
-              </router-link>
-        </template>
+      <template v-if="userInfo.type > 1">
+        <router-link to="/index/myplan" slot="right">
+          <mt-button>我的计划</mt-button>
+        </router-link>
+      </template>
     </mt-header>
 
     <!--s:鸣鹿轮播图-->
@@ -23,31 +23,32 @@
     <!--e:瘦身达人榜-->
 
     <template v-if="+userInfo.type == 1">
-    <!--新用户-->
+      <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
-    <!--e:一分钟减肥方案-->
+      <!--e:一分钟减肥方案-->
     </template>
 
-     <template v-else>
-     <!--老用户-->
-      <HeatPlate :heat-plate="heatPlate"></HeatPlate>
+    <template v-else>
+      <!--老用户-->
+      <router-link to="/index/record">
+        <HeatPlate :heat-plate="heatPlate"></HeatPlate>
+      </router-link>
       <!--e:能量盘-->
 
-    <router-link to="/index/weight">
-      <WeightCurve :weight-curve="weightCurve"></WeightCurve>
-      <!--e:体重曲线-->
-    </router-link>
+      <router-link to="/index/weight">
+        <WeightCurve :weight-curve="weightCurve"></WeightCurve>
+        <!--e:体重曲线-->
+      </router-link>
 
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
-     </template>
+    </template>
 
-      <BottomBar></BottomBar>
+    <BottomBar></BottomBar>
   </div>
 </template>
 
 <script>
-
   import "../assets/scss/common/reset.scss";
   import MlSwiper from '../components/index/mlSwiper.vue';//轮播图
   import SlimmingShar from '../components/index/slimmingShar.vue';//瘦身分享
@@ -94,70 +95,75 @@
 </script>
 
 <style lang="scss">
-    .ico:before{
-        content: '';
-        display:inline-block;
-        width:150px;
-        height:150px;
-        background:url(../assets/images/ico-01.png) no-repeat;
-        background-size:100% auto;
-    }
-    .ico2:before{
-        content: '';
-        display:inline-block;
-        width:165px;
-        height:165px;
-        background:url(../assets/images/ico-02.png) no-repeat;
-        background-size:100% auto;
-    }
-    .wrapper{
-        padding-bottom: 80px;
-    }
+  .ico:before {
+    content: '';
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    background: url(../assets/images/ico-01.png) no-repeat;
+    background-size: 100% auto;
+  }
+  
+  .ico2:before {
+    content: '';
+    display: inline-block;
+    width: 165px;
+    height: 165px;
+    background: url(../assets/images/ico-02.png) no-repeat;
+    background-size: 100% auto;
+  }
+  
+  .wrapper {
+    padding-bottom: 80px;
+  }
+  
   body {
-      background:#f7f7f7;
+    background: #f7f7f7;
     font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
   }
-
+  
   .mint-header {
     background-color: #47a304;
   }
+  
   .card {
-    .card-header:before{
+    .card-header:before {
       content: '';
       display: inline-block;
     }
     .share {
-      img{
+      img {
         width: 100%;
       }
     }
   }
+  
   #app {
     max-width: 400px;
     margin: auto;
   }
-
+  
   .page-swipe {
     height: 100px;
   }
-
+  
   .page-swipe .slide1 {
     background-color: #0089dc;
     color: #fff;
   }
-
+  
   .page-swipe .slide2 {
     background-color: #ffd705;
     color: #000;
   }
-
+  
   .page-swipe .slide3 {
     background-color: #ff2d4b;
     color: #fff;
   }
-
+  
   .page-swipe-desc {
     text-align: center;
     color: #666;
