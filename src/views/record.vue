@@ -6,22 +6,22 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <a href="/plan/diet/breakfast">
+            <a :href="'/plan/diet/breakfast/'+date">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a href="/plan/diet/lunch">
+             <a :href="'/plan/diet/lunch'+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a href="/plan/diet/supper">
+             <a :href="'/plan/diet/supper'+date'">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a href="/plan/diet/sport">
+             <a href="'/plan/diet/sport'+date'">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>
@@ -71,6 +71,10 @@
 </style>
 <script>
     export default {
+        created() {
+            let now = new Date();
+            this.date = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+        },
         components: {
         }
     };
