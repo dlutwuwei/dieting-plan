@@ -41,8 +41,8 @@
         data() {
             return {
                 selected: '1',
-                shareList: window.shareList,
-                myShareList: window.myShareList,
+                shareList: [],
+                myShareList: [],
             }
         },
         components: {
@@ -52,16 +52,16 @@
             getShareList() {
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
-                    this.shareList = JSON.parse(response.massages);
+                    this.shareList.push(JSON.parse(response.massages));
                 }, response => {
                     // error callback
                     MessageBox('注意', '获取信息失败');
                 });
             },
             getMyShareList() {
-                this.$http.get('/Share/sharelist').then(response => {
+                this.$http.get('/Share/myshare').then(response => {
                     // get body data
-                    this.myShareList = JSON.parse(response.massages);
+                    this.myShareList.push(JSON.parse(response.massages));
                 }, response => {
                     // error callback
                     MessageBox('注意', '获取信息失败');
