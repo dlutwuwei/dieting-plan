@@ -22,7 +22,6 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/prefer')
 
 FastClick.attach(document.body);
 

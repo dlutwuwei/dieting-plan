@@ -19,10 +19,10 @@
             </div>
         </div>
         <mt-popup v-if="type!='sport'" class="select-popup" v-model="popupVisible" position="bottom">
-            <addFood v-on:popClose="popClose" :data="selected" :type="type" :list="data"></addFood>
+            <addFood v-on:popClose="popClose" :data="selected" :type="type" :date="date" :list="data"></addFood>
         </mt-popup>
         <mt-popup v-if="type=='sport'" class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
-            <addSport v-on:popClose="popClose" :data="selected" type="sport" :list="data"></addSport>
+            <addSport v-on:popClose="popClose" :data="selected" type="sport" :date="date" :list="data"></addSport>
         </mt-popup>
     </div>
 </template>
@@ -78,13 +78,15 @@
         },
         created() {
             this.type = this.$route.params.type;
+            this.date = this.$route.params.date;
         },
         mounted() {
             // init data
             if(this.type == 'sport') {
                 this.data = window.sportList || [];
             } else {
-                this.data = window.foodList[this.type] || [];
+                debugger
+                this.data = window.foodList[this.date][this.type] || [];
             }
         }
     };

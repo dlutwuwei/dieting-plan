@@ -3,12 +3,12 @@
     <div class="sport-item" v-for="item in data">
       <div class="sport-info">
         <div class="sport-name">运动项目：{{item.name}}<img src="../../assets/images/jianfei/apple.jpg" alt=""></div>
-        <div class="sport-weight">运动时长：{{item.duration}}分钟</div>
-        <div class="sport-weight">运动消耗：{{item.consume}}千卡</div>
+        <div class="sport-weight">运动时长：{{item.time}}分钟</div>
+        <div class="sport-weight">运动消耗：{{item.kcal}}千卡</div>
       </div>
     </div>
     <div class="cell bottom">
-      <router-link to="/plan/diet/sport" slot="left">
+      <router-link :to="'/plan/diet/sport/'+date" slot="left">
         <mt-button type="primary" size="normal">记录运动</mt-button>
       </router-link>
     </div>
@@ -17,8 +17,10 @@
 <script>
   export default {
     created() {
+      console.log(this.data)
     },
     props: {
+      data: String,
       data: Array,
       title: String,
       calories: String

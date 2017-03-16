@@ -12,15 +12,15 @@ const routers = [{
     component: planList
 },
 {
-    path: '/plan/add/:type',
+    path: '/plan/add/:type/:date',
     component: planAdd
 },
 {
-    path: '/plan/diet/:type',
+    path: '/plan/diet/:type/:date',
     component: planDiet
 },
 {
-    path: '/plan/detail/:type',
+    path: '/plan/detail/:type/:date',
     component: planDetail
 }];
 

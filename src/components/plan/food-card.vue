@@ -1,16 +1,16 @@
 <template>
   <div class="food-card">
     <div class="food-title">
-      {{title}}<span>（建议摄入{{calories}}千卡）</span>
+      {{title}}<span>（建议摄入{{total}}千卡）</span>
     </div>
     <div class="food-item" v-for="item in data">
       <img :src="item.icon" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>
-        <div class="food-weight">{{item.value}}克</div>
+        <div class="food-weight">{{item.weight}}克</div>
       </div>
       <div class="food-calories">
-        {{item.value * item.energy/100}}千卡
+        {{item.kcal}}千卡
       </div>
     </div>
     <div class="cell bottom">
@@ -23,13 +23,15 @@
 <script>
   export default {
     created() {
-      this.url = '/plan/diet/' + this.type;
+      this.total = this.data.countkcal;
+      this.url = '/plan/diet/' + this.type +'/' + this.date;
     },
     props: {
-      data: Array,
+      data: Object,
       title: String,
       calories: String,
-      type: String
+      type: String,
+      date: String,
     },
   }
 

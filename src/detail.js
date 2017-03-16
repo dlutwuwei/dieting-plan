@@ -22,7 +22,6 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.replace('/detail/bmi');
 
 FastClick.attach(document.body);
 

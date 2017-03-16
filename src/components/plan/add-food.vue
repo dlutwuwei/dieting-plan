@@ -33,7 +33,7 @@
                 item: this.data
             }
         },
-        props: ['data', 'list', 'type'],
+        props: ['data', 'list', 'type', 'date'],
         computed: {
             total: function () {
                 return this.item.energy * this.item.value / 100;
@@ -63,7 +63,7 @@
                 }, response => {
                     // error callback
                 });
-                this.$router.push('/plan/diet/' + this.type);
+                this.$router.push(`/plan/diet/${this.type}/${this.date}`);
                 this.$emit('popClose');
             },
             getNum: function (event) {

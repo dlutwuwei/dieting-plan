@@ -15,42 +15,11 @@
         <router-view></router-view>
     </div>
     <script>
-        window.planList = {
-            food: [
-                {
-                    date: "2017-2-6",
-                    food_count: 9,
-                    input: 1200
-                },
-                {
-                    date: "2017-2-7",
-                    food_count: 8,
-                    input: 1200
-                },
-                {
-                    date: "2017-2-8",
-                    food_count: 6,
-                    input: 1200
-                }
-            ],
-            sport: [
-                {
-                    date: "2017-2-6",
-                    duration: 25,
-                    consume: 1130
-                },
-                {
-                    date: "2017-2-7",
-                    duration: 30,
-                    conusme: 1200
-                },
-                {
-                    date: "2017-2-8",
-                    duration: 15,
-                    consume: 1200
-                }
-            ]
-        };
+       window.foodPlan = [{"2017-03-17":{"count":28,"kcal":2400}},{"2017-03-18":{"count":28,"kcal":2400}},{"2017-03-19":{"count":28,"kcal":2760}}];
+    window.sportPlan = {"2017-03-17":{"name":"\u5348\u7761","kcal":"48","lasttime":"60"},"2017-03-18":{"name":"\u529e\u516c\u5ba4\u5750\u7740\u3001\u9605\u8bfb\u5f00\u8f66","kcal":"45","lasttime":"60"},"2017-03-19":{"name":"Pump 2004","kcal":"452","lasttime":"60"}};
+    window.foodList = {"2017-03-17":{"breakfast":[{"pid":"13859","name":"\u9c9c\u6a58\u6c41\uff08\u7eb8\u76d2\uff09","weight":"266.67","kcal":"80","time":"2017-03-17"},{"pid":"89","name":"\u9e21\u8089","weight":"76.92","kcal":"80","time":"2017-03-17"},{"pid":"1","name":"\u5927\u7c73","weight":"22.79","kcal":"80","time":"2017-03-17"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"263.16","kcal":"100","time":"2017-03-17"},{"pid":"67","name":"\u82f9\u679c","weight":"100.00","kcal":"60","time":"2017-03-17"},{"pid":"14325","name":"\u82b1\u8336","weight":"25.32","kcal":"80","time":"2017-03-17"},{"pid":"80","name":"\u725b\u8089","weight":"46.51","kcal":"80","time":"2017-03-17"},{"pid":"14109","name":"\u7389\u7c73","weight":"75.47","kcal":"80","time":"2017-03-17"},{"pid":"13800","name":"\u82a6\u7b0b\uff08\u77f3\u53fc\u67cf\u9f99\u987b\u83dc\uff09","weight":"555.56","kcal":"100","time":"2017-03-17"},{"pid":"13678","name":"\u82f9\u679c","weight":"115.38","kcal":"60","time":"2017-03-17"},{"bkcal":800}],"lunch":[{"pid":"82","name":"\u7f8a\u8089","weight":"19.61","kcal":"60","time":"2017-03-17"},{"pid":"13392","name":"\u94f6\u9c7c\uff08\u9762\u6761\u9c7c\uff09","weight":"50.42","kcal":"60","time":"2017-03-17"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"210.53","kcal":"80","time":"2017-03-17"},{"pid":"21","name":"\u9ec4\u8c46\u82bd","weight":"65.22","kcal":"60","time":"2017-03-17"},{"pid":"1","name":"\u5927\u7c73","weight":"22.79","kcal":"80","time":"2017-03-17"},{"pid":"67","name":"\u82f9\u679c","weight":"100.00","kcal":"60","time":"2017-03-17"},{"pid":"13935","name":"\u9e2d\u86cb","weight":"33.33","kcal":"60","time":"2017-03-17"},{"pid":"14329","name":"\u5c0f\u9f99\u867e","weight":"64.52","kcal":"60","time":"2017-03-17"},{"pid":"48","name":"\u8611\u83c7","weight":"320.00","kcal":"80","time":"2017-03-17"},{"pid":"14182","name":"\u6bdb\u8c46","weight":"48.78","kcal":"60","time":"2017-03-17"},{"pid":"13730","name":"\u85d5\u7c89","weight":"21.51","kcal":"80","time":"2017-03-17"},{"pid":"13655","name":"\u6a31\u6843","weight":"130.43","kcal":"60","time":"2017-03-17"},{"bkcal":800}],"dinner":[{"pid":"1","name":"\u5927\u7c73","weight":"22.79","kcal":"80","time":"2017-03-17"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"421.05","kcal":"160","time":"2017-03-17"},{"pid":"14157","name":"\u7d20\u867e\uff08\u70b8\uff09","weight":"27.78","kcal":"160","time":"2017-03-17"},{"pid":"14117","name":"\u5c0f\u7c73","weight":"22.35","kcal":"80","time":"2017-03-17"},{"pid":"13834","name":"\u51ac\u74dc","weight":"1454.55","kcal":"160","time":"2017-03-17"},{"pid":"14157","name":"\u7d20\u867e\uff08\u70b8\uff09","weight":"27.78","kcal":"160","time":"2017-03-17"},{"bkcal":800}],"countkcal":2400},"2017-03-18":{"breakfast":[{"pid":"13863","name":"\u7ef4\u5c14\u5eb7\u8fd0\u52a8\u996e\u6599","weight":"177.78","kcal":"80","time":"2017-03-18"},{"pid":"80","name":"\u725b\u8089","weight":"46.51","kcal":"80","time":"2017-03-18"},{"pid":"3","name":"\u9ad8\u7cb1\u7c73","weight":"20.78","kcal":"80","time":"2017-03-18"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"263.16","kcal":"100","time":"2017-03-18"},{"pid":"67","name":"\u82f9\u679c","weight":"100.00","kcal":"60","time":"2017-03-18"},{"pid":"14322","name":"\u858f\u7c73\u6c34","weight":"800.00","kcal":"80","time":"2017-03-18"},{"pid":"13935","name":"\u9e2d\u86cb","weight":"44.44","kcal":"80","time":"2017-03-18"},{"pid":"13489","name":"\u917f\u76ae\u5b50","weight":"60.61","kcal":"80","time":"2017-03-18"},{"pid":"13550","name":"\u9178\u8c46\u4e73","weight":"149.25","kcal":"100","time":"2017-03-18"},{"pid":"13687","name":"\u8354\u679d\uff08\u9c9c\uff09","weight":"85.71","kcal":"60","time":"2017-03-18"},{"bkcal":800}],"lunch":[{"pid":"82","name":"\u7f8a\u8089","weight":"19.61","kcal":"60","time":"2017-03-18"},{"pid":"13386","name":"\u7ae0\u9c7c\uff08\u771f\u86f8\uff09","weight":"115.38","kcal":"60","time":"2017-03-18"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"210.53","kcal":"80","time":"2017-03-18"},{"pid":"14173","name":"\u6241\u8c46","weight":"146.34","kcal":"60","time":"2017-03-18"},{"pid":"1","name":"\u5927\u7c73","weight":"22.79","kcal":"80","time":"2017-03-18"},{"pid":"67","name":"\u82f9\u679c","weight":"100.00","kcal":"60","time":"2017-03-18"},{"pid":"14238","name":"\u732a\u8840","weight":"109.09","kcal":"60","time":"2017-03-18"},{"pid":"14329","name":"\u5c0f\u9f99\u867e","weight":"64.52","kcal":"60","time":"2017-03-18"},{"pid":"13834","name":"\u51ac\u74dc","weight":"727.27","kcal":"80","time":"2017-03-18"},{"pid":"14173","name":"\u6241\u8c46","weight":"146.34","kcal":"60","time":"2017-03-18"},{"pid":"13736","name":"\u7ea2\u85af","weight":"80.81","kcal":"80","time":"2017-03-18"},{"pid":"13683","name":"\u7315\u7334\u6843\uff08\u4e2d\u534e\u7315\u7334\u6843\uff0c\u7f8a\u6843\uff09","weight":"107.14","kcal":"60","time":"2017-03-18"},{"bkcal":800}],"dinner":[{"pid":"1","name":"\u5927\u7c73","weight":"22.79","kcal":"80","time":"2017-03-18"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"421.05","kcal":"160","time":"2017-03-18"},{"pid":"14192","name":"\u8c47\u8c46","weight":"49.69","kcal":"160","time":"2017-03-18"},{"pid":"13631","name":"\u71d5\u9ea6","weight":"21.80","kcal":"80","time":"2017-03-18"},{"pid":"51","name":"\u9ed1\u6728\u8033","weight":"52.63","kcal":"160","time":"2017-03-18"},{"pid":"14157","name":"\u7d20\u867e\uff08\u70b8\uff09","weight":"27.78","kcal":"160","time":"2017-03-18"},{"bkcal":800}],"countkcal":2400},"2017-03-19":{"breakfast":[{"pid":"13856","name":"\u7d2b\u96ea\u7cd5","weight":"40.35","kcal":"92","time":"2017-03-19"},{"pid":"82","name":"\u7f8a\u8089","weight":"30.07","kcal":"92","time":"2017-03-19"},{"pid":"1","name":"\u5927\u7c73","weight":"26.21","kcal":"92","time":"2017-03-19"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"302.63","kcal":"115","time":"2017-03-19"},{"pid":"67","name":"\u82f9\u679c","weight":"115.00","kcal":"69","time":"2017-03-19"},{"pid":"14324","name":"\u7eff\u8336","weight":"28.05","kcal":"92","time":"2017-03-19"},{"pid":"13968","name":"\u9e21\u8089","weight":"55.09","kcal":"92","time":"2017-03-19"},{"pid":"13634","name":"\u9762\u5305","weight":"29.49","kcal":"92","time":"2017-03-19"},{"pid":"13787","name":"\u82b9\u83dc","weight":"575.00","kcal":"115","time":"2017-03-19"},{"pid":"13660","name":"\u84dd\u8393","weight":"121.05","kcal":"69","time":"2017-03-19"},{"bkcal":920}],"lunch":[{"pid":"89","name":"\u9e21\u8089","weight":"66.35","kcal":"69","time":"2017-03-19"},{"pid":"13387","name":"\u9c7c\u5b50\u9171\uff08\u5927\u9ebb\u54c8\u9c7c\uff09","weight":"27.38","kcal":"69","time":"2017-03-19"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"242.11","kcal":"92","time":"2017-03-19"},{"pid":"14173","name":"\u6241\u8c46","weight":"168.29","kcal":"69","time":"2017-03-19"},{"pid":"3","name":"\u9ad8\u7cb1\u7c73","weight":"23.90","kcal":"92","time":"2017-03-19"},{"pid":"67","name":"\u82f9\u679c","weight":"115.00","kcal":"69","time":"2017-03-19"},{"pid":"13968","name":"\u9e21\u8089","weight":"41.32","kcal":"69","time":"2017-03-19"},{"pid":"14329","name":"\u5c0f\u9f99\u867e","weight":"74.19","kcal":"69","time":"2017-03-19"},{"pid":"13758","name":"\u5a03\u5a03\u83dc","weight":"707.69","kcal":"92","time":"2017-03-19"},{"pid":"21","name":"\u9ec4\u8c46\u82bd","weight":"75.00","kcal":"69","time":"2017-03-19"},{"pid":"13631","name":"\u71d5\u9ea6","weight":"25.07","kcal":"92","time":"2017-03-19"},{"pid":"13659","name":"\u9999\u8549","weight":"75.82","kcal":"69","time":"2017-03-19"},{"bkcal":920}],"dinner":[{"pid":"1","name":"\u5927\u7c73","weight":"26.21","kcal":"92","time":"2017-03-19"},{"pid":"15","name":"\u9752\u6241\u8c46\u835a","weight":"484.21","kcal":"184","time":"2017-03-19"},{"pid":"14192","name":"\u8c47\u8c46","weight":"57.14","kcal":"184","time":"2017-03-19"},{"pid":"14122","name":"\u5c0f\u9ea6","weight":"26.14","kcal":"92","time":"2017-03-19"},{"pid":"13550","name":"\u9178\u8c46\u4e73","weight":"274.63","kcal":"184","time":"2017-03-19"},{"pid":"21","name":"\u9ec4\u8c46\u82bd","weight":"200.00","kcal":"184","time":"2017-03-19"},{"bkcal":920}],"countkcal":2760}};
+    window.sportList = [{"2017-03-17":{"time":"60","kcal":"48"}},{"2017-03-17":{"time":"60","kcal":"45"}},{"2017-03-17":{"time":"60","kcal":"452"}}];
+
         //热量盘
         window.heatPlate = [{
             "date": "2017-2-11",
@@ -87,82 +56,6 @@
             breakfast: "350-450",
             lunch: "500-1000",
             supper: "800-900"
-        }
-        window.sportList = [
-            {
-                name: "跑步",
-                value: 30,
-                energy: 600,
-                icon: "../assets/images/jianfei/apple.jpg"
-            },
-            {
-                name: "游泳",
-                value: 60,
-                energy: 700
-            }
-        ]
-        window.foodList = {
-            breakfast: [
-                {
-                    name: "苹果",
-                    energy: 100,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 10
-                },
-                {
-                    name: "牛奶",
-                    energy: 100,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 0
-                },
-                {
-                    name: "面包",
-                    energy: 100,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 10
-                }
-            ],
-            lunch: [
-                {
-                    name: "水晶虾",
-                    energy: 160,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 100
-                },
-                {
-                    name: "素材蘑菇",
-                    energy: 130,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 20
-                },
-                {
-                    name: "面包",
-                    energy: 140,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 90
-                }
-            ],
-            supper: [
-                {
-                    name: "牛奶",
-                    energy: 200,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 20
-                },
-                {
-                    name: "面包",
-                    energy: 200,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 10
-                },
-                {
-                    name: "果汁",
-                    calories: 135,
-                    energy: 200,
-                    icon: "../assets/images/jianfei/apple.jpg",
-                    value: 250
-                }
-            ]
         }
     </script>
     <!-- built files will be auto injected -->

@@ -10,10 +10,10 @@
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.value}}{{type=='sport'?'分钟':'克'}}</div>
+                    <div class="food-weight">{{item.weight}}{{type=='sport'?'分钟':'克'}}</div>
                 </div>
                 <div class="food-calories">
-                    {{item.value * item.energy / 100}}千卡
+                    {{item.kcal}}千卡
                 </div>
             </div>
             <div class="cell bottom">
@@ -40,9 +40,10 @@
             },
             fetchData: function() {
                 if(this.type == 'sport') {
-                    this.data = window.sportList;
+                    debugger
+                    this.data = window.sportList[0][this.date];
                 } else {
-                    this.data = window.foodList[this.type];
+                    this.data = window.foodList[this.date][this.type];
                 }
             }
         },
@@ -51,7 +52,8 @@
         },
         created() {
             this.type = this.$route.params.type;
-            this.addUrl = '/plan/add/' + this.type;
+            this.date = this.$route.params.date;
+            this.addUrl = `/plan/add/${this.type}/${this.date}`;
         }
     }
 
