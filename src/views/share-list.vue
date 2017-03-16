@@ -41,8 +41,8 @@
         data() {
             return {
                 selected: '1',
-                shareList: shareListInfo || window.shareList,
-                myShareList: myShareListInfo || window.myShareList,
+                shareList: window.shareList,
+                myShareList: window.myShareList,
             }
         },
         components: {
@@ -50,7 +50,7 @@
         },
         methods: {
             getShareList() {
-                this.$http.post('/Share/sharelist').then(response => {
+                this.$http.get('http://w.cellwellbeing.cn/Share/sharelist').then(response => {
                     // get body data
                     this.shareList = response.massages;
                 }, response => {
@@ -59,7 +59,7 @@
                 });
             },
             getMyShareList() {
-                this.$http.post('/Share/myshare').then(response => {
+                this.$http.get('http://w.cellwellbeing.cn/Share/sharelist').then(response => {
                     // get body data
                     this.myShareList = response.massages;
                 }, response => {
