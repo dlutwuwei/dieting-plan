@@ -73,7 +73,8 @@
         },
         mounted() {
             this.getShareList();
-            this.getMyShareList();  
+            this.getMyShareList();
+
         }
     };
 </script>

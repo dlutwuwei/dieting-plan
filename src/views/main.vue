@@ -30,10 +30,8 @@
 
      <template v-else>
      <!--老用户-->
-     <router-link to="/index/record">
       <HeatPlate :heat-plate="heatPlate"></HeatPlate>
       <!--e:能量盘-->
-     </router-link>
 
     <router-link to="/index/weight">
       <WeightCurve :weight-curve="weightCurve"></WeightCurve>

@@ -56,8 +56,10 @@
     }
 </style>
 <template>
-    <div class="heat-plate">
-        <div class="hd">热量盘</div>
+    <div class="heat-plate" v-if="heatPlate && heatPlate.length > 0">
+        <router-link to="/index/record">
+            <div class="hd">热量盘</div>
+        </router-link>
         <div class="bd">
             <div class="date ncf-box">
                 <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>
@@ -86,47 +88,17 @@
 </template>
 
 <script type="text/javascript">
-
+    import {fmtDate} from  "../../libs/utils.js";
 
     module.exports = {
         data(){
             return {
-
             }
         },
         filters: {
             handleTime(date) {
-                /**
-                 *   对Date的扩展，将 Date 转化为指定格式的String
-                 *   月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符，
-                 *   年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字)
-                 *   例子：
-                 *   (new Date()).Format('yyyy-MM-dd hh:mm:ss.S') ==> 2006-07-02 08:09:04.423
-                 *   (new Date()).Format('yyyy-M-d h:m:s.S')      ==> 2006-7-2 8:9:4.18
-                 */
-                const fmtDate = (date, fmt) => { // author: meizz
-                    var o = {
-                        'M+': date.getMonth() + 1, // 月份
-                        'd+': date.getDate(), // 日
-                        'h+': date.getHours(), // 小时
-                        'm+': date.getMinutes(), // 分
-                        's+': date.getSeconds(), // 秒
-                        'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-                        'S': date.getMilliseconds() // 毫秒
-                    };
-                    if (/(y+)/.test(fmt)) {
-                        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-                    }
-                    for (var k in o) {
-                        if (new RegExp('(' + k + ')').test(fmt)) {
-                            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)));
-                        }
-                    }
-                    return fmt;
-                };
 
-                let nowDate = fmtDate(new Date(), 'yyyy-M-d');
-
+                let nowDate = fmtDate(new Date(), 'yyyy-MM-dd');
                 if(nowDate == date){
                     return "今天"
                 }else{
@@ -137,20 +109,33 @@
         props: {
             heatPlate: Array //这样可以指定传入的类型，如果类型不对，会警告
         },
-
+        created() {
+            if(heatPlate.length > 5){
+                heatPlate.length = 5
+            }
+        },
         methods:{
             handleHeatPlateTime: ()=>{
                 let dateTime = document.querySelectorAll('.date span');
                 let bdBot = document.querySelectorAll('.bd-bot');
 
-                for(var i = 0; i < dateTime.length;i++){
+
+                console.log(heatPlate)
+                if(dateTime.length < 5){
+                    dateTime[0].className = 'item yellow';
+                    bdBot[0].style.display = 'block';
+                } else {
                     dateTime[2].className = 'item yellow';
                     bdBot[2].style.display = 'block';
-                    if(dateTime[i].innerHTML == '今天'){
-                        dateTime[2].className = 'item';
-                        bdBot[2].style.display = 'none';
-                        dateTime[i].className = 'item yellow';
-                        bdBot[i].style.display = 'block';
+
+                    for(var i = 0; i < dateTime.length;i++){
+
+                        if(dateTime[i].innerHTML == '今天'){
+                            dateTime[2].className = 'item';
+                            bdBot[2].style.display = 'none';
+                            dateTime[i].className = 'item yellow';
+                            bdBot[i].style.display = 'block';
+                        }
                     }
                 }
             },
@@ -167,6 +152,7 @@
             }
         },
         mounted(){
+
             this.handleHeatPlateTime();
         }
     }
