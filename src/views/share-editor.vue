@@ -125,7 +125,7 @@
                     $('.mint-field-core').val('');
                     $('.sample').find('img').attr('src', '');
                     $('#editor-textarea').val('');
-                }).then(res=>{
+                },res=>{
                     MessageBox('注意', '发布失败');
                 });
             }
