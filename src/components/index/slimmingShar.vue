@@ -112,7 +112,7 @@
             }
             .share-pic{
                 width:100%;
-                height:auto;
+                height:160px;
             }
         }
 
