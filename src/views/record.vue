@@ -11,17 +11,17 @@
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a :href="'/plan/diet/lunch'+date">
+             <a :href="'/plan/diet/lunch/'+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a :href="'/plan/diet/supper'+date'">
+             <a :href="'/plan/diet/dinner/'+date'">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a href="'/plan/diet/sport'+date'">
+             <a href="'/plan/diet/sport/'+date'">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>
