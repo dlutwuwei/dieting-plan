@@ -8,19 +8,19 @@
       <div class="bd">
           <div class="list-content" style="display:block">
               <div class="list-item" v-for="(item, index) in planList.food">
-                <router-link to="/plan/detail/food" slot="left">
-                    <div class="date">{{item.date}}</div>
-                    <div>食物：{{item.food_count}}种</div>
-                    <div>摄入：{{item.input}}千卡</div>
+                <router-link to="/plan/detail/food" slot="left" v-for="(t, i) in item">
+                    <div class="date">{{i}}</div>
+                    <div>食物：{{t.count}种</div>
+                    <div>摄入：{{t.kcal}}千卡</div>
                 </router-link>
               </div>
           </div>
           <div class="list-content">
               <div class="list-item" v-for="(item, index) in planList.sport">
-                <router-link to="/plan/detail/sport" slot="left">
-                      <div class="date">{{item.date}}</div>
-                      <div>运动时长：{{item.duration}}分钟</div>
-                      <div>运动消耗：{{item.consume}}千卡</div>
+                <router-link to="/plan/detail/sport" slot="left"  v-for="(t, i) in item">
+                      <div class="date">{{i}}</div>
+                      <div>运动时长：{{t.lasttime}}分钟</div>
+                      <div>运动消耗：{{t.kcal}}千卡</div>
                 </router-link>
               </div>
           </div>
@@ -30,7 +30,10 @@
 <script>
     export default {
         created() {
-            this.planList = window.planList;
+            this.planList = {
+                food: window.foodPlan,
+                sport: window.sportPlan
+            }
         },
         data() {
             return {
