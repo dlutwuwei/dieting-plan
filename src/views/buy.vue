@@ -8,7 +8,7 @@
         </mt-header>
         <div class="buy-card">
             <div class="cell1 bottom">
-                <mt-button type="primary" size="normal" v-on:click="post_prefer">15天免费试用</mt-button>
+                <mt-button type="primary" size="normal" v-on:click="test15">15天免费试用</mt-button>
             </div>
             <div>
                 运用德国体质检测大数据库，制作针对东方人饮食习惯及体质特 点的短期减肥计划，定期推送专业指导！！
@@ -46,13 +46,34 @@
                 <mt-button type="primary" size="normal" v-on:click="post_prefer">付款</mt-button>
             </div>
         </div>
-         <div class="cell bottom">
+         <div class="cell bottom" v-if="type==2">
             <mt-button type="primary" size="normal" v-on:click="post_prefer">开启七天过渡期</mt-button>
         </div>
     </div>
 </template>
 <script>
+    function getQuery(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
     export default {
+        data() {
+            return {
+                type: getQuery('type')
+            }
+        },
+        methods: {
+            test15: function() {
+                this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
+                    location.href = '/';
+                });
+            }
+        },
         created() {
             
         }

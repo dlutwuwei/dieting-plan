@@ -22,6 +22,11 @@
     </div>
 </template>
 <script>
+    const type_map = {
+        'breakfast': 1,
+        'lunch': 2,
+        'supper': 3
+    }
     export default {
         data() {
             return {
@@ -44,7 +49,21 @@
                 this.$emit('popClose');
             },
             save: function () {
-                this.$router.push('/plan/diet/' + this.type );
+
+                this.$http.get('/Record/foodadd', {
+                    "class": type_map[this.type],
+                    "pid": this.item.pid,
+                    "name": this.item.name,
+                    "kcal": this.item.kcal,
+                    "gram": this.item.value,
+                    "energy": this.item.value
+                }).then(response => {
+
+                    // get body data
+                }, response => {
+                    // error callback
+                });
+                this.$router.push('/plan/diet/' + this.type);
                 this.$emit('popClose');
             },
             getNum: function (event) {

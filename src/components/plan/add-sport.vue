@@ -54,8 +54,20 @@
                 this.$emit('popClose');
             },
             save: function () {
+                this.$http.get('/Record/sportadd', {
+                    "class": type_map[this.type],
+                    "pid": this.item.pid,
+                    "name": this.item.name,
+                    "kcal": this.item.kcal,
+                    "gram": this.item.value,
+                    "energy": this.item.value
+                }).then(response => {
+                    // get body data
+                }, response => {
+                    // error callback
+                });
+                this.$router.push('/plan/diet/' + this.type);
                 this.$emit('popClose');
-                this.$router.push('/plan/diet/' + this.type );
             },
             onClickValue: function(e) {
                 let val = e.target.getAttribute('value');

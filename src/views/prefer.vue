@@ -2,14 +2,14 @@
     <transition name="slide">
         <div class="prefer">
             <mt-header title="鸣鹿健康">
-                <router-link to="/" slot="left">
+                <router-link to="/prefer/prefer" slot="left">
                     <mt-button icon="back">返回</mt-button>
                 </router-link>
                 <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">
-                <div class="item" :class="{selected: item.selected}" v-for="item in items" @click="select(item)">
+                <div :class="['item', {selected: item.selected}]" v-for="item in items" @click="select(item, $event)">
                     <div class="icon"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
                 </div>
@@ -31,7 +31,9 @@
     const next = {
         breakfast: 'lunch',
         lunch: 'supper',
-        supper: 'sports'
+        supper: 'sports',
+        sports: 'restrict',
+        restrict: null
     };
     import { MessageBox } from 'mint-ui';
     export default {
@@ -39,19 +41,35 @@
             return {
                 items: null,
                 title: null,
-                selected: [],
+                selected: {},
             }
         },
         methods: {
-            select: function (item) {
-                this.selected.push(item);
+            select: function (item, e) {
+                e.target.classList.add('selected');
+                if (!this.selected[this.type]) {
+                    this.selected[this.type] = [];
+                }
+                this.selected[this.type].push(item);
             },
             post_prefer: function (e) {
                 let target;
-                if (next[this.$route.params.type || 'breakfast'] == null) {
-                    location.href = '/';
+                let type = this.$route.params.type || 'breakfast';
+                if (next[type || 'breakfast'] == 'restrict') {
+                    this.$http.post('/Pre/addfood', this.selected).then(response => {
+
+                    })
+                    target = '/prefer/' + next[type || 'breakfast'];
+                    this.$router.push({
+                        path: target
+                    });
+                } else if (next[type] == null) {
+                    this.$http.post('/Restrict/addplace', this.selected).then(response => {
+
+                    })
+                    location.href = '/buy/buy?type=15';
                 } else {
-                    target = '/prefer/' + next[this.$route.params.type || 'breakfast'];
+                    target = '/prefer/' + next[type || 'breakfast'];
                     this.$router.push({
                         path: target
                     });
@@ -67,7 +85,12 @@
             '$route': 'fetchData'
         },
         mounted() {
-            this.items = window.data[this.$route.params.type || 'breakfast'];
+            let data = window.data[this.$route.params.type || 'breakfast'];
+            data.forEach(item => {
+                item.value = false;
+            })
+            this.items = data;
+
             this.title = window.titles[this.$route.params.type || 'breakfast'];
         },
         created() {
@@ -75,9 +98,10 @@
                 breakfast: '早餐选择',
                 lunch: '午餐选择',
                 supper: '晚餐选择',
-                sports: '运动选择'
+                sports: '运动选择',
+                restrict: '饮食限制'
             };
-
+            this.type = this.$route.params.type;
             window.data = {
                 breakfast: [
                     {
@@ -270,6 +294,19 @@
                 width: 76px;
                 img {
                     width: 100%;
+                }
+            }
+            .selected {
+                position: relative;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    right: 1px;
+                    top: 1px;
+                    width: 15px;
+                    height: 15px;
+                    background: url(../assets/images/xuanzhong.png) no-repeat;
+                    background-size: cover;
                 }
             }
             .name {

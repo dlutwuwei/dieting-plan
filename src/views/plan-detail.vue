@@ -23,7 +23,7 @@
                 breakfast: '早餐',
                 lunch: '午餐',
                 supper: '晚餐'
-            }
+            };
             this.type = this.$route.params.type;
         },
         mounted() {
