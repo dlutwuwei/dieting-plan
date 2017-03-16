@@ -9,8 +9,8 @@
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">
-                <div class="item" v-for="item in items">
-                    <div class="icon"><img :src="'../assets/images/sports/'+item.icon" alt=""></div>
+                <div class="item" :class="{selected: item.selected}" v-for="item in items" @click="select(item)">
+                    <div class="icon"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.name}}</div>
                 </div>
                 <div class="add-item">
@@ -36,10 +36,14 @@
         data() {
             return {
                 items: null,
-                title: null
+                title: null,
+                selected: [],
             }
         },
         methods: {
+            select: function(item) {
+                this.selected.push(item);
+            },
             post_prefer: function (e) {
                 let target;
                 if (next[this.$route.params.type || 'breakfast'] == null) {
