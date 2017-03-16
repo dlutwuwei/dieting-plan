@@ -11,11 +11,11 @@
             <div class="select-items">
                 <div class="item" :class="{selected: item.selected}" v-for="item in items" @click="select(item)">
                     <div class="icon"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
-                    <div class="name">{{item.name}}</div>
+                    <div class="name">{{item.food_type}}</div>
                 </div>
                 <div class="add-item">
                     <div class="icon">
-                        <a href="/plan/add/food"><img :src="/Public/render/img/icons/" alt=""></a>
+                        <a href="/plan/add/food"><img src="../assets/images/jianfei/add.png" alt=""></a>
                         </a>
                     </div>
                     <div class="name">自定义</div>
@@ -80,130 +80,157 @@
             window.data = {
                 breakfast: [
                     {
-                        id: 1,
-                        name: "包子",
+                        pid: 1,
+                        food_type: "包子",
                         icon: 'baozi.png'
                     },
                     {
-                        name: "豆浆",
+                        pid: 1,
+                        food_type: "豆浆",
                         icon: 'doujiang.png'
                     },
                     {
-                        name: "豆类",
+                        pid: 1,
+                        food_type: "豆类",
                         icon: 'doulei.png'
                     },
                     {
-                        name: "麦片",
+                        pid: 1,
+                        food_type: "麦片",
                         icon: 'maipian.png'
                     },
                     {
-                        name: "馒头",
+                        pid: 1,
+                        food_type: "馒头",
                         icon: 'mantou.png'
                     },
                     {
-                        name: "粥",
+                        pid: 1,
+                        food_type: "粥",
                         icon: 'zhou.png'
                     }
                 ],
                 lunch: [
                     {
-                        name: "面条",
+                        pid: 1,
+                        food_type: "面条",
                         icon: 'miantiao.png'
                     },
                     {
-                        name: "米饭",
+                        pid: 1,
+                        food_type: "米饭",
                         icon: 'mifan.png'
                     },
                     {
-                        name: "牛奶",
+                        pid: 1,
+                        food_type: "牛奶",
                         icon: 'niunai.png'
                     },
                     {
-                        name: "牛肉",
+                        pid: 1,
+                        food_type: "牛肉",
                         icon: 'niurou.png'
                     },
                     {
-                        name: "猪肉",
+                        pid: 1,
+                        food_type: "猪肉",
                         icon: 'zhurou.png'
                     }
                 ],
                 supper: [
                     {
-                        name: "青菜",
+                        pid: 1,
+                        food_type: "青菜",
                         icon: 'qingcai.png'
                     },
                     {
-                        name: "沙拉",
+                        pid: 1,
+                        food_type: "沙拉",
                         icon: 'shala.png'
                     },
                     {
-                        name: "水类",
+                        pid: 1,
+                        food_type: "水类",
                         icon: 'shuilei.png'
                     },
                     {
-                        name: "水类",
+                        pid: 1,
+                        food_type: "水类",
                         icon: 'shuilei.png'
                     },
                     {
-                        name: "酸奶",
+                        pid: 1,
+                        food_type: "酸奶",
                         icon: 'suannai.png'
                     },
                     {
-                        name: "糖",
+                        pid: 1,
+                        food_type: "糖",
                         icon: 'tang.png'
                     },
                     {
-                        name: "羊肉",
+                        pid: 1,
+                        food_type: "羊肉",
                         icon: 'yangrou.png'
                     },
                     {
-                        name: "鱼",
+                        pid: 1,
+                        food_type: "鱼",
                         icon: 'yu.png'
                     }
                 ],
                 sports: [
                     {
-                        name: "登山",
+                        pid: 1,
+                        food_type: "登山",
                         icon: 'dengshan.png'
                     },
                     {
-                        name: "快走",
+                        pid: 1,
+                        food_type: "快走",
                         icon: 'kuaizou.png'
                     },
                     {
-                        name: "篮球",
+                        pid: 1,
+                        food_type: "篮球",
                         icon: 'lanqiu.png'
                     },
                     {
-                        name: "排球",
+                        pid: 1,
+                        food_type: "排球",
                         icon: 'paiqiu.png'
                     },
                     {
-                        name: "跑步",
+                        pid: 1,
+                        food_type: "跑步",
                         icon: 'paobu.png'
                     },
                     {
-                        name: "骑行",
+                        pid: 1,
+                        food_type: "骑行",
                         icon: 'qixing.png'
                     },
                     {
-                        name: "跳绳",
+                        pid: 1,
+                        food_type: "跳绳",
                         icon: 'tiaosheng.png'
                     },
                     {
-                        name: "跳舞",
+                        pid: 1,
+                        food_type: "跳舞",
                         icon: 'tiaowu.png'
                     },
                     {
-                        name: "游泳",
+                        pid: 1,
+                        food_type: "游泳",
                         icon: 'youyong.png'
                     },
                     {
-                        name: "瑜伽",
+                        food_type: "瑜伽",
                         icon: 'yujia.png'
                     },
                     {
-                        name: "足球",
+                        food_type: "足球",
                         icon: 'zuqiu.png'
                     }
                 ]
