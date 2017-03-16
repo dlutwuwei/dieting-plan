@@ -109,10 +109,10 @@
             releaseShare(){
                 let title = $('.mint-field-core').val();
                 let titlpic = $('.sample').find('img').attr('src');
-                let content = $('.editor-textarea').val();
+                let content = $('#editor-textarea').val();
 
                 let reqBody = {
-                    Title: title,
+                    title: title,
                     titlpic: titlpic,
                     content: content,
                 };
@@ -124,7 +124,7 @@
                     /* 发布成功 */
                     $('.mint-field-core').val('');
                     $('.sample').find('img').attr('src', '');
-                    $('.editor-textarea').val('');
+                    $('#editor-textarea').val('');
                 }).then(res=>{
                     MessageBox('注意', '发布失败');
                 });
