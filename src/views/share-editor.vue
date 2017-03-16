@@ -99,8 +99,8 @@
                 this.uploadFile(data, function (error, result) {
                     if (!error) {
                         self.id_card_img =  result.massages;//获取图片地址
-                        document.querySelector('.sample').removeClass('id-no-uploaded');
-                        $('.sample').find('img').attr('src', result.url);
+                        $('.sample').removeClass('id-no-uploaded');
+                        $('.sample').find('img').attr('src', self.id_card_img);
                     }
                 })
             },
