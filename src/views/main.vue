@@ -5,7 +5,7 @@
         <mt-button icon="back">返回</mt-button>
       </router-link>
         <template v-if="userInfo.type > 1">
-              <router-link to="/myplan" slot="right">
+              <router-link to="/index/myplan" slot="right">
                 <mt-button>我的计划</mt-button>
               </router-link>
         </template>
