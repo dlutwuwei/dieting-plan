@@ -10,7 +10,7 @@
               <div class="list-item" v-for="(item, index) in planList.food">
                 <router-link to="/plan/detail/food" slot="left" v-for="(t, i) in item">
                     <div class="date">{{i}}</div>
-                    <div>食物：{{t.count}种</div>
+                    <div>食物：{{t.count}}种</div>
                     <div>摄入：{{t.kcal}}千卡</div>
                 </router-link>
               </div>
