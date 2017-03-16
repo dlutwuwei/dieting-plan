@@ -6,27 +6,27 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <router-link to="/plan/diet/breakfast">
+            <a href="/plan/diet/breakfast">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
-            </router-link>
-             <router-link to="/plan/diet/lunch">
+            </a>
+             <a href="/plan/diet/lunch">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
-            </router-link>
-             <router-link to="/plan/diet/supper">
+            </a>
+             <a href="/plan/diet/supper">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
-            </router-link>
-             <router-link to="/plan/detial/sport">
+            </a>
+             <a href="/plan/diet/sport">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>
-            </router-link>
-             <router-link to="/index/weight">
+            </a>
+             <router-link href="/index/weight">
                 <div class="btn weight">
                 </div>
                 <div class="name">体重</div>
