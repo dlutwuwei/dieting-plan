@@ -5,7 +5,7 @@
                 <div class="go-back ico" @click="goback"></div>
             </router-link>
             <span>写分享</span>
-            <em>发布</em>
+            <em @click="releaseShare">发布</em>
         </div>
 
         <div class="share-editor-cen">
@@ -22,6 +22,7 @@
             </div>
             <div class="editor-text input-box">
                 <h5>正文 <span>(文字和图片都可以)</span></h5>
+                <textarea name="" id="editor-textarea" cols="30" rows="10"></textarea>
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
             },
             uploadFile(data, callback) {
                 $.ajax({
-                    url: '/viewpoint/up_img_base64',
+                    url: '/Share/fileimg',
                     type: 'POST',
                     data: data,
                     contentType: false,
@@ -59,7 +60,7 @@
                     }
                 });
             },
-            //上传身份证
+            //上传图片
             uploadIdCard(ev) {
                 var self = this;
                 $('.img-btn').on('click', 'a', function () {
@@ -97,11 +98,30 @@
 
                 this.uploadFile(data, function (error, result) {
                     if (!error) {
-                        self.id_card_img =  result.url;//获取图片地址
+                        self.id_card_img =  result.massages;//获取图片地址
                         document.querySelector('.sample').removeClass('id-no-uploaded');
                         $('.sample').find('img').attr('src', result.url);
                     }
                 })
+            },
+            releaseShare(){
+                let title = $('.mint-field-core').val();
+                let titlpic = $('.sample').find('img').attr('src');
+                let content = $('.editor-textarea').val();
+
+                let reqBody = {
+                    Title: title,
+                    titlpic: titlpic,
+                    content: content,
+                };
+
+                this.$http.post(
+                    '/Share/shareadd',
+                    reqBody
+                ).then(res=>{
+                    return res.json()
+                }).then(res=>{
+                });
             }
         },
     };
@@ -174,6 +194,11 @@
                 span{
                     font-size:12px;
                 }
+            }
+            textarea{
+                width: 100%;
+                height: 160px;
+                overflow-y: auto;
             }
         }
         .sample{

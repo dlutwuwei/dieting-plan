@@ -34,23 +34,46 @@
 </template>
 <script>
     import SlimmingShar from '../components/share/slimmingShar.vue';//瘦身分享
+    import { MessageBox } from 'mint-ui';
 
     export default {
         name: 'page-navbar',
         data() {
             return {
                 selected: '1',
-                shareList: window.shareList,
-                myShareList: window.myShareList,
+                shareList: shareListInfo || window.shareList,
+                myShareList: myShareListInfo || window.myShareList,
             }
         },
         components: {
             SlimmingShar,
         },
         methods: {
+            getShareList() {
+                this.$http.post('/Share/sharelist').then(response => {
+                    // get body data
+                    this.shareList = response.massages;
+                }, response => {
+                    // error callback
+                    MessageBox('注意', '获取信息失败');
+                });
+            },
+            getMyShareList() {
+                this.$http.post('/Share/myshare').then(response => {
+                    // get body data
+                    this.myShareList = response.massages;
+                }, response => {
+                    // error callback
+                    MessageBox('注意', '获取信息失败');
+                });
+            },
             goback: function () {
                 history.back();
             }
+        },
+        mounted() {
+            this.getShareList();
+            this.getMyShareList();  
         }
     };
 </script>
