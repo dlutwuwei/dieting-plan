@@ -63,8 +63,8 @@
       return {
         selected: '1',
         msg: 'Use Vue 2.0 Today!',
-          userInfo: window.userInfo || {},
-        shareList: window.shareList || [],
+        userInfo: window.userInfo || {},
+        shareList: window.shareList.slice(3) || [],
         reduceList: window.reduceList || [],
         darenList: window.darenList || {},
         mlSwiper: window.mlSwiper || [],
