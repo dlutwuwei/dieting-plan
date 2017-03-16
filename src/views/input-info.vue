@@ -134,7 +134,7 @@
             ];
         },
         mounted() {
-            this.classid = getQuery('classid')
+            this.classid = this.$route.params.classid;
         }
     };
 
