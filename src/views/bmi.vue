@@ -46,11 +46,13 @@
             return {
                 weight: getQuery('w'),
                 height: getQuery('h'),
-                perform: ''
+                perform: '',
+                bmi: 0
             }
         },
         computed: {
             bmi: function () {
+                debugger
                 return calculateBmi(this.weight, this.height).toFixed(2);
             },
             perform: function() {
