@@ -32,6 +32,9 @@
             }
         },
         methods: {
+            goback: function () {
+                history.back();
+            },
             deleteItem: function(i) {
                 this.data.splice(i, 1);
             },

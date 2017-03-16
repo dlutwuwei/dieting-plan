@@ -15,7 +15,6 @@
     import sportCard from '../components/plan/sport-card.vue';
     export default {
         created() {
-            console.log('detail created')
             this.heatPlate = window.heatPlate;
             this.foodList = window.foodList;
             this.sportList = window.sportList;
@@ -29,6 +28,11 @@
         },
         mounted() {
             console.log('detail mounted')
+        },
+        methods: {
+            goback: function () {
+                history.back();
+            }
         },
         watch: {
             // 如果路由有变化，会再次执行该方法
