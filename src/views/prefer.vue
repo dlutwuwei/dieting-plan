@@ -15,7 +15,8 @@
                 </div>
                 <div class="add-item">
                     <div class="icon">
-                        <a href="/plan/add/food"><img src="../assets/images/jianfei/add.png" alt=""></a></a>
+                        <a href="/plan/add/food"><img :src="/Public/render/img/icons/" alt=""></a>
+                        </a>
                     </div>
                     <div class="name">自定义</div>
                 </div>
@@ -41,7 +42,7 @@
             }
         },
         methods: {
-            select: function(item) {
+            select: function (item) {
                 this.selected.push(item);
             },
             post_prefer: function (e) {
@@ -79,52 +80,85 @@
             window.data = {
                 breakfast: [
                     {
-                        name: "牛肉",
-                        icon: ''
+                        id: 1,
+                        name: "包子",
+                        icon: 'baozi.png'
                     },
                     {
-                        name: "马肉",
-                        icon: ''
+                        name: "豆浆",
+                        icon: 'doujiang.png'
                     },
                     {
-                        name: "蔬菜",
-                        icon: ''
+                        name: "豆类",
+                        icon: 'doulei.png'
                     },
                     {
-                        name: "蔬菜",
-                        icon: ''
+                        name: "麦片",
+                        icon: 'maipian.png'
                     },
                     {
-                        name: "蔬菜",
-                        icon: ''
+                        name: "馒头",
+                        icon: 'mantou.png'
+                    },
+                    {
+                        name: "粥",
+                        icon: 'zhou.png'
                     }
                 ],
                 lunch: [
                     {
-                        name: "苹果",
-                        icon: ''
+                        name: "面条",
+                        icon: 'miantiao.png'
                     },
                     {
-                        name: "鸡蛋",
-                        icon: ''
+                        name: "米饭",
+                        icon: 'mifan.png'
                     },
                     {
-                        name: "",
-                        icon: ''
+                        name: "牛奶",
+                        icon: 'niunai.png'
+                    },
+                    {
+                        name: "牛肉",
+                        icon: 'niurou.png'
+                    },
+                    {
+                        name: "猪肉",
+                        icon: 'zhurou.png'
                     }
                 ],
                 supper: [
                     {
-                        name: "鸡肉",
-                        icon: ''
+                        name: "青菜",
+                        icon: 'qingcai.png'
                     },
                     {
-                        name: "蜂蜜",
-                        icon: ''
+                        name: "沙拉",
+                        icon: 'shala.png'
                     },
                     {
-                        name: "豆类",
-                        icon: ''
+                        name: "水类",
+                        icon: 'shuilei.png'
+                    },
+                    {
+                        name: "水类",
+                        icon: 'shuilei.png'
+                    },
+                    {
+                        name: "酸奶",
+                        icon: 'suannai.png'
+                    },
+                    {
+                        name: "糖",
+                        icon: 'tang.png'
+                    },
+                    {
+                        name: "羊肉",
+                        icon: 'yangrou.png'
+                    },
+                    {
+                        name: "鱼",
+                        icon: 'yu.png'
                     }
                 ],
                 sports: [
