@@ -82,12 +82,11 @@
         },
         mounted() {
             // init data
-            if(this.type == 'sport') {
-                this.data = window.sportList || [];
-            } else {
-                debugger
-                this.data = window.foodList[this.date][this.type] || [];
-            }
+            // if(this.type == 'sport') {
+            //     this.data = window.sportList || [];
+            // } else {
+            //     this.data = window.foodList[this.date][this.type] || [];
+            // }
         }
     };
 

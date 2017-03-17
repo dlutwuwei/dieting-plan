@@ -4,7 +4,7 @@
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
-        <HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>
+        <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
         <sportCard :data="sportList" v-if="type=='sport'" :date="date"></sportCard>
         <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
@@ -17,7 +17,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = this.$route.params.date;
-            this.heatPlate = window.heatPlate;
+            this.heatPlate = window.heatPlate || [];
             const data = window.foodList[this.date];
             this.foodList = {
                 breakfast: data.breakfast,
@@ -31,7 +31,7 @@
                 lunch: '午餐',
                 dinner: '晚餐'
             };
-           
+
         },
         mounted() {
             console.log('detail mounted')

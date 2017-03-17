@@ -1,6 +1,6 @@
 const prefer = require('../views/prefer.vue');
 const routers = [{
-    path: '/prefer',
+    path: '/prefer/prefer',
     component: prefer
 },
 {

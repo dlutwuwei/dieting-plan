@@ -35,10 +35,8 @@
       </router-link>
       <!--e:能量盘-->
 
-      <router-link to="/index/weight">
-        <WeightCurve :weight-curve="weightCurve"></WeightCurve>
+      <WeightCurve :weight-curve="weightCurve"></WeightCurve>
         <!--e:体重曲线-->
-      </router-link>
 
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->

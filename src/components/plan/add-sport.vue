@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+    import { MessageBox } from 'mint-ui';
     export default {
         data() {
             return {
@@ -54,18 +55,19 @@
                 this.$emit('popClose');
             },
             save: function () {
-                this.$http.get('/Record/sportadd', {
+                if(!this.value) return;
+                this.$http.post('/Record/sportadd', {
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
-                    "gram": this.item.value,
-                    "energy": this.item.value
+                    "time": this.value,
                 }).then(response => {
-                    // get body data
+                    if(response.body.success) {
+                        this.$router.push(`/plan/diet/${this.type}/${this.date}`);
+                    }
                 }, response => {
-                    // error callback
+                     MessageBox('注意', '请求失败');
                 });
-                this.$router.push('/plan/diet/' + this.type);
                 this.$emit('popClose');
             },
             onClickValue: function(e) {
@@ -79,7 +81,7 @@
             }
         },
         mounted() {
-            console.log(this.data)
+            this.date = this.$route.params.date;
         }
     }
 

@@ -40,8 +40,7 @@
             },
             fetchData: function() {
                 if(this.type == 'sport') {
-                    debugger
-                    this.data = window.sportList[0][this.date];
+                    this.data = [window.sportList[0][this.date]];
                 } else {
                     this.data = window.foodList[this.date][this.type];
                 }

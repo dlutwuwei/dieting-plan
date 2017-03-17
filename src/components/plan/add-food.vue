@@ -25,8 +25,9 @@
     const type_map = {
         'breakfast': 1,
         'lunch': 2,
-        'supper': 3
+        'dinner': 3
     }
+    import { MessageBox } from 'mint-ui';
     export default {
         data() {
             return {
@@ -49,21 +50,27 @@
                 this.$emit('popClose');
             },
             save: function () {
-
-                this.$http.get('/Record/foodadd', {
+                if(!this.item.value) {
+                    return;
+                }
+                this.$http.post('/Record/foodadd', {
                     "class": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
                     "gram": this.item.value,
-                    "energy": this.item.value
+                    "energy": this.item.energy
                 }).then(response => {
-
+                    let res = response.body;
+                    if(res.success){
+                        this.$router.push(`/plan/detail/food/${this.date}`);
+                    }
                     // get body data
                 }, response => {
                     // error callback
+                    MessageBox('注意', '请求失败');
                 });
-                this.$router.push(`/plan/diet/${this.type}/${this.date}`);
+                
                 this.$emit('popClose');
             },
             getNum: function (event) {

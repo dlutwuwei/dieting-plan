@@ -122,9 +122,8 @@
                     weight: this.item.value,
                     time: noData,
                 }
-                this.$http.post(
-                    '/Weight/weightadd', postdata).then(res=>{
-                    console,log(res)
+                this.$http.post('/Weight/weightadd', postdata).then(res=>{
+                    console,log(res.body)
                 }).then(res=>{
                     MessageBox('注意', '保存信息失败');
                 });

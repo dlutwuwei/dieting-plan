@@ -22,9 +22,15 @@
 </template>
 <script>
   export default {
-    created() {
-      this.total = this.data.countkcal;
+    data() {
+      return {
+        total: 0,
+        url: '',
+      }
+    },
+    mounted() {
       this.url = '/plan/diet/' + this.type +'/' + this.date;
+      this.total = this.data.pop().bkcal;
     },
     props: {
       data: Object,

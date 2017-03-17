@@ -17,7 +17,7 @@
 <script>
   export default {
     created() {
-      console.log(this.data)
+      this.date = this.$route.params.date;
     },
     props: {
       data: String,

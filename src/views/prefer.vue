@@ -9,8 +9,8 @@
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">
-                <div :class="['item', {selected: item.selected}]" v-for="item in items" @click="select(item, $event)">
-                    <div class="icon"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
+                <div class="item" v-for="item in items" @click="select(item, $event)">
+                    <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
                 </div>
                 <div class="add-item">
@@ -46,7 +46,8 @@
         },
         methods: {
             select: function (item, e) {
-                e.target.classList.add('selected');
+                item.value = true;
+                //e.target.parentNode.classList.add('selected');
                 if (!this.selected[this.type]) {
                     this.selected[this.type] = [];
                 }
@@ -58,18 +59,29 @@
                 if (next[type || 'breakfast'] == 'restrict') {
                     // 添加食物或者偏好
                     this.$http.post('/Pre/addfood', this.selected).then(response => {
-
+                        let res = response.body;
+                        if(res.success) {
+                            target = '/prefer/' + next[type || 'breakfast'];
+                            this.$router.push({
+                                path: target
+                            });
+                        }
+                    }, err => {
+                        MessageBox('注意', '请求失败');
                     })
-                    target = '/prefer/' + next[type || 'breakfast'];
-                    this.$router.push({
-                        path: target
-                    });
+                   
                 } else if (next[type] == null) {
+                    debugger
                     //添加饮食限制
                     this.$http.post('/Restrict/addplace', this.selected).then(response => {
-
-                    })
-                    location.href = '/buy/buy?type=15';
+                        let res = response.body;
+                        debugger
+                         if(res.success) {
+                            location.href = '/buy/buy?type=15';
+                         }
+                    }, err => {
+                        MessageBox('注意', '请求失败');
+                    });
                 } else {
                     target = '/prefer/' + next[type || 'breakfast'];
                     this.$router.push({
@@ -78,7 +90,12 @@
                 }
             },
             fetchData: function (e) {
-                this.items = window.data[this.$route.params.type || 'breakfast'];
+                this.type = this.$route.params.type || 'breakfast';
+                let data = window.data[this.$route.params.type || 'breakfast'];
+                data.forEach(item => {
+                    item.value = false;
+                });
+                this.items = data;
                 this.title = window.titles[this.$route.params.type || 'breakfast'];
             }
         },
@@ -90,7 +107,7 @@
             let data = window.data[this.$route.params.type || 'breakfast'];
             data.forEach(item => {
                 item.value = false;
-            })
+            });
             this.items = data;
 
             this.title = window.titles[this.$route.params.type || 'breakfast'];
@@ -103,7 +120,7 @@
                 sports: '运动选择',
                 restrict: '饮食限制'
             };
-            this.type = this.$route.params.type;
+            this.type = this.$route.params.type || 'breakfast';
             window.data = {
                 breakfast: [
                     {
@@ -260,6 +277,23 @@
                         food_type: "足球",
                         icon: 'zuqiu.png'
                     }
+                ],
+                restrict: [
+                    {
+                        pid: 1,
+                        food_type: "羊肉",
+                        icon: 'yangrou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "鱼",
+                        icon: 'yu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "登山",
+                        icon: 'dengshan.png'
+                    },
                 ]
             };
         }
