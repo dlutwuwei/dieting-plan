@@ -56,6 +56,7 @@
                 let target;
                 let type = this.$route.params.type || 'breakfast';
                 if (next[type || 'breakfast'] == 'restrict') {
+                    // 添加食物或者偏好
                     this.$http.post('/Pre/addfood', this.selected).then(response => {
 
                     })
@@ -64,6 +65,7 @@
                         path: target
                     });
                 } else if (next[type] == null) {
+                    //添加饮食限制
                     this.$http.post('/Restrict/addplace', this.selected).then(response => {
 
                     })

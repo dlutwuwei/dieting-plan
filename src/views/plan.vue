@@ -38,9 +38,11 @@
     }
     .food {
       background-image: url('../assets/images/food.png');
+      background-size: cover;
     }
     .sport {
       background-image: url('../assets/images/sports.png');
+      background-size: cover;
     }
   }
 </style>
