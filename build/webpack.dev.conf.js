@@ -29,7 +29,7 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env
     }),
-    new ExtractTextPlugin("[name].[chunkhash].css", {
+    new ExtractTextPlugin("[name].css", {
       allChunks: true,
       disable: false
     }),

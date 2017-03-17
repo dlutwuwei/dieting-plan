@@ -50,20 +50,22 @@
         },
         methods: {
             getShareList() {
+
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
-                    this.shareList.push(JSON.parse(response.massages));
+                    if(response.body.massages != ''){
+                        this.shareList = this.shareList.concat(JSON.parse(response.body.massages));
+                    }
                 }, response => {
-                    // error callback
                     MessageBox('注意', '获取信息失败');
                 });
             },
             getMyShareList() {
                 this.$http.get('/Share/myshare').then(response => {
-                    // get body data
-                    this.myShareList.push(JSON.parse(response.massages));
+                    if(response.body.massages != ''){
+                        this.myShareList = this.myShareList.concat(JSON.parse(response.body.massages));
+                    }
                 }, response => {
-                    // error callback
                     MessageBox('注意', '获取信息失败');
                 });
             },
@@ -71,7 +73,8 @@
                 history.back();
             }
         },
-        mounted() {
+        created() {
+
             this.getShareList();
             this.getMyShareList();
 
