@@ -1,10 +1,12 @@
 <template>
     <div class="plan">
-      <mt-header title="15天饮食计划">
+      <mt-header title="减肥计划">
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>
-            <mt-button slot="right">直接购买</mt-button>
+            <a href="/buy/buy" slot="right">
+              <mt-button slot="right">直接购买</mt-button>
+            </a>
       </mt-header>
       <div class="plan-card food">
           <a href="/plan/listt?type=food"><span>饮食计划</span></a> 
