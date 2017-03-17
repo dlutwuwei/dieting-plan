@@ -73,10 +73,8 @@
             }
         },
         created() {
-
             this.getShareList();
             this.getMyShareList();
-
         }
     };
 </script>

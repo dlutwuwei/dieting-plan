@@ -31,6 +31,7 @@
         }
         .share-pic{
             width:100%;
+            height:160px;
         }
         .author-info{
             position:absolute;
@@ -119,26 +120,24 @@
         <div class="share-detail-pic">
             <div class="go-back ico" @click="goback"></div>
             <span class="ico">....</span>
-            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1034097970,1628516374&fm=23&gp=0.jpg" class="share-pic" alt=""/>
+            <img :src="shareDetailInfo.titlepic" class="share-pic" alt=""/>
             <div class="author-info">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>
-                <p>狠狠逼自己一把</p>
+                <p>{{shareDetailInfo.title}}</p>
             </div>
         </div>
         <div class="detail-info">
             <div class="detail-info-hd">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>
-                <h5>Alina</h5>
-                <p>02月09日12:12</p>
+                <h5>{{author.name}}</h5>
+                <p>{{shareDetailInfo.time}}</p>
             </div>
             <div class="detail-info-bd">
-                <p>2017年的第二天我还记得我昨天疯狂的狂吃矿和的没听过，
-                    02年的妹妹子身高173体重122 2016对自己的承诺到现在没
-                    完成，新的一年要更加努力 Fighing！！！</p>
+                <p>{{shareDetailInfo.content}}</p>
                 <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488561445338&di=35794f4e7cf910f82da30cccaa65e1ef&imgtype=0&src=http%3A%2F%2Ffile02.16sucai.com%2Fd%2Ffile%2F2015%2F0105%2F52120df037d85671e47554da7c3698b3.jpg" alt=""/></p>
             </div>
             <div class="detail-info-like">
-                <p>已有<span>25</span>人喜欢这篇文章</p>
+                <p>已有<span>{{shareDetailInfo.laud}}</span>人喜欢这篇文章</p>
                 <div>
                     <span class="ico"></span>
                     <em>喜欢</em>
@@ -148,11 +147,34 @@
     </div>
 </template>
 <script>
+    import { getQuery } from '../libs/utils';
+
     export default {
+        data() {
+            return {
+                shareDetailInfo: {},
+                author: {},
+            }
+        },
+        created() {
+            this.cid = getQuery('cid');
+        },
         methods: {
             goback: function () {
                 history.back();
+            },
+            getShareDetail: function(){
+                this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
+                    this.shareDetailInfo = res.body.massages[0];
+                    this.author = res.body.massages[0].author;
+                console.log(this.author)
+                },() => {
+                    MessageBox('注意', '请求失败');
+                });
             }
+        },
+        mounted(){
+            this.getShareDetail();
         }
     }
 

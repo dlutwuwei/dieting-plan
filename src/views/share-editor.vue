@@ -108,12 +108,12 @@
             },
             releaseShare(){
                 let title = $('.mint-field-core').val();
-                let titlpic = $('.sample').find('img').attr('src');
+                let titlepic = $('.sample').find('img').attr('src');
                 let content = $('#editor-textarea').val();
 
                 let reqBody = {
                     title: title,
-                    titlpic: titlpic,
+                    titlepic: titlepic,
                     content: content,
                 };
 
@@ -130,6 +130,9 @@
                 });
             }
         },
+        mounted() {
+            this.uploadIdCard();
+        }
     };
 </script>
 <style lang="scss">

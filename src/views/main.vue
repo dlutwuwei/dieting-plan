@@ -99,7 +99,7 @@
     background: url(../assets/images/ico-01.png) no-repeat;
     background-size: 100% auto;
   }
-  
+
   .ico2:before {
     content: '';
     display: inline-block;
@@ -108,22 +108,22 @@
     background: url(../assets/images/ico-02.png) no-repeat;
     background-size: 100% auto;
   }
-  
+
   .wrapper {
     padding-bottom: 80px;
   }
-  
+
   body {
     background: #f7f7f7;
     font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
   }
-  
+
   .mint-header {
     background-color: #47a304;
   }
-  
+
   .card {
     .card-header:before {
       content: '';
@@ -135,31 +135,31 @@
       }
     }
   }
-  
+
   #app {
     max-width: 400px;
     margin: auto;
   }
-  
+
   .page-swipe {
     height: 100px;
   }
-  
+
   .page-swipe .slide1 {
     background-color: #0089dc;
     color: #fff;
   }
-  
+
   .page-swipe .slide2 {
     background-color: #ffd705;
     color: #000;
   }
-  
+
   .page-swipe .slide3 {
     background-color: #ff2d4b;
     color: #fff;
   }
-  
+
   .page-swipe-desc {
     text-align: center;
     color: #666;
