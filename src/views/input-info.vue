@@ -78,7 +78,6 @@
         methods: {
             post_info: function (e) {
                 if (this.gender
-                    && this.diseases.length > 0
                     && this.age && this.height
                     && this.weight
                     && this.reduce > 0

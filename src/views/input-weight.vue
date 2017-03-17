@@ -149,14 +149,6 @@
             }
         },
         watch: {
-            weightList(val) {
-                if(val){
-                    val.forEach((item, index) => {
-                        this.weightData[item.time] = item.weight
-                    });
-                    this.weightList = val;
-                }
-            }
         },
         created() {
             this.now = new Date();
@@ -224,7 +216,6 @@
                 }
             },
             onPopup: function (item) {
-                debugger
                 this.popupVisible = true;
                 this.selected = item;
             },

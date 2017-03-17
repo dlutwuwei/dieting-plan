@@ -110,7 +110,7 @@
             heatPlate: Array //这样可以指定传入的类型，如果类型不对，会警告
         },
         created() {
-            if(heatPlate.length > 5){
+            if(this.heatPlate && this.heatPlate.length > 5){
                 heatPlate.length = 5
             }
         },
@@ -119,8 +119,6 @@
                 let dateTime = document.querySelectorAll('.date span');
                 let bdBot = document.querySelectorAll('.bd-bot');
 
-
-                console.log(heatPlate)
                 if(dateTime.length < 5){
                     dateTime[0].className = 'item yellow';
                     bdBot[0].style.display = 'block';
