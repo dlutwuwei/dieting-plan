@@ -14,7 +14,7 @@ const routers = [{
     component: shareEditor
 },
 {
-    path: '/share/detail/:id',
+    path: '/share/detail',
     component: shareDetail
 }];
 
