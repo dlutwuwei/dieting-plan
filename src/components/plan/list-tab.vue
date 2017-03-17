@@ -2,22 +2,22 @@
 <template>
   <div class="plan-list">
       <div class="tab-hd">
-          <span class="hd-item curr" v-on:click.stop="tab(0)">饮食</span>
-          <span class="hd-item" v-on:click.stop="tab(1)">运动</span>
+          <span :class="['hd-item', {'curr': type == 'food' }]" v-on:click.stop="tab(0)">饮食</span>
+          <span :class="['hd-item', {'curr': type == 'sport' }]" v-on:click.stop="tab(1)">运动</span>
       </div>
       <div class="bd">
-          <div class="list-content" style="display:block">
+          <div class="list-content" :class="{'active': type=='food'}">
               <div class="list-item" v-for="(item, index) in planList.food">
-                <router-link :to="'/plan/detail/food/' + i" slot="left" v-for="(t, i) in item">
+                <router-link :to="'/plan/detail/food?date=' + i" slot="left" v-for="(t, i) in item">
                     <div class="date">{{i}}</div>
                     <div>食物：{{t.count}}种</div>
                     <div>摄入：{{t.kcal}}千卡</div>
                 </router-link>
               </div>
           </div>
-          <div class="list-content">
+          <div class="list-content" :class="{'active': type=='sport'}">
               <div class="list-item" v-for="(item, index) in planList.sport">
-                <router-link :to="'/plan/detail/sport/' + index" slot="left">
+                <router-link :to="'/plan/detail/sport?date=' + index" slot="left">
                       <div class="date">{{index}}</div>
                       <div>运动时长：{{item.lasttime}}分钟</div>
                       <div>运动消耗：{{item.kcal}}千卡</div>
@@ -28,8 +28,10 @@
   </div>
 </template>
 <script>
+    import { getQuery } from '../../libs/utils';
     export default {
         created() {
+            this.type = getQuery('type');
             this.planList = {
                 food: window.foodPlan,
                 sport: window.sportPlan
@@ -93,6 +95,9 @@
             }
         }
         .list-content {
+            &.active {
+                display: block;
+            }
             display: none;
             .list-item {
                 &:after {

@@ -50,7 +50,6 @@
         },
         methods: {
             getShareList() {
-
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
                     if(response.body.massages != ''){

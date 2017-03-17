@@ -18,7 +18,7 @@
                 <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
             </div>
         </div>
-        <div class="bottom-btn"><span v-on:click="cancel">取消</span><span v-on:click="save">保存</span></div>
+        <div class="bottom-btn"><span v-on:click="cancel">取消</span><span v-on:click="click_to_save">保存</span></div>
     </div>
 </template>
 <script>
@@ -28,13 +28,15 @@
         'dinner': 3
     }
     import { MessageBox } from 'mint-ui';
+    import { getQuery } from '../../libs/utils';
+
     export default {
         data() {
             return {
                 item: this.data
             }
         },
-        props: ['data', 'list', 'type', 'date'],
+        props: ['data', 'list', 'type'],
         computed: {
             total: function () {
                 return this.item.energy * this.item.value / 100;
@@ -48,6 +50,15 @@
         methods: {
             cancel: function () {
                 this.$emit('popClose');
+            },
+            click_to_save(){
+                if(this.user_type == 15 || this.user_type == 9) {
+                    // 老用户和15天试用用户修改减肥计划
+                    this.save();
+                } else if(this.user_type == 7) {
+                    // 7天过渡期记录
+                    this.record();
+                }
             },
             save: function () {
                 if(!this.item.value) {
@@ -63,7 +74,31 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/plan/detail/food/${this.date}`);
+                        this.$router.push(`/plan/detail/food?date=${this.date}`);
+                    }
+                    // get body data
+                }, response => {
+                    // error callback
+                    MessageBox('注意', '请求失败');
+                });
+                
+                this.$emit('popClose');
+            },
+            record: function () {
+                if(!this.item.value) {
+                    return;
+                }
+                this.$http.post('/Record/foodadd', {
+                    "class": type_map[this.type],
+                    "pid": this.item.pid,
+                    "name": this.item.name,
+                    "kcal": this.item.kcal,
+                    "gram": this.item.value,
+                    "energy": this.item.energy
+                }).then(response => {
+                    let res = response.body;
+                    if(res.success){
+                        this.$router.push(`/plan/detail/food?date=${this.date}`);
                     }
                     // get body data
                 }, response => {
@@ -95,10 +130,16 @@
             }
         },
         created() {
-        },
-        beforeUpdate() {
+            this.date = getQuery('date');
         },
         mounted() {
+            this.$http.get('/Info/usertype').then(res => {
+                if (res.body.success) {
+                    this.user_type = JSON.parse(res.body.data).type;
+                }
+            }, () => {
+                    MessageBox('注意', '获取用户信息失败');
+            });
         }
     }
 

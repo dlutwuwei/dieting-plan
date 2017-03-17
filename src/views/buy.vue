@@ -70,7 +70,8 @@
         methods: {
             test15: function() {
                 this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
-                    location.href = '/';
+                    //跳转去选择肥胖原因
+                    location.href = '/prefer/prefer/reason';
                 });
             }
         },

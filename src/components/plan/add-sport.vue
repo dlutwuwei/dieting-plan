@@ -26,6 +26,7 @@
 </template>
 <script>
     import { MessageBox } from 'mint-ui';
+    import { getQuery } from '../../libs/utils';
     export default {
         data() {
             return {
@@ -63,7 +64,7 @@
                     "time": this.value,
                 }).then(response => {
                     if(response.body.success) {
-                        this.$router.push(`/plan/diet/${this.type}/${this.date}`);
+                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
                     }
                 }, response => {
                      MessageBox('注意', '请求失败');
@@ -81,7 +82,14 @@
             }
         },
         mounted() {
-            this.date = this.$route.params.date;
+            this.date = getQuery('date');
+            this.$http.get('/Info/usertype').then(res => {
+                if (res.body.success) {
+                    this.user_type = JSON.parse(res.body.data).type;
+                }
+            }, () => {
+                    MessageBox('注意', '获取用户信息失败');
+            });
         }
     }
 

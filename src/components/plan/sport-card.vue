@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="cell bottom">
-      <router-link :to="'/plan/diet/sport/'+date" slot="left">
+      <router-link :to="'/plan/diet/sport?date='+date" slot="left">
         <mt-button type="primary" size="normal">记录运动</mt-button>
       </router-link>
     </div>
@@ -17,10 +17,9 @@
 <script>
   export default {
     created() {
-      this.date = this.$route.params.date;
     },
     props: {
-      data: String,
+      date: String,
       data: Array,
       title: String,
       calories: String

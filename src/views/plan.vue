@@ -10,7 +10,7 @@
           <a href="/plan/listt?type=food"><span>饮食计划</span></a> 
       </div>
       <div class="plan-card sport">
-          <a href="/plan/listt?type=sports"><span>运动计划</span></a>
+          <a href="/plan/listt?type=sport"><span>运动计划</span></a>
       </div>
     </div>
 </template>

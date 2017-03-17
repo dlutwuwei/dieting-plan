@@ -1,5 +1,5 @@
 const planList = require('../views/plan-list.vue');
-const planAdd = require('../views/plan-add.vue');
+const planAdd = require('../views/plan-search.vue');
 const planDetail = require('../views/plan-detail.vue');
 const planDiet = require('../views/plan-diet.vue');
 
@@ -12,15 +12,15 @@ const routers = [{
     component: planList
 },
 {
-    path: '/plan/add/:type/:date',
+    path: '/plan/add/:type',
     component: planAdd
 },
 {
-    path: '/plan/diet/:type/:date',
+    path: '/plan/diet/:type',
     component: planDiet
 },
 {
-    path: '/plan/detail/:type/:date',
+    path: '/plan/detail/:type',
     component: planDetail
 }];
 

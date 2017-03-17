@@ -33,7 +33,7 @@
         lunch: 'supper',
         supper: 'sports',
         sports: 'restrict',
-        restrict: null
+        restrict: null,
     };
     import { MessageBox } from 'mint-ui';
     export default {
@@ -58,9 +58,9 @@
                 let type = this.$route.params.type || 'breakfast';
                 if (next[type || 'breakfast'] == 'restrict') {
                     // 添加食物或者偏好
-                    this.$http.post('/Pre/addfood', this.selected).then(response => {
+                    this.$http.post('/Pre/addfood', this.selected[this.type]).then(response => {
                         let res = response.body;
-                        if(res.success) {
+                        if (res.success) {
                             target = '/prefer/' + next[type || 'breakfast'];
                             this.$router.push({
                                 path: target
@@ -69,19 +69,40 @@
                     }, err => {
                         MessageBox('注意', '请求失败');
                     })
-                   
+
                 } else if (next[type] == null) {
-                    debugger
-                    //添加饮食限制
-                    this.$http.post('/Restrict/addplace', this.selected).then(response => {
-                        let res = response.body;
-                        debugger
-                         if(res.success) {
-                            location.href = '/buy/buy?type=15';
-                         }
-                    }, err => {
-                        MessageBox('注意', '请求失败');
-                    });
+
+                    if(type === 'restrict') {
+                        // 提交饮食限制
+                        let restrict = this.selected['restrict']
+                        if(!restrict) {
+                            MessageBox('注意', '请选择饮食限制');
+                            return;
+                        }
+                        this.$http.post('/Restrict/addplace', restrict).then(response => {
+                            let res = response.body;
+                            if (res.success) {
+                                location.href = '/buy/buy?type=15';
+                            }
+                        }, err => {
+                            MessageBox('注意', '请求失败');
+                        });
+                    } else if(type === "reason") {
+                        // 提交肥胖原因
+                        let reason = this.selected['reason'];
+                        if(!reason) {
+                            MessageBox('注意', '请选择肥胖原因');
+                            return;
+                        }
+                        this.$http.post('/Fifteen/obsadd', this.selected['reason']).then(response => {
+                            let res = response.body;
+                            if (res.success) {
+                                location.href = '/';
+                            }
+                        }, err => {
+                            MessageBox('注意', '请求失败');
+                        });
+                    }
                 } else {
                     target = '/prefer/' + next[type || 'breakfast'];
                     this.$router.push({
@@ -118,7 +139,8 @@
                 lunch: '午餐选择',
                 supper: '晚餐选择',
                 sports: '运动选择',
-                restrict: '饮食限制'
+                restrict: '饮食限制',
+                reason: '肥胖原因'
             };
             this.type = this.$route.params.type || 'breakfast';
             window.data = {
@@ -294,7 +316,62 @@
                         food_type: "登山",
                         icon: 'dengshan.png'
                     },
-                ]
+                ],
+                reason: [
+                    {
+                        pid: 1,
+                        food_type: "油腻食物",
+                        icon: 'dengshan.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "运动少",
+                        icon: 'kuaizou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "吃饭多",
+                        icon: 'lanqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跑步少",
+                        icon: 'paiqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "不愿动",
+                        icon: 'paobu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "骑行",
+                        icon: 'qixing.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跳绳",
+                        icon: 'tiaosheng.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跳舞",
+                        icon: 'tiaowu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "游泳",
+                        icon: 'youyong.png'
+                    },
+                    {
+                        food_type: "瑜伽",
+                        icon: 'yujia.png'
+                    },
+                    {
+                        food_type: "足球",
+                        icon: 'zuqiu.png'
+                    }
+                ],
             };
         }
     }

@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+  import { getQuery } from '../../libs/utils';
   export default {
     data() {
       return {
@@ -29,7 +30,7 @@
       }
     },
     mounted() {
-      this.url = '/plan/diet/' + this.type +'/' + this.date;
+      this.url = '/plan/diet/' + this.type +'?date=' + getQuery('date');
       this.total = this.data.pop().bkcal;
     },
     props: {

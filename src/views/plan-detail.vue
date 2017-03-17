@@ -13,12 +13,13 @@
     import HeatPlate from '../components/index/heatPlate.vue';
     import foodCard from '../components/plan/food-card.vue';
     import sportCard from '../components/plan/sport-card.vue';
+    import { getQuery } from '../libs/utils';
     export default {
         created() {
             this.type = this.$route.params.type;
-            this.date = this.$route.params.date;
+            this.date = getQuery('date');
             this.heatPlate = window.heatPlate || [];
-            const data = window.foodList[this.date];
+            const data = window.foodList[this.date] || {};
             this.foodList = {
                 breakfast: data.breakfast,
                 lunch: data.lunch,
@@ -39,7 +40,22 @@
         methods: {
             goback: function () {
                 history.back();
-            }
+            },
+            fetchData: function() {
+                if (this.type != 'sport') {
+                    //早中晚 type: breakfast, lunch, dinners
+                    this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
+                        let list = res.body[this.date][this.type]
+                        list.pop(); //去掉总卡路里数
+                        this.data = list;
+                    },() => {
+                         MessageBox('注意', '请求失败');
+                    });
+                } else {
+                    // 运动
+                    this.data = [window.sportList[0][this.date]];
+                }
+            },
         },
         watch: {
             // 如果路由有变化，会再次执行该方法

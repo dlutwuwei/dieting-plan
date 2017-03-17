@@ -29,6 +29,7 @@
 <script>
     import addFood from '../components/plan/add-food.vue';
     import addSport from '../components/plan/add-sport.vue';
+    import { getQuery } from '../libs/utils';
     export default {
         data() {
             return {
@@ -50,7 +51,6 @@
             },
             popUp: function (index) {
                 this.selected = this.data[index];
-                console.log(this.data, index)
                 this.popupVisible = true;
             },
             popClose: function() {
@@ -78,15 +78,10 @@
         },
         created() {
             this.type = this.$route.params.type;
-            this.date = this.$route.params.date;
+            this.date = getQuery('date');
         },
         mounted() {
-            // init data
-            // if(this.type == 'sport') {
-            //     this.data = window.sportList || [];
-            // } else {
-            //     this.data = window.foodList[this.date][this.type] || [];
-            // }
+
         }
     };
 

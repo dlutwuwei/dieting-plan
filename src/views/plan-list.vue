@@ -9,6 +9,7 @@
 </template>
 <script>
     import listTab from '../components/plan/list-tab.vue';
+    import { getQuery } from '../libs/utils';
     export default {
         components: {
             listTab

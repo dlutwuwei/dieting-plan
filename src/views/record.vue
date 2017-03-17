@@ -6,22 +6,22 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <a :href="'/plan/diet/breakfast/'+date">
+            <a :href="'/plan/diet/breakfast?date='+date">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a :href="'/plan/diet/lunch/'+date">
+             <a :href="'/plan/diet/lunch?date='+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a :href="'/plan/diet/dinner/'+date">
+             <a :href="'/plan/diet/dinner?date='+date">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a :href="'/plan/diet/sport/'+date">
+             <a :href="'/plan/diet/sport?date='+date">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>
@@ -70,10 +70,11 @@
     }
 </style>
 <script>
+    import {fmtDate} from  "../libs/utils.js";
     export default {
         created() {
             let now = new Date();
-            this.date = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate();
+            this.date = fmtDate(now, 'yyyy-MM-dd');
         },
         components: {
         }
