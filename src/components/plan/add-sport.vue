@@ -55,7 +55,6 @@
             },
             save: function () {
                 this.$http.get('/Record/sportadd', {
-                    "class": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
