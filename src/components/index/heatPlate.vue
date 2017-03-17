@@ -3,6 +3,7 @@
     .heat-plate{
         margin-top:15px;
         .hd{
+            position:relative;
             height: 45px;
             padding-left:20px;
             line-height: 45px;
@@ -11,6 +12,19 @@
             background-color: #fff;
             text-align:left;
             border-bottom:1px solid #dfdfdf;
+            .ico-1:before{
+                background-position: -100px -25px;
+            }
+            .ico-1{
+                position: absolute;
+                right: 18px;
+                top: 10px;
+                display: inline-block;
+                width: 25px;
+                height: 25px;
+                overflow: hidden;
+                vertical-align: middle;
+            }
         }
         .bd{
             background:#fff;
@@ -58,7 +72,8 @@
 <template>
     <div class="heat-plate" v-if="heatPlate && heatPlate.length > 0">
         <router-link to="/index/record">
-            <div class="hd">热量盘</div>
+            <div class="hd">热量盘 <span class="ico ico-1"></span>
+            </div>
         </router-link>
         <div class="bd">
             <div class="date ncf-box">

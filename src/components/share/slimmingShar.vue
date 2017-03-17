@@ -77,10 +77,10 @@
                   <div class="share-info">
                       {{item.publish_time}}<span class="ico ico-follow"></span>{{item.like_num}}
                   </div>
-                  <div class="author-info">
+                 <!-- <div class="author-info">
                       <img :src="item.author.avatar_url" alt=""/>
                       <p>{{item.author.name}}</p>
-                  </div>
+                  </div>-->
               </router-link>
           </div>
   </div>
