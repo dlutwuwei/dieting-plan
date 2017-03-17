@@ -15,27 +15,25 @@
     import sportCard from '../components/plan/sport-card.vue';
     import { getQuery } from '../libs/utils';
     export default {
+        data() {
+            return {
+                foodList: {},
+                sportList: [],
+                heatPlate: []
+            }
+        },
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
             this.heatPlate = window.heatPlate || [];
-            const data = window.foodList[this.date] || {};
-            this.foodList = {
-                breakfast: data.breakfast,
-                lunch: data.lunch,
-                dinner: data.dinner
-            }
-            this.sportList = [window.sportList[0][this.date]];
-            this.calories = window.recoCalories;
             this.titleMap = {
                 breakfast: '早餐',
                 lunch: '午餐',
                 dinner: '晚餐'
             };
-
         },
         mounted() {
-            console.log('detail mounted')
+            this.fetchData();
         },
         methods: {
             goback: function () {
@@ -45,15 +43,18 @@
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
-                        let list = res.body[this.date][this.type]
-                        list.pop(); //去掉总卡路里数
-                        this.data = list;
+                        const data = res.body[this.date];
+                        this.foodList = {
+                            breakfast: data.breakfast,
+                            lunch: data.lunch,
+                            dinner: data.dinner
+                        }
                     },() => {
                          MessageBox('注意', '请求失败');
                     });
                 } else {
                     // 运动
-                    this.data = [window.sportList[0][this.date]];
+                    this.sportList = [window.sportList[0][this.date]];
                 }
             },
         },

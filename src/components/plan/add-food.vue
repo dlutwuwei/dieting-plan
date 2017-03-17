@@ -74,7 +74,7 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/plan/detail/food?date=${this.date}`);
+                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
                 }, response => {
@@ -98,7 +98,7 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/plan/detail/food?date=${this.date}`);
+                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
                 }, response => {

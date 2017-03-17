@@ -5,8 +5,8 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" v-for="(item,index) in data">
-                <span class="food-delete" @click="deleteItem"></span>
+            <div class="food-item" v-for="(item, index) in data">
+                <span class="food-delete" @click="deleteItem(item, index)"></span>
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
@@ -27,10 +27,16 @@
 <script>
     import { getQuery } from '../libs/utils';
     import { MessageBox } from 'mint-ui';
+    const type_map = {
+        'breakfast': 1,
+        'lunch': 2,
+        'dinner': 3
+    }
+
     export default {
         data() {
             return {
-                data:[]
+                data: []
             }
         },
         watch: {
@@ -38,15 +44,15 @@
             '$route': 'fetchData'
         },
         methods: {
-            fetchData: function() {
+            fetchData: function () {
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
                         let list = res.body[this.date][this.type]
                         list.pop(); //去掉总卡路里数
                         this.data = list;
-                    },() => {
-                         MessageBox('注意', '请求失败');
+                    }, () => {
+                        MessageBox('注意', '请求失败');
                     });
                 } else {
                     // 运动
@@ -56,20 +62,41 @@
             goback: function () {
                 history.back();
             },
-            deleteItem: function(i) {
-                this.data.splice(i, 1);
+            deleteItem: function (item, i) {
+                if (this.type != 'sport') {
+                    this.$http.get(`/Plan/delfood?pid=${item.pid}&class=${type_map[this.type]}`).then(res => {
+                        if(!res.body.success) {
+                            MessageBox('注意', '删除失败');
+                        } else {
+                            this.data.splice(i, 1);
+                        }
+                    }, () => {
+                        MessageBox('注意', '删除失败');
+                    });
+                } else {
+                    debugger
+                    this.$http.get(`/Plan/delsport?pid=${item.pid}&time=${this.date}`).then(res => {
+                        if(!res.body.success) {
+                            MessageBox('注意', '删除失败');
+                        } else {
+                            this.data.splice(i, 1);
+                        }
+                    }, () => {
+                        MessageBox('注意', '删除失败');
+                    });
+                }
             }
         },
         mounted() {
             this.fetchData();
-            if(!this.user_type) {
+            if (!this.user_type) {
                 // if no user type
                 this.$http.get('/Info/usertype').then(res => {
                     if (res.body.success) {
                         this.user_type = JSON.parse(res.body.data).type;
                     }
                 }, () => {
-                        MessageBox('注意', '获取用户信息失败');
+                    MessageBox('注意', '获取用户信息失败');
                 });
             }
         },

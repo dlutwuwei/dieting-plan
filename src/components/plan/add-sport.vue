@@ -3,7 +3,7 @@
         <div class="sport-head">
             <span class="cancel orange" v-on:click="cancel">取消</span>
             <span class="title">添加运动</span>
-            <span class="confirm orange" v-on:click="save">确定</span>
+            <span class="confirm orange" v-on:click="click_to_save">确定</span>
         </div>
         <div class="sport-item line">
             <img :src="item.icon" alt="">
@@ -55,9 +55,18 @@
             cancel: function () {
                 this.$emit('popClose');
             },
+            click_to_save(){
+                if(this.user_type == 15 || this.user_type == 9) {
+                    // 老用户和15天试用用户修改减肥计划
+                    this.save();
+                } else if(this.user_type == 7) {
+                    // 7天过渡期记录
+                    this.record();
+                }
+            },
             save: function () {
                 if(!this.value) return;
-                this.$http.post('/Record/sportadd', {
+                this.$http.post('/Plan/addsport', {
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
@@ -65,6 +74,26 @@
                 }).then(response => {
                     if(response.body.success) {
                         this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
+                    } else {
+                        MessageBox('注意', '请求失败');
+                    }
+                }, response => {
+                     MessageBox('注意', '请求失败');
+                });
+                this.$emit('popClose');
+            },
+            record: function () {
+                if(!this.value) return;
+                this.$http.post('/Plan/addsport', {
+                    "pid": this.item.pid,
+                    "name": this.item.name,
+                    "kcal": this.item.kcal,
+                    "time": this.value,
+                }).then(response => {
+                    if(response.body.success) {
+                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
+                    } else {
+                        MessageBox('注意', '请求失败');
                     }
                 }, response => {
                      MessageBox('注意', '请求失败');

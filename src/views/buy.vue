@@ -14,9 +14,9 @@
                 运用德国体质检测大数据库，制作针对东方人饮食习惯及体质特 点的短期减肥计划，定期推送专业指导！！
             </div>
         </div>
-        <div class="buy-card">
+        <div class="buy-card" v-if="showbuy">
             <div class="cell1 bottom">
-                <mt-button type="danger" size="normal" v-on:click="post_prefer">购买鹿鸣减肥计划</mt-button>
+                <mt-button type="danger" size="normal" v-on:click="buy">购买鹿鸣减肥计划</mt-button>
             </div>
             <div>
                 用户通过思维必体质检测，了解实时身体营养素含量状况，精准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳食纤维和微量元素等营养物质的比值和含量，针对性提高用户身体新陈代谢机能，结合运算并达到最佳燃脂比率。让您在有限的热量摄入范围内吃您所缺的，补您该补的！从而达到全面有效的体重管理、健康减肥效果 ----你的专属减肥计划！
@@ -31,7 +31,7 @@
              <div class="address-text">收货地址：北京市朝阳区酒仙桥路20号颐堤港605-606</div>
         </div>
         <div class="buy-bill"><input type="checkbox" id="bill"><label for="bill">是否需要发票</label></div>-->
-        <div class="buy-card">
+        <div class="buy-card" v-if="showpay">
             <div class="buy-header">
                 <img src="../assets/images/jianfei/buy-head.png" alt="">
                 <div class="buy-title">
@@ -43,32 +43,48 @@
                 <p>用户通过思维必体质检测，了解实时身体营养素含量状况，精 准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳 食纤维和微量元用户通过思维必体质检测，了解实时身体营养素含量状况，精 准计算出用户每天所需摄入的蛋白质、脂肪、碳水化合物、膳 食纤维和微量元</p>
             </div>
             <div class="cell bottom">
-                <mt-button type="primary" size="normal" v-on:click="post_prefer">付款</mt-button>
+                <mt-button type="primary" size="normal" v-on:click="pay">付款</mt-button>
             </div>
         </div>
-         <div class="cell bottom" v-if="type==2">
-            <mt-button type="primary" size="normal" v-on:click="post_prefer">开启七天过渡期</mt-button>
+         <div class="cell bottom" v-if="type==7">
+            <mt-button type="primary" size="normal" v-on:click="start7">开启七天过渡期</mt-button>
         </div>
     </div>
 </template>
 <script>
-    function getQuery(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
+    import {getQuery} from '../libs/utils';
+    import { MessageBox } from 'mint-ui';
+
     export default {
         data() {
             return {
-                type: getQuery('type')
+                type: getQuery('type'),
+                showpay: false,
+                showbuy: true
             }
         },
         methods: {
+            pay: function() {
+
+            },
+            start7: function() {
+                //开启7天计划
+                this.$http.post('/seven/index').then(res => {
+                    if(res.body.success) {
+
+                    } else {
+                        MessageBox('注意', '请求失败');
+                    }
+                }, () => {
+                    MessageBox('注意', '请求失败');
+                })
+            },
+            buy: function() {
+                this.showbuy = false;
+                this.showpay = true;
+            },
             test15: function() {
+                // 开启15天试用
                 this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
                     //跳转去选择肥胖原因
                     location.href = '/prefer/prefer/reason';
