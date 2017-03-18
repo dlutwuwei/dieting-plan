@@ -1,10 +1,9 @@
 <template>
     <div class="buy-container">
         <mt-header title="鸣鹿健康">
-            <router-link to="/" slot="left">
-                <mt-button icon="back">返回</mt-button>
-            </router-link>
-            <mt-button icon="more" slot="right"></mt-button>
+            <a v-if="type!=15" href="/" slot="left">
+                <mt-button icon="back">首页</mt-button>
+            </a>
         </mt-header>
         <div class="buy-card">
             <div class="cell1 bottom">
@@ -65,7 +64,16 @@
         },
         methods: {
             pay: function() {
-
+                //开启测试时直接开启7天计划
+                this.$http.post('/seven/indexstage').then(res => {
+                    if(res.body.success) {
+                        location.href = '/';
+                    } else {
+                        MessageBox('注意', '请求失败');
+                    }
+                }, () => {
+                    MessageBox('注意', '请求失败');
+                })
             },
             start7: function() {
                 //开启7天计划

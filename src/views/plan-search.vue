@@ -14,7 +14,7 @@
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-energy">{{item.energy||item.kcal}}千卡/{{type=='sport'?'60分钟':'100克'}}</div>
+                    <div class="food-energy">{{item.kcal}}千卡/{{type=='sport'?'60分钟':'100克'}}</div>
                 </div>
             </div>
         </div>

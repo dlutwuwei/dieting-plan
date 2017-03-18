@@ -2,10 +2,9 @@
     <transition name="slide">
         <div class="prefer">
             <mt-header title="鸣鹿健康">
-                <router-link to="/prefer/prefer" slot="left">
+                <router-link v-if="type!='breakfast'" to="/prefer/prefer" slot="left">
                     <mt-button icon="back">返回</mt-button>
                 </router-link>
-                <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">
@@ -76,7 +75,7 @@
                     this.$http.post('/Pre/addfood', this.selected[this.type]).then(response => {
                         let res = response.body;
                         if (res.success) {
-                            target = '/prefer/' + next[type || 'breakfast'];
+                            target = '/prefer/prefer/' + next[type || 'breakfast'];
                             this.$router.push({
                                 path: target
                             });
@@ -119,7 +118,7 @@
                         });
                     }
                 } else {
-                    target = '/prefer/' + next[type || 'breakfast'];
+                    target = '/prefer/prefer/' + next[type || 'breakfast'];
                     this.$router.push({
                         path: target
                     });
@@ -129,7 +128,9 @@
                 this.type =this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
                 data.forEach(item => {
-                    item.value = false;
+                    if(item.value === undefined) {
+                        item.value = false;
+                    }
                 });
                 this.items = data;
                 this.title = window.titles[this.type];
@@ -400,7 +401,7 @@
     
     .prefer {
         background: #f7f7f7;
-        height: 100%;
+        min-height: 100%;
         position: relative;
         .title {
             text-align: center;

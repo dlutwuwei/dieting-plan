@@ -42,7 +42,7 @@
                 return parseInt(this.inputVal||0);
             }
         },
-        props: ['data', 'type', 'list'],
+        props: ['data', 'type'],
         watch: {
             data(val) {
                 this.item = val;//新增result的watch，监听变更并同步到myResult上

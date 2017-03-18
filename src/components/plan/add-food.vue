@@ -5,16 +5,16 @@
             <img :src="item.icon" alt="">
             <div class="food-info">
                 <div class="food-name">{{item.name}}</div>
-                <div class="food-energy">{{item.energy}}千卡/100克</div>
+                <div class="food-energy">{{item.kcal}}千卡/100克</div>
             </div>
         </div>
         <div class="weight-select">
             <div class="food-text">
                 <div>{{total}}千卡</div>
-                <div>{{item.value}}克</div>
+                <div>{{item.weight}}克</div>
             </div>
             <div class="bd">
-                <div class="weight"><input type="number" @keyup="getNum" v-model="item.value" id="ruler-input" /><span>g</span></div>
+                <div class="weight"><input type="number" @keyup="getNum" v-model="item.weight" id="ruler-input" /><span>g</span></div>
                 <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
             </div>
         </div>
@@ -36,14 +36,17 @@
                 item: this.data
             }
         },
-        props: ['data', 'list', 'type'],
+        props: ['data', 'type', 'isUpdate'],
         computed: {
             total: function () {
-                return this.item.energy * this.item.value / 100;
+                return (this.item.kcal * this.item.weight / 100).toFixed(2);
             }
         },
         watch: {
             data(val) {
+                if(!val.weight) {
+                    val.weight = val.gram;
+                }
                 this.item = val;
             }
         },
@@ -61,16 +64,21 @@
                 }
             },
             save: function () {
-                if(!this.item.value) {
+                if(!this.item.weight) {
                     return;
                 }
-                this.$http.post('/Record/foodadd', {
-                    "class": type_map[this.type],
+                let url = '/plan/updatefood';
+                if(!this.isUpdate) {
+                    url = '/Record/foodadd';
+                }
+                this.$http.post(url, {
+                    "food": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": this.item.kcal,
-                    "gram": this.item.value,
-                    "energy": this.item.energy
+                    "kcal": (this.item.kcal * this.item.value/100).toFixed(2),
+                    "weight": this.item.weight,
+                    "class": this.item.class,
+                    "time": this.date,
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
@@ -85,7 +93,7 @@
                 this.$emit('popClose');
             },
             record: function () {
-                if(!this.item.value) {
+                if(!this.item.weight) {
                     return;
                 }
                 this.$http.post('/Record/foodadd', {
@@ -93,7 +101,7 @@
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
-                    "gram": this.item.value,
+                    "gram": this.item.weight,
                     "energy": this.item.energy
                 }).then(response => {
                     let res = response.body;
@@ -114,7 +122,7 @@
                 let rumberOne = document.querySelector('.one');
                 let rumberTwo = document.querySelector('.two');
                 let rumberThree = document.querySelector('.three');
-                let samllNum = rulerNum - parseInt(rulerNum);
+                let samllNum = rulerNum - parseFloat(rulerNum).toFixed(0);
 
                 if (rulerNum == '' || rulerNum <= 0) {
                     rumberOne.innerHTML = 0;
@@ -122,10 +130,10 @@
                     rumberThree.innerHTML = 2;
                     rulerEm.style.left = '150px';
                 } else {
-                    rumberOne.innerHTML = parseInt(rulerNum) - 1;
-                    rumberTwo.innerHTML = parseInt(rulerNum);
-                    rumberThree.innerHTML = parseInt(rulerNum) + 1;
-                    rulerEm.style.left = (rulerNum - parseInt(rulerNum)) * 102 + 150 + 'px';
+                    rumberOne.innerHTML = parseFloat(rulerNum) - 1;
+                    rumberTwo.innerHTML = parseFloat(rulerNum);
+                    rumberThree.innerHTML = parseFloat(rulerNum) + 1;
+                    rulerEm.style.left = (rulerNum - parseFloat(rulerNum).toFixed(0)) * 102 + 150 + 'px';
                 }
             }
         },
@@ -229,16 +237,16 @@
                 position: relative;
                 color: #47a304;
                 input {
-                    width: 55px;
+                    width: 85px;
                     height: 45px;
-                    // border: 1px solid #47a304;
+                    text-align:center;
                     font-size: 30px;
                     color: #47a304;
                 }
                 span {
                     position: absolute;
                     top: 0px;
-                    font-size: 5px;
+                    font-size: 12px;
                     margin-left: 10px;
                 }
             }

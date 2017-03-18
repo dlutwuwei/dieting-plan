@@ -5,15 +5,17 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" v-for="(item, index) in data">
+            <div class="food-item" :class="{'deleted': item.deleted, 'checked': item.checked}" v-for="(item, index) in data">
                 <span class="food-delete" @click="deleteItem(item, index)"></span>
-                <img :src="item.icon" alt="">
-                <div class="food-info">
-                    <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.weight}}{{type=='sport'?'分钟':'克'}}</div>
-                </div>
-                <div class="food-calories">
-                    {{item.kcal}}千卡
+                <div class="food" @click="popup(item)">
+                    <img :src="item.icon" alt="">
+                    <div class="food-info">
+                        <div class="food-name">{{item.name}}</div>
+                        <div class="food-weight">{{item.weight}}{{type=='sport'?'分钟':'克'}}</div>
+                    </div>
+                    <div class="food-calories">
+                        {{(item.kcal * item.weight / 100).toFixed(2)}}千卡
+                    </div>
                 </div>
             </div>
             <div class="cell bottom">
@@ -22,9 +24,17 @@
                 </router-link>
             </div>
         </div>
+        <mt-popup v-if="type!='sport'" class="select-popup" v-model="popupVisible" position="bottom">
+            <addFood v-on:popClose="popClose" :data="selected" :type="type" :date="date" :isUpdate="true"></addFood>
+        </mt-popup>
+        <mt-popup v-if="type=='sport'" class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
+            <addSport v-on:popClose="popClose" :data="selected" type="sport" :date="date" :isUpdate="true"></addSport>
+        </mt-popup>
     </div>
 </template>
 <script>
+    import addFood from '../components/plan/add-food.vue';
+    import addSport from '../components/plan/add-sport.vue';
     import { getQuery } from '../libs/utils';
     import { MessageBox } from 'mint-ui';
     const type_map = {
@@ -36,15 +46,23 @@
     export default {
         data() {
             return {
-                data: []
+                data: [],
+                popupVisible: false,
+                selected: {},
+                type: ''
             }
         },
         watch: {
             // 如果路由有变化，会再次执行该方法
             '$route': 'fetchData'
         },
+        components: {
+            addFood,
+            addSport
+        },
         methods: {
             fetchData: function () {
+                this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
@@ -85,6 +103,13 @@
                         MessageBox('注意', '删除失败');
                     });
                 }
+            },
+            popClose: function() {
+                this.popupVisible = false;
+            },
+            popup: function(item) {
+                this.selected = item;
+                this.popupVisible = true;
             }
         },
         mounted() {
@@ -137,6 +162,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .food {
+                display: flex;
+                justify-content: space-between;
+                flex: 1;
+                align-items: center;
+                height: 50px;
+            }
             .food-delete {
                 &:before {
                     display: block;

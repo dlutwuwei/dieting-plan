@@ -4,11 +4,6 @@ const routers = [{
     component: prefer
 },
 {
-    path: '/prefer/:type', // 饮食运动偏好
-    component: prefer,
-    props: true
-},
-{
     path: '/prefer/prefer/:type', // 肥胖原因的路由
     component: prefer,
     props: true
