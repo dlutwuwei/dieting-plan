@@ -69,13 +69,13 @@
                 }
                 let url = '/plan/updatefood';
                 if(!this.isUpdate) {
-                    url = '/Record/foodadd';
+                    url = '/plan/addfood';
                 }
                 this.$http.post(url, {
                     "food": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": (this.item.kcal * this.item.value/100).toFixed(2),
+                    "kcal": (this.item.kcal * this.item.weight/100).toFixed(2),
                     "weight": this.item.weight,
                     "class": this.item.class,
                     "time": this.date,
