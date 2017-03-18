@@ -89,7 +89,7 @@
             this.isPrefer = !!getQuery('prefer');
             if(this.isPrefer) {
                 this.title = "自定义偏好"
-            } else if(type=='sport'){
+            } else if(this.type=='sport'){
                 this.title = "添加运动";
             } else {
                 this.title = "添加食物"
