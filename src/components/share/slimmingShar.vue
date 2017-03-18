@@ -6,6 +6,7 @@
             margin-bottom:10px;
             color:#fff;
             max-height:162px;
+            background:#f5f5f5;
             overflow:hidden;
             a{
                 color:#fff;
@@ -63,7 +64,7 @@
         }
         .share-pic{
             width:100%;
-            height:auto;
+            height:160px;
         }
 
     }
@@ -71,16 +72,16 @@
 <template>
   <div class="slimming-share">
       <div class="share" v-for="(item, index) in shareList">
-              <router-link :to="'/share/detail/'+ item.id" slot="left">
-                  <img :src="item.image_url" class="share-pic" alt=""/>
+              <router-link :to="'/share/detail?cid='+ item.id" slot="left">
+                  <img :src="item.titlepic" class="share-pic" alt=""/>
                   <h5>{{item.title}}</h5>
                   <div class="share-info">
-                      {{item.publish_time}}<span class="ico ico-follow"></span>{{item.like_num}}
+                      {{item.time}}<span class="ico ico-follow"></span>{{item.laud}}
                   </div>
-                 <!-- <div class="author-info">
-                      <img :src="item.author.avatar_url" alt=""/>
-                      <p>{{item.author.name}}</p>
-                  </div>-->
+                 <div class="author-info">
+                      <!--<img :src="item.author.avatar_url" alt=""/>-->
+                      <p>{{item.content}}</p>
+                  </div>
               </router-link>
           </div>
   </div>

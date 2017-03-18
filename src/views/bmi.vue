@@ -70,6 +70,7 @@
         },
         methods: {
             start: function() {
+
                 if(!this.agree) {
                     MessageBox('注意', '请同意协议');
                     return;
