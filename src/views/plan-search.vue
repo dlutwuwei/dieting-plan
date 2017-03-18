@@ -1,6 +1,6 @@
 <template>
     <div class="plan-add">
-        <mt-header title="添加食物">
+        <mt-header :title="title">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
@@ -87,6 +87,13 @@
             this.type = this.$route.params.type;
             this.date = getQuery('date');
             this.isPrefer = !!getQuery('prefer');
+            if(this.isPrefer) {
+                this.title = "自定义偏好"
+            } else if(type=='sport'){
+                this.title = "添加运动";
+            } else {
+                this.title = "添加食物"
+            }
         },
         mounted() {
 
