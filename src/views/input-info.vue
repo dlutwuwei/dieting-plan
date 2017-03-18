@@ -1,9 +1,9 @@
 <template>
     <div class="detail">
         <mt-header title="">
-            <router-link to="/" slot="left">
-                <mt-button icon="back">填写个人信息</mt-button>
-            </router-link>
+            <a href="/" slot="left">
+                <mt-button icon="back">返回首页</mt-button>
+            </a>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="gender detail-item">
@@ -13,9 +13,9 @@
                 <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female" value="0" v-model="gender"><label for="female">女</label></span>
             </div>
         </div>
-        <mt-field class="detail-item" v-model="age" label="年龄" placeholder="           岁" type="number"></mt-field>
-        <mt-field class="detail-item" v-model="height" label="身高" placeholder="           cm" type="number"></mt-field>
-        <mt-field class="detail-item" v-model="weight" label="体重" placeholder="           kg" type="number"></mt-field>
+        <mt-field class="detail-item" v-model="age" label="年龄" placeholder="                     岁" type="number"></mt-field>
+        <mt-field class="detail-item" v-model="height" label="身高" placeholder="                     cm" type="number"></mt-field>
+        <mt-field class="detail-item" v-model="weight" label="体重" placeholder="                     kg" type="number"></mt-field>
         <div class="detail-item">
             <div class="detail-title">疾病史</div>
             <div class="detail-options">
@@ -27,22 +27,26 @@
         <div class="detail-item">
             <div class="detail-title">目前活动量</div>
             <select class="select-item" v-model="activity">
+                <option value="0">未选择</option>
                 <option value="1">少量活动</option>
                 <option value="2">轻度活动</option>
                 <option value="3">中度活动</option>
                 <option value="4">重度活动</option>
 
             </select>
+            <span class="explain" @click="popupAcivity=true">!</span>
         </div>
         <div class="detail-item">
-            <div class="detail-title">想怎么减</div>
+            <div class="detail-title">想怎么减&nbsp;&nbsp;&nbsp;</div>
             <select class="select-item" v-model="reduce">
+                <option value="0">未选择</option>
                 <option value="1">只节食不运动</option>
                 <option value="2">大量节食稍微运动</option>
                 <option value="3">节食运动一半一半</option>
                 <option value="4">多运动稍微节食</option>
                 <option value="5">只运动不节食</option>
             </select>
+            <span class="explain" @click="popupReduce=true">!</span>
         </div>
         <div class="bottom-cell">
             <mt-button type="primary" size="normal" v-on:click="post_info">下一步</mt-button>
@@ -50,6 +54,26 @@
                 <span>填写详细的健康资料 ，有利于系统为您定制专属的私人健康减肥 方案</span>
             </div>
         </div>
+        <mt-popup class="select-popup" v-model="popupAcivity" popup-transition="popup-fade">
+            <div class="main">
+                <p>极少运动：长时间坐在办公室、教室里、很少或是完全没有运动的人。</p>
+                <p>少量运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
+                <p>轻度运动：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
+                <p>中度运动：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
+                <p>重度运动：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
+            </div>
+            <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupAcivity=false">我知道</mt-button></div>
+        </mt-popup>
+        <mt-popup class="select-popup" v-model="popupReduce" popup-transition="popup-fade">
+            <div class="main">
+                <p>只节食不运动：长时间坐在办公室、教室里、很少或是完全没有运动的人。</p>
+                <p>少量运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
+                <p>轻度运动：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
+                <p>中度运动：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
+                <p>重度运动：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
+            </div>
+            <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupReduce=false">我知道</mt-button></div>
+        </mt-popup>
     </div>
 </template>
 <script>
@@ -64,7 +88,9 @@
                 age: '',
                 height: '',
                 weight: '',
-                reduce: 0
+                reduce: 0,
+                popupAcivity: false,
+                popupReduce: false,
             }
         },
         methods: {
@@ -136,12 +162,34 @@
         margin-bottom: 10px;
         text-align: center;
     }
-    
+    .select-popup{
+        border-radius: 8px;
+        overflow: hidden;
+        .main {
+            width: 288px;
+            padding: 22px;
+            line-height: 24px;
+            font-size: 14px;
+            p {
+                padding-bottom: 24px;
+            }
+        }
+        .bot {
+            margin: 10px 0 20px 0;
+            text-align: center;
+        }
+
+    }
     .detail {
         .detail-item.gender {
             .detail-options {
                 padding-top: 0;
             }
+        }
+        .mint-field-core {
+            border: 1px solid #999;
+            width: 125px;
+            flex: none;
         }
         .detail-item {
             background: #fff;
@@ -150,6 +198,12 @@
             border-right: none;
             border-left: none;
             display: flex;
+            .explain {
+                line-height: 50px;
+                padding: 0 10px;
+                color: red;
+                font-weight: bold;
+            }
             .select-item {
                 width: 125px;
                 height: 30px;

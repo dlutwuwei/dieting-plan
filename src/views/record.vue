@@ -39,7 +39,7 @@
         display: flex;
         flex-wrap: wrap;
         div.btn {
-            margin: 30px 35px 0 35px;
+            margin: 30px 30px 0 30px;
             width: 52px;
             height: 52px;
             border-radius: 50%;

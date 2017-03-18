@@ -42,15 +42,30 @@
                 items: null,
                 title: null,
                 selected: {},
+                type: 'breakfast'
             }
         },
         methods: {
             select: function (item, e) {
-                item.value = true;
-                //e.target.parentNode.classList.add('selected');
                 if (!this.selected[this.type]) {
                     this.selected[this.type] = [];
                 }
+
+                if(item.value) {
+                    debugger
+                    item.value =false;
+                    let index;
+                    this.selected[this.type].forEach( (m, i) => {
+                        if(m.food_type == item.food_type){
+                            index = i;
+                        }
+                    });
+                    delete this.selected[this.type][index];
+                    return;
+                }
+                item.value = true;
+                //e.target.parentNode.classList.add('selected');
+                
                 this.selected[this.type].push(item);
             },
             post_prefer: function (e) {
@@ -111,13 +126,13 @@
                 }
             },
             fetchData: function (e) {
-                this.type = this.type || 'breakfast';
+                this.type =this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
                 data.forEach(item => {
                     item.value = false;
                 });
                 this.items = data;
-                this.title = window.titles[this.type || 'breakfast'];
+                this.title = window.titles[this.type];
             }
         },
         watch: {
@@ -125,14 +140,14 @@
             '$route': 'fetchData'
         },
         mounted() {
-            this.type = this.$route.params.type;
-            let data = window.data[this.type || 'breakfast'];
+            this.type = this.$route.params.type || 'breakfast';
+            let data = window.data[this.type ];
             data.forEach(item => {
                 item.value = false;
             });
             this.items = data;
 
-            this.title = window.titles[this.type || 'breakfast'];
+            this.title = window.titles[this.type];
         },
         created() {
             window.titles = {

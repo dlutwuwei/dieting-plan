@@ -10,16 +10,26 @@
             <div class="title">你的BMI指数为<span class="number">{{bmi}}</span><span class="text">（{{perform}}）</span></div>
             <div class="info">(身高：{{height}}，体重：{{weight}}kg)</div>
             <div class="line">
-                <div class="line-arrow"><img src="../assets/images/jianfei/bmi-arrow.png" v-bind:style="{left: bmi*100/50 + '%'}"></div>
+                <div class="line-arrow"><img src="../assets/images/jianfei/bmi-arrow.png" v-bind:style="{'left': left + 'px'}"></div>
                 <div class="bmi-line"><img src="../assets/images/jianfei/bmi-line.png" alt=""></div>
             </div>
             <div class="description">您目前的体重属于瘦弱，请加强营养，健康增重。</div>
             <div class="buy-notice">若想获得专属个性化减肥方案，请 购买思维必专业减肥。<span class="text">点击购买</span></div>
         </div>
-        <div class="terms"><input type="checkbox" v-model="agree" id="terms">同意<label class="text" for="terms">《鸣鹿减肥法用户协议</label></div>
+        <div class="terms"><input type="checkbox" v-model="agree" id="terms"><label for="terms">同意</label><label class="text"  @click="popupTerms=true">《鸣鹿减肥法用户协议》</label></div>
         <div class="next-btn">
             <mt-button type="primary" @click="start">开始减肥</mt-button>
         </div>
+        <mt-popup class="select-popup" v-model="popupTerms" popup-transition="popup-fade">
+            <div class="main">
+                <p>用户协议</p>
+                <p>少量运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
+                <p>轻度运动：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
+                <p>中度运动：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
+                <p>重度运动：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
+            </div>
+            <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupTerms=false">已阅</mt-button></div>
+        </mt-popup>
     </div>
 </template>
 <script>
@@ -47,7 +57,8 @@
             return {
                 weight: getQuery('w'),
                 height: getQuery('h'),
-                agree: false
+                agree: false,
+                popupTerms: false
             }
         },
         computed: {
@@ -58,12 +69,16 @@
                 let perform = '';
                 if (this.bmi <= 18.5) {
                     perform = '偏瘦';
+                    this.left = 35;
                 } else if(this.bmi <= 24) {
                     perform = '正常';
+                    this.left = 90;
                 } else if(this.bmi <= 28) {
                     perform = '超重';
+                    this.left = 135;
                 } else {
                     perform = '肥胖';
+                    this.left = 220;
                 }
                 return perform;
             }
@@ -93,6 +108,9 @@
     .terms {
         margin: 17px 0 40px 0;
         text-align: center;
+        .text {
+            color:blue;
+        }
     }
 
     .buy-notice {
