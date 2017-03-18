@@ -12,7 +12,7 @@
         </div>
         <div class="sport-select line">
             <div class="sport-quantity">
-                <span class="duration red">{{value}}<span class="unit">分钟</span></span>
+                <span class="duration red">{{inputVal || 0}}<span class="unit">分钟</span></span>
                 <span class="amount">{{total}}千卡</span>
             </div>
             <div class="key-board" @click="onClickValue">
@@ -102,6 +102,17 @@
             },
             onClickValue: function(e) {
                 let val = e.target.getAttribute('value');
+                if(this.inputVal.indexOf('.') >= 0 && val=== '.') {
+                    return;
+                }
+                if(val === '.') {
+                    this.inputVal += '.0';
+                    return;
+                }
+                if(val !== '.' && this.inputVal.indexOf('.0') >= 0 && this.inputVal.indexOf('.0') == this.inputVal.length - 2) {
+                    this.inputVal = this.inputVal.replace('.0', '.' +val);
+                    return;
+                }
                 this.inputVal += val;
             },
             onDelete: function(e) {
