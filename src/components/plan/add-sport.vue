@@ -60,13 +60,18 @@
                     // 老用户和15天试用用户修改减肥计划
                     this.save();
                 } else if(this.user_type == 7) {
-                    // 7天过渡期记录
+                    // 7天过渡期记录,7天用户只有记录
                     this.record();
                 }
             },
             save: function () {
                 if(!this.value) return;
-                this.$http.post('/Plan/addsport', {
+
+                let url = '/plan/updatesport';
+                if(!this.isUpdate) {
+                    url = '/plan/addsport';
+                }
+                this.$http.post(url, {
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,
