@@ -118,7 +118,10 @@
               <div :plan-id="item.plan_id"><span class="ico2"></span></div>
               <div>
                   <span>{{item.plan_name}}</span>
-                  <em>{{item.description}}</em>
+                  <em v-if="+item.jin == 5">{{item.day}}天掉{{item.jin}}斤肉，健康减肥，贵在坚持！</em>
+                  <em v-if="+item.jin == 7">{{item.day}}天掉{{item.jin}}斤肉，合理速度，努力实现！</em>
+                  <em v-if="+item.jin == 8">{{item.day}}天掉{{item.jin}}斤肉，我信我能，毅力致胜！</em>
+                  <em v-if="+item.jin == 10">{{item.day}}天掉{{item.jin}}斤肉，坚信我行，信心满满！</em>
               </div>
           </div>
       </div>
@@ -126,11 +129,6 @@
 </template>
 <script>
     export default {
-        data() {
-            return {
-                isTrue: true,
-            }
-        },
         props: {
             reduceList: Array
         },
@@ -138,17 +136,7 @@
             redirect(id) {
                 location.href = `/detail/input/${id}`;
             },
-            //添加样式
-            addIdClass(){
-
-            }
         },
-        created(){
-
-        },
-        mounted(){
-            this.addIdClass();
-        }
     }
 
 </script>

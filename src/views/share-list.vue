@@ -52,8 +52,9 @@
             getShareList() {
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
-                    if(response.body.massages != ''){
+                    if(JSON.parse(response.body.massages) != null){
                         this.shareList = this.shareList.concat(JSON.parse(response.body.massages));
+                        //console.log(this.shareList)
                     }
                 }, response => {
                     MessageBox('注意', '获取信息失败');
@@ -61,8 +62,9 @@
             },
             getMyShareList() {
                 this.$http.get('/Share/myshare').then(response => {
-                    if(response.body.massages != ''){
+                    if(JSON.parse(response.body.massages) != null){
                         this.myShareList = this.myShareList.concat(JSON.parse(response.body.massages));
+                        //console.log(this.shareList)
                     }
                 }, response => {
                     MessageBox('注意', '获取信息失败');

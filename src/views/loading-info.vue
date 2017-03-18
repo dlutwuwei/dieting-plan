@@ -35,10 +35,36 @@
     </div>
 </template>
 <script>
+    import { getQuery } from '../libs/utils';
+
     export default {
-
+        data() {
+            return {
+                shareDetailInfo: {},
+                author: {},
+            }
+        },
+        created() {
+            this.cid = getQuery('cid');
+        },
+        methods: {
+            goback: function () {
+                history.back();
+            },
+            getShareDetail: function(){
+                this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
+                    this.shareDetailInfo = res.body.massages[0];
+                this.author = res.body.massages[0].author;
+                console.log(this.author)
+            },() => {
+                MessageBox('注意', '请求失败');
+            });
+        }
+        },
+        mounted(){
+            this.getShareDetail();
+        }
     }
-
 </script>
 <style lang="scss">
     .laoding-info{

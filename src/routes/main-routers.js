@@ -21,7 +21,7 @@ const routers = [{
     component: record
 },
 {
-    path: '/index/sliderInfo/:id',
+    path: '/index/sliderInfo',
     component: sliderInfo
 }];
 
