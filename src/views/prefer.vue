@@ -15,7 +15,7 @@
                 </div>
                 <div class="add-item">
                     <div class="icon">
-                        <a href="/plan/add/food"><img src="../assets/images/jianfei/add.png" alt=""></a>
+                        <a :href="'/plan/add/'+type"><img src="../assets/images/jianfei/add.png" alt=""></a>
                         </a>
                     </div>
                     <div class="name">自定义</div>
@@ -55,7 +55,7 @@
             },
             post_prefer: function (e) {
                 let target;
-                let type = this.$route.params.type || 'breakfast';
+                let type = this.type || 'breakfast';
                 if (next[type || 'breakfast'] == 'restrict') {
                     // 添加食物或者偏好
                     this.$http.post('/Pre/addfood', this.selected[this.type]).then(response => {
@@ -111,13 +111,13 @@
                 }
             },
             fetchData: function (e) {
-                this.type = this.$route.params.type || 'breakfast';
-                let data = window.data[this.$route.params.type || 'breakfast'];
+                this.type = this.type || 'breakfast';
+                let data = window.data[this.type || 'breakfast'];
                 data.forEach(item => {
                     item.value = false;
                 });
                 this.items = data;
-                this.title = window.titles[this.$route.params.type || 'breakfast'];
+                this.title = window.titles[this.type || 'breakfast'];
             }
         },
         watch: {
@@ -125,13 +125,14 @@
             '$route': 'fetchData'
         },
         mounted() {
-            let data = window.data[this.$route.params.type || 'breakfast'];
+            this.type = this.$route.params.type;
+            let data = window.data[this.type || 'breakfast'];
             data.forEach(item => {
                 item.value = false;
             });
             this.items = data;
 
-            this.title = window.titles[this.$route.params.type || 'breakfast'];
+            this.title = window.titles[this.type || 'breakfast'];
         },
         created() {
             window.titles = {
@@ -142,7 +143,7 @@
                 restrict: '饮食限制',
                 reason: '肥胖原因'
             };
-            this.type = this.$route.params.type || 'breakfast';
+            this.type = this.type || 'breakfast';
             window.data = {
                 breakfast: [
                     {

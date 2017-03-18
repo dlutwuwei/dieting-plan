@@ -50,6 +50,13 @@
                 history.back();
             },
             popUp: function (index) {
+                if(this.isPrefer) {
+                    let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.type) || []);
+                    tempPrefers.push(this.data[index]);
+                    localStorage.setItem('luming' + this.type, JSON.stringify(tmpPrefers));
+                    location.href = '/prefer/prefer/' + this.type;
+                    return;
+                }
                 this.selected = this.data[index];
                 this.popupVisible = true;
             },
@@ -79,6 +86,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
+            this.isPrefer = !!getQuery('prefer');
         },
         mounted() {
 
