@@ -21,12 +21,12 @@
         <mt-swipe :auto="4000">
             <template v-for="(item, index) in mlSwiper">
                 <mt-swipe-item>
-                    <template v-if="item.target_url">
+                    <!--<template v-if="item.target_url">
                         <a :href="item.target_url"><img :src="item.image_url" alt=""/></a>
                     </template>
-                    <template v-else>
-                        <router-link :to="'/sliderInfo/'+ item.id"><img :src="item.image_url" alt=""/></router-link>
-                    </template>
+                    <template v-else>-->
+                        <router-link :to="'/index/sliderInfo?cid='+ item.id"><img :src="item.image_url" alt=""/></router-link>
+                    <!--</template>-->
                 </mt-swipe-item>
             </template>
         </mt-swipe>

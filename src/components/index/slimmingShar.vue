@@ -123,21 +123,23 @@
       <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
       <div class="bd">
           <div class="share" v-for="(item, index) in shareList">
-              <a :href="'/share/detail/'+ item.id" slot="left">
+              <a :href="'/share/detail/?cid='+ item.id" slot="left">
                   <img :src="item.image_url" class="share-pic" alt=""/>
-                  <h5>{{item.title}}</h5>
-                  <div class="share-info">
-                      {{item.publish_time}}<span class="ico ico-follow"></span>{{item.like_num}}<span class="ico ico-flower"></span>{{item.comment_num}}
-                  </div>
-                  <div class="author-info">
-                      <div>
-                          <img :src="item.author.avatar_url" alt=""/>
-                          <p>{{item.author.name}}</p>
+                  <template v-if="pathname != ''">
+                      <h5>{{item.title}}</h5>
+                      <div class="share-info">
+                          {{item.publish_time}}<span class="ico ico-follow"></span>{{item.like_num}}<span class="ico ico-flower"></span>{{item.comment_num}}
                       </div>
-                      <div>
-                          {{item.author.description}}
+                      <div class="author-info">
+                          <div>
+                              <img :src="item.author.avatar_url" alt=""/>
+                              <p>{{item.author.name}}</p>
+                          </div>
+                          <div>
+                              {{item.author.description}}
+                          </div>
                       </div>
-                  </div>
+                  <template>
               </a>
           </div>
       </div>
@@ -145,6 +147,10 @@
 </template>
 <script>
     export default {
+
+        created() {
+            this.pathname = location.pathname.replace('/', '');
+        },
         props: {
             shareList: Array
         }

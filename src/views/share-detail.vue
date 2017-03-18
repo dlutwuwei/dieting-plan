@@ -119,7 +119,7 @@
     <div class="share-detail">
         <div class="share-detail-pic">
             <div class="go-back ico" @click="goback"></div>
-            <span class="ico">....</span>
+            <!--<span class="ico">....</span>-->
             <img :src="shareDetailInfo.titlepic" class="share-pic" alt=""/>
             <div class="author-info">
                 <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>
@@ -133,13 +133,12 @@
                 <p>{{shareDetailInfo.time}}</p>
             </div>
             <div class="detail-info-bd">
-                <p>{{shareDetailInfo.content}}</p>
-                <p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488561445338&di=35794f4e7cf910f82da30cccaa65e1ef&imgtype=0&src=http%3A%2F%2Ffile02.16sucai.com%2Fd%2Ffile%2F2015%2F0105%2F52120df037d85671e47554da7c3698b3.jpg" alt=""/></p>
+                <p  v-html="shareDetailInfo.content"></p>
             </div>
             <div class="detail-info-like">
-                <p>已有<span>{{shareDetailInfo.laud}}</span>人喜欢这篇文章</p>
+                <p>已有<span>{{laudNum}}</span>人喜欢这篇文章</p>
                 <div>
-                    <span class="ico"></span>
+                    <span class="ico" @click="addLove"></span>
                     <em>喜欢</em>
                 </div>
             </div>
@@ -148,12 +147,14 @@
 </template>
 <script>
     import { getQuery } from '../libs/utils';
+    import { MessageBox } from 'mint-ui';
 
     export default {
         data() {
             return {
                 shareDetailInfo: {},
                 author: {},
+                laudNum: null,
             }
         },
         created() {
@@ -167,8 +168,21 @@
                 this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
                     this.shareDetailInfo = res.body.massages[0];
                     this.author = res.body.massages[0].author;
-                console.log(this.author)
+                    this.laudNum = this.shareDetailInfo.laud;
                 },() => {
+                    MessageBox('注意', '请求失败');
+                });
+            },
+            addLove: function(){
+                let postData = {
+                    id: this.cid
+                }
+                this.$http.post('/share/laud', postData).then(response => {
+                    let res = response.body;
+                    if (res.success) {
+                        this.laudNum++;
+                    }
+                }, err => {
                     MessageBox('注意', '请求失败');
                 });
             }

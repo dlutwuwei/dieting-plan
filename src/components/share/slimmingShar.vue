@@ -31,13 +31,22 @@
                     overflow:hidden;
                 }
                 .ico-follow{
-                    width:20px;
-                    height:17px;
+                    width:12px;
+                    height:12px;
                     margin-left:17px;
                     overflow:hidden;
                 }
                 .ico-follow:before{
-                    background-position:-100px -50px;
+                    background-position:-25px 0;
+                }
+                .ico-flower{
+                    width:15px;
+                    height:13px;
+                    margin-left:12px;
+                    overflow:hidden;
+                }
+                .ico-flower:before{
+                    background-position:-50px 0;
                 }
             }
             .author-info{
@@ -76,7 +85,7 @@
                   <img :src="item.titlepic" class="share-pic" alt=""/>
                   <h5>{{item.title}}</h5>
                   <div class="share-info">
-                      {{item.time}}<span class="ico ico-follow"></span>{{item.laud}}
+                      {{item.time}}<span class="ico ico-follow"></span>{{item.click}}<span class="ico ico-flower"></span>{{item.laud}}
                   </div>
                  <div class="author-info">
                       <!--<img :src="item.author.avatar_url" alt=""/>-->

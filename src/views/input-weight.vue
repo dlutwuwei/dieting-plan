@@ -110,9 +110,8 @@
         <div class="input-weight">
             <mt-header title="鸣鹿健康">
                 <router-link to="/" slot="left">
-                    <mt-button icon="back">返回</mt-button>
+                    <mt-button icon="back" @click="goback">返回</mt-button>
                 </router-link>
-                <mt-button icon="more" slot="right"></mt-button>
             </mt-header>
             <div class="hd"><em class="lt-hander" @click="prevMonth"><span class="lt-btn"></span></em>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<em class="rt-hander" @click="nextMonth"><span class="rt-btn"></span></em></div>
             <div class="bd">
@@ -230,6 +229,9 @@
                 }, res=>{
                     MessageBox('注意', '获取信息失败');
                 });
+            },
+            goback: function () {
+                history.back();
             }
         },
         components: {
