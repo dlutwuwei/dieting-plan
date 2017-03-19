@@ -71,7 +71,6 @@
                 if(!this.isUpdate) {
                     url = '/plan/addsport';
                 }
-                debugger
                 this.$http.post(url, {
                     "pid": this.item.pid,
                     "project": this.item.name,
