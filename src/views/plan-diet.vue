@@ -65,7 +65,7 @@
                 this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
-                    this.$http.get(`/datefood/time/${this.date}`).then(res => {
+                    this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
                         let list = res.body[this.date][this.type]
                         list.pop(); //去掉总卡路里数
                         this.data = list;
