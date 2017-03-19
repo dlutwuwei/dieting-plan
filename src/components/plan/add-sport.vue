@@ -75,7 +75,7 @@
                 this.$http.post(url, {
                     "pid": this.item.pid,
                     "project": this.item.name,
-                    "kcal": (this.item.kcal * this.value / this.item.weight).toFixed(2),
+                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
                     "longtime": this.value,
                 }).then(response => {
                     if(response.body.success) {
