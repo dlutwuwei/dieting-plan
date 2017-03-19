@@ -14,7 +14,7 @@
                         <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
                     </div>
                     <div class="food-calories" @click.stop="popup(item)">
-                        {{(item.kcal * ((item.weight / 100) || (item.lasttime / 60))).toFixed(2)}}千卡
+                        {{item.kcal}}千卡
                     </div>
                 </div>
             </div>
