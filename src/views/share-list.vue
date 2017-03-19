@@ -10,7 +10,7 @@
                     <mt-tab-item id="2">我的</mt-tab-item>
                 </mt-navbar>
             </div>
-            <router-link to="/share/edit"><div class="ico ico-1"></div></router-link>
+            <router-link to="/edit"><div class="ico ico-1"></div></router-link>
         </div>
 
         <!-- tab-container -->
@@ -26,7 +26,7 @@
                 </template>
                 <div class="write-share" v-else>
                     <h5>还没写过瘦身分享哦，赶紧去写分享吧！</h5>
-                    <router-link to="/share/edit"><span>写分享</span></router-link>
+                    <router-link to="/edit"><span>写分享</span></router-link>
                 </div>
             </mt-tab-container-item>
         </mt-tab-container>
