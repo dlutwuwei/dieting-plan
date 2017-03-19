@@ -6,22 +6,22 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <a :href="'/plan/diet/breakfast?date='+date">
+            <a :href="'/plan/listt#/record/breakfast?date='+date">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a :href="'/plan/diet/lunch?date='+date">
+             <a :href="'/plan/listt#/record/lunch?date='+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a :href="'/plan/diet/dinner?date='+date">
+             <a :href="'/plan/listt#/record/dinner?date='+date">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a :href="'/plan/diet/sport?date='+date">
+             <a :href="'/plan/listt#/record/sport?date='+date">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>

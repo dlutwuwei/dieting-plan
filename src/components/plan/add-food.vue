@@ -14,7 +14,7 @@
                 <div>{{item.weight}}克</div>
             </div>
             <div class="bd">
-                <div class="weight"><input type="number" @keyup="getNum" v-model="item.weight" id="ruler-input" /><span>g</span></div>
+                <div class="weight"><input type="number" @keyup="getNum" v-model="value" id="ruler-input" /><span>g</span></div>
                 <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
             </div>
         </div>
@@ -33,7 +33,8 @@
     export default {
         data() {
             return {
-                item: this.data
+                item: this.data,
+                value: 0
             }
         },
         props: ['data', 'type', 'isUpdate'],
@@ -64,7 +65,7 @@
                 }
             },
             save: function () {
-                if(!this.item.weight) {
+                if(!this.value) {
                     return;
                 }
                 let url = '/plan/updatefood';
@@ -75,14 +76,14 @@
                     "food": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": (this.item.kcal * this.item.weight/100).toFixed(2),
-                    "weight": this.item.weight,
+                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(2),
+                    "weight": this.value,
                     "class": this.item.class,
                     "time": this.date,
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
+                        this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
                 }, response => {
@@ -93,20 +94,20 @@
                 this.$emit('popClose');
             },
             record: function () {
-                if(!this.item.weight) {
+                if(!this.value) {
                     return;
                 }
                 this.$http.post('/Record/foodadd', {
                     "class": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": this.item.kcal,
-                    "gram": this.item.weight,
+                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(2),
+                    "gram": this.value,
                     "energy": this.item.energy
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/plan/diet/${this.type}?date=${this.date}`);
+                        this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
                 }, response => {
