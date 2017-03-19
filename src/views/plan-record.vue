@@ -1,19 +1,20 @@
 <template>
     <div>
         <mt-header title="添加食物">
-            <mt-button slot="left" icon="back" @click="goback">返回首页</mt-button>
+            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" v-for="(item, index) in data">
-                <span class="food-delete" @click="deleteItem(item, index)"></span>
-                <img :src="item.icon" alt="">
-                <div class="food-info">
-                    <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.weight}}{{type=='sport'?'分钟':'克'}}</div>
-                </div>
-                <div class="food-calories">
-                    {{item.kcal}}千卡
+            <div class="food-item" :class="{'deleted': item.deleted, 'checked': item.checked}" v-for="(item, index) in data">
+                <div class="food">
+                    <img :src="item.icon" alt="">
+                    <div class="food-info">
+                        <div class="food-name">{{item.name}}</div>
+                        <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
+                    </div>
+                    <div class="food-calories">
+                        {{(item.kcal * ((item.weight / 100) || (item.lasttime / 60))).toFixed(2)}}千卡
+                    </div>
                 </div>
             </div>
             <div class="cell bottom">
@@ -25,6 +26,8 @@
     </div>
 </template>
 <script>
+    import addFood from '../components/plan/add-food.vue';
+    import addSport from '../components/plan/add-sport.vue';
     import { getQuery } from '../libs/utils';
     import { MessageBox } from 'mint-ui';
     const type_map = {
@@ -36,18 +39,26 @@
     export default {
         data() {
             return {
-                data: []
+                data: [],
+                popupVisible: false,
+                selected: {},
+                type: ''
             }
         },
         watch: {
             // 如果路由有变化，会再次执行该方法
             '$route': 'fetchData'
         },
+        components: {
+            addFood,
+            addSport
+        },
         methods: {
             fetchData: function () {
+                this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
-                    this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
+                    this.$http.get(`/datefood/time/${this.date}`).then(res => {
                         let list = res.body[this.date][this.type]
                         list.pop(); //去掉总卡路里数
                         this.data = list;
@@ -56,35 +67,26 @@
                     });
                 } else {
                     // 运动
-                    this.data = [window.sportList[0][this.date]];
+                    this.$http.get(`/plan/datasport?time=${this.date}`).then(res => {
+                        let list = [];
+                        if(res.body.success) {
+                            list = res.body.massages[this.date];
+                        }                        
+                        this.data = list;
+                    }, () => {
+                        MessageBox('注意', '请求失败');
+                    });
                 }
             },
             goback: function () {
                 history.back();
             },
-            deleteItem: function (item, i) {
-                if (this.type != 'sport') {
-                    this.$http.get(`/Plan/delfood?pid=${item.pid}&class=${type_map[this.type]}`).then(res => {
-                        if(!res.body.success) {
-                            MessageBox('注意', '删除失败');
-                        } else {
-                            this.data.splice(i, 1);
-                        }
-                    }, () => {
-                        MessageBox('注意', '删除失败');
-                    });
-                } else {
-                    debugger
-                    this.$http.get(`/Plan/delsport?pid=${item.pid}&time=${this.date}`).then(res => {
-                        if(!res.body.success) {
-                            MessageBox('注意', '删除失败');
-                        } else {
-                            this.data.splice(i, 1);
-                        }
-                    }, () => {
-                        MessageBox('注意', '删除失败');
-                    });
-                }
+            popClose: function() {
+                this.popupVisible = false;
+            },
+            popup: function(item) {
+                this.selected = item;
+                this.popupVisible = true;
             }
         },
         mounted() {
@@ -103,7 +105,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
-            this.addUrl = `/plan/add/${this.type}?date=${this.date}`;
+            this.addUrl = `/add/${this.type}?date=${this.date}`;
         }
     }
 
@@ -137,6 +139,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            .food {
+                display: flex;
+                justify-content: space-between;
+                flex: 1;
+                align-items: center;
+                height: 50px;
+            }
             .food-delete {
                 &:before {
                     display: block;

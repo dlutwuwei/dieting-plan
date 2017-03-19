@@ -18,9 +18,9 @@
       <div class="slimming-share">
           <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
           <div class="bd">
-              <router-link to="/share/list" slot="right">
+              <a href="/share/listt" slot="right">
                 <img :src="sharePic != ''? sharePic : 'http://w.cellwellbeing.cn/Public/site_upload/share/1489659148_334176923.jpg'" class="share-pic" alt=""/>
-              </router-link>
+              </a>
           </div>
       </div>
     <!--e:瘦身分享-->

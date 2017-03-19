@@ -2,6 +2,7 @@ const planList = require('../views/plan-list.vue');
 const planAdd = require('../views/plan-search.vue');
 const planDetail = require('../views/plan-detail.vue');
 const planDiet = require('../views/plan-diet.vue');
+const planRecord = require('../views/plan-record.vue');
 
 const routers = [{
     path: '/',
@@ -10,6 +11,10 @@ const routers = [{
 {
     path: '/listt',
     component: planList
+},
+{
+    path: '/record/:type',
+    component: planRecord
 },
 {
     path: '/add/:type',

@@ -42,7 +42,7 @@
                 return parseInt(this.inputVal||0);
             }
         },
-        props: ['data', 'type'],
+        props: ['data', 'type', 'isUpdate'],
         watch: {
             data(val) {
                 this.item = val;//新增result的watch，监听变更并同步到myResult上
@@ -71,11 +71,12 @@
                 if(!this.isUpdate) {
                     url = '/plan/addsport';
                 }
+                debugger
                 this.$http.post(url, {
                     "pid": this.item.pid,
-                    "name": this.item.name,
-                    "kcal": this.item.kcal,
-                    "time": this.value,
+                    "project": this.item.name,
+                    "kcal": (this.item.kcal * this.value / this.item.weight).toFixed(2),
+                    "longtime": this.value,
                 }).then(response => {
                     if(response.body.success) {
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
