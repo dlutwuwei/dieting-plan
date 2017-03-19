@@ -79,7 +79,7 @@
     }
 </style>
 <template>
-    <div class="heat-plate" v-if="heatPlate && heatPlate != null">
+    <div class="heat-plate" v-if="heatPlate && heatPlate.length > 0">
         <router-link to="/index/record">
             <div class="hd">热量盘 <span class="ico ico-1"></span>
             </div>

@@ -15,7 +15,14 @@
     <!--e:鸣鹿轮播图-->
 
     <!--s:瘦身分享-->
-    <SlimmingShar :share-list="shareList"></SlimmingShar>
+      <div class="slimming-share">
+          <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
+          <div class="bd">
+              <router-link to="/share/list" slot="right">
+                <img :src="sharePic != ''? sharePic : 'http://w.cellwellbeing.cn/Public/site_upload/share/1489659148_334176923.jpg'" class="share-pic" alt=""/>
+              </router-link>
+          </div>
+      </div>
     <!--e:瘦身分享-->
 
     <!--s:瘦身达人榜-->
@@ -47,7 +54,6 @@
 <script>
   import "../assets/scss/common/reset.scss";
   import MlSwiper from '../components/index/mlSwiper.vue';//轮播图
-  import SlimmingShar from '../components/index/slimmingShar.vue';//瘦身分享
   import ReduceWeight from '../components/index/reduceWeight.vue';//一分钟减肥计划
   import DarenList from '../components/index/darenList.vue';//瘦身达人榜
   import HeatPlate from '../components/index/heatPlate.vue';//能量盘
@@ -61,7 +67,7 @@
         selected: '1',
         msg: 'Use Vue 2.0 Today!',
         userInfo: window.userInfo || {},
-        shareList: window.shareList.slice(0, 3) || [],
+        sharePic: window.sharePic || '',
         reduceList: window.reduceList || [],
         darenList: window.darenList || {},
         mlSwiper: window.mlSwiper || [],
@@ -77,7 +83,6 @@
     },
 
     components: {
-      SlimmingShar,
       ReduceWeight,
       DarenList,
       MlSwiper,
@@ -164,5 +169,38 @@
     text-align: center;
     color: #666;
     margin-bottom: 5px;
+  }
+
+  .slimming-share {
+      margin-top: 15px;
+      .hd {
+          height: 45px;
+          line-height: 45px;
+          font-size: 18px;
+          color: #47a304;
+          background-color: #fff;
+          text-align: left;
+          .ico-1:before {
+              background-position: 0 0;
+          }
+          .ico-1 {
+              display: inline-block;
+              width: 38px;
+              height: 20px;
+              margin-top: -3px;
+              margin-right: 3px;
+              padding-left: 17px;
+              overflow: hidden;
+              vertical-align: middle;
+          }
+      }
+      .bd {
+          height: 160px;
+          overflow:hidden;
+          .share-pic {
+              width: 100%;
+              height: 160px;
+          }
+      }
   }
 </style>
