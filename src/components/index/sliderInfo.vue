@@ -2,8 +2,22 @@
     .slider-info{
         background:#f7f7f7;
         .banner{
+            position:relative;
             max-height:175px;
             overflow:hidden;
+            .go-back:before{
+                background-position: -125px -25px;
+            }
+            .go-back{
+                position:absolute;
+                left:10px;
+                top:13px;
+                display:inline-block;
+                width:10px;
+                height:20px;
+                overflow:hidden;
+                vertical-align: middle;
+            }
             img{
                 width:100%;
                 height:120px;
@@ -30,7 +44,7 @@
 <template>
   <div class="slider-info">
       <template v-if="sliderInfo">
-          <div class="banner"><img :src="sliderInfo.titlepic" alt=""/></div>
+          <div class="banner"><div class="go-back ico" @click="goback"></div><img :src="sliderInfo.titlepic" alt=""/></div>
           <div class="info" v-html="sliderInfo.content"></div>
       </template>
       <div class="no-data" v-else><p>404</p><p>页面找不到了</p></div>

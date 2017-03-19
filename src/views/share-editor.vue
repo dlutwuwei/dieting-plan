@@ -12,7 +12,7 @@
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
-                    <a href="javascript:;" @click="uploadIdCard">+</a>
+                    <a href="javascript:;">+</a>
                     <input type="file" id="upfile" name="upfile" style="display:none">
                     <!--<input type="hidden" name="cat" value="idcard" />-->
                 </div>
@@ -90,6 +90,7 @@
                 }
 
                 var imgReg = new RegExp('png|gif|jpg|jpeg');
+
                 if (img.size / 1024 > 5000) {
                     alert('图片过大，请选择5M以下图片重新上传！');
                     return;
@@ -102,7 +103,7 @@
                     if (!error) {
                         self.id_card_img =  result.massages;//获取图片地址
                         $('.sample').removeClass('id-no-uploaded');
-                        $('.sample').find('img').attr('src', self.id_card_img);
+                        $('.sample').find('img').attr('src', self.id_card_img).show();
                     }
                 })
             },
@@ -111,6 +112,18 @@
                 let titlepic = $('.sample').find('img').attr('src');
                 let content = $('#editor-textarea').val();
 
+                if($.trim(title) == ""){
+                    MessageBox('注意', '请填写分享标题!');
+                    return;
+                }
+                if($('.sample img').css('display') == ""){
+                    MessageBox('注意', '请上传分享图片!');
+                    return;
+                }
+                if($.trim(content) == ""){
+                    MessageBox('注意', '请填写分享内容!');
+                    return;
+                }
                 let reqBody = {
                     title: title,
                     titlepic: titlepic,
@@ -123,7 +136,7 @@
                 ).then(res=>{
                     /* 发布成功 */
                     $('.mint-field-core').val('');
-                    $('.sample').find('img').attr('src', '');
+                    $('.sample').find('img').attr('src', '').hide();
                     $('#editor-textarea').val('');
                 },res=>{
                     MessageBox('注意', '发布失败');
@@ -207,11 +220,20 @@
             textarea{
                 width: 100%;
                 height: 160px;
+                padding:5px;
+                color:#333;
+                border: 1px solid #ccc;
                 overflow-y: auto;
             }
         }
         .sample{
-            display:block;
+            clear:both;
+            padding-top:5px;
+            img{
+                display:none;
+                width:100%;
+                height:160px;
+            }
         }
         .sample-tips{
             display:block;

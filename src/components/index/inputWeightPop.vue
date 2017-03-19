@@ -27,7 +27,7 @@
                 span{
                     position:absolute;
                     top: 0px;
-                    font-size: 5px;
+                    font-size: 15px;
                     margin-left: 10px;
                 }
             }
