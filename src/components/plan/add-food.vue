@@ -11,7 +11,7 @@
         <div class="weight-select">
             <div class="food-text">
                 <div>{{total}}千卡</div>
-                <div>{{item.weight}}克</div>
+                <div>{{value}}克</div>
             </div>
             <div class="bd">
                 <div class="weight"><input type="number" @keyup="getNum" v-model="value" id="ruler-input" /><span>g</span></div>
@@ -40,7 +40,7 @@
         props: ['data', 'type', 'isUpdate'],
         computed: {
             total: function () {
-                return (this.item.kcal * this.item.weight / 100).toFixed(2);
+                return (this.item.kcal * this.value / 100).toFixed(2);
             }
         },
         watch: {
