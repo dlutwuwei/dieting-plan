@@ -4,7 +4,7 @@
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>
-            <a href="/buy/buy" slot="right">
+            <a href="/buy/buy" slot="right" v-if="userType==15">
               <mt-button slot="right">直接购买</mt-button>
             </a>
       </mt-header>
@@ -18,8 +18,13 @@
 </template>
 <script>
     export default {
-        components: {
+      data() {
+        return {
+          userType: window.userInfo.type
         }
+      },
+      components: {
+      }
     };
 </script>
 <style lang="scss">

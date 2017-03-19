@@ -59,7 +59,8 @@
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/record/recordsel?time=${this.date}`).then(res => {
-                        let list = res.body[this.date][this.type]
+                        let list = res.body[this.date][this.type];
+                        list.pop();
                         this.data = list;
                     }, () => {
                         MessageBox('注意', '请求失败');
