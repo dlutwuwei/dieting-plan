@@ -8,7 +8,7 @@
       <div class="bd">
           <div class="list-content" :class="{'active': type=='food'}">
               <div class="list-item" v-for="(item, index) in planList.food">
-                <router-link :to="'/plan/detail/food?date=' + i" slot="left" v-for="(t, i) in item">
+                <router-link :to="'/detail/food?date=' + i" slot="left" v-for="(t, i) in item">
                     <div class="date">{{i}}</div>
                     <div>食物：{{t.count}}种</div>
                     <div>摄入：{{t.kcal}}千卡</div>
@@ -17,7 +17,7 @@
           </div>
           <div class="list-content" :class="{'active': type=='sport'}">
               <div class="list-item" v-for="(item, index) in planList.sport">
-                <router-link :to="'/plan/detail/sport?date=' + index" slot="left">
+                <router-link :to="'/detail/sport?date=' + index" slot="left">
                       <div class="date">{{index}}</div>
                       <div>运动时长：{{item.lasttime}}分钟</div>
                       <div>运动消耗：{{item.kcal}}千卡</div>

@@ -4,23 +4,23 @@ const planDetail = require('../views/plan-detail.vue');
 const planDiet = require('../views/plan-diet.vue');
 
 const routers = [{
-    path: '/plan',
+    path: '/',
     component: planList
 },
 {
-    path: '/plan/listt',
+    path: '/listt',
     component: planList
 },
 {
-    path: '/plan/add/:type',
+    path: '/add/:type',
     component: planAdd
 },
 {
-    path: '/plan/diet/:type',
+    path: '/diet/:type',
     component: planDiet
 },
 {
-    path: '/plan/detail/:type',
+    path: '/detail/:type',
     component: planDetail
 }];
 

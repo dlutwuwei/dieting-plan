@@ -8,8 +8,8 @@
       </div>
     </div>
     <div class="cell bottom">
-      <router-link :to="'/plan/diet/sport?date='+date" slot="left">
-        <mt-button type="primary" size="normal">记录运动</mt-button>
+      <router-link :to="'/diet/sport?date='+date" slot="left">
+        <mt-button type="primary" size="normal">修改运动</mt-button>
       </router-link>
     </div>
   </div>

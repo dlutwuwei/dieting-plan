@@ -15,7 +15,7 @@
     </div>
     <div class="cell bottom">
       <router-link :to="url" slot="left">
-        <mt-button type="primary" size="normal">记录饮食</mt-button>
+        <mt-button type="primary" size="normal">修改食谱</mt-button>
       </router-link>
     </div>
   </div>
@@ -30,7 +30,7 @@
       }
     },
     mounted() {
-      this.url = '/plan/diet/' + this.type +'?date=' + getQuery('date');
+      this.url = '/diet/' + this.type +'?date=' + getQuery('date');
       this.total = this.data.pop().bkcal;
     },
     props: {

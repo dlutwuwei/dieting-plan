@@ -16,7 +16,7 @@ $.ajaxSettings.crossDomain = true;
 
 // 实例化VueRouter
 const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     routes
 });
 FastClick.attach(document.body);
