@@ -71,11 +71,10 @@
                 if(!this.isUpdate) {
                     url = '/plan/addsport';
                 }
-                debugger
                 this.$http.post(url, {
                     "pid": this.item.pid,
                     "project": this.item.name,
-                    "kcal": (this.item.kcal * this.value / this.item.weight).toFixed(2),
+                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
                     "longtime": this.value,
                 }).then(response => {
                     if(response.body.success) {
@@ -97,7 +96,7 @@
                     "time": this.value,
                 }).then(response => {
                     if(response.body.success) {
-                        this.$router.push(`/diet/${this.type}?date=${this.date}`);
+                        this.$router.push(`/record/${this.type}?date=${this.date}`);
                     } else {
                         MessageBox('注意', '请求失败');
                     }

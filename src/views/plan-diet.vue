@@ -49,7 +49,8 @@
                 data: [],
                 popupVisible: false,
                 selected: {},
-                type: ''
+                type: '',
+                title: ''
             }
         },
         watch: {
@@ -65,7 +66,7 @@
                 this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
-                    this.$http.get(`/datefood/time/${this.date}`).then(res => {
+                    this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
                         let list = res.body[this.date][this.type]
                         list.pop(); //去掉总卡路里数
                         this.data = list;
@@ -74,9 +75,8 @@
                     });
                 } else {
                     // 运动
-                    this.$http.get(`/plan/datasport?time=${this.date}`).then(res => {
+                    this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
                         let list = [];
-                        debugger
                         if(res.body.success) {
                             list = res.body.massages[this.date];
                         }                        
@@ -203,8 +203,12 @@
                 flex: 1;
                 line-height: 18px;
                 margin-left: 10px;
+                width: 0;
+                white-space: nowrap;
                 .food-name {
                     font-size: 15px;
+                    overflow: hidden;
+                    text-overflow: ellipsis
                 }
                 .food-weight {
                     font-size: 9px;

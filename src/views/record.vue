@@ -6,12 +6,12 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <a :href="'/plan/listt#/record/breakfast?date='+date">
+            <a :href="'/plan/listt#/' + target +'/breakfast?date='+date">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a :href="'/plan/listt#/record/lunch?date='+date">
+             <a :href="'/plan/listt#/' + target + '/lunch?date='+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
@@ -80,6 +80,7 @@
         created() {
             let now = new Date();
             this.date = fmtDate(now, 'yyyy-MM-dd');
+            this.target = window.userInfo.type == '7'? 'record' : 'diet';
         },
         components: {
         }
