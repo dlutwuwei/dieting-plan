@@ -5,16 +5,16 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" :class="{'deleted': item.deleted, 'checked': item.checked}" v-for="(item, index) in data">
-                <span class="food-delete" @click="deleteItem(item, index)"></span>
-                <div class="food" @click="popup(item)">
+            <div class="food-item" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
+                <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue)"></span>
+                <div class="food" @click="checkFood(item,index)">
                     <img :src="item.icon" alt="">
                     <div class="food-info">
                         <div class="food-name">{{item.name}}</div>
                         <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
                     </div>
-                    <div class="food-calories">
-                        {{(item.kcal * ((item.weight / 100) || (item.lasttime / 60))).toFixed(2)}}千卡
+                    <div class="food-calories" @click.stop="popup(item)">
+                        {{item.kcal}}千卡
                     </div>
                 </div>
             </div>
@@ -77,9 +77,9 @@
                     // 运动
                     this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
                         let list = [];
-                        if(res.body.success) {
+                        if (res.body.success) {
                             list = res.body.massages[this.date];
-                        }                        
+                        }
                         this.data = list;
                     }, () => {
                         MessageBox('注意', '请求失败');
@@ -92,31 +92,72 @@
             deleteItem: function (item, i) {
                 if (this.type != 'sport') {
                     this.$http.get(`/Plan/delfood?pid=${item.pid}&class=${type_map[this.type]}`).then(res => {
-                        if(!res.body.success) {
+                        if (!res.body.success) {
                             MessageBox('注意', '删除失败');
                         } else {
-                            this.data.splice(i, 1);
+                            item.isdel = 1;
                         }
                     }, () => {
                         MessageBox('注意', '删除失败');
                     });
                 } else {
-                    debugger
                     this.$http.get(`/Plan/delsport?pid=${item.pid}&time=${this.date}`).then(res => {
-                        if(!res.body.success) {
+                        if (!res.body.success) {
                             MessageBox('注意', '删除失败');
                         } else {
-                            this.data.splice(i, 1);
+                            item.isdel = 1;
                         }
                     }, () => {
                         MessageBox('注意', '删除失败');
                     });
                 }
             },
-            popClose: function() {
+            checkFood: function (item, i) {
+                if(+item.istrue) {
+                    MessageBox('提示', '已经确认完成，无法修改')
+                    return;
+                } else if (+item.isdel) {
+                    MessageBox('提示', '已经从计划中删除')
+                    return;
+                }
+                MessageBox.confirm('确认完成此项计划?').then(action => {
+                    if (this.type != 'sport') {
+                        this.$http.post('/Plan/istruefood', {
+                            id: item.id,
+                            time: this.date,
+                            food: type_map[this.type]
+                        }).then(res => {
+                            if(res.body.success) {
+                                item.istrue = 1;
+                            }else {
+                                MessageBox('注意', '确认失败');
+                            }
+                        });
+                    } else {
+                       this.$http.post('/Plan/istruesport', {
+                            id: item.id,
+                            time: this.date,
+                        }).then(res => {
+                            if(res.body.success) {
+                                item.istrue = 1;
+                            }else {
+                                MessageBox('注意', '确认失败');
+                            }
+                        });
+                    }
+                });
+            },
+            popClose: function () {
                 this.popupVisible = false;
             },
-            popup: function(item) {
+            popup: function (item) {
+                if (+item.isdel) {
+                    MessageBox('提示', '已经从计划中删除')
+                    return;
+                } else if(+item.istrue) {
+                    MessageBox('提示', '已经确认完成，无法修改')
+                    return;
+                }
                 this.selected = item;
                 this.popupVisible = true;
             }
@@ -171,6 +212,22 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            &.deleted {
+                color: #999;
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 44px;
+                }
+            }
+            &.checked {
+                color: #47a304;
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 44px;
+                }
+            }
             .food {
                 display: flex;
                 justify-content: space-between;

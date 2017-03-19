@@ -76,8 +76,10 @@
                     "project": this.item.name,
                     "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
                     "longtime": this.value,
+                    "time": this.date
                 }).then(response => {
                     if(response.body.success) {
+                        this.item.lasttime = this.value;
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     } else {
                         MessageBox('注意', '请求失败');

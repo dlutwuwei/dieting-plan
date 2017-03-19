@@ -16,12 +16,12 @@
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a :href="'/plan/listt#/record/dinner?date='+date">
+             <a :href="'/plan/listt#/' + target + '/dinner?date='+date">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a :href="'/plan/listt#/record/sport?date='+date">
+             <a :href="'/plan/listt#/'+ target + '/sport?date='+date">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>

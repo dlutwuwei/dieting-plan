@@ -34,7 +34,7 @@
         data() {
             return {
                 item: this.data,
-                value: 0
+                value: 0,
             }
         },
         props: ['data', 'type', 'isUpdate'],
@@ -45,6 +45,7 @@
         },
         watch: {
             data(val) {
+                this.value = this.data.weight;
                 if(!val.weight) {
                     val.weight = val.gram;
                 }
@@ -83,6 +84,7 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
+                        this.item.weight = this.value;
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
@@ -213,6 +215,7 @@
                 font-size: 9px;
                 line-height: 45px;
                 color: #999;
+                margin-left: 40px;
             }
         }
     }
