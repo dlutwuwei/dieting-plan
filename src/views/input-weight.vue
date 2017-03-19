@@ -186,7 +186,6 @@
                 //先将当月的日期塞入dateList
                 let dateList = Array.from({ length: currentMonthLength }, (val, index) => {
                     let datestr = year+'-'+(tmpMonth<=9 ? '0' + (tmpMonth+1) : (tmpMonth+1))+'-'+ ((index+1)<=9?'0'+(index+1):(index+1));
-                    console.log(datestr, this.weightData[datestr])
                     return {
                         currentMonth: true,
                         date: index + 1,
@@ -218,7 +217,9 @@
                 }
             },
             nextMonth: function(e) {
-                if (this.now.getTime() < Date.now()) {
+                let nowdate = new Date();
+                let nextMonth = new Date(nowdate.getFullYear(), nowdate.getMonth(), 0);
+                if (this.now.getTime() < nextMonth.getTime()) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
                     this.getMothInfo();
                 }
