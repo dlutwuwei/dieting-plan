@@ -83,13 +83,16 @@
       }
     },
     mounted: function() {
+      if(window.userInfo.type == 0) {
+        location.href = '/buy/buy';
+      }
       this.$http.get('/plan/isfifteen').then(res => {
         if(res.body.success) {
           MessageBox.confirm('15天试用已经到期?').then(action => {
             location.href = '/buy/buy';
           });
         }
-      })
+      });
     },
     components: {
       ReduceWeight,
