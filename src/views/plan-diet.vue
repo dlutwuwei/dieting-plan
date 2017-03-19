@@ -76,7 +76,6 @@
                     // 运动
                     this.$http.get(`/plan/datasport?time=${this.date}`).then(res => {
                         let list = [];
-                        debugger
                         if(res.body.success) {
                             list = res.body.massages[this.date];
                         }                        
