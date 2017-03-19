@@ -97,7 +97,7 @@
                     "time": this.value,
                 }).then(response => {
                     if(response.body.success) {
-                        this.$router.push(`/diet/${this.type}?date=${this.date}`);
+                        this.$router.push(`/record/${this.type}?date=${this.date}`);
                     } else {
                         MessageBox('注意', '请求失败');
                     }

@@ -49,7 +49,8 @@
                 data: [],
                 popupVisible: false,
                 selected: {},
-                type: ''
+                type: '',
+                title: ''
             }
         },
         watch: {
@@ -74,7 +75,7 @@
                     });
                 } else {
                     // 运动
-                    this.$http.get(`/plan/datasport?time=${this.date}`).then(res => {
+                    this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
                         let list = [];
                         if(res.body.success) {
                             list = res.body.massages[this.date];

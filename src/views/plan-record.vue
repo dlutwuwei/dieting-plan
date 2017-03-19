@@ -1,6 +1,6 @@
 <template>
     <div>
-        <mt-header title="添加食物">
+        <mt-header title="添加记录">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
@@ -19,7 +19,7 @@
             </div>
             <div class="cell bottom">
                 <router-link :to="addUrl" slot="left">
-                    <mt-button type="primary" size="normal">自定义添加</mt-button>
+                    <mt-button type="primary" size="normal">添加记录</mt-button>
                 </router-link>
             </div>
         </div>

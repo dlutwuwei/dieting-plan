@@ -107,7 +107,7 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.$router.push(`/diet/${this.type}?date=${this.date}`);
+                        this.$router.push(`/record/${this.type}?date=${this.date}`);
                     }
                     // get body data
                 }, response => {
