@@ -203,8 +203,12 @@
                 flex: 1;
                 line-height: 18px;
                 margin-left: 10px;
+                width: 0;
+                white-space: nowrap;
                 .food-name {
                     font-size: 15px;
+                    overflow: hidden;
+                    text-overflow: ellipsis
                 }
                 .food-weight {
                     font-size: 9px;

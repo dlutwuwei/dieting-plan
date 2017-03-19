@@ -10,10 +10,10 @@
                     <img :src="item.icon" alt="">
                     <div class="food-info">
                         <div class="food-name">{{item.name}}</div>
-                        <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
+                        <div class="food-weight">{{item.weight || item.lasttime || 0}}{{type=='sport'?'分钟':'克'}}</div>
                     </div>
                     <div class="food-calories">
-                        {{(item.kcal * ((item.weight / 100) || (item.lasttime / 60))).toFixed(2)}}千卡
+                        {{(item.kcal * (( (item.weight||0) / 100) || ((item.lasttime||0) / 60))).toFixed(2)}}千卡
                     </div>
                 </div>
             </div>
@@ -58,9 +58,8 @@
                 this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
-                    this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
+                    this.$http.get(`/record/recordsel?time=${this.date}`).then(res => {
                         let list = res.body[this.date][this.type]
-                        list.pop(); //去掉总卡路里数
                         this.data = list;
                     }, () => {
                         MessageBox('注意', '请求失败');
@@ -171,8 +170,13 @@
                 flex: 1;
                 line-height: 18px;
                 margin-left: 10px;
+                width: 0;
+                white-space: nowrap;
                 .food-name {
                     font-size: 15px;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis
                 }
                 .food-weight {
                     font-size: 9px;
