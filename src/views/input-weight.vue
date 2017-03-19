@@ -58,17 +58,13 @@
                 box-pack: justify;
                 font-size: 15px;
                 color: #333;
+                position: relative;
+                padding:3px;
                 span {
-                    width: 100px;
                     box-flex: 1;
                     -webkit-box-flex: 1;
                     display: block;
                     text-align: center;
-                }
-            }
-            li {
-                position: relative;
-                span {
                     height: 55px;
                     padding-top: 12px;
                     line-height: 1.2;
@@ -94,7 +90,7 @@
                 content: " ";
                 position: absolute;
                 background-color: #e6e6e6;
-                bottom: -0.2rem;
+                bottom: 1px;
                 left: 0;
                 right: 0;
                 width: 100%;
@@ -102,6 +98,22 @@
                 -webkit-transform: scaleY(0.5);
                 transform: scaleY(0.5);
             }
+        }
+    }
+    @media screen and (max-width: 414px) {
+        .input-weight .bd li span{
+            height:57px;
+        }
+    }
+    @media screen and (max-width: 414px) {
+        .input-weight .bd li span{
+            height:55px;
+        }
+    }
+    @media screen and (max-width: 320px) {
+        .input-weight .bd li span{
+            height:46px;
+            padding-top:8px;
         }
     }
 </style>

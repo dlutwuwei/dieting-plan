@@ -56,16 +56,21 @@
             background: #e3547d url(../assets/images/record/zaocan.png);
         }
         .lunch {
-            background: #fd635e url(../assets/images/record/zhongcan.png);     
+            background: #fd635e url(../assets/images/record/zhongcan.png);
         }
         .supper {
-            background: #f98d61 url(../assets/images/record/wancan.png);     
+            background: #f98d61 url(../assets/images/record/wancan.png);
         }
         .sport {
-            background: #4fd3c0 url(../assets/images/record/yundong.png);     
+            background: #4fd3c0 url(../assets/images/record/yundong.png);
         }
         .weight {
-            background: #7a9cf0 url(../assets/images/record/tizhong.png);     
+            background: #7a9cf0 url(../assets/images/record/tizhong.png);
+        }
+    }
+    @media screen and (max-width: 320px) {
+        .record-container div.btn{
+            margin:30px 24px 0 30px;
         }
     }
 </style>
