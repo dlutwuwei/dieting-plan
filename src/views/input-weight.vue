@@ -140,7 +140,7 @@
             </div>
         </div>
         <mt-popup class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
-            <InputWeightPop v-on:popClose="popClose" :data="selected"></InputWeightPop>
+            <InputWeightPop v-on:popClose="popClose" :data="selected" :dateString="dateString"></InputWeightPop>
         </mt-popup>
     </div>
 </template>
@@ -156,17 +156,23 @@
                 popupVisible: false,
                 selected: {},
                 now: new Date(),
+                dateString: '',
                 weightList: [],
+                weightData: {}
             }
         },
         watch: {
+            // weightList(list) {
+            //     if(list&&this.weightData) {
+            //         list.forEach(item => {
+            //             this.weightData[item.time] = item.weight;
+            //         });
+            //     }
+            //     return list;
+            // }
         },
         created() {
             this.now = new Date();
-            this.data = {}; // store all data for month weight records;
-            this.data[new Date().toLocaleDateString()] = window.weightCurveData;
-            this.weightList = window.weightCurveData;
-            this.weightData = {};
         },
         computed: {
             dateList() {
@@ -175,13 +181,16 @@
                 let tmpMonth = now.getMonth();
                 let date = now.getDate();
                 //获取当月的天数
-                let currentMonthLength = new Date(year, tmpMonth + 1, 0).getDate()
+                let currentMonthLength = new Date(year, tmpMonth + 1, 0).getDate();
+
                 //先将当月的日期塞入dateList
                 let dateList = Array.from({ length: currentMonthLength }, (val, index) => {
+                    let datestr = year+'-'+(tmpMonth<=9 ? '0' + (tmpMonth+1) : (tmpMonth+1))+'-'+ ((index+1)<=9?'0'+(index+1):(index+1));
+                    console.log(datestr, this.weightData[datestr])
                     return {
                         currentMonth: true,
                         date: index + 1,
-                        value: this.weightData[year+'-'+(tmpMonth<=9 ? '0' + tmpMonth: tmpMonth)+'-'+ (index+1)]
+                        value: this.weightData[datestr]
                     }
                 });
                 //获取当月1号的星期是为了确定在1号前需要插多少天
@@ -205,39 +214,38 @@
             prevMonth: function(e){
                 if (Date.now() > new Date(new Date().getFullYear()-1, 0, 1)) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()-1, this.now.getDate());
-                    let prevData = fmtDate(this.now, 'yyyy-MM');
-
-                    this.$http.get(`/Weight/weightsearch?time=${prevData}`).then(res => {
-                        this.weightList = res.data;
-                    }, res=>{
-                        MessageBox('注意', '获取信息失败');
-                    });
+                    this.getMothInfo();
                 }
             },
             nextMonth: function(e) {
                 if (this.now.getTime() < Date.now()) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
-                    let nextData = fmtDate(this.now, 'yyyy-MM');
-
-                    this.$http.get(`/Weight/weightsearch?time=${nextData}`).then(res => {
-                        this.weightList = res.data;
-                    }, res=>{
-                        MessageBox('注意', '获取信息失败');
-                    });
+                    this.getMothInfo();
                 }
             },
             onPopup: function (item) {
                 this.popupVisible = true;
+                let now = this.now;
+                let year = now.getFullYear();
+                let tmpMonth = now.getMonth()+1;
+                let date = item.date;
                 this.selected = item;
+                this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
             },
             popClose: function () {
                 this.popupVisible = false;
             },
             getMothInfo: function(){
-
-                let postData = fmtDate(new Date(), 'yyyy-MM');
+                let postData = fmtDate(this.now, 'yyyy-MM');
                 this.$http.get(`/Weight/weightsearch?time=${postData}`).then(res => {
-                    this.weightList = res.data;
+                    if(res.body.success) {
+                        this.weightList = res.body.data;
+                        let data = {};
+                        this.weightList.forEach(item => {
+                            data[item.time] = parseFloat(item.weight).toFixed(1);
+                        });
+                        this.weightData = data;
+                    }
                 }, res=>{
                     MessageBox('注意', '获取信息失败');
                 });

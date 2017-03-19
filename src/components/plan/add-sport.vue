@@ -73,6 +73,7 @@
                 }
                 this.$http.post(url, {
                     "pid": this.item.pid,
+                    "id": this.item.id,
                     "project": this.item.name,
                     "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
                     "longtime": this.value,

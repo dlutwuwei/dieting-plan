@@ -28,10 +28,11 @@
             <div class="detail-title">目前活动量</div>
             <select class="select-item" v-model="activity">
                 <option value="0">未选择</option>
-                <option value="1">少量活动</option>
-                <option value="2">轻度活动</option>
-                <option value="3">中度活动</option>
-                <option value="4">重度活动</option>
+                <option value="1">极少活动</option>
+                <option value="2">少量活动</option>
+                <option value="3">轻度活动</option>
+                <option value="4">中度活动</option>
+                <option value="5">重度活动</option>
 
             </select>
             <span class="explain" @click="popupAcivity=true">!</span>
@@ -67,10 +68,10 @@
         <mt-popup class="select-popup" v-model="popupReduce" popup-transition="popup-fade">
             <div class="main">
                 <p>只节食不运动：长时间坐在办公室、教室里、很少或是完全没有运动的人。</p>
-                <p>少量运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
-                <p>轻度运动：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
-                <p>中度运动：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
-                <p>重度运动：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
+                <p>大量节食稍微运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
+                <p>节食运动一半一半：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
+                <p>多运动稍微节食：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
+                <p>只运动不节食：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
             </div>
             <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupReduce=false">我知道</mt-button></div>
         </mt-popup>

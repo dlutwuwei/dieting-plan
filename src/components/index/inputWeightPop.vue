@@ -104,7 +104,7 @@
                 item: this.data
             }
         },
-        props: ['popClose', 'data'],
+        props: ['popClose', 'data', 'dateString'],
         watch: {
             data(val) {
                 this.item = val;
@@ -116,11 +116,9 @@
                 this.item.value = this.oldData;
             },
             save: function () {
-                let noData = fmtDate(new Date(), 'yyyy-mm-dd');
-
                 let postdata = {
                     weight: this.item.value,
-                    time: noData,
+                    time: this.dateString,
                 }
                 this.$http.post('/Weight/weightadd', postdata).then(res=>{
                     console,log(res.body)

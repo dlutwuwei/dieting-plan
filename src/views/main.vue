@@ -60,6 +60,7 @@
   import WeightCurve from '../components/index/weightCurve.vue';//能量盘
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
+  import { MessageBox } from 'mint-ui';
 
   export default {
     data() {
@@ -81,7 +82,15 @@
         this.$refs.picker.open();
       }
     },
-
+    mounted: function() {
+      this.$http.get('/plan/isfifteen').then(res => {
+        if(res.body.success) {
+          MessageBox.confirm('15天试用已经到期?').then(action => {
+            location.href = '/buy/buy';
+          });
+        }
+      })
+    },
     components: {
       ReduceWeight,
       DarenList,

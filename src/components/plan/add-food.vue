@@ -75,6 +75,7 @@
                 }
                 this.$http.post(url, {
                     "food": type_map[this.type],
+                    "id": this.item.id,
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(2),

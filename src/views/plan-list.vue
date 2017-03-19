@@ -1,8 +1,7 @@
 <template>
     <div style="height: 100%;">
         <mt-header title="鸣鹿健康">
-            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <!--<mt-button icon="more" slot="right"></mt-button>-->
+            <a href="/" slot="left" ><mt-button icon="back">首页</mt-button></a>
         </mt-header>
         <list-tab></list-tab>
     </div>
