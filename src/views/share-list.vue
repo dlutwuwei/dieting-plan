@@ -74,7 +74,7 @@
                 history.back();
             }
         },
-        created() {
+        mounted() {
             this.getShareList();
             this.getMyShareList();
         }
