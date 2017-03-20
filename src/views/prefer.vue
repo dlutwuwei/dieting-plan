@@ -29,8 +29,8 @@
     const next = {
         breakfast: 'lunch',
         lunch: 'supper',
-        supper: 'sports',
-        sports: 'foodRestrict',
+        supper: 'sport',
+        sport: 'foodRestrict',
         foodRestrict: 'sportRestrict',
         sportRestrict: null,
         reason: null
@@ -47,7 +47,7 @@
         },
         methods: {
             addMore: function() {
-                location.href = "/plan/listt/#/add/breakfast?prefer=" + this.type;
+                location.href = "/plan/listt/#/add/" + this.type + "?prefer=" + this.type;
             },
             select: function (item, e) {
                 if (!this.selected[this.type]) {
@@ -71,23 +71,25 @@
                 this.selected[this.type].push(item);
             },
             post_prefer: function (e) {
+                // 发送饮食偏好
                 let target;
                 let type = this.type || 'breakfast';
                 if (next[type || 'breakfast'] == 'foodRestrict') {
                     let data = {
-                        breakfast: this.selected.breakfast,
-                        lunch: this.selected.lunch,
-                        dinner: this.selected.dinner,
+                        breakfast: this.selected.breakfast || [],
+                        lunch: this.selected.lunch || [],
+                        dinner: this.selected.dinner || [],
+                        sport: this.selected.sport || []
                     };
                      // 添加食物或者偏好
                     this.$http.post('/Pre/addfood', data).then(response => {
                         let res = response.body;
-                        if (res.success) {
+                        // if (res.success) {
                             target = '/prefer/prefer/' + next[type || 'breakfast'];
                             this.$router.push({
                                 path: target
                             });
-                        }
+                        // }
                     }, err => {
                         MessageBox('注意', '请求失败');
                     });
@@ -149,7 +151,6 @@
                         icon: item.icon
                     })
                 });
-                console.log(moreItems)
                 //将添加的值加入
                 data = data.concat(moreItems);
                 data.forEach(item => {
@@ -181,7 +182,7 @@
                 breakfast: '早餐选择',
                 lunch: '午餐选择',
                 supper: '晚餐选择',
-                sports: '运动选择',
+                sport: '运动选择',
                 foodRestrict: '饮食限制',
                 sportRestrict: '运动限制',
                 reason: '肥胖原因'
@@ -289,7 +290,7 @@
                         icon: 'yu.png'
                     }
                 ],
-                sports: [
+                sport: [
                     {
                         pid: 1,
                         food_type: "登山",
