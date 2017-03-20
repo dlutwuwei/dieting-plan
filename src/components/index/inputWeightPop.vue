@@ -86,7 +86,9 @@
               <div class="hd">今天</div>
               <div class="bd">
                   <div class="weight"><input type="number" @keyup="getNum" v-model="item.value" id="ruler-input"/> <span>kg</span></div>
-                  <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
+
+                  <div class="calipers" v-if="parseInt(item.value) != 0"><em id="ruler-em" :style="{ left: (item.value-parseInt(item.value))*102 + 150 + 'px' }"></em><span class="one">{{parseInt(item.value) - 1}}</span><span class="two">{{parseInt(item.value)}}</span><span class="three">{{parseInt(item.value) +1}}</span></div>
+                  <div class="calipers" v-else><em id="ruler-em"></em><span class="one">0</span><span class="two">1</span><span class="three">2</span></div>
               </div>
               <div class="bot"><span @click="cancel">取消</span><span @click="save">保存</span></div>
           </div>

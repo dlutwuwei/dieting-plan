@@ -1,5 +1,6 @@
 
 require("./jweixin");
+import $ from 'webpack-zepto';
 
 module.exports = WxShare;
 
@@ -12,11 +13,20 @@ function WxShare() {
 /*获取配置文件*/
 WxShare.prototype.getConfig = function (callback) {
     var self = this;
-    toAjax('/stock/share/js_config', {url: window.location.href}, function (error, result) {
-        if (error) {
-            return callback(error, result.errmsg || '');
+
+    $.ajax({
+        type: 'post',
+        url: '/share/js_config',
+        data: {url: window.location.href},
+        timeout: 10000,
+        success: function (result) {
+            callback(null, result.data);
+        },
+        error: function (error) {
+            if (error) {
+                return callback(error, result.errmsg || '');
+            }
         }
-        callback(null, result.data);
     });
 };
 

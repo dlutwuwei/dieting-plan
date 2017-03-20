@@ -231,10 +231,13 @@
                 let tmpMonth = now.getMonth()+1;
                 let date = item.date;
                 this.selected = item;
+                this.selected.value = item.value || 0;
                 this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
             },
             popClose: function () {
                 this.popupVisible = false;
+                let rulerEm = document.getElementById('ruler-em');
+                rulerEm.style.left = '150px';
             },
             getMothInfo: function(){
                 let postData = fmtDate(this.now, 'yyyy-MM');
