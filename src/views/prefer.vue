@@ -14,7 +14,7 @@
                 </div>
                 <div class="add-item">
                     <div class="icon">
-                        <a :href="'/plan/add/'+type"><img src="../assets/images/jianfei/add.png" alt=""></a>
+                        <a :href="'/plan/listt/#/add/' + type + '?prefer=1'"><img src="../assets/images/jianfei/add.png" alt=""></a>
                         </a>
                     </div>
                     <div class="name">自定义</div>
@@ -30,7 +30,7 @@
     const next = {
         breakfast: 'lunch',
         lunch: 'supper',
-        supper: 'sports',
+        supper: 'sport',
         sports: 'restrict',
         restrict: null,
     };
@@ -415,6 +415,7 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            padding-bottom: 100px;
             .item,
             .add-item {
                 margin-top: 15px;

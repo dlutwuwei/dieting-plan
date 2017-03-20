@@ -51,7 +51,9 @@
             },
             popUp: function (index) {
                 if(this.isPrefer) {
-                    let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.type) || []);
+                    debugger
+                    let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.type) || '[]');
+                    debugger
                     tempPrefers.push(this.data[index]);
                     localStorage.setItem('luming' + this.type, JSON.stringify(tmpPrefers));
                     location.href = '/prefer/prefer/' + this.type;
