@@ -3,7 +3,7 @@
     <div class="food-title">
       {{title}}<span>（建议摄入{{total}}千卡）</span>
     </div>
-    <div class="food-item" v-for="item in data">
+    <div class="food-item" v-if="!+item.isdel" v-for="item in data">
       <img :src="item.icon" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>

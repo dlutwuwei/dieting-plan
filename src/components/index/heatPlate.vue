@@ -92,12 +92,12 @@
             </router-link>
             <div class="bd-bot" v-for="item in heatPlate">
                 <div class="info ncf-box">
-                    <a :href="'/plan/listt/#/detail/food?date=' + date">
+                    <router-link to="/index/record">
                     <div class="item">
                         <h5>摄入</h5>
                         <p>{{item.left}}</p>
                     </div>
-                    </a>
+                    </router-link>
                     <div class="item">
                         <h5>还可以吃/千卡</h5>
                         <p>{{item.obtain}}</p>

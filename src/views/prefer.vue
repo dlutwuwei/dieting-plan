@@ -13,9 +13,14 @@
                     <div class="name">{{item.food_type}}</div>
                 </div>
                 <div class="add-item">
+<<<<<<< Updated upstream
                     <div class="icon">
                         <a :href="'/plan/listt/#/add/' + type + '?prefer=1'"><img src="../assets/images/jianfei/add.png" alt=""></a>
                         </a>
+=======
+                    <div class="icon" @click="addMore">
+                        <img src="../assets/images/jianfei/add.png" alt="">
+>>>>>>> Stashed changes
                     </div>
                     <div class="name">自定义</div>
                 </div>
@@ -30,9 +35,11 @@
     const next = {
         breakfast: 'lunch',
         lunch: 'supper',
-        supper: 'sport',
-        sports: 'restrict',
-        restrict: null,
+        supper: 'sports',
+        sports: 'foodRestrict',
+        foodRestrict: 'sportRestrict',
+        sportRestrict: null,
+        reason: null
     };
     import { MessageBox } from 'mint-ui';
     export default {
@@ -45,13 +52,15 @@
             }
         },
         methods: {
+            addMore: function() {
+                location.href = "";
+            },
             select: function (item, e) {
                 if (!this.selected[this.type]) {
                     this.selected[this.type] = [];
                 }
 
                 if(item.value) {
-                    debugger
                     item.value =false;
                     let index;
                     this.selected[this.type].forEach( (m, i) => {
@@ -70,9 +79,14 @@
             post_prefer: function (e) {
                 let target;
                 let type = this.type || 'breakfast';
-                if (next[type || 'breakfast'] == 'restrict') {
-                    // 添加食物或者偏好
-                    this.$http.post('/Pre/addfood', this.selected[this.type]).then(response => {
+                if (next[type || 'breakfast'] == 'foodRestrict') {
+                    let data = {
+                        breakfast: this.selected.breakfast,
+                        lunch: this.selected.lunch,
+                        dinner: this.selected.dinner,
+                    };
+                     // 添加食物或者偏好
+                    this.$http.post('/Pre/addfood', data).then(response => {
                         let res = response.body;
                         if (res.success) {
                             target = '/prefer/prefer/' + next[type || 'breakfast'];
@@ -82,18 +96,22 @@
                         }
                     }, err => {
                         MessageBox('注意', '请求失败');
-                    })
+                    });
 
                 } else if (next[type] == null) {
 
-                    if(type === 'restrict') {
+                    if(type === 'sportRestrict') {
                         // 提交饮食限制
-                        let restrict = this.selected['restrict']
+                        let restrict = {
+                            food: this.selected['foodRestrict'],
+                            sport: this.selected['sportRestrict']
+                        };
                         if(!restrict) {
                             MessageBox('注意', '请选择饮食限制');
                             return;
                         }
                         this.$http.post('/Restrict/addplace', restrict).then(response => {
+                            debugger
                             let res = response.body;
                             if (res.success) {
                                 location.href = '/buy/buy?type=15';
@@ -156,7 +174,8 @@
                 lunch: '午餐选择',
                 supper: '晚餐选择',
                 sports: '运动选择',
-                restrict: '饮食限制',
+                foodRestrict: '饮食限制',
+                sportRestrict: '运动限制',
                 reason: '肥胖原因'
             };
             this.type = this.type || 'breakfast';
@@ -317,7 +336,7 @@
                         icon: 'zuqiu.png'
                     }
                 ],
-                restrict: [
+                foodRestrict: [
                     {
                         pid: 1,
                         food_type: "羊肉",
@@ -330,7 +349,7 @@
                     },
                     {
                         pid: 1,
-                        food_type: "登山",
+                        food_type: "猪肉",
                         icon: 'dengshan.png'
                     },
                 ],
@@ -389,6 +408,23 @@
                         icon: 'zuqiu.png'
                     }
                 ],
+                sportRestrict: [
+                    {
+                        pid: 1,
+                        food_type: "游泳",
+                        icon: 'yangrou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跑步",
+                        icon: 'yu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "登山",
+                        icon: 'dengshan.png'
+                    },
+                ]
             };
         }
     }
