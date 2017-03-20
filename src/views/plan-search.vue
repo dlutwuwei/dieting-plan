@@ -50,16 +50,16 @@
                 history.back();
             },
             popUp: function (index) {
-                if(this.isPrefer) {
-                    debugger
-                    let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.type) || '[]');
-                    debugger
-                    tempPrefers.push(this.data[index]);
-                    localStorage.setItem('luming' + this.type, JSON.stringify(tmpPrefers));
-                    location.href = '/prefer/prefer/' + this.type;
+                this.selected = this.data[index];
+                if(this.preferType) {
+                    // 偏好添加
+                    let x = this.selected;
+                    let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.preferType) || '{}');
+                    tmpPrefers[x.name] = x;
+                    localStorage.setItem('luming' + this.preferType, JSON.stringify(tmpPrefers));
+                    location.href = '/prefer/prefer/' + this.preferType;
                     return;
                 }
-                this.selected = this.data[index];
                 this.popupVisible = true;
             },
             popClose: function() {
@@ -88,7 +88,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
-            this.isPrefer = !!getQuery('prefer');
+            this.preferType = getQuery('prefer');
             if(this.isPrefer) {
                 this.title = "自定义偏好"
             } else if(this.type=='sport'){

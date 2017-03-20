@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="cell bottom" v-if="!record">
+            <div class="cell bottom">
                 <router-link :to="addUrl" slot="left">
                     <mt-button type="primary" size="normal">自定义添加</mt-button>
                 </router-link>

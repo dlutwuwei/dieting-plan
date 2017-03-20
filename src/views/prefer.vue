@@ -12,7 +12,7 @@
                     <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
                 </div>
-                <div class="add-item"></a>
+                <div class="add-item">
                     <div class="icon" @click="addMore">
                         <img src="../assets/images/jianfei/add.png" alt="">
                     </div>
@@ -47,7 +47,7 @@
         },
         methods: {
             addMore: function() {
-                location.href = "";
+                location.href = "/plan/listt/#/add/breakfast?prefer=" + this.type;
             },
             select: function (item, e) {
                 if (!this.selected[this.type]) {
@@ -139,6 +139,19 @@
             fetchData: function (e) {
                 this.type =this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
+                let adds = JSON.parse(localStorage.getItem('luming' + this.type)||'{}');
+                let moreItems = [];
+                Object.keys(adds).forEach(name => {
+                    let item = adds[name];
+                    moreItems.push({
+                        food_type: item.name,
+                        id: item.pid,
+                        icon: item.icon
+                    })
+                });
+                console.log(moreItems)
+                //将添加的值加入
+                data = data.concat(moreItems);
                 data.forEach(item => {
                     if(item.value === undefined) {
                         item.value = false;
@@ -154,13 +167,14 @@
         },
         mounted() {
             this.type = this.$route.params.type || 'breakfast';
-            let data = window.data[this.type ];
+            let data = window.data[this.type];
             data.forEach(item => {
                 item.value = false;
             });
             this.items = data;
-
             this.title = window.titles[this.type];
+            // 首次载入
+            this.fetchData();
         },
         created() {
             window.titles = {
