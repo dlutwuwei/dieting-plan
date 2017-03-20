@@ -1,6 +1,6 @@
 <template>
   <div class="sport-card">
-    <div class="sport-item" v-for="item in data">
+    <div class="sport-item" v-if="!+item.isdel" v-for="item in data">
       <div class="sport-info">
         <div class="sport-name">运动项目：{{item.name}}<img :src="item.icon" alt=""></div>
         <div class="sport-weight">运动时长：{{item.lasttime}}分钟</div>
