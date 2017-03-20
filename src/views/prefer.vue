@@ -12,15 +12,9 @@
                     <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
                 </div>
-                <div class="add-item">
-<<<<<<< Updated upstream
-                    <div class="icon">
-                        <a :href="'/plan/listt/#/add/' + type + '?prefer=1'"><img src="../assets/images/jianfei/add.png" alt=""></a>
-                        </a>
-=======
+                <div class="add-item"></a>
                     <div class="icon" @click="addMore">
                         <img src="../assets/images/jianfei/add.png" alt="">
->>>>>>> Stashed changes
                     </div>
                     <div class="name">自定义</div>
                 </div>
