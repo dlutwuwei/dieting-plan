@@ -47,7 +47,6 @@
                 <option value="4">多运动稍微节食</option>
                 <option value="5">只运动不节食</option>
             </select>
-            <span class="explain" @click="popupReduce=true">!</span>
         </div>
         <div class="bottom-cell">
             <mt-button type="primary" size="normal" v-on:click="post_info">下一步</mt-button>
@@ -65,16 +64,6 @@
             </div>
             <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupAcivity=false">我知道</mt-button></div>
         </mt-popup>
-        <mt-popup class="select-popup" v-model="popupReduce" popup-transition="popup-fade">
-            <div class="main">
-                <p>只节食不运动：长时间坐在办公室、教室里、很少或是完全没有运动的人。</p>
-                <p>大量节食稍微运动：偶尔运动或散步、逛街、到郊外踏青，每周大约少量运动1~3次的人。</p>
-                <p>节食运动一半一半：有持续运动的习惯，或是会上健身房，每周大约运动3~6次的人。</p>
-                <p>多运动稍微节食：热爱运动，每周运动6~7次，或是工作量相当大的人。</p>
-                <p>只运动不节食：工作或生活作息需要大量劳动，相当消耗能量的人。</p>
-            </div>
-            <div class="bot"><mt-button type="primary" size="normal" v-on:click="popupReduce=false">我知道</mt-button></div>
-        </mt-popup>
     </div>
 </template>
 <script>
@@ -91,7 +80,6 @@
                 weight: '',
                 reduce: 0,
                 popupAcivity: false,
-                popupReduce: false,
             }
         },
         methods: {
