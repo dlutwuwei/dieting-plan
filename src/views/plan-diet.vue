@@ -5,8 +5,8 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" v-if="(!(record&&+item.isdel))||!record" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
-                <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue||record)"></span>
+            <div class="food-item" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
+                <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue)"></span>
                 <span class="food-check" v-if="+item.istrue"></span>
                 <div class="food" @click="checkFood(item,index)">
                     <img :src="item.icon" alt="">
