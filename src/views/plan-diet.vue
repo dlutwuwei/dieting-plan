@@ -5,8 +5,8 @@
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
-            <div class="food-item" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
-                <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue)"></span>
+            <div class="food-item" v-if="(!(record&&+item.isdel))||!record" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
+                <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue||record)"></span>
                 <span class="food-check" v-if="+item.istrue"></span>
                 <div class="food" @click="checkFood(item,index)">
                     <img :src="item.icon" alt="">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-            <div class="cell bottom">
+            <div class="cell bottom" v-if="!record">
                 <router-link :to="addUrl" slot="left">
                     <mt-button type="primary" size="normal">自定义添加</mt-button>
                 </router-link>
@@ -179,6 +179,9 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
+
+            //如果是记录页面不显示删除，不能添加，隐藏添加按钮
+            this.record = !!(+getQuery('record'));
             this.addUrl = `/add/${this.type}?date=${this.date}`;
         }
     }

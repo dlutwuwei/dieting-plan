@@ -6,22 +6,22 @@
             </router-link>
         </mt-header>
         <div class="record-container">
-            <a :href="'/plan/listt#/' + target +'/breakfast?date='+date">
+            <a :href="'/plan/listt#/' + target +'/breakfast?record=1&date='+date">
                 <div class="btn breakfast">
                 </div>
                 <div class="name">早餐</div>
             </a>
-             <a :href="'/plan/listt#/' + target + '/lunch?date='+date">
+             <a :href="'/plan/listt#/' + target + '/lunch?record=1&date='+date">
                 <div class="btn lunch">
                 </div>
                 <div class="name">午餐</div>
             </a>
-             <a :href="'/plan/listt#/' + target + '/dinner?date='+date">
+            <a :href="'/plan/listt#/' + target + '/dinner?record=1&date='+date">
                 <div class="btn supper">
                 </div>
                 <div class="name">晚餐</div>
             </a>
-             <a :href="'/plan/listt#/'+ target + '/sport?date='+date">
+             <!--<a :href="'/plan/listt#/'+ target + '/sport?date='+date">
                 <div class="btn sport">
                 </div>
                 <div class="name">运动</div>
@@ -30,7 +30,7 @@
                 <div class="btn weight">
                 </div>
                 <div class="name">体重</div>
-            </router-link>
+            </router-link>-->
         </div>
     </div>
 </template>
