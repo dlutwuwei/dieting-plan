@@ -47,15 +47,7 @@
         },
         methods: {
             addMore: function() {
-                let type = '';
-                if(this.type == 'foodRestrict') {
-                    type = 'food';
-                }else if(this.type == 'sportRestrict') {
-                    type = 'sport';
-                }else {
-                    type = this.type;
-                }
-                location.href = "/plan/listt/#/add/" + this.type + "?prefer=" + type;
+                location.href = "/plan/listt/#/add/" + this.type + "?prefer=" + this.type;
             },
             select: function (item, e) {
                 if (!this.selected[this.type]) {

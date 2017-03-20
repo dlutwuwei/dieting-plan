@@ -67,7 +67,13 @@
             },
             fetchData: function(val, type) {
                 if(val.trim()==='') return;
-                this.$http.get(`/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val.trim()}`).then(response => {
+                let target = '';
+                if (type=='sport'||this.preferType=='sport' || this.preferType=='sportRestrict') {
+                    target = 'sportsearch';
+                } else {
+                    target = 'foodsearch';
+                }
+                this.$http.get(`/Record/${target}?name=${val.trim()}`).then(response => {
                     // get body data
                     let res = response.body;
                     if(res.success) {
