@@ -7,6 +7,7 @@
         <div class="food-card">
             <div class="food-item" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
                 <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue)"></span>
+                <span class="food-check" v-if="+item.istrue"></span>
                 <div class="food" @click="checkFood(item,index)">
                     <img :src="item.icon" alt="">
                     <div class="food-info">
@@ -217,16 +218,11 @@
                 &:before {
                     content: '';
                     display: block;
-                    width: 44px;
+                    width: 34px;
                 }
             }
             &.checked {
                 color: #47a304;
-                &:before {
-                    content: '';
-                    display: block;
-                    width: 44px;
-                }
             }
             .food {
                 display: flex;
@@ -249,7 +245,14 @@
                 border-radius: 50%;
                 background: #fe0100;
                 text-align: center;
-                margin-right: 20px;
+                margin-right: 10px;
+            }
+            .food-check{
+                width: 24px;
+                height: 24px;
+                background: url(../assets/images/xuanzhong.png) no-repeat;
+                background-size: cover;
+                margin-right: 10px;
             }
             img {
                 height: 30px;
