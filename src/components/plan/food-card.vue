@@ -3,7 +3,7 @@
     <div class="food-title">
       {{title}}<span>（建议摄入{{total}}千卡）</span>
     </div>
-    <div class="food-item" v-if="!+item.isdel" v-for="item in data">
+    <div class="food-item" v-if="!+item.isdel" :class="{'checked': +item.istrue}" @click="onItemClick(item, type)" v-if="!+item.isdel" v-for="item in data">
       <img :src="item.icon" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>
@@ -34,11 +34,12 @@
       this.total = this.data.pop().bkcal;
     },
     props: {
-      data: Object,
+      data: Array,
       title: String,
       calories: String,
       type: String,
       date: String,
+      onItemClick: Function
     },
   }
 
