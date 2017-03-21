@@ -6,7 +6,7 @@
     <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
     <!--<sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>-->
     <div v-if="type=='sport'" class="food-card">
-        <div class="food-item" v-if="!+item.isdel" @click="checkFood(item,index)" :class="{'checked': +item.istrue}" v-for="(item, index) in sportList">
+        <div class="food-item" v-if="!+item.isdel" @click="checkFood(item,type)" :class="{'checked': +item.istrue}" v-for="(item, index) in sportList">
             <div class="food">
                 <img :src="item.icon" alt="">
                 <div class="food-info">
