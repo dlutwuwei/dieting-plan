@@ -54,7 +54,15 @@
                     });
                 } else {
                     // 运动
-                    this.sportList = [window.sportList[0][this.date]];
+                    this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
+                        let list = [];
+                        if (res.body.success) {
+                            list = res.body.massages[this.date];
+                        }
+                        this.sportList = list;
+                    }, () => {
+                        MessageBox('注意', '请求失败');
+                    });
                 }
             },
         },
