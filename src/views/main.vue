@@ -37,6 +37,7 @@
 
     <template v-else>
       <!--老用户-->
+
       <HeatPlate :heat-plate="heatPlate"></HeatPlate>
       <!--e:能量盘-->
 
