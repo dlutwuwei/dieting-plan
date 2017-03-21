@@ -11,7 +11,7 @@
                 <img :src="item.icon" alt="">
                 <div class="food-info">
                     <div class="food-name">{{item.name}}</div>
-                    <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
+                    <div class="food-weight">{{item.lasttime}}分钟</div>
                 </div>
                 <div class="food-calories">
                     {{item.kcal}}千卡
