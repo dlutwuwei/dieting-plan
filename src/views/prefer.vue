@@ -192,45 +192,13 @@
                 breakfast: [
                     {
                         pid: 1,
-                        food_type: "包子",
-                        icon: 'baozi.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "豆浆",
-                        icon: 'doujiang.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "豆类",
-                        icon: 'doulei.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "麦片",
-                        icon: 'maipian.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "馒头",
-                        icon: 'mantou.png'
-                    },
-                    {
-                        pid: 1,
                         food_type: "粥",
                         icon: 'zhou.png'
-                    }
-                ],
-                lunch: [
-                    {
-                        pid: 1,
-                        food_type: "面条",
-                        icon: 'miantiao.png'
                     },
                     {
                         pid: 1,
-                        food_type: "米饭",
-                        icon: 'mifan.png'
+                        food_type: "汤",
+                        icon: 'tang.png'
                     },
                     {
                         pid: 1,
@@ -239,16 +207,67 @@
                     },
                     {
                         pid: 1,
+                        food_type: "豆浆",
+                        icon: 'doujiang.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "酸奶",
+                        icon: 'doulei.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "包子",
+                        icon: 'baozi.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "馒头",
+                        icon: 'mantou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "米饭",
+                        icon: 'mifan.png'
+                    },
+                     {
+                        pid: 1,
+                        food_type: "面条",
+                        icon: 'miantiao.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "麦片",
+                        icon: 'maipian.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "水果（沙拉）",
+                        icon: 'shuiguo.png'
+                    },
+                   
+                ],
+                supper: [
+                    {
+                        pid: 1,
+                        food_type: "鱼虾贝类",
+                        icon: 'miantiao.png'
+                    },
+                    {
+                        pid: 1,
                         food_type: "牛肉",
                         icon: 'niurou.png'
                     },
                     {
                         pid: 1,
+                        food_type: "羊肉",
+                        icon: 'yangtou.png'
+                    },
+                    {
+                        pid: 1,
                         food_type: "猪肉",
                         icon: 'zhurou.png'
-                    }
-                ],
-                supper: [
+                    },
                     {
                         pid: 1,
                         food_type: "青菜",
@@ -256,61 +275,83 @@
                     },
                     {
                         pid: 1,
-                        food_type: "沙拉",
-                        icon: 'shala.png'
+                        food_type: "豆类",
+                        icon: 'doulei.png'
                     },
                     {
                         pid: 1,
-                        food_type: "水类",
-                        icon: 'shuilei.png'
+                        food_type: "馒头",
+                        icon: 'mantou.png'
                     },
                     {
                         pid: 1,
-                        food_type: "水类",
-                        icon: 'shuilei.png'
+                        food_type: "米饭",
+                        icon: 'mifan.png'
                     },
                     {
                         pid: 1,
-                        food_type: "酸奶",
-                        icon: 'suannai.png'
+                        food_type: "薯类",
+                        icon: 'shulei.png'
+                    }
+                ],
+                lunch: [
+                    {
+                        pid: 1,
+                        food_type: "鱼虾贝类",
+                        icon: 'miantiao.png'
                     },
                     {
                         pid: 1,
-                        food_type: "糖",
-                        icon: 'tang.png'
+                        food_type: "牛肉",
+                        icon: 'niurou.png'
                     },
                     {
                         pid: 1,
                         food_type: "羊肉",
-                        icon: 'yangrou.png'
+                        icon: 'yangtou.png'
                     },
                     {
                         pid: 1,
-                        food_type: "鱼",
-                        icon: 'yu.png'
+                        food_type: "猪肉",
+                        icon: 'zhurou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "青菜",
+                        icon: 'qingcai.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "豆类",
+                        icon: 'doulei.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "馒头",
+                        icon: 'mantou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "米饭",
+                        icon: 'mifan.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "面条",
+                        icon: 'miantiao.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "麦片",
+                        icon: 'maipian.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "薯类",
+                        icon: 'shulei.png'
                     }
                 ],
                 sport: [
-                    {
-                        pid: 1,
-                        food_type: "登山",
-                        icon: 'dengshan.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "快走",
-                        icon: 'kuaizou.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "篮球",
-                        icon: 'lanqiu.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "排球",
-                        icon: 'paiqiu.png'
-                    },
                     {
                         pid: 1,
                         food_type: "跑步",
@@ -318,18 +359,8 @@
                     },
                     {
                         pid: 1,
-                        food_type: "骑行",
-                        icon: 'qixing.png'
-                    },
-                    {
-                        pid: 1,
                         food_type: "跳绳",
                         icon: 'tiaosheng.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "跳舞",
-                        icon: 'tiaowu.png'
                     },
                     {
                         pid: 1,
@@ -341,8 +372,38 @@
                         icon: 'yujia.png'
                     },
                     {
+                        pid: 1,
+                        food_type: "骑行",
+                        icon: 'qixing.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "篮球",
+                        icon: 'lanqiu.png'
+                    },
+                    {
                         food_type: "足球",
                         icon: 'zuqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "排球",
+                        icon: 'paiqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "快走",
+                        icon: 'kuaizou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跳舞",
+                        icon: 'tiaowu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "登山",
+                        icon: 'dengshan.png'
                     }
                 ],
                 foodRestrict: [
