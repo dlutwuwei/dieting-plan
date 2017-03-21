@@ -14,21 +14,6 @@
     <MlSwiper :ml-swiper="mlSwiper"></MlSwiper>
     <!--e:鸣鹿轮播图-->
 
-    <!--s:瘦身分享-->
-      <div class="slimming-share">
-          <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
-          <div class="bd">
-              <a href="/share/listt" slot="right">
-                <img :src="sharePic != ''? sharePic : 'http://w.cellwellbeing.cn/Public/site_upload/share/1489659148_334176923.jpg'" class="share-pic" alt=""/>
-              </a>
-          </div>
-      </div>
-    <!--e:瘦身分享-->
-
-    <!--s:瘦身达人榜-->
-    <DarenList :daren-list="darenList"></DarenList>
-    <!--e:瘦身达人榜-->
-
     <template v-if="+userInfo.type == 1">
       <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
@@ -47,6 +32,21 @@
       <OldUserPop></OldUserPop>
       <!--e:老用户弹窗-->
     </template>
+
+     <!--s:瘦身分享-->
+    <div class="slimming-share">
+        <div class="hd"><span class="ico ico-1"></span>瘦身分享</div>
+        <div class="bd">
+            <a href="/share/listt" slot="right">
+              <img :src="sharePic != ''? sharePic : 'http://w.cellwellbeing.cn/Public/site_upload/share/1489659148_334176923.jpg'" class="share-pic" alt=""/>
+            </a>
+        </div>
+    </div>
+    <!--e:瘦身分享-->
+
+    <!--s:瘦身达人榜-->
+    <DarenList :daren-list="darenList"></DarenList>
+    <!--e:瘦身达人榜-->
 
     <BottomBar></BottomBar>
   </div>

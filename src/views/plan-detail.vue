@@ -2,10 +2,9 @@
     <div style="height: 100%;">
         <mt-header title="鸣鹿健康">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
-        <sportCard :data="sportList" v-if="type=='sport'" :date="date"></sportCard>
+        <sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>
         <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
@@ -54,7 +53,15 @@
                     });
                 } else {
                     // 运动
-                    this.sportList = [window.sportList[0][this.date]];
+                    this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
+                        let list = [];
+                        if (res.body.success) {
+                            list = res.body.massages[this.date];
+                        }
+                        this.sportList = list;
+                    }, () => {
+                        MessageBox('注意', '请求失败');
+                    });
                 }
             },
         },

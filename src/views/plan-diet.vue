@@ -1,20 +1,19 @@
 <template>
     <div>
-        <mt-header title="添加食物">
+        <mt-header title="修改计划">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
             <div class="food-item" :class="{'deleted': +item.isdel, 'checked': +item.istrue}" v-for="(item, index) in data">
                 <span class="food-delete" @click="deleteItem(item, index)" v-if="!(+item.isdel||+item.istrue)"></span>
                 <span class="food-check" v-if="+item.istrue"></span>
-                <div class="food" @click="checkFood(item,index)">
+                <div class="food" @click.stop="popup(item)">
                     <img :src="item.icon" alt="">
                     <div class="food-info">
                         <div class="food-name">{{item.name}}</div>
                         <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
                     </div>
-                    <div class="food-calories" @click.stop="popup(item)">
+                    <div class="food-calories">
                         {{item.kcal}}千卡
                     </div>
                 </div>
@@ -91,30 +90,32 @@
                 history.back();
             },
             deleteItem: function (item, i) {
-                if (this.type != 'sport') {
-                    this.$http.get(`/Plan/delfood?pid=${item.pid}&class=${type_map[this.type]}`).then(res => {
-                        if (!res.body.success) {
+                MessageBox.confirm('确认删除此项计划?').then(action => {
+                    if (this.type != 'sport') {
+                        this.$http.get(`/Plan/delfood?pid=${item.pid}&class=${type_map[this.type]}`).then(res => {
+                            if (!res.body.success) {
+                                MessageBox('注意', '删除失败');
+                            } else {
+                                item.isdel = 1;
+                            }
+                        }, () => {
                             MessageBox('注意', '删除失败');
-                        } else {
-                            item.isdel = 1;
-                        }
-                    }, () => {
-                        MessageBox('注意', '删除失败');
-                    });
-                } else {
-                    this.$http.get(`/Plan/delsport?pid=${item.pid}&time=${this.date}`).then(res => {
-                        if (!res.body.success) {
+                        });
+                    } else {
+                        this.$http.get(`/Plan/delsport?pid=${item.pid}&time=${this.date}`).then(res => {
+                            if (!res.body.success) {
+                                MessageBox('注意', '删除失败');
+                            } else {
+                                item.isdel = 1;
+                            }
+                        }, () => {
                             MessageBox('注意', '删除失败');
-                        } else {
-                            item.isdel = 1;
-                        }
-                    }, () => {
-                        MessageBox('注意', '删除失败');
-                    });
-                }
+                        });
+                    }
+                });
             },
             checkFood: function (item, i) {
-                if(+item.istrue) {
+                if (+item.istrue) {
                     MessageBox('提示', '已经确认完成，无法修改')
                     return;
                 } else if (+item.isdel) {
@@ -128,20 +129,20 @@
                             time: this.date,
                             food: type_map[this.type]
                         }).then(res => {
-                            if(res.body.success) {
+                            if (res.body.success) {
                                 item.istrue = 1;
-                            }else {
+                            } else {
                                 MessageBox('注意', '确认失败');
                             }
                         });
                     } else {
-                       this.$http.post('/Plan/istruesport', {
+                        this.$http.post('/Plan/istruesport', {
                             id: item.id,
                             time: this.date,
                         }).then(res => {
-                            if(res.body.success) {
+                            if (res.body.success) {
                                 item.istrue = 1;
-                            }else {
+                            } else {
                                 MessageBox('注意', '确认失败');
                             }
                         });
@@ -155,7 +156,7 @@
                 if (+item.isdel) {
                     MessageBox('提示', '已经从计划中删除')
                     return;
-                } else if(+item.istrue) {
+                } else if (+item.istrue) {
                     MessageBox('提示', '已经确认完成，无法修改')
                     return;
                 }
@@ -250,7 +251,7 @@
                 text-align: center;
                 margin-right: 10px;
             }
-            .food-check{
+            .food-check {
                 width: 24px;
                 height: 24px;
                 background: url(../assets/images/xuanzhong.png) no-repeat;

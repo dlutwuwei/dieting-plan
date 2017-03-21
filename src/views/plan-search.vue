@@ -2,7 +2,6 @@
     <div class="plan-add">
         <mt-header :title="title">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="line search-card">
             <div class="search-bar">
@@ -67,7 +66,13 @@
             },
             fetchData: function(val, type) {
                 if(val.trim()==='') return;
-                this.$http.get(`/Record/${type=='sport'?'sportsearch':'foodsearch'}?name=${val.trim()}`).then(response => {
+                let target = '';
+                if (type=='sport'||this.preferType=='sport' || this.preferType=='sportRestrict') {
+                    target = 'sportsearch';
+                } else {
+                    target = 'foodsearch';
+                }
+                this.$http.get(`/Record/${target}?name=${val.trim()}`).then(response => {
                     // get body data
                     let res = response.body;
                     if(res.success) {

@@ -3,7 +3,7 @@
     <div class="food-title">
       {{title}}<span>（建议摄入{{total}}千卡）</span>
     </div>
-    <div class="food-item" v-if="!+item.isdel" v-for="item in data">
+    <div class="food-item" v-if="!+item.isdel" :class="{'checked': +item.istrue}" @click="onItemClick(item, type)" v-for="item in data">
       <img :src="item.icon" alt="">
       <div class="food-info">
         <div class="food-name">{{item.name}}</div>
@@ -13,7 +13,7 @@
         {{item.kcal}}千卡
       </div>
     </div>
-    <div class="cell bottom">
+    <div class="cell bottom" v-if="!hideBtn">
       <router-link :to="url" slot="left">
         <mt-button type="primary" size="normal">修改食谱</mt-button>
       </router-link>
@@ -34,11 +34,16 @@
       this.total = this.data.pop().bkcal;
     },
     props: {
-      data: Object,
+      data: Array,
       title: String,
       calories: String,
       type: String,
       date: String,
+      onItemClick: {
+        type: Function,
+        default: () => {}
+      },
+      hideBtn: Boolean
     },
   }
 

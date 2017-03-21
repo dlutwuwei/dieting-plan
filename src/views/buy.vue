@@ -5,7 +5,7 @@
                 <mt-button icon="back">首页</mt-button>
             </a>
         </mt-header>
-        <div class="buy-card">
+        <div class="buy-card" v-if="type!=15">
             <div class="cell1 bottom">
                 <mt-button type="primary" size="normal" v-on:click="test15">15天免费试用</mt-button>
             </div>
@@ -64,7 +64,7 @@
         },
         methods: {
             pay: function() {
-                //开启测试时直接开启7天计划
+                //支付完成才开启7天计划
                 this.$http.post('/seven/indexstage').then(res => {
                     if(res.body.success) {
                         location.href = '/';
