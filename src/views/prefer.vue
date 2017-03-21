@@ -46,7 +46,7 @@
             }
         },
         methods: {
-            addMore: function() {
+            addMore: function () {
                 location.href = "/plan/listt/#/add/" + this.type + "?prefer=" + this.type;
             },
             select: function (item, e) {
@@ -54,11 +54,11 @@
                     this.selected[this.type] = [];
                 }
 
-                if(item.value) {
-                    item.value =false;
+                if (item.value) {
+                    item.value = false;
                     let index;
-                    this.selected[this.type].forEach( (m, i) => {
-                        if(m.food_type == item.food_type){
+                    this.selected[this.type].forEach((m, i) => {
+                        if (m.food_type == item.food_type) {
                             index = i;
                         }
                     });
@@ -67,7 +67,7 @@
                 }
                 item.value = true;
                 //e.target.parentNode.classList.add('selected');
-                
+
                 this.selected[this.type].push(item);
             },
             post_prefer: function (e) {
@@ -81,14 +81,14 @@
                         dinner: this.selected.dinner || [],
                         sport: this.selected.sport || []
                     };
-                     // 添加食物或者偏好
+                    // 添加食物或者偏好
                     this.$http.post('/Pre/addfood', data).then(response => {
                         let res = response.body;
                         // if (res.success) {
-                            target = '/prefer/prefer/' + next[type || 'breakfast'];
-                            this.$router.push({
-                                path: target
-                            });
+                        target = '/prefer/prefer/' + next[type || 'breakfast'];
+                        this.$router.push({
+                            path: target
+                        });
                         // }
                     }, err => {
                         MessageBox('注意', '请求失败');
@@ -96,29 +96,29 @@
 
                 } else if (next[type] == null) {
 
-                    if(type === 'sportRestrict') {
+                    if (type === 'sportRestrict') {
                         // 提交饮食限制
                         let restrict = {
                             food: this.selected['foodRestrict'],
                             sport: this.selected['sportRestrict']
                         };
-                        if(!restrict) {
+                        if (!restrict) {
                             MessageBox('注意', '请选择饮食限制');
                             return;
                         }
                         this.$http.post('/Restrict/addplace', restrict).then(response => {
-                            debugger
                             let res = response.body;
-                            if (res.success) {
-                                location.href = '/buy/buy?type=15';
-                            }
+                            // if (res.success) {
+                            //     location.href = '/buy/buy?type=15';
+                            // }
+                            location.href = '/buy/buy?type=15';
                         }, err => {
                             MessageBox('注意', '请求失败');
                         });
-                    } else if(type === "reason") {
+                    } else if (type === "reason") {
                         // 提交肥胖原因
                         let reason = this.selected['reason'];
-                        if(!reason) {
+                        if (!reason) {
                             MessageBox('注意', '请选择肥胖原因');
                             return;
                         }
@@ -139,9 +139,9 @@
                 }
             },
             fetchData: function (e) {
-                this.type =this.$route.params.type || 'breakfast';
+                this.type = this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
-                let adds = JSON.parse(localStorage.getItem('luming' + this.type)||'{}');
+                let adds = JSON.parse(localStorage.getItem('luming' + this.type) || '{}');
                 let moreItems = [];
                 Object.keys(adds).forEach(name => {
                     let item = adds[name];
@@ -154,7 +154,7 @@
                 //将添加的值加入
                 data = data.concat(moreItems);
                 data.forEach(item => {
-                    if(item.value === undefined) {
+                    if (item.value === undefined) {
                         item.value = false;
                     }
                 });
@@ -230,7 +230,7 @@
                         food_type: "米饭",
                         icon: 'mifan.png'
                     },
-                     {
+                    {
                         pid: 1,
                         food_type: "面条",
                         icon: 'miantiao.png'
@@ -245,7 +245,7 @@
                         food_type: "水果（沙拉）",
                         icon: 'shuiguo.png'
                     },
-                   
+
                 ],
                 supper: [
                     {
@@ -409,60 +409,45 @@
                 foodRestrict: [
                     {
                         pid: 1,
-                        food_type: "羊肉",
-                        icon: 'yangrou.png'
-                    },
-                    {
-                        pid: 1,
                         food_type: "鱼",
                         icon: 'yu.png'
                     },
                     {
                         pid: 1,
+                        food_type: "牛肉",
+                        icon: 'niurou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "羊肉",
+                        icon: 'yangtou.png'
+                    },
+                    {
+                        pid: 1,
                         food_type: "猪肉",
-                        icon: 'dengshan.png'
+                        icon: 'zhurou.png'
                     },
+                    {
+                        pid: 1,
+                        food_type: "奶及奶制品",
+                        icon: 'niunai.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "豆类",
+                        icon: 'doulei.png'
+                    }
                 ],
-                reason: [
+                sportRestrict: [
                     {
                         pid: 1,
-                        food_type: "油腻食物",
-                        icon: 'dengshan.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "运动少",
-                        icon: 'kuaizou.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "吃饭多",
-                        icon: 'lanqiu.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "跑步少",
-                        icon: 'paiqiu.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "不愿动",
+                        food_type: "跑步",
                         icon: 'paobu.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "骑行",
-                        icon: 'qixing.png'
                     },
                     {
                         pid: 1,
                         food_type: "跳绳",
                         icon: 'tiaosheng.png'
-                    },
-                    {
-                        pid: 1,
-                        food_type: "跳舞",
-                        icon: 'tiaowu.png'
                     },
                     {
                         pid: 1,
@@ -474,27 +459,99 @@
                         icon: 'yujia.png'
                     },
                     {
-                        food_type: "足球",
-                        icon: 'zuqiu.png'
-                    }
-                ],
-                sportRestrict: [
-                    {
                         pid: 1,
-                        food_type: "游泳",
-                        icon: 'yangrou.png'
+                        food_type: "骑行",
+                        icon: 'qixing.png'
                     },
                     {
                         pid: 1,
-                        food_type: "跑步",
-                        icon: 'yu.png'
+                        food_type: "篮球",
+                        icon: 'lanqiu.png'
+                    },
+                    {
+                        food_type: "足球",
+                        icon: 'zuqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "排球",
+                        icon: 'paiqiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "快走",
+                        icon: 'kuaizou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "跳舞",
+                        icon: 'tiaowu.png'
                     },
                     {
                         pid: 1,
                         food_type: "登山",
                         icon: 'dengshan.png'
+                    }
+                ],
+                reason: [
+                    {
+                        pid: 1,
+                        food_type: "饮食油腻",
+                        icon: 'youni.png'
                     },
-                ]
+                    {
+                        pid: 1,
+                        food_type: "爱吃零食",
+                        icon: 'lingshi.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "常喝饮料",
+                        icon: 'yinliao.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "经常喝酒",
+                        icon: 'hejiu.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "爱吃肥肉",
+                        icon: 'feirou.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "爱吃坚果（腰果，杏仁）",
+                        icon: 'jianguo.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "爱吃宵夜",
+                        icon: 'xiaoye.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "吃饭很晚",
+                        icon: 'chifanwan.png'
+                    },
+                    {
+                        pid: 1,
+                        food_type: "吃饭很快",
+                        icon: 'chifankuai.png'
+                    },
+                    {
+                        food_type: "饭量时多时少",
+                        icon: 'fanliang.png'
+                    },
+                    {
+                        food_type: "通常每天坐着",
+                        icon: 'zuozhe.png'
+                    },
+                    {
+                        food_type: "每周运动少于两次",
+                        icon: 'yundong.png'
+                    }
+                ],
             };
         }
     }
