@@ -12,7 +12,7 @@
                     <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
                 </div>
-                <div class="add-item">
+                <div class="add-item" v-if="type!='reason'">
                     <div class="icon" @click="addMore">
                         <img src="../assets/images/jianfei/add.png" alt="">
                     </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="cell bottom">
-                <mt-button type="primary" size="normal" v-on:click="post_prefer">下一步</mt-button>
+                <mt-button type="primary" size="normal" v-on:click="post_prefer">{{btnText}}</mt-button>
             </div>
         </div>
     </transition>
@@ -42,7 +42,8 @@
                 items: null,
                 title: null,
                 selected: {},
-                type: 'breakfast'
+                type: 'breakfast',
+                btnText: '下一步',
             }
         },
         methods: {
@@ -169,6 +170,9 @@
         mounted() {
             this.type = this.$route.params.type || 'breakfast';
             let data = window.data[this.type];
+            if(this.type==='reason') {
+                this.btnText = '继续';
+            }
             data.forEach(item => {
                 item.value = false;
             });
@@ -581,6 +585,7 @@
             padding-bottom: 100px;
             .item,
             .add-item {
+                width: 76px;
                 margin-top: 15px;
             }
             .icon {
