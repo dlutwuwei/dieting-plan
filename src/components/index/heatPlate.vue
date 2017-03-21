@@ -97,7 +97,7 @@
                         <h5>还可以吃/千卡</h5>
                         <p>{{item.obtain}}</p>
                     </div>
-                    <a :href="'/plan/listt/#/diet/sport?date=' + date">
+                    <a :href="'/plan/listt/#/check/sport?date=' + date">
                     <div class="item">
                         <h5>运动</h5>
                         <p>{{item.consume}}</p>

@@ -4,7 +4,21 @@
       <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
     </mt-header>
     <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
-    <sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>
+    <!--<sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>-->
+    <div v-if="type=='sport'" class="food-card">
+        <div class="food-item" v-if="!+item.isdel" @click="checkFood(item,index)" :class="{'checked': +item.istrue}" v-for="(item, index) in sportList">
+            <div class="food">
+                <img :src="item.icon" alt="">
+                <div class="food-info">
+                    <div class="food-name">{{item.name}}</div>
+                    <div class="food-weight">{{item.weight || item.lasttime}}{{type=='sport'?'分钟':'克'}}</div>
+                </div>
+                <div class="food-calories">
+                    {{item.kcal}}千卡
+                </div>
+            </div>
+        </div>
+    </div>
     <foodCard v-if="type=='food'" :type="index" :hideBtn="true" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"
       :onItemClick="(item, type)=>{ checkFood(item, type) }"></foodCard>
   </div>
