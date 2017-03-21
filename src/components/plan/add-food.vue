@@ -1,6 +1,6 @@
 <template>
     <div class="add-food">
-        <div class="date">2月8日/早餐</div>
+        <div class="date">{{date}}/{{title}}</div>
         <div class="food-item">
             <img :src="item.icon" alt="">
             <div class="food-info">
@@ -26,6 +26,11 @@
         'breakfast': 1,
         'lunch': 2,
         'dinner': 3
+    };
+    const title_map = {
+        breakfast: '早餐',
+        lunch: '午餐',
+        dinner: '晚餐'
     }
     import { MessageBox } from 'mint-ui';
     import { getQuery } from '../../libs/utils';
@@ -143,6 +148,7 @@
         },
         created() {
             this.date = getQuery('date');
+            this.title = title_map[this.type];
         },
         mounted() {
             this.$http.get('/Info/usertype').then(res => {

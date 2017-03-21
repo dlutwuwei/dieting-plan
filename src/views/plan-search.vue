@@ -2,7 +2,6 @@
     <div class="plan-add">
         <mt-header :title="title">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="line search-card">
             <div class="search-bar">
