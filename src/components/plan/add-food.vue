@@ -15,7 +15,7 @@
             </div>
             <div class="bd">
                 <div class="weight"><input type="number" @keyup="getNum" v-model="value" id="ruler-input" /><span>g</span></div>
-                <div class="calipers"><em id="ruler-em"></em><span class="one">-</span><span class="two">-</span><span class="three">-</span></div>
+                <div class="calipers"><em id="ruler-em"></em><span class="one">0</span><span class="two">5</span><span class="three">10</span></div>
             </div>
         </div>
         <div class="bottom-btn"><span v-on:click="cancel">取消</span><span v-on:click="click_to_save">保存</span></div>

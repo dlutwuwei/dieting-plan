@@ -121,7 +121,7 @@
     <div>
         <div class="input-weight">
             <mt-header title="鸣鹿健康">
-                <router-link to="/" slot="left">
+                <router-link to="/#/" slot="left">
                     <mt-button icon="back" @click="goback">返回</mt-button>
                 </router-link>
             </mt-header>
