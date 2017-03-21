@@ -4,7 +4,7 @@
             <router-link to="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>
-            <a href="/buy/buy" slot="right" v-if="userType==15">
+            <a href="/buy/buy?type=15" slot="right" v-if="userType==15">
               <mt-button slot="right">直接购买</mt-button>
             </a>
       </mt-header>
