@@ -5,7 +5,7 @@
     </mt-header>
     <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
     <sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>
-    <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"
+    <foodCard v-if="type=='food'" :type="index" :hideBtn="true" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"
       :onItemClick="(item, type)=>{ checkFood(item, type) }"></foodCard>
   </div>
 </template>
