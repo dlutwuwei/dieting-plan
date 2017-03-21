@@ -1,6 +1,6 @@
 <template>
     <div>
-        <mt-header title="添加食物">
+        <mt-header title="修改计划">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
         </mt-header>
         <div class="food-card">
