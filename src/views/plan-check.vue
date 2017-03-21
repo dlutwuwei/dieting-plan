@@ -87,10 +87,10 @@
       },
       checkFood: function (item, type) {
         if (+item.istrue) {
-          MessageBox('提示', '已经确认完成，无法修改')
+          //MessageBox('提示', '已经确认完成，无法修改')
           return;
         } else if (+item.isdel) {
-          MessageBox('提示', '已经从计划中删除')
+          //MessageBox('提示', '已经从计划中删除')
           return;
         }
         MessageBox.confirm('确认完成此项计划?').then(action => {
