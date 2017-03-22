@@ -80,6 +80,7 @@
                     "time": this.date
                 }).then(response => {
                     if(response.body.success) {
+                        this.item.kcal = (this.item.kcal * this.value/this.item.lasttime).toFixed(2);
                         this.item.lasttime = this.value;
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     } else {

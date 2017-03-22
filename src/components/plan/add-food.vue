@@ -90,7 +90,7 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.item.kcal = (this.item.kcal/this.item.weight)*this.value;
+                        this.item.kcal = ((this.item.kcal/this.item.weight)*this.value).toFixed(2);
                         this.item.weight = this.value;
 
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
