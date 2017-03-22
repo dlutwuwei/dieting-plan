@@ -36,7 +36,7 @@
         },
         computed: {
             total: function () {
-                return parseInt(this.item.kcal * this.value / 60);
+                return parseInt(this.item.kcal * this.value / this.item.lasttime);
             },
             value: function() {
                 return parseInt(this.inputVal||0);
