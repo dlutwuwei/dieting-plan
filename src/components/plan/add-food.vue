@@ -90,7 +90,9 @@
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
+                        this.item.kcal = (this.item.kcal/this.item.weight)*this.value;
                         this.item.weight = this.value;
+
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     }
                     // get body data
