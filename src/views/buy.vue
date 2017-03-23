@@ -13,7 +13,7 @@
                 运用德国体质检测大数据库，制作针对东方人饮食习惯及体质特 点的短期减肥计划，定期推送专业指导！！
             </div>
         </div>
-        <div class="buy-card" v-if="showbuy">
+        <div class="buy-card">
             <div class="cell1 bottom">
                 <mt-button type="danger" size="normal" v-on:click="buy">购买鹿鸣减肥计划</mt-button>
             </div>
@@ -30,7 +30,9 @@
              <div class="address-text">收货地址：北京市朝阳区酒仙桥路20号颐堤港605-606</div>
         </div>
         <div class="buy-bill"><input type="checkbox" id="bill"><label for="bill">是否需要发票</label></div>-->
-        <div class="buy-card" v-if="showpay">
+
+
+        <!--3-21 <div class="buy-card" v-if="showpay">
             <div class="buy-header">
                 <img src="../assets/images/jianfei/buy-head.png" alt="">
                 <div class="buy-title">
@@ -44,7 +46,7 @@
             <div class="cell bottom">
                 <mt-button type="primary" size="normal" v-on:click="pay">付款</mt-button>
             </div>
-        </div>
+        </div>-->
          <div class="cell bottom" v-if="type==7">
             <mt-button type="primary" size="normal" v-on:click="start7">开启七天过渡期</mt-button>
         </div>
@@ -58,8 +60,8 @@
         data() {
             return {
                 type: getQuery('type'),
-                showpay: false,
-                showbuy: true
+                /*showpay: false,
+                showbuy: true*/
             }
         },
         methods: {
@@ -95,18 +97,15 @@
                 })
             },
             buy: function() {
-                this.showbuy = false;
-                this.showpay = true;
+                /*this.showbuy = false;
+                this.showpay = true;*/
+                location.href = 'http://wap.cellwellbeing.cn/index.php/Home/Lose/showlist';
             },
             test15: function() {
-                let price = document.querySelector('.price').innerHTML;
-                let postdata = {
-
-                }
                 // 开启15天试用
                 this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
                     //跳转去选择肥胖原因
-                    //location.href = '/prefer/prefer/reason';
+                    location.href = '/prefer/prefer/reason';
                 });
             }
         },
