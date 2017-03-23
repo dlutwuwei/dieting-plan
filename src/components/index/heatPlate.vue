@@ -80,13 +80,9 @@
 </style>
 <template>
     <div class="heat-plate" v-if="heatPlate && heatPlate.length > 0">
-
-        <div class="hd">热量盘</div>
-
-        <!--<router-link to="/index/record">
+        <router-link to="/index/record">
             <div class="hd">热量盘</div>
-        </router-link>-->
-
+        </router-link>
         <div class="bd">
             <div class="date ncf-box">
                 <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>

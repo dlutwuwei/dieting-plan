@@ -64,10 +64,16 @@
         },
         methods: {
             pay: function() {
-                //支付完成才开启7天计划
-                this.$http.post('/seven/indexstage').then(res => {
+                let price = document.querySelector('.price').innerHTML;
+                let priceEnd = price.substring(1);
+                let postdata = {
+
+                }
+                console.log(priceEnd)
+                //支付完成才开启7天计划 /seven/indexstage
+                this.$http.post('buy/buyadd').then(res => {
                     if(res.body.success) {
-                        location.href = '/';
+                        //location.href = '/';
                     } else {
                         MessageBox('注意', '请求失败');
                     }
@@ -76,6 +82,7 @@
                 })
             },
             start7: function() {
+
                 //开启7天计划
                 this.$http.post('/seven/index').then(res => {
                     if(res.body.success) {
@@ -92,15 +99,19 @@
                 this.showpay = true;
             },
             test15: function() {
+                let price = document.querySelector('.price').innerHTML;
+                let postdata = {
+
+                }
                 // 开启15天试用
                 this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
                     //跳转去选择肥胖原因
-                    location.href = '/prefer/prefer/reason';
+                    //location.href = '/prefer/prefer/reason';
                 });
             }
         },
         created() {
-            
+
         }
     }
 </script>
@@ -171,5 +182,5 @@
             margin: 30px 0 20px 0;
         }
     }
-    
+
 </style>
