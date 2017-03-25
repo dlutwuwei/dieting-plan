@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 
     .weight-curve{
+        position:relative;
         margin-top:15px;
         .hd{
             position:relative;
@@ -30,12 +31,34 @@
             background:#fff;
             padding:10px 15px;
         }
+        .weight-lt,.weight-rt{
+            position:absolute;
+            top: 60px;
+            width:23px;
+            line-height:1.3;
+            font-size:12px;
+            text-align:center;
+            em{
+                display: block;
+                font-size: 10px;
+                margin-top: 5px;
+                font-style: normal;
+            }
+        }
+        .weight-lt{
+            left:2%;
+        }
+        .weight-rt{
+           right:2%;
+        }
     }
 </style>
 <template>
   <div class="weight-curve">
     <div class="hd">体重曲线 <router-link to="/index/weight"><span class="ico ico-1"></span></router-link></div>
     <div class="bd" id="rada-block" style="width:100%px;height:120px;"></div>
+    <div class="weight-lt">初始体重 <em>{{weightLtVal}}</em></div>
+    <div class="weight-rt">最新体重 <em>{{weightRtVal}}</em></div>
   </div>
 </template>
 <script>
@@ -45,6 +68,8 @@
         data() {
             return {
                 myChart: null,
+                weightLtVal: '',
+                weightRtVal: ''
             }
         },
         props: ['weightCurve'],
@@ -63,9 +88,9 @@
                     },
                     grid: {
                         show: false,
-                        left: '5%',
+                        left: '10%',
                         top: '5%',
-                        right: '5%',
+                        right: '10%',
                         bottom: '5%',
                         backgroundColor: '#fff',
                     },
@@ -82,8 +107,8 @@
                             fontWeight:100,
 
                         },
-                        position: ['40%', '20%'],
-                        formatter: '{c}公斤',
+                        position: ['45%', '0%'],
+                        formatter: '{c}kg',
                         alwaysShowContent: true,
                     },
                     xAxis : [
@@ -91,6 +116,9 @@
                             boundaryGap : false,
                             data : list.map(item=>item.date),
                             axisLine: 'false',
+                                axisLabel :{
+                                interval:0
+                            }
                         }
                     ],
                     yAxis : [
@@ -112,10 +140,11 @@
                             itemStyle: {
                                 normal: {
                                     color: 'green',
+                                    show: true,
                                 }
                             },
                             symbol: 'circle',
-                            symbolSize: 5,
+                            symbolSize: 10,
                         }
                     ],
                     backgroundColor: '#fff'
@@ -136,7 +165,11 @@
             if(this.weightCurve && this.weightCurve.length > 0){
                 this.showChart(this.weightCurve);
             }
-
+            //默认把初始体重和最新体重输出
+            let weightCurveLen = this.weightCurve.length;
+            this.weightLtVal = this.weightCurve[0].value;
+            this.weightRtVal = this.weightCurve[weightCurveLen - 1].value;
+            console.log(weightCurveLen)
         },
     }
 

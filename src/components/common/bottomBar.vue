@@ -55,19 +55,18 @@
 <template>
     <div class="nav-tap">
         <div class="ncf-box">
-            <a class="item page-index">
-                <span class="ico curr"></span>
+            <a class="item page-index" href="/">
                 <span class="curr">首页</span>
             </a>
-            <a class="item page-service">
+            <a class="item page-service" href="w.cellwellbeing.cn">
                 <span class="ico"></span>
-                <span>服务</span>
+                <span>减肥</span>
             </a>
-            <a class="item page-shopping">
+            <a class="item page-shopping" href="wap.cellwellbeing.cn/index.php/Home/Cart/shoppingcart">
                 <span class="ico"></span>
                 <span>购物车</span>
             </a>
-            <a class="item page-ucenter"">
+            <a class="item page-ucenter" href="wap.cellwellbeing.cn/index.php/Home/User/dengl">
                 <span class="ico"></span>
                 <span>我的</span>
             </a>
@@ -79,8 +78,8 @@
 
     let barList = [
         {title: '首页', href: '/index/home', name: 'home'},
-        {title: '理财', href: '/index/licai', name: 'licai'},
-        {title: '基金', href: '/fund/index_v3', name: 'fund'},
+        {title: '减肥', href: '/index/licai', name: 'licai'},
+        {title: '购物车', href: '/fund/index_v3', name: 'fund'},
         {title: '我的', href: '/ucenter', name: 'ucenter'},
     ];
 
