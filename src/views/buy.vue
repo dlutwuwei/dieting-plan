@@ -5,7 +5,7 @@
                 <mt-button icon="back">首页</mt-button>
             </a>
         </mt-header>
-        <div class="buy-card" v-if="type!=15">
+        <div class="buy-card" v-if="type!=15 && type==0">
             <div class="cell1 bottom">
                 <mt-button type="primary" size="normal" v-on:click="test15">15天免费试用</mt-button>
             </div>
@@ -13,7 +13,7 @@
                 运用德国体质检测大数据库，制作针对东方人饮食习惯及体质特 点的短期减肥计划，定期推送专业指导！！
             </div>
         </div>
-        <div class="buy-card">
+        <div class="buy-card" v-if="type==0">
             <div class="cell1 bottom">
                 <mt-button type="danger" size="normal" v-on:click="buy">购买鹿鸣减肥计划</mt-button>
             </div>
@@ -47,9 +47,9 @@
                 <mt-button type="primary" size="normal" v-on:click="pay">付款</mt-button>
             </div>
         </div>-->
-         <div class="cell bottom" v-if="type==7">
+         <!--<div class="cell bottom" v-if="type==7">
             <mt-button type="primary" size="normal" v-on:click="start7">开启七天过渡期</mt-button>
-        </div>
+        </div>-->
     </div>
 </template>
 <script>
