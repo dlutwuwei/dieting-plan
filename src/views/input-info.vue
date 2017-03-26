@@ -13,9 +13,18 @@
                 <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female" value="0" v-model="gender"><label for="female">女</label></span>
             </div>
         </div>
-        <mt-field class="detail-item" v-model="age" label="年龄" placeholder="                     岁" type="number"></mt-field>
-        <mt-field class="detail-item" v-model="height" label="身高" placeholder="                     cm" type="number"></mt-field>
-        <mt-field class="detail-item" v-model="weight" label="体重" placeholder="                     kg" type="number"></mt-field>
+        <div class="input-box">
+            <div class="input-box-span">岁</div>
+            <mt-field class="detail-item" v-model="age" label="年龄" placeholder="" type="number"></mt-field>
+        </div>
+        <div class="input-box">
+            <div class="input-box-span">cm</div>
+            <mt-field class="detail-item" v-model="height" label="身高" placeholder="" type="number"></mt-field>
+        </div>
+        <div class="input-box">
+            <div class="input-box-span">kg</div>
+            <mt-field class="detail-item" v-model="weight" label="体重" placeholder="" type="number"></mt-field>
+        </div>
         <div class="detail-item">
             <div class="detail-title">疾病史</div>
             <div class="detail-options">
@@ -151,6 +160,9 @@
         margin-bottom: 10px;
         text-align: center;
     }
+    .mint-field-clear{
+        margin-left:9%;
+    }
     .select-popup{
         border-radius: 8px;
         overflow: hidden;
@@ -170,6 +182,16 @@
 
     }
     .detail {
+        .input-box{
+            position:relative;
+            .input-box-span{
+                position: absolute;
+                left: 63%;
+                top: 13px;
+                z-index: 100;
+                color: #999;
+            }
+        }
         .detail-item.gender {
             .detail-options {
                 padding-top: 0;
@@ -177,8 +199,10 @@
         }
         .mint-field-core {
             border: 1px solid #999;
-            width: 125px;
+            width: 50%;
+            padding:0 10px;
             flex: none;
+            text-align:right;
         }
         .detail-item {
             background: #fff;
@@ -229,6 +253,9 @@
         .mint-cell-text {
             padding-left: 38px;
         }
+        .mint-cell-title{
+            width:95px;
+        }
         .mint-cell-wrapper {
             background-image: none;
         }
@@ -239,5 +266,13 @@
         font-size: 12px;
         padding: 15px 16px;
         text-align: left;
+    }
+    @media screen and (max-width: 320px) {
+        .detail .input-box .input-box-span{
+            left:66%;
+        }
+        .mint-field-clear{
+            margin-left: 11%;
+        }
     }
 </style>

@@ -4,6 +4,7 @@ const planDetail = require('../views/plan-detail.vue');
 const planDiet = require('../views/plan-diet.vue');
 const planRecord = require('../views/plan-record.vue');
 const planCheck = require('../views/plan-check.vue');
+const planCalendar = require('../views/plan-calendar.vue');
 
 const routers = [{
     path: '/',
@@ -32,6 +33,10 @@ const routers = [{
 {
     path: '/detail/:type', // food, sport
     component: planDetail
+},
+{
+    path: '/calendar/:type', // food, sport
+    component: planCalendar
 }];
 
 export default routers;

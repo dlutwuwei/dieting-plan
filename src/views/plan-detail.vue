@@ -3,6 +3,13 @@
         <mt-header title="鸣鹿健康">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
         </mt-header>
+
+        <div class="slider">
+            <router-link :to="'/calendar/'+ type +'?date=' + dataDay" slot="left">
+                <span>{{dataDay}}</span>
+            </router-link>
+        </div>
+
         <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
         <sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>
         <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"></foodCard>
@@ -18,13 +25,15 @@
             return {
                 foodList: {},
                 sportList: [],
-                heatPlate: []
+                heatPlate: [],
+                dataDay:'',
             }
         },
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
-            this.heatPlate = window.heatPlate || [];
+            this.dataDay = getQuery('date');
+            this.heatPlate = window.foodPlan || [];
             this.titleMap = {
                 breakfast: '早餐',
                 lunch: '午餐',
@@ -77,3 +86,18 @@
     };
 
 </script>
+<style lang="scss">
+    .slider{
+        margin-top:5px;
+        height:50px;
+        background:#fff;
+        line-height:50px;
+        border-top:1px solid #dfdfdf;
+        border-bottom:1px solid #dfdfdf;
+        text-align:center;
+        span{
+            font-size:14px;
+            color:#333;
+        }
+    }
+</style>
