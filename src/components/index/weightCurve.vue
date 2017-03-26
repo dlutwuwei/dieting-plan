@@ -57,8 +57,8 @@
   <div class="weight-curve">
     <div class="hd">体重曲线 <router-link to="/index/weight"><span class="ico ico-1"></span></router-link></div>
     <div class="bd" id="rada-block" style="width:100%px;height:120px;"></div>
-    <div class="weight-lt">初始体重 <em>{{weightLtVal}}</em></div>
-    <div class="weight-rt">最新体重 <em>{{weightRtVal}}</em></div>
+    <div class="weight-lt">最初体重 <em>{{weightLtVal}}</em>kg</div>
+    <div class="weight-rt">最新体重 <em>{{weightRtVal}}</em>kg</div>
   </div>
 </template>
 <script>
@@ -107,7 +107,6 @@
                             fontWeight:100,
 
                         },
-                        position: ['45%', '0%'],
                         formatter: '{c}kg',
                         alwaysShowContent: true,
                     },

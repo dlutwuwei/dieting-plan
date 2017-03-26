@@ -11,6 +11,7 @@
                 <div class="item" v-for="item in items" @click="select(item, $event)">
                     <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
                     <div class="name">{{item.food_type}}</div>
+                    <div class="tagname" v-if="item.food_type_tag">{{item.food_type_tag}}</div>
                 </div>
                 <div class="add-item" v-if="type!='reason'">
                     <div class="icon" @click="addMore">
@@ -112,7 +113,7 @@
                             // if (res.success) {
                             //     location.href = '/buy/buy?type=15';
                             // }
-                            location.href = '/buy/buy?type=15';
+                            location.href = '/buy/buy?type=1';
                         }, err => {
                             MessageBox('注意', '请求失败');
                         });
@@ -148,6 +149,7 @@
                     let item = adds[name];
                     moreItems.push({
                         food_type: item.name,
+                        food_type_tag: item.tagname,
                         id: item.pid,
                         icon: item.icon
                     })
@@ -183,10 +185,10 @@
         },
         created() {
             window.titles = {
-                breakfast: '早餐选择',
-                lunch: '午餐选择',
-                supper: '晚餐选择',
-                sport: '运动选择',
+                breakfast: '早餐偏好',
+                lunch: '午餐偏好',
+                supper: '晚餐偏好',
+                sport: '运动偏好',
                 foodRestrict: '饮食限制',
                 sportRestrict: '运动限制',
                 reason: '肥胖原因'
@@ -247,15 +249,15 @@
                     {
                         pid: 1,
                         food_type: "水果（沙拉）",
-                        icon: 'shuiguo.png'
+                        icon: 'shala.png'
                     },
 
                 ],
                 supper: [
                     {
                         pid: 1,
-                        food_type: "鱼虾贝类",
-                        icon: 'miantiao.png'
+                        food_type: "鱼",
+                        icon: 'yu.png'
                     },
                     {
                         pid: 1,
@@ -265,7 +267,7 @@
                     {
                         pid: 1,
                         food_type: "羊肉",
-                        icon: 'yangtou.png'
+                        icon: 'yangrou.png'
                     },
                     {
                         pid: 1,
@@ -294,6 +296,11 @@
                     },
                     {
                         pid: 1,
+                        food_type: "面条",
+                        icon: 'miantiao.png'
+                    },
+                    {
+                        pid: 1,
                         food_type: "薯类",
                         icon: 'shulei.png'
                     }
@@ -301,8 +308,8 @@
                 lunch: [
                     {
                         pid: 1,
-                        food_type: "鱼虾贝类",
-                        icon: 'miantiao.png'
+                        food_type: "鱼",
+                        icon: 'yu.png'
                     },
                     {
                         pid: 1,
@@ -312,7 +319,7 @@
                     {
                         pid: 1,
                         food_type: "羊肉",
-                        icon: 'yangtou.png'
+                        icon: 'yangrou.png'
                     },
                     {
                         pid: 1,
@@ -424,7 +431,7 @@
                     {
                         pid: 1,
                         food_type: "羊肉",
-                        icon: 'yangtou.png'
+                        icon: 'yangrou.png'
                     },
                     {
                         pid: 1,
@@ -511,6 +518,7 @@
                     {
                         pid: 1,
                         food_type: "常喝饮料",
+                        food_type_tag: "（含糖碳酸）",
                         icon: 'yinliao.png'
                     },
                     {
@@ -525,22 +533,26 @@
                     },
                     {
                         pid: 1,
-                        food_type: "爱吃坚果（腰果，杏仁）",
+                        food_type: "爱吃坚果",
+                        food_type_tag: "（腰果杏仁）",
                         icon: 'jianguo.png'
                     },
                     {
                         pid: 1,
                         food_type: "爱吃宵夜",
-                        icon: 'xiaoye.png'
+                        food_type_tag: "（每周一次）",
+                        icon: 'yexiao.png'
                     },
                     {
                         pid: 1,
                         food_type: "吃饭很晚",
+                        food_type_tag: "（晚8点后）",
                         icon: 'chifanwan.png'
                     },
                     {
                         pid: 1,
                         food_type: "吃饭很快",
+                        food_type_tag: "（20分钟内）",
                         icon: 'chifankuai.png'
                     },
                     {
@@ -552,7 +564,7 @@
                         icon: 'zuozhe.png'
                     },
                     {
-                        food_type: "每周运动少于两次",
+                        food_type: "每周运动少于2次",
                         icon: 'yundong.png'
                     }
                 ],
@@ -565,7 +577,7 @@
     #app {
         height: 100%;
     }
-    
+
     .prefer {
         background: #f7f7f7;
         min-height: 100%;
@@ -612,19 +624,26 @@
                 text-align: center;
                 font-size: 12px;
                 line-height: 24px;
+                color:#999;
+            }
+            .tagname{
+                text-align: center;
+                font-size: 12px;
+                line-height: 24px;
+                color:#999;
             }
         }
         .cell {
             text-align: center;
         }
     }
-    
+
     .bottom {
         position: absolute;
         width: 100%;
         bottom: 20px;
     }
-    
+
     .mint-button--primary {
         height: 40px;
         width: 180px;

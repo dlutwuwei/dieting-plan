@@ -56,17 +56,18 @@
     <div class="nav-tap">
         <div class="ncf-box">
             <a class="item page-index" href="/">
+                <span class="ico curr"></span>
                 <span class="curr">首页</span>
             </a>
-            <a class="item page-service" href="w.cellwellbeing.cn">
+            <a class="item page-service" href="http://w.cellwellbeing.cn/">
                 <span class="ico"></span>
                 <span>减肥</span>
             </a>
-            <a class="item page-shopping" href="wap.cellwellbeing.cn/index.php/Home/Cart/shoppingcart">
+            <a class="item page-shopping" href="http://wap.cellwellbeing.cn/index.php/Home/Cart/shoppingcart">
                 <span class="ico"></span>
                 <span>购物车</span>
             </a>
-            <a class="item page-ucenter" href="wap.cellwellbeing.cn/index.php/Home/User/dengl">
+            <a class="item page-ucenter" href="http://wap.cellwellbeing.cn/index.php/Home/User/dengl">
                 <span class="ico"></span>
                 <span>我的</span>
             </a>

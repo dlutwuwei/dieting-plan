@@ -233,7 +233,7 @@
             background-image: none;
         }
     }
-    
+
     .notice {
         color: #ff0000;
         font-size: 12px;
