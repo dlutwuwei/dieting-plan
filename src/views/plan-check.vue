@@ -39,7 +39,8 @@
       return {
         foodList: {},
         sportList: [],
-        heatPlate: []
+        heatPlate: [],
+          dataDay:'',
       }
     },
     created() {
