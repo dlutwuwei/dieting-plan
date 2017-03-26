@@ -132,7 +132,7 @@
                 </div>
                 <ul>
                     <li v-for="(i, l) in dateList.length/7">
-                        <span @click="onPopup(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth())}">
+                        <span @click="onPopup(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)}">
                             {{item.date}}<em v-if="item.value">{{item.value}}</em>
                         </span>
                     </li>
@@ -225,14 +225,20 @@
                 }
             },
             onPopup: function (item) {
-                this.popupVisible = true;
-                let now = this.now;
-                let year = now.getFullYear();
-                let tmpMonth = now.getMonth()+1;
-                let date = item.date;
-                this.selected = item;
-                this.selected.value = item.value || 0;
-                this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
+                let nowdate = new Date();
+                let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
+                let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
+                if(calendarDataB <= nowdate){
+                    this.popupVisible = true;
+                    let now = this.now;
+                    let year = now.getFullYear();
+                    let tmpMonth = now.getMonth()+1;
+                    let date = item.date;
+                    this.selected = item;
+                    this.selected.monthData = calendarDataA;
+                    this.selected.value = item.value || 0;
+                    this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
+                }
             },
             popClose: function () {
                 this.popupVisible = false;

@@ -17,7 +17,7 @@
                 position:relative;
                 color:#47a304;
                 input{
-                    width:100px;
+                    width:115px;
                     height:45px;
                     border:none;
                     border-bottom:1px solid #47a304;
@@ -83,7 +83,7 @@
   <div class="">
       <div class="input-weight-pop">
           <div class="cen">
-              <div class="hd">今天</div>
+              <div class="hd">{{item.monthData}}</div>
               <div class="bd">
                   <div class="weight"><input type="number" @keyup="getNum" v-model="item.value" id="ruler-input"/> <span>kg</span></div>
 
