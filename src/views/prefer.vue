@@ -14,8 +14,8 @@
                     <div class="tagname" v-if="item.food_type_tag">{{item.food_type_tag}}</div>
                 </div>
                 <div class="add-item" v-if="type!='reason'">
-                    <div class="icon" @click="addMore">
-                        <img src="../assets/images/jianfei/add.png" alt="">
+                    <div class="add-icon icon" @click="addMore">
+                    <span>+</span>
                     </div>
                     <div class="name">自定义</div>
                 </div>
@@ -219,7 +219,7 @@
                     {
                         pid: 1,
                         food_type: "酸奶",
-                        icon: 'doulei.png'
+                        icon: 'suannai.png'
                     },
                     {
                         pid: 1,
@@ -256,7 +256,7 @@
                 supper: [
                     {
                         pid: 1,
-                        food_type: "鱼",
+                        food_type: "鱼虾扇贝",
                         icon: 'yu.png'
                     },
                     {
@@ -308,7 +308,7 @@
                 lunch: [
                     {
                         pid: 1,
-                        food_type: "鱼",
+                        food_type: "鱼虾扇贝",
                         icon: 'yu.png'
                     },
                     {
@@ -420,7 +420,7 @@
                 foodRestrict: [
                     {
                         pid: 1,
-                        food_type: "鱼",
+                        food_type: "鱼虾扇贝",
                         icon: 'yu.png'
                     },
                     {
@@ -518,7 +518,7 @@
                     {
                         pid: 1,
                         food_type: "常喝饮料",
-                        food_type_tag: "（含糖碳酸）",
+                        food_type_tag: "（含糖、碳酸）",
                         icon: 'yinliao.png'
                     },
                     {
@@ -534,7 +534,7 @@
                     {
                         pid: 1,
                         food_type: "爱吃坚果",
-                        food_type_tag: "（腰果杏仁）",
+                        food_type_tag: "（腰果、杏仁）",
                         icon: 'jianguo.png'
                     },
                     {
@@ -560,7 +560,7 @@
                         icon: 'fanliang.png'
                     },
                     {
-                        food_type: "通常每天坐着",
+                        food_type: "通常每天都在坐着",
                         icon: 'zuozhe.png'
                     },
                     {
@@ -590,19 +590,33 @@
         }
         .select-items {
             overflow: hidden;
-            padding: 0 38px;
+            padding: 0 25px;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             padding-bottom: 100px;
             .item,
             .add-item {
-                width: 76px;
+                width: 85px;
                 margin-top: 15px;
+                text-align:center;
+                .add-icon{
+                    span{
+                        font-size: 70px;
+                        font-weight: 100;
+                        color: #bbb;
+                    }
+                }
             }
             .icon {
                 height: 76px;
                 width: 76px;
+                background: #ededed;
+                border-radius: 9999px;
+                text-align: center;
+                vertical-align: middle;
+                padding: 10px;
+                line-height: 46px;
                 img {
                     width: 100%;
                 }
@@ -621,6 +635,8 @@
                 }
             }
             .name {
+                display:inline-block;
+                width:50px;
                 text-align: center;
                 font-size: 12px;
                 line-height: 24px;

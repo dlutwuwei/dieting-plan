@@ -104,6 +104,7 @@
                         self.id_card_img =  result.massages;//获取图片地址
                         $('.sample').removeClass('id-no-uploaded');
                         $('.sample').find('img').attr('src', self.id_card_img).show();
+                        MessageBox('', '图片上传成功!');
                     }
                 })
             },
@@ -116,7 +117,7 @@
                     MessageBox('注意', '请填写分享标题!');
                     return;
                 }
-                if($('.sample img').css('display') == ""){
+                if($('.sample img').css('display') == "" || $('.sample img').css('display') == "none"){
                     MessageBox('注意', '请上传分享图片!');
                     return;
                 }
