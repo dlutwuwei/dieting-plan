@@ -13,7 +13,7 @@
         {{item.kcal}}千卡
       </div>
     </div>
-    <div class="cell bottom" v-if="!hideBtn">
+    <div class="cell bottom" v-if="!hideBtn && from != 'history'">
       <router-link :to="url" slot="left">
         <mt-button type="primary" size="normal">修改食谱</mt-button>
       </router-link>
@@ -43,7 +43,8 @@
         type: Function,
         default: () => {}
       },
-      hideBtn: Boolean
+      hideBtn: Boolean,
+      from:String,
     },
   }
 
@@ -52,12 +53,12 @@
   body {
     background: #f7f7f7;
   }
-  
+
   .cell {
     text-align: center;
     margin: 20px 0;
   }
-  
+
   .food-card {
     overflow: hidden;
     margin-top: 5px;

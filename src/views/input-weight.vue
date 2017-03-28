@@ -219,7 +219,7 @@
             nextMonth: function(e) {
                 let nowdate = new Date();
                 let nextMonth = new Date(nowdate.getFullYear(), nowdate.getMonth(), 0);
-                if (this.now.getTime() < nextMonth.getTime()) {
+                if (this.now.getTime() <= nextMonth.getTime()) {
                     this.now = new Date(this.now.getFullYear(), this.now.getMonth()+1, this.now.getDate());
                     this.getMothInfo();
                 }
