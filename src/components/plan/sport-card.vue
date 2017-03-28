@@ -7,7 +7,7 @@
         <div class="sport-weight">运动消耗：{{item.kcal}}千卡</div>
       </div>
     </div>
-    <div class="cell bottom">
+    <div class="cell bottom" v-if="from != 'history'">
       <router-link :to="'/diet/sport?date='+date" slot="left">
         <mt-button type="primary" size="normal">修改运动</mt-button>
       </router-link>
@@ -22,7 +22,8 @@
       date: String,
       data: Array,
       title: String,
-      calories: String
+      calories: String,
+      from:String,
     },
   }
 
@@ -31,12 +32,12 @@
   body {
     background: #f7f7f7;
   }
-  
+
   .cell {
     text-align: center;
     margin: 20px 0;
   }
-  
+
   .sport-card {
     overflow: hidden;
     margin-top: 5px;

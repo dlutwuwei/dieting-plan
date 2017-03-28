@@ -107,7 +107,7 @@
                             fontWeight:100,
 
                         },
-                        formatter: '{c}kg',
+                        formatter: '{b}<br />{c}kg',
                         alwaysShowContent: true,
                     },
                     xAxis : [

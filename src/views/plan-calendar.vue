@@ -228,9 +228,12 @@
                 let nowdate = new Date();
                 let linkMoth = (this.now.getMonth()+1) > 9 ? this.now.getMonth()+1 : '0' + (this.now.getMonth()+1)
                 let linkDate = item.date > 9 ? item.date : '0' + item.date;
-                let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
+                let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+(item.date+1);
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
-                if(calendarDataB <= nowdate){
+
+                if(calendarDataB < nowdate){
+                    location.href = '/plan/listt?type=food#/detail/'+ this.type +'?date='+ this.now.getFullYear()+'-'+linkMoth+'-'+linkDate+'&from=history';
+                } else {
                     location.href = '/plan/listt?type=food#/detail/'+ this.type +'?date='+ this.now.getFullYear()+'-'+linkMoth+'-'+linkDate;
                 }
             },

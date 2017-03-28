@@ -11,8 +11,8 @@
         </div>
 
         <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
-        <sportCard v-if="type=='sport'" :data="sportList" :date="date"></sportCard>
-        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <sportCard v-if="type=='sport'" :data="sportList" :date="date" :from="from"></sportCard>
+        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
 <script>
@@ -32,6 +32,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
+            this.from = getQuery('from');
             this.dataDay = getQuery('date');
             this.heatPlate = window.foodPlan || [];
             this.titleMap = {
