@@ -6,7 +6,7 @@ const routers = [{
     component: shareList
 },
 {
-    path: '/list',
+    path: '/listt',
     component: shareList
 },
 {

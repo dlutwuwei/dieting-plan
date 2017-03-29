@@ -21,7 +21,7 @@
                 <div class="sample id-no-uploaded"><img src="" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
-                <h5>正文 <span>(文字和图片都可以)</span></h5>
+                <h5>正文 <!--<span>(文字和图片都可以)</span>--></h5>
                 <textarea name="" id="editor-textarea" cols="30" rows="10"></textarea>
             </div>
         </div>
@@ -148,6 +148,7 @@
                 $('.mint-field-core').val('');
             $('.sample').find('img').attr('src', '').hide();
             $('#editor-textarea').val('');
+            loaction.href='/share/listt'
         },res=>{
             MessageBox('注意', '发布失败');
         });
