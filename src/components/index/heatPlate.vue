@@ -90,7 +90,7 @@
             </div>
             <div class="bd-bot" v-for="item in heatPlate">
                 <div class="info ncf-box">
-                    <a :href="'/plan/listt/#/check/food?date=' + date">
+                    <a :href="userType==7 ? '/#/index/record' : '/plan/listt/#/check/food?date=' + date">
                     <div class="item">
                         <h5>摄入</h5>
                         <p>{{item.left}}</p>
@@ -100,7 +100,7 @@
                         <h5>还可以吃/千卡</h5>
                         <p>{{item.obtain}}</p>
                     </div>
-                    <a :href="'/plan/listt/#/check/sport?date=' + date">
+                    <a :href="'/plan/listt/#/' + (userType==7 ? 'record' : 'check') + '/sport?date=' + date">
                     <div class="item">
                         <h5>运动</h5>
                         <p>{{item.consume}}</p>
@@ -134,6 +134,7 @@
             }
         },
         props: {
+            userType: String,
             heatPlate: Array //这样可以指定传入的类型，如果类型不对，会警告
         },
         created() {
