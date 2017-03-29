@@ -35,6 +35,7 @@
 <script>
     import SlimmingShar from '../components/share/slimmingShar.vue';//瘦身分享
     import { MessageBox } from 'mint-ui';
+    import { getQuery } from '../libs/utils';
 
     export default {
         name: 'page-navbar',
@@ -77,6 +78,11 @@
         mounted() {
             this.getShareList();
             this.getMyShareList();
+
+            this.from = getQuery('from');
+            if(this.from == 'myshare'){
+               this.selected = '2';
+            }
         }
     };
 </script>
