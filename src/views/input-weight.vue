@@ -225,6 +225,9 @@
                 }
             },
             onPopup: function (item) {
+                if(!item.currentMonth) {
+                    return;
+                }
                 let nowdate = new Date();
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
