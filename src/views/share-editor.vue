@@ -94,8 +94,8 @@
 
             var imgReg = new RegExp('png|gif|jpg|jpeg');
 
-            if (img.size / 1024 > 400) {
-                MessageBox('注意', '图片过大，请选择400kb以下图片重新上传！');
+            if (img.size / 1024 > 5000) {
+                MessageBox('注意', '图片过大，请选择5M以下图片重新上传！');
                 return;
             }
 
@@ -148,7 +148,7 @@
                 $('.mint-field-core').val('');
             $('.sample').find('img').attr('src', '').hide();
             $('#editor-textarea').val('');
-            loaction.href='/share/listt'
+            location.href='/share/listt?from=myshare'
         },res=>{
             MessageBox('注意', '发布失败');
         });
