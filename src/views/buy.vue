@@ -103,7 +103,7 @@
             },
             test15: function() {
                 // 开启15天试用
-                this.$http.post('/lion/index.php/Fifteen/findex',{}).then(res=>{
+                this.$http.get('/index.php/Fifteen/findex',{}).then(res=>{
                     //跳转去选择肥胖原因
                     location.href = '/prefer/prefer/reason';
                 });
