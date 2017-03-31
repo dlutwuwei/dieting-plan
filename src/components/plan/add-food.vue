@@ -45,7 +45,7 @@
         props: ['data', 'type', 'isUpdate'],
         computed: {
             total: function () {
-                return (this.item.kcal * this.value / this.item.weight).toFixed(2);
+                return (this.item.kcal * (this.value||0) / this.item.weight).toFixed(2);
             }
         },
         watch: {
