@@ -12,7 +12,7 @@
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
-                    <span @click.once="uploadIdCard">+</spanv-on:click.stop>
+                    <a href="javascript:;">+</a>
                     <input type="file" id="upfile" name="upfile" style="display:none" accept="image/gif, image/jpeg, image/png" />
                     <!--<input type="hidden" name="cat" value="idcard" />-->
                 </div>
@@ -68,17 +68,14 @@
         //上传图片
         uploadIdCard(ev) {
             var self = this;
-            $('.img-btn').on('click', 'span', function() {
+            $('.img-btn').on('click', 'a', function () {
                 if(!$(this).hasClass('prohibit')){
                     $('#upfile').click();
-                    return false;
                 }
             })
 
-
             $('#upfile').on('change', function () {
                 self.uploadImage('upfile');
-                return false;
             });
         },
         uploadImage(id) {
@@ -86,7 +83,7 @@
             var data = new FormData();
             var files = $('#' + id)[0].files;
             if (!files) {
-                alert('图片不存在');
+                MessageBox('注意', '图片不存在！');
                 return;
             }
             let img = files[0];
@@ -158,7 +155,7 @@
     }
     },
     mounted() {
-        //this.uploadIdCard();
+        this.uploadIdCard();
     }
     };
 </script>
@@ -213,7 +210,7 @@
     }
     .img-btn{
         float:right;
-    span{
+    a{
         display:block;
         width:80px;
         height:80px;
