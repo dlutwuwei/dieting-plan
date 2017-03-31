@@ -113,14 +113,15 @@
             background-position: -125px 0px;
         }
         .go-back{
-            position:absolute;
-            left:10px;
-            top:13px;
-            display:inline-block;
-            width:10px;
-            height:20px;
-            overflow:hidden;
+            position: absolute;
+            left: 1px;
+            top: 3px;
+            display: inline-block;
+            width: 70px;
+            height: 40px;
+            overflow: hidden;
             vertical-align: middle;
+            padding: 9px 15px 0px;
         }
         .ico-1:before{
             background-position: -100px -25px;
