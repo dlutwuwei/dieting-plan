@@ -174,12 +174,15 @@
         color:#333;
     }
     em{
-        position:absolute;
-        right: 18px;
-        top: 12x;
-        font-style:normal;
-        fobt-size:14px;
-        color:#333;
+        position: absolute;
+        right: 0px;
+        top: 4px;
+        font-style: normal;
+        font-size: 14px;
+        color: #333;
+        display: block;
+        padding: 10px 29px;
+        height: 35px;
     }
     }
     .share-editor-cen{
