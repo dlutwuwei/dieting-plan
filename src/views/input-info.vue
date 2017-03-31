@@ -171,6 +171,8 @@
             padding: 22px;
             line-height: 24px;
             font-size: 14px;
+            max-height: 500px;
+            overflow: auto;
             p {
                 padding-bottom: 24px;
             }
