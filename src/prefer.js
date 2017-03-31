@@ -4,12 +4,15 @@ import VueRouter from 'vue-router';
 import routes from './routes/prefer-routers';
 import store from './vuex/user';
 import FastClick from 'fastclick';
-import MintUI from 'mint-ui';
 import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
 
-Vue.use(MintUI);
+import { Header, Button } from 'mint-ui';
+
+Vue.component(Button.name, Button);
+Vue.component(Header.name, Header);
+
 Vue.use(VueResource);
 Vue.use(VueRouter);
 
