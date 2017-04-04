@@ -10,7 +10,7 @@
             <div class="detail-title">性别</div>
             <div class="detail-options">
                 <span class="check-item"><input class="checkbox" type="radio" name="gender" id="male" value="1" v-model="gender"><label for="male">男</label></span>
-                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female" value="0" v-model="gender"><label for="female">女</label></span>
+                <span class="check-item"><input class="checkbox" type="radio" name="gender" id="female" value="2" v-model="gender"><label for="female">女</label></span>
             </div>
         </div>
         <div class="input-box">
