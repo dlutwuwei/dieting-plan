@@ -6,7 +6,7 @@
                         <h5>量子检测+营养均衡+热量控制+合理运动</h5>
                         <router-link to="/loadingInfo"><p>详情</p></router-link>
                     <div>
-                        <img src="../assets/images/loading-1.png"  alt=""/>
+                        <img src="/Public/render/img/loading-1.png"  alt=""/>
                     </div>
                 </div>
             </mt-swipe-item>
@@ -41,7 +41,9 @@
                     <div>
                         <img src="../assets/images/loading-5.png"  alt=""/>
                     </div>
-                    <span class="immediate-experience">立即体验</span>
+                    <a href="/">
+                        <span class="immediate-experience">立即体验</span>
+                    </a>
                 </div>
             </mt-swipe-item>
         </mt-swipe>
