@@ -94,6 +94,15 @@
           });
         }
       });
+      this.$http.get('/seven/first').then(res => {
+        if(res.body.success) {
+          MessageBox.confirm(res.body.massages).then(action => {
+            this.$http.get('/seven/last').then(res => {
+              // 确认成为正式用户
+            })
+          });
+        }
+      });
     },
     components: {
       ReduceWeight,
