@@ -137,7 +137,7 @@
                 },
                 {
                     label: '女',
-                    value: '0'
+                    value: '2'
                 }
             ];
             this.disease_options = [

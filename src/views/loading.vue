@@ -55,6 +55,7 @@
 <style lang="scss">
     .page-swipe{
         .swipe-bd{
+            padding: 10px;
             text-align:center;
             h5{
                 padding-bottom:15px;
@@ -114,7 +115,7 @@
                 .immediate-experience{
                     width:150px;
                     height:30px;
-                    margin:28% auto 0;
+                    margin:18% auto 0;
                     font-size:16px;
                     line-height:30px;
                 }
