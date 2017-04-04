@@ -14,7 +14,7 @@
                 <div class="swipe-bd">
                         <h5>动态计划，专业指导，天天减重</h5>
                     <div style="padding-top:45px;">
-                        <img src="../assets/images/loading-2.png"  alt=""/>
+                        <img src="/Public/render/img/loading-2.png"  alt=""/>
                     </div>
                 </div>
             </mt-swipe-item>
@@ -23,7 +23,7 @@
                         <h5>营养均衡</h5>
                         <h5>减脂不减健康</h5>
                     <div>
-                        <img src="../assets/images/loading-3.png"  alt=""/>
+                        <img src="/Public/render/img/loading-3.png"  alt=""/>
                     </div>
                 </div>
             </mt-swipe-item>
@@ -32,14 +32,14 @@
                         <h5>专业检测+90食物限制+食物偏好优先权</h5>
                         <h5>吃您想吃的，补您该补的</h5>
                     <div>
-                        <img src="../assets/images/loading-4.png"  alt=""/>
+                        <img src="/Public/render/img/loading-4.png"  alt=""/>
                     </div>
                 </div>
             </mt-swipe-item>
             <mt-swipe-item>
                 <div class="swipe-bd">
                     <div>
-                        <img src="../assets/images/loading-5.png"  alt=""/>
+                        <img src="/Public/render/img/loading-5.png"  alt=""/>
                     </div>
                     <a href="/">
                         <span class="immediate-experience">立即体验</span>
