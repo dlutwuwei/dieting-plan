@@ -7,21 +7,31 @@
       </div>
       <div class="bd">
           <div class="list-content" :class="{'active': type=='food'}">
-              <div v-if="planList.food.length" class="list-item" v-for="(item, index) in planList.food">
-                <router-link :to="'/detail/food?date=' + i" slot="left" v-for="(t, i) in item">
-                    <div class="date">{{i}}</div>
-                    <div>食物：{{t.count}}种</div>
-                    <div>摄入：{{t.kcal}}千卡</div>
-                </router-link>
+              <div v-if="planList.food.length!=0">
+                <div class="list-item" v-for="(item, index) in planList.food">
+                    <router-link :to="'/detail/food?date=' + i" slot="left" v-for="(t, i) in item">
+                        <div class="date">{{i}}</div>
+                        <div>食物：{{t.count}}种</div>
+                        <div>摄入：{{t.kcal}}千卡</div>
+                    </router-link>
+                </div>
+              </div>
+              <div class="notice" v-else>
+                  <span>计划还未推送，请明天查看</span>
               </div>
           </div>
-          <div class="list-content" :class="{'active': type=='sport'}" v-if="planList.sport.length">
-              <div class="list-item" v-for="(item, index) in planList.sport">
-                <router-link :to="'/detail/sport?date=' + index" slot="left">
-                      <div class="date">{{index}}</div>
-                      <div>运动时长：{{item.lasttime}}分钟</div>
-                      <div>运动消耗：{{item.kcal}}千卡</div>
-                </router-link>
+          <div class="list-content" :class="{'active': type=='sport'}" >
+              <div v-if="planList.sport.length!=0">
+                <div class="list-item" v-for="(item, index) in planList.sport">
+                    <router-link :to="'/detail/sport?date=' + index" slot="left">
+                        <div class="date">{{index}}</div>
+                        <div>运动时长：{{item.lasttime}}分钟</div>
+                        <div>运动消耗：{{item.kcal}}千卡</div>
+                    </router-link>
+                </div>
+              </div>
+              <div class="notice" v-else>
+                  <span>计划还未推送，请明天查看</span>
               </div>
           </div>
       </div>
@@ -62,6 +72,10 @@
 <style lang="scss">
     body {
         background: #f7f7f7;
+    }
+    .notice {
+        text-align: center;
+        line-height: 60px;
     }
     .plan-list{
         margin-top: 10px;
