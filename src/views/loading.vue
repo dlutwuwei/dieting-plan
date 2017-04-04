@@ -55,7 +55,6 @@
 <style lang="scss">
     .page-swipe{
         .swipe-bd{
-            padding-top:40px;
             text-align:center;
             h5{
                 padding-bottom:15px;
