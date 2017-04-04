@@ -9,7 +9,7 @@ const routers = [{
     component: laoding
 },
 {
-    path: '/loading/loadingInfo',
+    path: '/loadingInfo',
     component: laodingInfo
 }];
 
