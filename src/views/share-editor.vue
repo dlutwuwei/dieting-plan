@@ -11,10 +11,9 @@
         <div class="share-editor-cen">
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
-                <div class="img-btn" @click="imgBtnUpLoad">
-                    <span>+</span>
-                    <input type="file" id="upfile" name="upfile" style="display:none" accept="image/gif, image/jpeg, image/png" />
-                    <!--<input type="hidden" name="cat" value="idcard" />-->
+                <div class="img-btn">
+                    <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
+                    <span>+</span>                
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>
@@ -145,22 +144,20 @@
                     MessageBox('注意', '发布失败');
                 });
             },
-            imgBtnUpLoad() {
-                if (!$(this).hasClass('prohibit')) {
-                    setTimeout(()=> {
-                        $('#upfile').click();
-                    }, 10)
+            imgBtnUpLoad(e) {
+                if (!$(e.target).hasClass('prohibit')) {
+                    this.$refs.inputfile.click();
+                    document.querySelector('input').click()
                     return false;
                 }
+            },
+            fileChange() {
+                this.uploadImage('upfile');
+                $('#upfile').val('');
+                return false;
             }
         },
         mounted() {
-            let self = this;
-             $('#upfile').on('change', function () {
-                self.uploadImage('upfile');
-                this.value = '';
-                return false;
-            });
         }
     };
 
@@ -218,6 +215,13 @@
             }
             .img-btn {
                 float: right;
+                #upfile {
+                    width: 80px;
+                    height: 80px;
+                    opacity: 0;
+                    z-index: 1;
+                    float: left;
+                }
                 span {
                     display: block;
                     width: 80px;
