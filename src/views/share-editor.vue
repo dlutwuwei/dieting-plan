@@ -13,7 +13,7 @@
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <span @click.once="uploadIdCard">+</spanv-on:click.stop>
-                    <input type="file" id="upfile" name="upfile" style="display:none" accept="image/gif, image/jpeg, image/png" />
+                    <input type="file" id="upfile" name="upfile" accept="image/*;" capture="camera" />
                     <!--<input type="hidden" name="cat" value="idcard" />-->
                 </div>
                 <h5>封面</h5>
