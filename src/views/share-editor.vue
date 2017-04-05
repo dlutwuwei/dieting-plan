@@ -13,7 +13,7 @@
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
-                    <span>+</span>                
+                    <span>+</span>
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>

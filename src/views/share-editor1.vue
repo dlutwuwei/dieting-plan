@@ -13,7 +13,7 @@
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <a href="javascript:;">+</a>
-                    <input type="file" id="upfile" name="upfile" style="display:none" accept="image/gif, image/jpeg, image/png" />
+                    <input type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
                     <!--<input type="hidden" name="cat" value="idcard" />-->
                 </div>
                 <h5>封面</h5>
