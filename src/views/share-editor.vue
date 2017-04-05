@@ -11,8 +11,8 @@
         <div class="share-editor-cen">
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
-                <div class="img-btn">
-                    <span @click.once="uploadIdCard">+</spanv-on:click.stop>
+                <div class="img-btn" @click="imgBtnUpLoad">
+                    <span>+</span>
                     <input type="file" id="upfile" name="upfile" style="display:none" accept="image/gif, image/jpeg, image/png" />
                     <!--<input type="hidden" name="cat" value="idcard" />-->
                 </div>
@@ -21,7 +21,8 @@
                 <div class="sample id-no-uploaded"><img src="" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
-                <h5>正文 <!--<span>(文字和图片都可以)</span>--></h5>
+                <h5>正文
+                    <!--<span>(文字和图片都可以)</span>--></h5>
                 <textarea name="" id="editor-textarea" cols="30" rows="10"></textarea>
             </div>
         </div>
@@ -31,235 +32,238 @@
     </div>
 </template>
 <script>
-
     import $ from 'webpack-zepto';
     import { MessageBox } from 'mint-ui';
 
     export default {
         name: 'page-navbar',
         data() {
-        return {
+            return {
 
-        }
-    },
-    components: {
-
-    },
-    methods: {
-        goback: function () {
-            history.back();
-        },
-        uploadFile(data, callback) {
-            $.ajax({
-                url: '/Share/fileimg',
-                type: 'POST',
-                data: data,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-                    callback(null, JSON.parse(result));
-                },
-                error: function (error) {
-                    alert('网络链接失败，请稍后重试');
-                    callback(error);
-                }
-            });
-        },
-        //上传图片
-        uploadIdCard(ev) {
-            var self = this;
-            $('.img-btn').on('click', 'span', function() {
-                if(!$(this).hasClass('prohibit')){
-                    $('#upfile').click();
-                    return false;
-                }
-            })
-
-
-            $('#upfile').on('change', function () {
-                self.uploadImage('upfile');
-                return false;
-            });
-        },
-        uploadImage(id) {
-            var self = this;
-            var data = new FormData();
-            var files = $('#' + id)[0].files;
-            if (!files) {
-                alert('图片不存在');
-                return;
             }
-            let img = files[0];
-            if (!img) {
-                alert('图片不存在');
-                return;
-            }
+        },
+        components: {
 
-            var imgReg = new RegExp('png|gif|jpg|jpeg');
+        },
+        methods: {
+            goback: function () {
+                history.back();
+            },
+            uploadFile(data, callback) {
+                $.ajax({
+                    url: '/Share/fileimg',
+                    type: 'POST',
+                    data: data,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        callback(null, JSON.parse(result));
+                    },
+                    error: function (error) {
+                        alert('网络链接失败，请稍后重试');
+                        callback(error);
+                    }
+                });
+            },
+            //上传图片
+            uploadIdCard(ev) {
+                var self = this;
 
-            if (img.size / 1024 > 5000) {
-                MessageBox('注意', '图片过大，请选择5M以下图片重新上传！');
-                return;
-            }
-
-            data.append("upfile", img);
-            data.append("cat", "idcard");//增加图片压缩
-
-            this.uploadFile(data, function (error, result) {
-                $('.operate_loading_pc').show();
-                $('.operate_loading_pc_share__layer').show();
-                if (!error) {
-                    self.id_card_img =  result.massages;//获取图片地址
-                    $('.sample').removeClass('id-no-uploaded');
-                    $('.sample').find('img').attr('src', self.id_card_img).show();
-                    $('.operate_loading_pc').hide();
-                    $('.operate_loading_pc_share__layer').hide();
-                    MessageBox('', '图片上传成功!');
+            },
+            uploadImage(id) {
+                var self = this;
+                var data = new FormData();
+                var files = $('#' + id)[0].files;
+                if (!files) {
+                    alert('图片不存在');
                     return;
                 }
-                MessageBox('注意', '图片上传失败!');
-            })
+                let img = files[0];
+                if (!img) {
+                    alert('图片不存在');
+                    return;
+                }
+
+                var imgReg = new RegExp('png|gif|jpg|jpeg');
+
+                if (img.size / 1024 > 5000) {
+                    MessageBox('注意', '图片过大，请选择5M以下图片重新上传！');
+                    return;
+                }
+
+                data.append("upfile", img);
+                data.append("cat", "idcard");//增加图片压缩
+
+                this.uploadFile(data, function (error, result) {
+                    $('.operate_loading_pc').show();
+                    $('.operate_loading_pc_share__layer').show();
+                    if (!error) {
+                        self.id_card_img = result.massages;//获取图片地址
+                        $('.sample').removeClass('id-no-uploaded');
+                        $('.sample').find('img').attr('src', self.id_card_img).show();
+                        $('.operate_loading_pc').hide();
+                        $('.operate_loading_pc_share__layer').hide();
+                        MessageBox('', '图片上传成功!');
+                        return;
+                    }
+                    MessageBox('注意', '图片上传失败!');
+                })
+            },
+            releaseShare() {
+                let title = $('.mint-field-core').val();
+                let titlepic = $('.sample').find('img').attr('src');
+                let content = $('#editor-textarea').val();
+
+                if ($.trim(title) == "") {
+                    MessageBox('注意', '请填写分享标题!');
+                    return;
+                }
+                if ($('.sample img').css('display') == "" || $('.sample img').css('display') == "none") {
+                    MessageBox('注意', '请上传分享图片!');
+                    return;
+                }
+                if ($.trim(content) == "") {
+                    MessageBox('注意', '请填写分享内容!');
+                    return;
+                }
+                let reqBody = {
+                    title: title,
+                    titlepic: titlepic,
+                    content: content,
+                };
+
+                this.$http.post(
+                    '/Share/shareadd',
+                    reqBody
+                ).then(res => {
+                    /* 发布成功 */
+                    $('.mint-field-core').val('');
+                    $('.sample').find('img').attr('src', '').hide();
+                    $('#editor-textarea').val('');
+                    location.href = '/share/listt?from=myshare'
+                }, res => {
+                    MessageBox('注意', '发布失败');
+                });
+            },
+            imgBtnUpLoad() {
+                if (!$(this).hasClass('prohibit')) {
+                    setTimeout(()=> {
+                        $('#upfile').click();
+                    }, 10)
+                    return false;
+                }
+            }
         },
-        releaseShare(){
-            let title = $('.mint-field-core').val();
-            let titlepic = $('.sample').find('img').attr('src');
-            let content = $('#editor-textarea').val();
-
-            if($.trim(title) == ""){
-                MessageBox('注意', '请填写分享标题!');
-                return;
-            }
-            if($('.sample img').css('display') == "" || $('.sample img').css('display') == "none"){
-                MessageBox('注意', '请上传分享图片!');
-                return;
-            }
-            if($.trim(content) == ""){
-                MessageBox('注意', '请填写分享内容!');
-                return;
-            }
-            let reqBody = {
-                title: title,
-                titlepic: titlepic,
-                content: content,
-            };
-
-            this.$http.post(
-                '/Share/shareadd',
-                reqBody
-            ).then(res=>{
-                /* 发布成功 */
-                $('.mint-field-core').val('');
-            $('.sample').find('img').attr('src', '').hide();
-            $('#editor-textarea').val('');
-            location.href='/share/listt?from=myshare'
-        },res=>{
-            MessageBox('注意', '发布失败');
-        });
-    }
-    },
-    mounted() {
-        //this.uploadIdCard();
-    }
+        mounted() {
+            let self = this;
+             $('#upfile').on('change', function () {
+                self.uploadImage('upfile');
+                this.value = '';
+                return false;
+            });
+        }
     };
+
 </script>
 <style lang="scss">
-    .input-box{
-        margin-top:10px;
-        background:#fff;
-        border:1px solid #cccccc;
+    .input-box {
+        margin-top: 10px;
+        background: #fff;
+        border: 1px solid #cccccc;
     }
-    .share-hd{
-        background:#fff;
-        border-bottom:1px solid #cccccc;
-        text-align:center;
-    span{
-        font-size:15px;
-        color:#333;
+    
+    .share-hd {
+        background: #fff;
+        border-bottom: 1px solid #cccccc;
+        text-align: center;
+        span {
+            font-size: 15px;
+            color: #333;
+        }
+        em {
+            position: absolute;
+            right: 0px;
+            top: 4px;
+            font-style: normal;
+            font-size: 14px;
+            color: #333;
+            display: block;
+            padding: 10px 29px;
+            height: 35px;
+        }
     }
-    em{
-        position: absolute;
-        right: 0px;
-        top: 4px;
-        font-style: normal;
-        font-size: 14px;
-        color: #333;
-        display: block;
-        padding: 10px 29px;
-        height: 35px;
-    }
-    }
-    .share-editor-cen{
+    
+    .share-editor-cen {
         padding: 10px 18px 0;
-    .mint-cell-wrapper{
-        border:1px solid #ccc;
+        .mint-cell-wrapper {
+            border: 1px solid #ccc;
+        }
+        .mint-field .mint-cell-title {
+            width: 50px;
+        }
+        .mint-cell-text {
+            font-size: 18px;
+            color: #999;
+        }
+        .upload-pic {
+            padding: 19px 8px 24px;
+            overflow: hidden;
+            h5 {
+                font-size: 18px;
+                color: #999;
+            }
+            p {
+                font-size: 12px;
+                color: #999;
+            }
+            .img-btn {
+                float: right;
+                span {
+                    display: block;
+                    width: 80px;
+                    height: 80px;
+                    font-size: 0px;
+                    background: url(../assets/images/upload-btn.png) no-repeat;
+                    background-size: 100% auto;
+                }
+            }
+        }
+        .editor-text {
+            padding: 19px 8px 24px;
+            min-height: 200px;
+            h5 {
+                font-size: 18px;
+                color: #999;
+                span {
+                    font-size: 12px;
+                }
+            }
+            textarea {
+                width: 100%;
+                height: 160px;
+                padding: 5px;
+                color: #333;
+                border: 1px solid #ccc;
+                overflow-y: auto;
+            }
+        }
+        .sample {
+            clear: both;
+            padding-top: 5px;
+            img {
+                display: none;
+                width: 100%;
+                height: 160px;
+            }
+        }
+        .sample-tips {
+            display: block;
+            font-size: 12px;
+        }
     }
-    .mint-field .mint-cell-title{
-        width:50px;
-    }
-    .mint-cell-text{
-        font-size: 18px;
-        color: #999;
-    }
-    .upload-pic{
-        padding:19px 8px 24px;
-        overflow:hidden;
-    h5{
-        font-size:18px;
-        color:#999;
-    }
-    p{
-        font-size:12px;
-        color:#999;
-    }
-    .img-btn{
-        float:right;
-    span{
-        display:block;
-        width:80px;
-        height:80px;
-        font-size:0px;
-        background: url(../assets/images/upload-btn.png) no-repeat;
-        background-size: 100% auto;
-
-    }
-    }
-    }
-    .editor-text{
-        padding:19px 8px 24px;
-        min-height:200px;
-    h5{
-        font-size:18px;
-        color:#999;
-    span{
-        font-size:12px;
-    }
-    }
-    textarea{
-        width: 100%;
-        height: 160px;
-        padding:5px;
-        color:#333;
-        border: 1px solid #ccc;
-        overflow-y: auto;
-    }
-    }
-    .sample{
-        clear:both;
-        padding-top:5px;
-    img{
-        display:none;
-        width:100%;
-        height:160px;
-    }
-    }
-    .sample-tips{
-        display:block;
-        font-size:12px;
-    }
-    }
-
-    .operate_loading_pc{
-        display:none;
+    
+    .operate_loading_pc {
+        display: none;
         position: fixed;
         z-index: 3099;
         margin: 0 auto;
@@ -276,15 +280,16 @@
         /*background: white;*/
         text-align: center;
         padding: 5px 10px;
-        width:100px\9;
+        width: 100px\9;
         margin-left: -60px\9;
     }
+    
     .operate_loading_pc_share__layer {
-        display:none;
+        display: none;
         position: fixed;
         z-index: 3000;
         opacity: 0.5;
-        filter:alpha(opacity=20);
+        filter: alpha(opacity=20);
         top: 0;
         bottom: 0;
         left: 0;
@@ -292,5 +297,4 @@
         height: 100%;
         background-color: gainsboro;
     }
-
 </style>
