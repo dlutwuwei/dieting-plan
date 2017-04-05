@@ -12,16 +12,16 @@
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
-                    <a href="javascript:;">+</a>
-                    <input type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
-                    <!--<input type="hidden" name="cat" value="idcard" />-->
+                    <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
+                    <span>+</span>
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>
                 <div class="sample id-no-uploaded"><img src="" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
-                <h5>正文 <!--<span>(文字和图片都可以)</span>--></h5>
+                <h5>正文
+                    <!--<span>(文字和图片都可以)</span>--></h5>
                 <textarea name="" id="editor-textarea" cols="30" rows="10"></textarea>
             </div>
         </div>
@@ -31,7 +31,6 @@
     </div>
 </template>
 <script>
-
     import $ from 'webpack-zepto';
     import { MessageBox } from 'mint-ui';
 
@@ -68,22 +67,14 @@
         //上传图片
         uploadIdCard(ev) {
             var self = this;
-            $('.img-btn').on('click', 'a', function () {
-                if(!$(this).hasClass('prohibit')){
-                    $('#upfile').click();
-                }
-            })
 
-            $('#upfile').on('change', function () {
-                self.uploadImage('upfile');
-            });
         },
         uploadImage(id) {
             var self = this;
             var data = new FormData();
             var files = $('#' + id)[0].files;
             if (!files) {
-                MessageBox('注意', '图片不存在！');
+                alert('图片不存在');
                 return;
             }
             let img = files[0];
@@ -106,7 +97,7 @@
                 $('.operate_loading_pc').show();
                 $('.operate_loading_pc_share__layer').show();
                 if (!error) {
-                    self.id_card_img =  result.massages;//获取图片地址
+                    self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
                     $('.sample').find('img').attr('src', self.id_card_img).show();
                     $('.operate_loading_pc').hide();
@@ -117,20 +108,20 @@
                 MessageBox('注意', '图片上传失败!');
             })
         },
-        releaseShare(){
+        releaseShare() {
             let title = $('.mint-field-core').val();
             let titlepic = $('.sample').find('img').attr('src');
             let content = $('#editor-textarea').val();
 
-            if($.trim(title) == ""){
+            if ($.trim(title) == "") {
                 MessageBox('注意', '请填写分享标题!');
                 return;
             }
-            if($('.sample img').css('display') == "" || $('.sample img').css('display') == "none"){
+            if ($('.sample img').css('display') == "" || $('.sample img').css('display') == "none") {
                 MessageBox('注意', '请上传分享图片!');
                 return;
             }
-            if($.trim(content) == ""){
+            if ($.trim(content) == "") {
                 MessageBox('注意', '请填写分享内容!');
                 return;
             }
@@ -143,37 +134,50 @@
             this.$http.post(
                 '/Share/shareadd',
                 reqBody
-            ).then(res=>{
+            ).then(res => {
                 /* 发布成功 */
                 $('.mint-field-core').val('');
             $('.sample').find('img').attr('src', '').hide();
             $('#editor-textarea').val('');
-            location.href='/share/listt?from=myshare'
-        },res=>{
+            location.href = '/share/listt?from=myshare'
+        }, res => {
             MessageBox('注意', '发布失败');
         });
+    },
+    imgBtnUpLoad(e) {
+        if (!$(e.target).hasClass('prohibit')) {
+            this.$refs.inputfile.click();
+            document.querySelector('input').click()
+            return false;
+        }
+    },
+    fileChange() {
+        this.uploadImage('upfile');
+        $('#upfile').val('');
+        return false;
     }
     },
     mounted() {
-        this.uploadIdCard();
     }
     };
+
 </script>
 <style lang="scss">
-    .input-box{
-        margin-top:10px;
-        background:#fff;
-        border:1px solid #cccccc;
+    .input-box {
+        margin-top: 10px;
+        background: #fff;
+        border: 1px solid #cccccc;
     }
-    .share-hd{
-        background:#fff;
-        border-bottom:1px solid #cccccc;
-        text-align:center;
-    span{
-        font-size:15px;
-        color:#333;
+
+    .share-hd {
+        background: #fff;
+        border-bottom: 1px solid #cccccc;
+        text-align: center;
+    span {
+        font-size: 15px;
+        color: #333;
     }
-    em{
+    em {
         position: absolute;
         right: 0px;
         top: 4px;
@@ -185,78 +189,85 @@
         height: 35px;
     }
     }
-    .share-editor-cen{
+
+    .share-editor-cen {
         padding: 10px 18px 0;
-    .mint-cell-wrapper{
-        border:1px solid #ccc;
+    .mint-cell-wrapper {
+        border: 1px solid #ccc;
     }
-    .mint-field .mint-cell-title{
-        width:50px;
+    .mint-field .mint-cell-title {
+        width: 50px;
     }
-    .mint-cell-text{
+    .mint-cell-text {
         font-size: 18px;
         color: #999;
     }
-    .upload-pic{
-        padding:19px 8px 24px;
-        overflow:hidden;
-    h5{
-        font-size:18px;
-        color:#999;
+    .upload-pic {
+        padding: 19px 8px 24px;
+        overflow: hidden;
+    h5 {
+        font-size: 18px;
+        color: #999;
     }
-    p{
-        font-size:12px;
-        color:#999;
+    p {
+        font-size: 12px;
+        color: #999;
     }
-    .img-btn{
-        float:right;
-    a{
-        display:block;
-        width:80px;
-        height:80px;
-        font-size:0px;
+    .img-btn {
+        float: right;
+    #upfile {
+        width: 80px;
+        height: 80px;
+        opacity: 0;
+        z-index: 1;
+        float: left;
+    }
+    span {
+        display: block;
+        width: 80px;
+        height: 80px;
+        font-size: 0px;
         background: url(../assets/images/upload-btn.png) no-repeat;
         background-size: 100% auto;
-
     }
     }
     }
-    .editor-text{
-        padding:19px 8px 24px;
-        min-height:200px;
-    h5{
-        font-size:18px;
-        color:#999;
-    span{
-        font-size:12px;
+    .editor-text {
+        padding: 19px 8px 24px;
+        min-height: 200px;
+    h5 {
+        font-size: 18px;
+        color: #999;
+    span {
+        font-size: 12px;
     }
     }
-    textarea{
+    textarea {
         width: 100%;
         height: 160px;
-        padding:5px;
-        color:#333;
+        padding: 5px;
+        color: #333;
         border: 1px solid #ccc;
         overflow-y: auto;
     }
     }
-    .sample{
-        clear:both;
-        padding-top:5px;
-    img{
-        display:none;
-        width:100%;
-        height:160px;
+    .sample {
+        clear: both;
+        padding-top: 5px;
+    img {
+        display: none;
+        width: 100%;
+        height: 160px;
     }
     }
-    .sample-tips{
-        display:block;
-        font-size:12px;
+    .sample-tips {
+        display: block;
+        font-size: 12px;
     }
     }
 
-    .operate_loading_pc{
-        display:none;
+    .operate_loading_pc {
+        display: none;
         position: fixed;
         z-index: 3099;
         margin: 0 auto;
@@ -273,15 +284,16 @@
         /*background: white;*/
         text-align: center;
         padding: 5px 10px;
-        width:100px\9;
+        width: 100px\9;
         margin-left: -60px\9;
     }
+
     .operate_loading_pc_share__layer {
-        display:none;
+        display: none;
         position: fixed;
         z-index: 3000;
         opacity: 0.5;
-        filter:alpha(opacity=20);
+        filter: alpha(opacity=20);
         top: 0;
         bottom: 0;
         left: 0;
@@ -289,5 +301,4 @@
         height: 100%;
         background-color: gainsboro;
     }
-
 </style>
