@@ -55,12 +55,12 @@
 </script>
 <style lang="scss">
     .page-swipe{
-        height:13.34rem;
+        height:12rem;
         .swipe-bd{
             padding: 10px;
             text-align:center;
             h5{
-                padding-bottom:.3rem;
+                padding-bottom:.2rem;
                 font-size:.36rem;
                 font-weight:100;
                 color:#333;
@@ -98,7 +98,7 @@
             opacity: 0.9;
         }
         .mint-swipe-indicators{
-            bottom:4rem;
+            bottom:2.5rem;
         }
     }
    /* @media screen and (min-width:320px) {
