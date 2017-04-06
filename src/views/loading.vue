@@ -61,12 +61,12 @@
             text-align:center;
             h5{
                 padding-bottom:.2rem;
-                font-size:.36rem;
+                font-size:.28rem;
                 font-weight:100;
                 color:#333;
             }
             p{
-                font-size:.3rem;
+                font-size:.28rem;
                 color:#0154fe;
                 text-decoration:underline;
             }
@@ -81,7 +81,7 @@
                 display:block;
                 width:180px;
                 height:40px;
-                margin:2.5rem auto 0;
+                margin:.5rem auto 0;
                 border:1px solid #47a304;
                 border-radius:5px;
                 font-size:.36rem;
