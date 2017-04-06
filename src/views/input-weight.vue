@@ -56,17 +56,18 @@
                 text-align: center;
                 -webkit-box-pack: justify;
                 box-pack: justify;
-                font-size: 15px;
+                font-size: .3rem;
                 color: #333;
                 position: relative;
-                padding:3px;
+                padding:.03rem;
                 span {
                     box-flex: 1;
                     -webkit-box-flex: 1;
                     display: block;
                     text-align: center;
-                    height: 55px;
-                    padding-top: 12px;
+                    width:1.07rem;
+                    height: .9rem;
+                    padding-top: .24rem;
                     line-height: 1.2;
                 }
                 .gray {
@@ -75,7 +76,7 @@
                 em {
                     display: block;
                     font-style: normal;
-                    font-size: 12px;
+                    font-size: .14rem;
                     color: #47a304;
                 }
                 .curr {
@@ -100,7 +101,7 @@
             }
         }
     }
-    @media screen and (max-width: 414px) {
+    /*@media screen and (max-width: 414px) {
         .input-weight .bd li span{
             height:57px;
         }
@@ -115,7 +116,7 @@
             height:46px;
             padding-top:8px;
         }
-    }
+    }*/
 </style>
 <template>
     <div>
@@ -149,6 +150,7 @@
     import $ from 'webpack-zepto';
     import {fmtDate} from  "../libs/utils.js";
     import { MessageBox } from 'mint-ui';
+    require('../libs/flexible.js');
 
     export default {
         data() {
