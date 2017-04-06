@@ -81,6 +81,7 @@
                 display:block;
                 width:180px;
                 height:40px;
+                margin:2.5rem auto 0;
                 border:1px solid #47a304;
                 border-radius:5px;
                 font-size:.36rem;
