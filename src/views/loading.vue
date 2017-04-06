@@ -6,7 +6,7 @@
                         <h5>量子检测+营养均衡+热量控制+合理运动</h5>
                         <router-link to="/loadingInfo"><p>详情</p></router-link>
                     <div>
-                        <img src="/Public/render/img/loading-1.png"  alt=""/>
+                        <img src="/Public/render/img/loading-1.png" style="width:6.1rem;height:6.36rem"  alt=""/>
                     </div>
                 </div>
             </mt-swipe-item>
@@ -51,26 +51,27 @@
 </template>
 <script>
     import "../assets/scss/common/reset.scss";
+    require('../libs/flexible.js');
 </script>
 <style lang="scss">
     .page-swipe{
+        height:13.34rem;
         .swipe-bd{
             padding: 10px;
             text-align:center;
             h5{
-                padding-bottom:15px;
-                font-size:18px;
+                padding-bottom:.3rem;
+                font-size:.36rem;
                 font-weight:100;
                 color:#333;
             }
             p{
-                padding-bottom:15px;
-                font-size:15px;
+                font-size:.3rem;
                 color:#0154fe;
                 text-decoration:underline;
             }
             div{
-                padding-top:30px;
+                padding-top:.6rem;
                 img{
                     width:100%;
                     height:auto;
@@ -80,10 +81,10 @@
                 display:block;
                 width:180px;
                 height:40px;
-                margin:30% auto 0;
+                margin:2.5rem auto 0;
                 border:1px solid #47a304;
                 border-radius:5px;
-                font-size:18px;
+                font-size:.36rem;
                 color:#47a304;
                 line-height:40px;
             }
@@ -97,10 +98,10 @@
             opacity: 0.9;
         }
         .mint-swipe-indicators{
-            bottom:15%;
+            bottom:4rem;
         }
     }
-    @media screen and (min-width:320px) {
+   /* @media screen and (min-width:320px) {
         .page-swipe{
             height:568px;
             .swipe-bd{
@@ -143,5 +144,5 @@
         .page-swipe{
             height:736px;
         }
-    }
+    }*/
 </style>
