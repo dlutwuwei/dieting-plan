@@ -32,6 +32,10 @@
                padding-bottom:25px;
                font-size:13px;
                color:#333;
+               img{
+                   width:100%;
+                   height:auto;
+               }
            }
         }
     }

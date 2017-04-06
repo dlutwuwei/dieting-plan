@@ -74,10 +74,6 @@
             font-size:14px;
             color:#333;
             line-height:1.5;
-            img{
-                width:100%;
-                height:auto;
-            }
         }
     }
 </style>
