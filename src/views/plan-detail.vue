@@ -46,7 +46,7 @@
         },
         methods: {
             goback: function () {
-                history.back();
+                this.$router.push('/')
             },
             fetchData: function() {
                 if (this.type != 'sport') {

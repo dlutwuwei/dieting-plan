@@ -65,7 +65,10 @@
                 }
             },
             save: function () {
-                if(!this.value) return;
+                if(!this.value) {
+                    MessageBox('注意', '需要填入数值')
+                    return;
+                }
 
                 let url = '/plan/updatesport';
                 if(!this.isUpdate) {

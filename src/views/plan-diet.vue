@@ -87,7 +87,7 @@
                 }
             },
             goback: function () {
-                history.back();
+                this.$router.push(`/detail/${this.type}?date=${this.date}`)
             },
             deleteItem: function (item, i) {
                 MessageBox.confirm('确认删除此项计划?').then(action => {
