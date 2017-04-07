@@ -13,11 +13,15 @@
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
-                    <span>+</span>                
+                    <span>+</span>
                 </div>
                 <h5>封面</h5>
                 <p>(用美美的图片做封面会受到更多人喜欢哦~)</p>
-                <div class="sample id-no-uploaded"><img src="" alt="图片"><span class="sample-tips">请选择5M以下图片上传！</span></div>
+                <div class="sample id-no-uploaded">
+                    <div>
+                        <img src="" alt="图片">
+                    </div>
+                    <span class="sample-tips">请选择500kb以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
                 <h5>正文
@@ -85,8 +89,8 @@
 
             var imgReg = new RegExp('png|gif|jpg|jpeg');
 
-            if (img.size / 1024 > 5000) {
-                MessageBox('注意', '图片过大，请选择5M以下图片重新上传！');
+            if (img.size / 1024 > 500) {
+                MessageBox('注意', '图片过大，请选择500kb以下图片重新上传！');
                 return;
             }
 
@@ -99,7 +103,8 @@
                 if (!error) {
                     self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
-                    $('.sample').find('img').attr('src', self.id_card_img).show();
+                    $('.sample').find('img').attr('src', self.id_card_img)
+                    $('.sample').find('div').show();
                     $('.operate_loading_pc').hide();
                     $('.operate_loading_pc_share__layer').hide();
                     MessageBox('', '图片上传成功!');
@@ -253,11 +258,16 @@
     .sample {
         clear: both;
         padding-top: 5px;
-    img {
-        display: none;
-        width: 100%;
-        height: 160px;
-    }
+        div{
+            display: none;
+            width: 100%;
+            height:160px;
+            overflow:hidden;
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
     }
     .sample-tips {
         display: block;

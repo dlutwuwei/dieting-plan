@@ -7,6 +7,11 @@ import FastClick from 'fastclick';
 import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
+var WxShare = require('./libs/wx_share.js');
+
+/*分享*/
+var wxShare = new WxShare();
+wxShare.start();
 
 import { Swipe, SwipeItem, Popup, Header, Button } from 'mint-ui';
 

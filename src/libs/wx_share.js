@@ -16,8 +16,7 @@ WxShare.prototype.getConfig = function (callback) {
 
     $.ajax({
         type: 'post',
-        url: '/share/js_config',
-        data: {url: window.location.href},
+        url: '/Jsdk/jsdk',
         timeout: 10000,
         success: function (result) {
             callback(null, result.data);
@@ -36,7 +35,7 @@ WxShare.prototype.init = function (config) {
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        "url": config.url,
+        "url": window.location.href,
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
@@ -146,13 +145,12 @@ WxShare.prototype.start = function (data) {
     var self = this;
     self.shareData = data;
 
-    //window.__wxshare_data__ = self.shareData || {
-    //        "title": '',// 分享标题
-    //        "desc": '',// 分享描述
-    //        "link": '', // 分享链接
-    //        "img_url": '', // 分享图标
-    //        "link_weibo": '' //分享weibo链接
-    //    };
+    window.__wxshare_data__ = self.shareData || {
+        "title": '鸣鹿健康',// 分享标题
+        "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+        "link": location.href, // 分享链接
+        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+    };
     self.getConfig(function (error, reply) {
         if (error) {
             return;

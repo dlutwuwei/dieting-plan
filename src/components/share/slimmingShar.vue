@@ -9,6 +9,7 @@
             background:#f5f5f5;
             overflow:hidden;
             a{
+                display:block;
                 color:#fff;
             }
             h5{
@@ -73,7 +74,7 @@
         }
         .share-pic{
             width:100%;
-            height:160px;
+            height:auto;
         }
 
     }
@@ -89,7 +90,7 @@
                   </div>
                  <div class="author-info">
                       <!--<img :src="item.author.avatar_url" alt=""/>-->
-                      <p>{{item.content}}</p>
+                      <p v-html="item.title"></p>
                   </div>
               </router-link>
           </div>
