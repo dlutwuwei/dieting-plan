@@ -81,7 +81,7 @@
                 display:block;
                 width:180px;
                 height:40px;
-                margin:2.5rem auto 0;
+                margin:1.5rem auto 0;
                 border:1px solid #47a304;
                 border-radius:5px;
                 font-size:.36rem;
@@ -98,7 +98,7 @@
             opacity: 0.9;
         }
         .mint-swipe-indicators{
-            bottom:2.5rem;
+            bottom:3.2rem;
         }
     }
    /* @media screen and (min-width:320px) {
