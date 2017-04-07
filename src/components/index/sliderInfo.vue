@@ -13,8 +13,8 @@
                 left:10px;
                 top:13px;
                 display:inline-block;
-                width:10px;
-                height:20px;
+                width:50px;
+                height:25px;
                 overflow:hidden;
                 vertical-align: middle;
             }
@@ -32,6 +32,10 @@
                padding-bottom:25px;
                font-size:13px;
                color:#333;
+               img{
+                   width:100%;
+                   height:auto;
+               }
            }
         }
     }
