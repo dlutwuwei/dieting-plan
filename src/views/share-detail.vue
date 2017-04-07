@@ -1,104 +1,193 @@
+<style lang="scss">
+    .share-detail-pic{
+        position:relative;
+        min-height:180px;
+        overflow:hidden;
+    .go-back:before{
+        background-position: -125px -25px;
+    }
+    .go-back{
+        position:absolute;
+        left:10px;
+        top:13px;
+        display:inline-block;
+        width:10px;
+        height:20px;
+        overflow:hidden;
+        vertical-align: middle;
+    }
+    span:before{
+        background-position: -125px -50px;
+    }
+    span{
+        position:absolute;
+        right:10px;
+        top:20px;
+        display:inline-block;
+        width:25px;
+        height:7px;
+        overflow:hidden;
+        vertical-align: middle;
+    }
+    .share-pic{
+        width:100%;
+        height:160px;
+    }
+    .author-info{
+        position:absolute;
+        left:20px;
+        bottom:25px;
+    img{
+        display:inline-block;
+        width:39px;
+        height:39px;
+        border-radius:9999px;
+        border:2px solid #fff;
+        vertical-align:middle;
+    }
+    p{
+        display:inline-block;
+        vertical-align:middle;
+        font-size:12px;
+        color:#fff;
+    }
+    }
+    }
+    .detail-info{
+        margin-top:10px;
+        padding:10px 15px 25px;
+        background:#fff;
+        border-top:1px solid #f7f7f7;
+        border-bottom:1px solid #f7f7f7;
+    .detail-info-hd{
+        position:relative;
+        padding-left:45px;
+    img{
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:40px;
+        height:40px;
+        border-radius:9999px;
+    }
+    h5{
+        font-size:18px;
+        color:#333;
+    }
+    p{
+        font-size:12px;
+        color:#999;
+    }
+    }
+    .detail-info-bd{
+        padding-top:5px;
+    p{
+        line-height:1.5;
+        font-size:13px;
+        color:#333;
+    }
+    }
+    .detail-info-like{
+        padding-top:20px;
+        text-align:center;
+    p{
+        font-size:12px;
+        color:#999;
+    }
+    div{
+        padding-top:13px;
+    em{
+        display:block;
+        font-size:15px;
+        color:#999;
+        font-style:normal;
+    }
+    span:before{
+        background-position: 0px -75px;
+    }
+    span{
+        display:inline-block;
+        width:39px;
+        height:34px;
+        overflow:hidden;
+    }
+    }
+    }
+    }
+</style>
 <template>
-    <div style="height: 100%;">
-        <mt-header title="鸣鹿健康">
-            <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-        </mt-header>
-
-        <div class="slider">
-            <router-link :to="'/calendar/'+ type +'?date=' + dataDay" slot="left">
-                <span>{{dataDay}}</span>
-            </router-link>
+    <div class="share-detail">
+        <div class="share-detail-pic">
+            <div class="go-back ico" @click="goback"></div>
+            <!--<span class="ico">....</span>-->
+            <img :src="shareDetailInfo.titlepic" class="share-pic" alt=""/>
+            <div class="author-info">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>
+                <p>{{shareDetailInfo.title}}</p>
+            </div>
         </div>
-
-        <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
-        <sportCard v-if="type=='sport'" :data="sportList" :date="date" :from="from"></sportCard>
-        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <div class="detail-info">
+            <div class="detail-info-hd">
+                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>
+                <h5>{{author.name}}</h5>
+                <p>{{shareDetailInfo.time}}</p>
+            </div>
+            <div class="detail-info-bd">
+                <p  v-html="shareDetailInfo.content"></p>
+            </div>
+            <div class="detail-info-like">
+                <p>已有<span>{{laudNum}}</span>人喜欢这篇文章</p>
+                <div>
+                    <span class="ico" @click="addLove"></span>
+                    <em>喜欢</em>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
-    import HeatPlate from '../components/index/heatPlate.vue';
-    import foodCard from '../components/plan/food-card.vue';
-    import sportCard from '../components/plan/sport-card.vue';
     import { getQuery } from '../libs/utils';
+    import { MessageBox } from 'mint-ui';
     export default {
         data() {
         return {
-            foodList: {},
-            sportList: [],
-            heatPlate: [],
-            dataDay:'',
+            shareDetailInfo: {},
+            author: {},
+            laudNum: null,
         }
     },
     created() {
-        this.type = this.$route.params.type;
-        this.date = getQuery('date');
-        this.from = getQuery('from');
-        this.dataDay = getQuery('date');
-        this.heatPlate = window.foodPlan || [];
-        this.titleMap = {
-            breakfast: '早餐',
-            lunch: '午餐',
-            dinner: '晚餐'
-        };
-    },
-    mounted() {
-        this.fetchData();
+        this.cid = getQuery('cid');
     },
     methods: {
         goback: function () {
             history.back();
         },
-        fetchData: function() {
-            if (this.type != 'sport') {
-                //早中晚 type: breakfast, lunch, dinners
-                this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
-                    const data = res.body[this.date];
-                this.foodList = {
-                    breakfast: data.breakfast,
-                    lunch: data.lunch,
-                    dinner: data.dinner
-                }
-            },() => {
-                MessageBox('注意', '请求失败');
-            });
-        } else {
-            // 运动
-            this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
-                let list = [];
-            if (res.body.success) {
-                list = res.body.massages[this.date];
-            }
-            this.sportList = list;
-        }, () => {
+        getShareDetail: function(){
+            this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
+                this.shareDetailInfo = res.body.massages[0];
+            this.author = res.body.massages[0].author;
+            this.laudNum = this.shareDetailInfo.laud;
+        },() => {
             MessageBox('注意', '请求失败');
         });
+    },
+    addLove: function(){
+        let postData = {
+            id: this.cid
+        }
+        this.$http.post('/share/laud', postData).then(response => {
+            let res = response.body;
+        if (res.success) {
+            this.laudNum++;
+        }
+    }, err => {
+        MessageBox('注意', '请求失败');
+    });
     }
     },
-    },
-    watch: {
-        // 如果路由有变化，会再次执行该方法
-        '$route': 'fetchData'
-    },
-    components: {
-        HeatPlate,
-            foodCard,
-            sportCard
+    mounted(){
+        this.getShareDetail();
     }
-    };
-
+    }
 </script>
-<style lang="scss">
-    .slider{
-        margin-top:5px;
-        height:50px;
-        background:#fff;
-        line-height:50px;
-        border-top:1px solid #dfdfdf;
-        border-bottom:1px solid #dfdfdf;
-        text-align:center;
-    span{
-        font-size:14px;
-        color:#333;
-    }
-    }
-</style>
