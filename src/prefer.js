@@ -10,11 +10,8 @@ import './assets/scss/common/reset.scss';
 
 import { Header, Button } from 'mint-ui';
 
-var WxShare = require('./libs/wx_share.js');
+require('./libs/wx_share.js');
 
-/*分享*/
-var wxShare = new WxShare();
-wxShare.start();
 
 Vue.component(Button.name, Button);
 Vue.component(Header.name, Header);

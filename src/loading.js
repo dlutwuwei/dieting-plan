@@ -12,11 +12,8 @@ import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
 
-var WxShare = require('./libs/wx_share.js');
+require('./libs/wx_share.js');
 
-/*分享*/
-var wxShare = new WxShare();
-wxShare.start();
 
 Vue.use(MintUI);
 Vue.use(VueResource);

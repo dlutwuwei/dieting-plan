@@ -5,13 +5,18 @@ import $ from 'webpack-zepto';
 module.exports = WxShare;
 
 function WxShare() {
-    this.shareData = {};
+    this.shareData = {
+        "title": '鸣鹿健康',// 分享标题
+        "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+        "link": location.href, // 分享链接
+        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+    };
     this.successFun = null;
     this.cancellFun = null;
 }
 
 /*获取配置文件*/
-WxShare.prototype.getConfig = function (callback) {
+/*WxShare.prototype.getConfig = function (callback) {
     var self = this;
 
     $.ajax({
@@ -27,11 +32,12 @@ WxShare.prototype.getConfig = function (callback) {
             }
         }
     });
-};
+};*/
 
 WxShare.prototype.init = function (config) {
     var self = this;
-    self.config = {
+
+    wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
@@ -43,8 +49,7 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQQ',
             'onMenuShareQZone'
         ]
-    };
-    wx.config(self.config);
+    });
     self.wxReady();
     self.wxError();
 };
@@ -141,20 +146,20 @@ WxShare.prototype.wxError = function () {
 
 
 /*入口方法*/
-WxShare.prototype.start = function (data) {
+WxShare.prototype.start = function () {
     var self = this;
-    self.shareData = data;
 
-    window.__wxshare_data__ = self.shareData || {
-        "title": '鸣鹿健康',// 分享标题
-        "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-        "link": location.href, // 分享链接
-        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
-    };
-    self.getConfig(function (error, reply) {
-        if (error) {
-            return;
+    $.ajax({
+        type: 'post',
+        url: '/Jsdk/jsdk',
+        success: function (result) {
+            var res = JSON.parse(result);
+            if(res.success){
+                self.init(res.massages);
+            }
         }
-        self.init(reply);
     });
 };
+
+var wxShare = new WxShare();
+wxShare.start();

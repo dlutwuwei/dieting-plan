@@ -9,11 +9,7 @@ import './assets/scss/common/reset.scss';
 
 import { TabContainer, TabContainerItem, Field, Navbar, TabItem, Header, Button } from 'mint-ui';
 
-var WxShare = require('./libs/wx_share.js');
-
-/*分享*/
-var wxShare = new WxShare();
-wxShare.start();
+require('./libs/wx_share.js');
 
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);

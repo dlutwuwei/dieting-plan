@@ -55,7 +55,6 @@
                 this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
                     this.shareDetailInfo = res.body.massages[0];
                 this.author = res.body.massages[0].author;
-                console.log(this.author)
             },() => {
                 MessageBox('注意', '请求失败');
             });
