@@ -48,7 +48,7 @@ WxShare.prototype.wxReady = function () {
 /*分享到朋友圈*/
 WxShare.prototype.shareTimeline = function (success, canncel) {
     var self = this;
-    console.log(wx.onMenuShareTimeline())
+    alert(wx.onMenuShareTimeline())
     wx.onMenuShareTimeline({
         title: self.shareData.title, // 分享标题
         link: self.shareData.link, // 分享链接
