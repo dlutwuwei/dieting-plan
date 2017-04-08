@@ -42,7 +42,6 @@ WxShare.prototype.wxReady = function () {
         self.shareAppMessage();
         self.shareQQ();
         self.shareQZone();
-        alert('分享成功：' + self.shareData.desc);
     });
 };
 
@@ -66,6 +65,7 @@ WxShare.prototype.shareTimeline = function (success, canncel) {
 /*分享给朋友*/
 WxShare.prototype.shareAppMessage = function () {
     var self = this;
+    alert('分享成功1111：' + self.shareData.desc);
     wx.onMenuShareAppMessage({
         title: self.shareData.title, // 分享标题
         desc: self.shareData.desc, // 分享描述
