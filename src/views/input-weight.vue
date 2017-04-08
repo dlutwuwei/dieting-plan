@@ -122,9 +122,9 @@
     <div>
         <div class="input-weight">
             <mt-header title="鸣鹿健康">
-                <router-link to="/#/" slot="left">
+                <a href="/" slot="left">
                     <mt-button icon="back" @click="goback">返回</mt-button>
-                </router-link>
+                </a>
             </mt-header>
             <div class="hd"><em class="lt-hander" @click="prevMonth"><span class="lt-btn"></span></em>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<em class="rt-hander" @click="nextMonth"><span class="rt-btn"></span></em></div>
             <div class="bd">
