@@ -55,13 +55,14 @@ WxShare.prototype.wxReady = function () {
 WxShare.prototype.shareTimeline = function (success, canncel) {
     var self = this;
     console.log(wx.onMenuShareTimeline)
-    alert(wx.onMenuShareTimeline())
+    alert(wx.onMenuShareTimeline)
     wx.onMenuShareTimeline({
         title: self.shareData.title, // 分享标题
         link: self.shareData.link, // 分享链接
         imgUrl: self.shareData.img_url, // 分享图标
         success: function () {
             // 用户确认分享后执行的回调函数
+            alert(wx.onMenuShareTimeline)
             self.successFun && self.successFun();
         },
         cancel: function () {
