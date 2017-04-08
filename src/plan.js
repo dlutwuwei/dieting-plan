@@ -8,11 +8,11 @@ import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
 import { Popup, Header, Button } from 'mint-ui';
-var WxShare = require('./libs/wx_share.js');
+// var WxShare = require('./libs/wx_share.js');
 
-/*分享*/
-var wxShare = new WxShare();
-wxShare.start();
+// /*分享*/
+// var wxShare = new WxShare();
+// wxShare.start();
 
 Vue.component(Button.name, Button);
 Vue.component(Header.name, Header);
