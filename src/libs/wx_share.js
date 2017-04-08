@@ -30,13 +30,19 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQZone'
         ]
     });
-    self.wxReady();
+    //self.wxReady();
+    self.shareTimeline();
+    self.shareAppMessage();
+    self.shareQQ();
+    self.shareQZone();
+
     self.wxError();
 
 };
 
 WxShare.prototype.wxReady = function () {
     var self = this;
+
     wx.ready(function () {
         self.shareTimeline();
         self.shareAppMessage();
@@ -48,6 +54,7 @@ WxShare.prototype.wxReady = function () {
 /*分享到朋友圈*/
 WxShare.prototype.shareTimeline = function (success, canncel) {
     var self = this;
+    console.log(wx.onMenuShareTimeline)
     alert(wx.onMenuShareTimeline())
     wx.onMenuShareTimeline({
         title: self.shareData.title, // 分享标题
@@ -138,7 +145,6 @@ WxShare.prototype.start = function () {
             var res = JSON.parse(result);
             if(res.success){
                 self.init(res.massages);
-                console.log(11111)
             }
         }
     });
