@@ -1,5 +1,4 @@
-
-require("./jweixin");
+import wx from './jweixin';
 import $ from 'webpack-zepto';
 
 module.exports = WxShare;
@@ -15,28 +14,9 @@ function WxShare() {
     this.cancellFun = null;
 }
 
-/*获取配置文件*/
-/*WxShare.prototype.getConfig = function (callback) {
-    var self = this;
-
-    $.ajax({
-        type: 'post',
-        url: '/Jsdk/jsdk',
-        timeout: 10000,
-        success: function (result) {
-            callback(null, result.data);
-        },
-        error: function (error) {
-            if (error) {
-                return callback(error, result.errmsg || '');
-            }
-        }
-    });
-};*/
-
 WxShare.prototype.init = function (config) {
     var self = this;
-
+    console.log(wx)
     wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
