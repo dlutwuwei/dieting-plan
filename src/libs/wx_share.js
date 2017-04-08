@@ -16,7 +16,7 @@ function WxShare() {
 
 WxShare.prototype.init = function (config) {
     var self = this;
-    console.log(wx)
+
     wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
@@ -32,6 +32,7 @@ WxShare.prototype.init = function (config) {
     });
     self.wxReady();
     self.wxError();
+
 };
 
 WxShare.prototype.wxReady = function () {
@@ -91,6 +92,7 @@ WxShare.prototype.shareQQ = function () {
         imgUrl: self.shareData.img_url, // 分享图标
         success: function () {
             // 用户确认分享后执行的回调函数
+            alert('分享成功：' + self.shareData.desc);
             self.successFun && self.successFun();
         },
         cancel: function () {
@@ -120,7 +122,7 @@ WxShare.prototype.shareQZone = function () {
 
 WxShare.prototype.wxError = function () {
     wx.error(function (res) {
-        //alert('分享初始化失败：' + res.errMsg);
+        alert('分享初始化失败：' + res.errMsg);
     });
 };
 
