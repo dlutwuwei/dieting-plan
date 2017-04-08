@@ -65,7 +65,6 @@ WxShare.prototype.shareTimeline = function (success, canncel) {
 /*分享给朋友*/
 WxShare.prototype.shareAppMessage = function () {
     var self = this;
-    alert('分享成功1111：' + self.shareData.desc);
     wx.onMenuShareAppMessage({
         title: self.shareData.title, // 分享标题
         desc: self.shareData.desc, // 分享描述
@@ -75,7 +74,6 @@ WxShare.prototype.shareAppMessage = function () {
         dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         success: function () {
             // 用户确认分享后执行的回调函数
-            alert('分享成功：' + self.shareData.desc);
             self.successFun && self.successFun();
         },
         cancel: function () {
