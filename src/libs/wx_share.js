@@ -66,19 +66,20 @@ WxShare.prototype.shareTimeline = function (success, canncel) {
 WxShare.prototype.shareAppMessage = function () {
     var self = this;
     wx.onMenuShareAppMessage({
-        title: self.shareData.title, // 分享标题
-        desc: self.shareData.desc, // 分享描述
-        link: self.shareData.link, // 分享链接
-        imgUrl: self.shareData.img_url, // 分享图标
-        type: '', // 分享类型,music、video或link，不填默认为link
-        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-        success: function () {
-            // 用户确认分享后执行的回调函数
-            self.successFun && self.successFun();
+        title: '互联网之子',
+        link: 'http://wx.vland.cc/mobile.php?act=module&rid=406&fromuser=oktsYuHivHXuzdsMeCbWyF7b14UU&name=hllihe&do=sharelihe&weid=7',
+        imgUrl: 'http://wx.vland.cc/resource/attachment/images/7/2015/01/fl2Lk2p5o3iOJP3jdp9iPXI9i93iPm.jpg',
+        trigger: function (res) {
+            alert('用户点击分享到朋友圈');
         },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-            self.cancellFun && self.cancellFun();
+        success: function (res) {
+            alert('已分享');
+        },
+        cancel: function (res) {
+            alert('已取消');
+        },
+        fail: function (res) {
+            alert('wx.onMenuShareTimeline:fail: '+JSON.stringify(res));
         }
     });
 };
