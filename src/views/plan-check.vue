@@ -18,13 +18,8 @@
                 </div>
             </div>
         </div>
-        <div class="cell bottom" v-if="from != 'history'">
-          <router-link :to="'/diet/sport?date='+date" slot="left">
-            <mt-button type="primary" size="normal">修改运动</mt-button>
-          </router-link>
-        </div>
     </div>
-    <foodCard v-if="type=='food'" :type="index" :hideBtn="false" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"
+    <foodCard v-if="type=='food'" :type="index" :hideBtn="true" :title="titleMap[index]" :date="date" :data="diet" v-for="(diet, index) in foodList"
       :onItemClick="(item, type)=>{ checkFood(item, type) }"></foodCard>
   </div>
 </template>
