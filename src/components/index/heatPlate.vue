@@ -83,7 +83,7 @@
         <!--<router-link to="/index/record">
             <div class="hd">热量盘</div>
         </router-link>-->
-        <div class="hd">热量盘<a href="/plan/listt#/calendar/food"><span class="ico ico-1"></span></a></div>
+        <div class="hd">热量盘<router-link to="/index/heatPlate"><span class="ico ico-1"></span></router-link></div>
         <div class="bd">
             <div class="date ncf-box">
                 <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>

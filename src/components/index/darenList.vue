@@ -129,7 +129,7 @@
       <div class="hd"><span class="ico ico-1"></span>瘦身达人榜</div>
       <div class="tab-hd">
           <span class="curr" v-on:click.stop="tab(0)">本月排行</span>
-          <span v-on:click.stop="tab(1)" v-if="userInfo.type != 0">我的排行</span>
+          <span v-on:click.stop="tab(1)" v-if="userInfo.type != 0">总排行</span>
       </div>
       <div class="bd">
           <div class="daren" style="display:block" v-if="darenList && darenList.month && darenList.month.length > 0">

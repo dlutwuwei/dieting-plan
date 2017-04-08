@@ -140,13 +140,13 @@
                 </ul>
             </div>
         </div>
-        <mt-popup class="select-popup1" v-model="popupVisible" popup-transition="popup-fade">
-            <InputWeightPop v-on:popClose="popClose" :data="selected" :dateString="dateString"></InputWeightPop>
-        </mt-popup>
+        <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type"></HeatPlate>
     </div>
 </template>
 <script>
     import InputWeightPop from '../components/index/inputWeightPop.vue';//录入体重日历弹窗
+    import HeatPlate from '../components/index/heatPlate.vue';//能量盘
+
     import $ from 'webpack-zepto';
     import {fmtDate} from  "../libs/utils.js";
     import { MessageBox } from 'mint-ui';
@@ -160,7 +160,9 @@
                 now: new Date(),
                 dateString: '',
                 weightList: [],
-                weightData: {}
+                weightData: {},
+                heatPlate:[{"date":"2017-04-08","obtain":1500,"left":0,"consume":0,"metrology":"\u6444\u5165\u9002\u4e2d"}],
+                userInfo: window.userInfo,
             }
         },
         watch: {
@@ -271,6 +273,7 @@
         },
         components: {
             InputWeightPop,
+            HeatPlate,
         },
         mounted() {
             this.getMothInfo();
