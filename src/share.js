@@ -6,10 +6,12 @@ import FastClick from 'fastclick';
 import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
+import WxShare from './libs/wx_share.js';
+
+var wxShare = new WxShare();
+wxShare.start();
 
 import { TabContainer, TabContainerItem, Field, Navbar, TabItem, Header, Button } from 'mint-ui';
-
-require('./libs/wx_share.js');
 
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);

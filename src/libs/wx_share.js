@@ -136,10 +136,8 @@ WxShare.prototype.start = function () {
             var res = JSON.parse(result);
             if(res.success){
                 self.init(res.massages);
+                console.log(11111)
             }
         }
     });
 };
-
-var wxShare = new WxShare();
-wxShare.start();

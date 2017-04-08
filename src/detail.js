@@ -10,7 +10,10 @@ import './assets/scss/common/reset.scss';
 
 import { Field, Popup, Header, Button } from 'mint-ui';
 
-require('./libs/wx_share.js');
+import WxShare from './libs/wx_share.js';
+
+var wxShare = new WxShare();
+wxShare.start();
 
 
 Vue.component(Button.name, Button);
