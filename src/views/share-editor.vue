@@ -12,7 +12,7 @@
             <mt-field label="标题" placeholder=""></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
-                    <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/gif, image/jpeg, image/png" />
+                    <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/*" />
                     <span>+</span>
                 </div>
                 <h5>封面</h5>
@@ -21,7 +21,7 @@
                     <div>
                         <img src="" alt="图片">
                     </div>
-                    <span class="sample-tips">请选择500kb以下图片上传！</span></div>
+                    <span class="sample-tips">请选择3M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
                 <h5>正文
@@ -87,10 +87,13 @@
                 return;
             }
 
+            $('.operate_loading_pc').show();
+            $('.operate_loading_pc_share__layer').show();
+
             var imgReg = new RegExp('png|gif|jpg|jpeg');
 
-            if (img.size / 1024 > 500) {
-                MessageBox('注意', '图片过大，请选择500kb以下图片重新上传！');
+            if (img.size / 1024 > 3000) {
+                MessageBox('注意', '图片过大，请选择3M以下图片重新上传！');
                 return;
             }
 
@@ -98,8 +101,6 @@
             data.append("cat", "idcard");//增加图片压缩
 
             this.uploadFile(data, function (error, result) {
-                $('.operate_loading_pc').show();
-                $('.operate_loading_pc_share__layer').show();
                 if (!error) {
                     self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
