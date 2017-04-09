@@ -60,6 +60,7 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
+                    alert(JSON.parse(result.massages))
                     callback(null, JSON.parse(result));
                 },
                 error: function (error) {
@@ -100,13 +101,13 @@
             }
 
             data.append("upfile", img);
-            data.append("cat", "idcard");//增加图片压缩
+            //data.append("cat", "idcard");//增加图片压缩
 
             this.uploadFile(data, function (error, result) {
                 if (!error) {
                     self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
-                    alert(self.id_card_img)
+                    alert(result.massages)
                     $('.sample').find('img').attr('src', self.id_card_img)
                     $('.sample').find('div').show();
                     MessageBox('', '图片上传成功!');
