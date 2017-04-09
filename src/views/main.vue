@@ -23,7 +23,7 @@
     <template v-else>
       <!--老用户-->
 
-      <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type"></HeatPlate>
+      <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type" :hide-title="false"></HeatPlate>
       <!--e:能量盘-->
 
       <WeightCurve :weight-curve="weightCurve" ></WeightCurve>

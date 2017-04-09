@@ -1,122 +1,109 @@
 <style lang="scss" scoped>
+    .heat-plate {
+        margin-top: 0;
+    }
     .input-weight {
         background: #f7f7f7;
-        .hd {
-            position: relative;
-            height: 60px;
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-            line-height: 60px;
-            span {
-                vertical-align: middle;
-                height: 20px;
-                width: 20px;
-                display: inline-block;
-                margin:0 auto;
-                border-bottom: 2px solid #999;
-                border-right: 2px solid #999;
-                transform: rotate(-45deg) scale(0.5);
-                -webkit-transform: rotate(-45deg) scale(0.5);
-            }
-            .lt-btn {
-                transform: rotate(135deg) scale(0.5);
-                -webkit-transform: rotate(135deg) scale(0.5);
-            }
-            em{
-                vertical-align: middle;
-                height: 35px;
-                width: 35px;
-                display: inline-block;
-                line-height:30px;
-            }
-        }
-        .hd:before {
-            content: " ";
-            position: absolute;
-            background-color: #e6e6e6;
-            bottom: -0.2rem;
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 1px;
-            -webkit-transform: scaleY(0.5);
-            transform: scaleY(0.5);
-        }
-        .bd {
-            .bd-hd {
-                padding-top: 10px;
-            }
-            .bd-hd,
-            li {
-                display: box;
-                display: -webkit-box;
-                -webkit-box-align: center;
-                box-align: center;
-                text-align: center;
-                -webkit-box-pack: justify;
-                box-pack: justify;
-                font-size: .3rem;
-                color: #333;
-                position: relative;
-                padding:.03rem;
-                span {
-                    box-flex: 1;
-                    -webkit-box-flex: 1;
-                    display: block;
-                    text-align: center;
-                    width:1.07rem;
-                    height: .9rem;
-                    padding-top: .24rem;
-                    line-height: 1.2;
-                }
-                .gray {
-                    color: #999;
-                }
-                em {
-                    display: block;
-                    font-style: normal;
-                    font-size: .14rem;
-                    color: #47a304;
-                }
-                .curr {
-                    background: #f2901e;
-                    border-radius: 9999px;
-                    em {
-                        color: #fff;
-                    }
-                }
-            }
-            li:before {
-                content: " ";
-                position: absolute;
-                background-color: #e6e6e6;
-                bottom: 1px;
-                left: 0;
-                right: 0;
-                width: 100%;
-                height: 1px;
-                -webkit-transform: scaleY(0.5);
-                transform: scaleY(0.5);
-            }
-        }
+    .hd {
+        position: relative;
+        height: 60px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+        line-height: 60px;
+    span {
+        vertical-align: middle;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        margin:0 auto;
+        border-bottom: 2px solid #999;
+        border-right: 2px solid #999;
+        transform: rotate(-45deg) scale(0.5);
+        -webkit-transform: rotate(-45deg) scale(0.5);
     }
-    /*@media screen and (max-width: 414px) {
-        .input-weight .bd li span{
-            height:57px;
-        }
+    .lt-btn {
+        transform: rotate(135deg) scale(0.5);
+        -webkit-transform: rotate(135deg) scale(0.5);
     }
-    @media screen and (max-width: 414px) {
-        .input-weight .bd li span{
-            height:55px;
-        }
+    em{
+        vertical-align: middle;
+        height: 35px;
+        width: 35px;
+        display: inline-block;
+        line-height:30px;
     }
-    @media screen and (max-width: 320px) {
-        .input-weight .bd li span{
-            height:46px;
-            padding-top:8px;
-        }
-    }*/
+    }
+    .hd:before {
+        content: " ";
+        position: absolute;
+        background-color: #e6e6e6;
+        bottom: -0.2rem;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+    .bd {
+    .bd-hd {
+        padding-top: 10px;
+    }
+    .bd-hd,
+    li {
+        display: box;
+        display: -webkit-box;
+        -webkit-box-align: center;
+        box-align: center;
+        text-align: center;
+        -webkit-box-pack: justify;
+        box-pack: justify;
+        font-size: .3rem;
+        color: #333;
+        position: relative;
+        padding:.03rem;
+    span {
+        box-flex: 1;
+        -webkit-box-flex: 1;
+        display: block;
+        text-align: center;
+        width:1.07rem;
+        height: .9rem;
+        padding-top: .24rem;
+        line-height: 1.2;
+    }
+    .gray {
+        color: #999;
+    }
+    em {
+        display: block;
+        font-style: normal;
+        font-size: .14rem;
+        color: #47a304;
+    }
+    .curr {
+        background: #f2901e;
+        border-radius: 9999px;
+    em {
+        color: #fff;
+    }
+    }
+    }
+    li:before {
+        content: " ";
+        position: absolute;
+        background-color: #e6e6e6;
+        bottom: 1px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 1px;
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+    }
+    }
 </style>
 <template>
     <div>
@@ -135,7 +122,7 @@
                 <ul>
                     <li v-for="(i, l) in dateList.length/7">
                         <span @click="onPopup(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)}">
-                            {{item.date}}<em v-if="item.value">{{item.value}}</em>
+                            {{item.date}}<em v-if="item.value"></em>
                         </span>
                     </li>
                 </ul>
@@ -161,7 +148,7 @@
                 dateString: '',
                 weightList: [],
                 weightData: {},
-                heatPlate:[{"date":"2017-04-08","obtain":1500,"left":0,"consume":0,"metrology":"\u6444\u5165\u9002\u4e2d"}],
+                heatPlate:[],
                 userInfo: window.userInfo,
             }
         },
@@ -236,15 +223,21 @@
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
                 if(calendarDataB <= nowdate){
-                    this.popupVisible = true;
-                    let now = this.now;
-                    let year = now.getFullYear();
-                    let tmpMonth = now.getMonth()+1;
-                    let date = item.date;
-                    this.selected = item;
-                    this.selected.monthData = calendarDataA;
-                    this.selected.value = item.value || 0;
-                    this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
+                    this.$http.get('/Plan/heatplate/time/' + calendarDataA).then(res => {
+                        if(res.body.success) {
+                            this.heatPlate = res.body.massages;
+                        }
+                    });
+
+                    // this.popupVisible = true;
+                    // let now = this.now;
+                    // let year = now.getFullYear();
+                    // let tmpMonth = now.getMonth()+1;
+                    // let date = item.date;
+                    // this.selected = item;
+                    // this.selected.monthData = calendarDataA;
+                    // this.selected.value = item.value || 0;
+                    // this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
                 }
             },
             popClose: function () {
@@ -277,6 +270,12 @@
         },
         mounted() {
             this.getMothInfo();
+            let date = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
+            this.$http.get('/Plan/heatplate/time/' + date).then(res => {
+                if(res.body.success) {
+                    this.heatPlate = res.body.massages;
+                }
+            });
         },
     }
 
