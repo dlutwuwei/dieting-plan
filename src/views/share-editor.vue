@@ -21,7 +21,7 @@
                     <div>
                         <img src="" alt="图片">
                     </div>
-                    <span class="sample-tips">请选择3M以下图片上传！</span></div>
+                    <span class="sample-tips">请选择4M以下图片上传！</span></div>
             </div>
             <div class="editor-text input-box">
                 <h5>正文
@@ -92,8 +92,10 @@
 
             var imgReg = new RegExp('png|gif|jpg|jpeg');
             alert(img.size / 1024)
-            if (img.size / 1024 > 3000) {
+            if (img.size / 1024 > 4000) {
                 MessageBox('注意', '图片过大，请选择3M以下图片重新上传！');
+                $('.operate_loading_pc').hide();
+                $('.operate_loading_pc_share__layer').hide();
                 return;
             }
 
