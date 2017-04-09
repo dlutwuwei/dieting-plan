@@ -56,7 +56,7 @@
             $.ajax({
                 url: '/Share/fileimg',
                 type: 'POST',
-                data: data,
+                data: formdata,
                 contentType: false,
                 processData: false,
                 success: function (result) {
