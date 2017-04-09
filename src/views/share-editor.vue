@@ -112,11 +112,13 @@
                     MessageBox('', '图片上传成功!');
                     $('.operate_loading_pc').hide();
                     $('.operate_loading_pc_share__layer').hide();
-                    return;
+
+                } else {
+                    MessageBox('注意', '图片上传失败!');
+                    $('.operate_loading_pc').hide();
+                    $('.operate_loading_pc_share__layer').hide();
                 }
-                MessageBox('注意', '图片上传失败!');
-                $('.operate_loading_pc').hide();
-                $('.operate_loading_pc_share__layer').hide();
+                return;
             })
         },
         releaseShare() {
