@@ -136,10 +136,12 @@
             } else {
                 return date.substring(5);
             }
+<<<<<<< HEAD
         }
     },
     props: {
         hideTitle: Boolean,
+
             userType: String,
             heatPlate: Array //这样可以指定传入的类型，如果类型不对，会警告
     },
