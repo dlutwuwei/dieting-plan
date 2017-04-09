@@ -90,7 +90,7 @@
             $('.operate_loading_pc').show();
             $('.operate_loading_pc_share__layer').show();
 
-            var imgReg = new RegExp('png|gif|jpg|jpeg|JPEG');
+            var imgReg = new RegExp('png|gif|jpg|JPEG');
             alert(img.size / 1024)
             if (img.size / 1024 > 4000) {
                 MessageBox('注意', '图片过大，请选择3M以下图片重新上传！');
