@@ -1,7 +1,4 @@
 <style lang="scss" scoped>
-    .heat-plate {
-        margin-top: 0;
-    }
     .input-weight {
         background: #f7f7f7;
     .hd {
@@ -225,7 +222,7 @@
                 if(calendarDataB <= nowdate){
                     this.$http.get('/Plan/heatplate/time/' + calendarDataA).then(res => {
                         if(res.body.success) {
-                            this.heatPlate = res.body.massages[0];
+                            this.heatPlate = res.body.massages;
                         }
                     });
 
