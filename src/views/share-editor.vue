@@ -57,6 +57,7 @@
                 url: '/Share/fileimg',
                 type: 'POST',
                 data: data,
+                cache: false,
                 contentType: false,
                 processData: false,
                 success: function (result) {

@@ -35,6 +35,7 @@
 <script>
     import SlimmingShar from '../components/share/slimmingShar.vue';//瘦身分享
     import { MessageBox } from 'mint-ui';
+    import { Indicator } from 'mint-ui';
     import { getQuery } from '../libs/utils';
 
     export default {
@@ -55,6 +56,7 @@
                     // get body data
                     if(JSON.parse(response.body.massages) != null){
                         this.shareList = this.shareList.concat(JSON.parse(response.body.massages));
+                        Indicator.close();
                         //console.log(this.shareList)
                     }
                 }, response => {
@@ -72,10 +74,11 @@
                 });
             },
             goback: function () {
-                history.back();
+                location.href = '/';
             }
         },
         mounted() {
+            Indicator.open('加载中...');
             this.getShareList();
             this.getMyShareList();
 

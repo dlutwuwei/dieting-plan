@@ -7,14 +7,15 @@
         background-position: -125px -25px;
     }
     .go-back{
-        position:absolute;
-        left:10px;
-        top:13px;
-        display:inline-block;
-        width:10px;
-        height:20px;
-        overflow:hidden;
+        position: absolute;
+        left: 1px;
+        top: 3px;
+        display: inline-block;
+        width: 70px;
+        height: 34px;
+        overflow: hidden;
         vertical-align: middle;
+        padding: 9px 15px 0px;
     }
     span:before{
         background-position: -125px -50px;
@@ -118,7 +119,9 @@
 <template>
     <div class="share-detail">
         <div class="share-detail-pic">
-            <div class="go-back ico" @click="goback"></div>
+            <router-link to="/" slot="left">
+                <div class="go-back ico"></div>
+            </router-link>
             <!--<span class="ico">....</span>-->
             <img :src="shareDetailInfo.titlepic" class="share-pic" alt=""/>
             <div class="author-info">
@@ -161,7 +164,7 @@
     },
     methods: {
         goback: function () {
-            history.back();
+            this.$router.push('/')
         },
         getShareDetail: function(){
             this.$http.get(`/share/datails?cid=${this.cid}`).then(res => {
