@@ -60,7 +60,6 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
-                    alert(JSON.parse(result.massages))
                     callback(null, JSON.parse(result));
                 },
                 error: function (error) {
@@ -92,6 +91,7 @@
             $('.operate_loading_pc_share__layer').show();
 
             var imgReg = new RegExp('png|gif|jpg|jpeg');
+            alert(result.massages)
             alert(img.size / 1024)
             if (img.size / 1024 > 4000) {
                 MessageBox('注意', '图片过大，请选择3M以下图片重新上传！');
