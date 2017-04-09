@@ -106,8 +106,7 @@
                 if (!error) {
                     self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
-                    alert(111)
-                    alert(result.massages)
+                    alert(222+result.massages)
                     $('.sample').find('img').attr('src', self.id_card_img)
                     $('.sample').find('div').show();
                     MessageBox('', '图片上传成功!');
