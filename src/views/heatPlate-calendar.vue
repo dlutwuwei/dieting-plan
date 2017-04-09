@@ -1,4 +1,7 @@
 <style lang="scss" scoped>
+    .heat-plate{
+        margin-top: 0;
+    }
     .input-weight {
         background: #f7f7f7;
         .hd {
