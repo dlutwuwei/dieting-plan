@@ -58,7 +58,7 @@
     },
     methods: {
       goback: function () {
-        history.back();
+        location.href = '/';
       },
       fetchData: function () {
         if (this.type != 'sport') {

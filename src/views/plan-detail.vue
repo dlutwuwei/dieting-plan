@@ -11,8 +11,8 @@
         </div>
 
         <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
-        <sportCard v-if="type=='sport'" :data="sportList" :date="date" :from="from"></sportCard>
-        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <sportCard v-if="type=='sport'" :data="sportList" :date="date" :from="from" :type="type"></sportCard>
+        <foodCard v-if="type=='food'" :type="type" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
 <script>

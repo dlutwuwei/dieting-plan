@@ -68,7 +68,7 @@
                     });
                 } else {
                     // 运动
-                    this.$http.get(`/record/sportsearch?time=${this.date}`).then(res => {
+                    this.$http.get(`/record/sportsel?time=${this.date}`).then(res => {
                         let list = [];
                         if(res.body.success) {
                             list = res.body.data;
