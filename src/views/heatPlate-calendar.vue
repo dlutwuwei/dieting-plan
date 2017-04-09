@@ -120,6 +120,7 @@
 </style>
 <template>
     <div>
+        <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type" :hide-title="true"></HeatPlate>
         <div class="input-weight">
             <mt-header title="鸣鹿健康">
                 <a href="/" slot="left">
@@ -140,7 +141,6 @@
                 </ul>
             </div>
         </div>
-        <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type"></HeatPlate>
     </div>
 </template>
 <script>
