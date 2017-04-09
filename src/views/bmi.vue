@@ -14,7 +14,7 @@
                 <div class="bmi-line"><img src="../assets/images/jianfei/bmi-line.png" alt=""></div>
             </div>
             <div class="description">{{notice}}</div>
-            <div class="buy-notice">若想获得专属个性化减肥方案，请 购买思维必专业减肥。<span class="text">点击购买</span></div>
+            <div class="buy-notice"><span class="text">点击购买</span></div>
         </div>
         <div class="terms"><input type="checkbox" v-model="agree" id="terms"><label for="terms">同意</label><label class="text" @click="popupTerms=true">《鸣鹿减肥法用户协议》</label></div>
         <div class="next-btn">
@@ -185,7 +185,7 @@
     .description {
         font-size: 15px;
         padding: 18px 0;
-        text-align: center;
+        text-align: left;
         border-top: solid 1px #999;
         margin: 35px 10px 0 10px;
         color: #333;

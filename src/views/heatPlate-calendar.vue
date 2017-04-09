@@ -126,6 +126,7 @@
                     <mt-button icon="back" @click="goback">返回</mt-button>
                 </a>
             </mt-header>
+            <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type" :hide-title="true"></HeatPlate>
             <div class="hd"><em class="lt-hander" @click="prevMonth"><span class="lt-btn"></span></em>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<em class="rt-hander" @click="nextMonth"><span class="rt-btn"></span></em></div>
             <div class="bd">
                 <div class="bd-hd">
@@ -140,7 +141,6 @@
                 </ul>
             </div>
         </div>
-        <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type"></HeatPlate>
     </div>
 </template>
 <script>
