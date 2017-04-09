@@ -106,6 +106,9 @@
     span:before{
         background-position: 0px -75px;
     }
+    .curr:before{
+        background-position: -43px -75px;
+    }
     span{
         display:inline-block;
         width:39px;
@@ -141,7 +144,7 @@
             <div class="detail-info-like">
                 <p>已有<span>{{laudNum}}</span>人喜欢这篇文章</p>
                 <div>
-                    <span class="ico" @click="addLove"></span>
+                    <span class="ico" v-bind:class="{ curr: isActive }" @click="addLove"></span>
                     <em>喜欢</em>
                 </div>
             </div>
@@ -157,6 +160,7 @@
             shareDetailInfo: {},
             author: {},
             laudNum: null,
+            isActive: false
         }
     },
     created() {
@@ -176,12 +180,15 @@
         });
     },
     addLove: function(){
+        var that = this;
         let postData = {
             id: this.cid
         }
+
         this.$http.post('/share/laud', postData).then(response => {
             let res = response.body;
         if (res.success) {
+            this.isActive = true;
             this.laudNum++;
         }
     }, err => {
