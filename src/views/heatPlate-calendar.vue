@@ -148,7 +148,7 @@
                 dateString: '',
                 weightList: [],
                 weightData: {},
-                heatPlate:[{"date":"2017-04-08","obtain":1500,"left":0,"consume":0,"metrology":"\u6444\u5165\u9002\u4e2d"}],
+                heatPlate:[],
                 userInfo: window.userInfo,
             }
         },
@@ -223,15 +223,21 @@
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
                 if(calendarDataB <= nowdate){
-                    this.popupVisible = true;
-                    let now = this.now;
-                    let year = now.getFullYear();
-                    let tmpMonth = now.getMonth()+1;
-                    let date = item.date;
-                    this.selected = item;
-                    this.selected.monthData = calendarDataA;
-                    this.selected.value = item.value || 0;
-                    this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
+                    this.$http.get('/Plan/heatplate/time/' + calendarDataA).then(res => {
+                        if(res.body.success) {
+                            this.heatPlate = res.body.massages[0];
+                        }
+                    });
+
+                    // this.popupVisible = true;
+                    // let now = this.now;
+                    // let year = now.getFullYear();
+                    // let tmpMonth = now.getMonth()+1;
+                    // let date = item.date;
+                    // this.selected = item;
+                    // this.selected.monthData = calendarDataA;
+                    // this.selected.value = item.value || 0;
+                    // this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
                 }
             },
             popClose: function () {
@@ -264,6 +270,12 @@
         },
         mounted() {
             this.getMothInfo();
+            let date = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
+            this.$http.get('/Plan/heatplate/time/' + date).then(res => {
+                if(res.body.success) {
+                    this.heatPlate = res.body.massages;
+                }
+            });
         },
     }
 
