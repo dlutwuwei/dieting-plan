@@ -91,7 +91,7 @@
             $('.operate_loading_pc_share__layer').show();
 
             var imgReg = new RegExp('png|gif|jpg|jpeg');
-
+            alert(img.size / 1024)
             if (img.size / 1024 > 3000) {
                 MessageBox('注意', '图片过大，请选择3M以下图片重新上传！');
                 return;
@@ -106,12 +106,14 @@
                     $('.sample').removeClass('id-no-uploaded');
                     $('.sample').find('img').attr('src', self.id_card_img)
                     $('.sample').find('div').show();
+                    MessageBox('', '图片上传成功!');
                     $('.operate_loading_pc').hide();
                     $('.operate_loading_pc_share__layer').hide();
-                    MessageBox('', '图片上传成功!');
                     return;
                 }
                 MessageBox('注意', '图片上传失败!');
+                $('.operate_loading_pc').hide();
+                $('.operate_loading_pc_share__layer').hide();
             })
         },
         releaseShare() {

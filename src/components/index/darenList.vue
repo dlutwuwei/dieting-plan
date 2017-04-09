@@ -146,7 +146,7 @@
                   <div :class="index==0?'red':''">0{{index+1}}</div>
                   <div>
                       <span><strong>{{item.user_name}}</strong>最新体重：{{item.weight}}KG</span>
-                      <em>已减肥{{item.duration}}天 本月减肥 <strong>{{item.lose_weight}}</strong>KG</em>
+                      <em>已减肥{{item.duration}}天 减肥 <strong>{{item.lose_weight}}</strong>KG</em>
                   </div>
               </div>
           </div>
