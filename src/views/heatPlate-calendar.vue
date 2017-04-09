@@ -225,7 +225,7 @@
                 if(calendarDataB <= nowdate){
                     this.$http.get('/Plan/heatplate/time/' + calendarDataA).then(res => {
                         if(res.body.success) {
-                            this.heatPlate = res.body.massages[0];
+                            this.heatPlate = res.body.massages;
                         }
                     });
 
