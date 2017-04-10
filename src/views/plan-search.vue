@@ -50,7 +50,7 @@
                 if(target){
                     location.href = target;
                 } else {
-                    this.$router.push(`/detail/${this.type}?date=${this.date}`)
+                    this.$router.push(`/diet/${this.type}?date=${this.date}`)
                 }
             },
             popUp: function (index) {
