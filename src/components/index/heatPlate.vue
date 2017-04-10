@@ -16,7 +16,7 @@
             text-align: left;
             border-bottom: 1px solid #dfdfdf;
             .ico-1:before {
-                background-position: -100px -25px;
+                background-position: -85px -76px;
             }
             .ico-1 {
                 position: absolute;
@@ -71,7 +71,7 @@
             }
         }
     }
-    
+
     @media screen and (max-width: 320px) {
         .heat-plate .bd .bd-bot {
             padding: 0 4% 15px;

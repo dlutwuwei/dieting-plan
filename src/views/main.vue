@@ -123,7 +123,7 @@
     display: inline-block;
     width: 150px;
     height: 150px;
-    background: url(../assets/images/ico-01.png) no-repeat;
+    background: url(../assets/images/ico-03.png) no-repeat;
     background-size: 100% auto;
   }
 

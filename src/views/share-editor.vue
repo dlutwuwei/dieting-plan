@@ -7,7 +7,7 @@
         </div>
 
         <div class="share-editor-cen">
-            <mt-field label="标题" placeholder=""></mt-field>
+            <mt-field label="标题" placeholder="" :attr="{ maxlength: 50 }"></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/*" />
@@ -109,7 +109,6 @@
                     MessageBox('', '图片上传成功!');
                     $('.operate_loading_pc').hide();
                     $('.operate_loading_pc_share__layer').hide();
-
                 } else {
                     MessageBox('注意', '图片上传失败!');
                     $('.operate_loading_pc').hide();
