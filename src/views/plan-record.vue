@@ -29,7 +29,7 @@
     import addFood from '../components/plan/add-food.vue';
     import addSport from '../components/plan/add-sport.vue';
     import { getQuery } from '../libs/utils';
-    import { MessageBox } from 'mint-ui';
+    import { MessageBox, Indicator } from 'mint-ui';
     const type_map = {
         'breakfast': 1,
         'lunch': 2,
@@ -55,15 +55,17 @@
         },
         methods: {
             fetchData: function () {
+                Indicator.open('加载中...')
                 this.type = this.$route.params.type;
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/record/recordsel?time=${this.date}`).then(res => {
-                        debugger
                         let list = res.body[this.date][this.type];
                         list.pop();
                         this.data = list;
+                        Indicator.close();
                     }, () => {
+                        Indicator.close();
                         MessageBox('注意', '请求失败');
                     });
                 } else {
@@ -74,7 +76,9 @@
                             list = res.body.data;
                         }                        
                         this.data = list;
+                        Indicator.close();
                     }, () => {
+                        Indicator.close();
                         MessageBox('注意', '请求失败');
                     });
                 }
