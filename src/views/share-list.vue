@@ -1,9 +1,7 @@
 <template>
     <div class="share-wapper">
         <div class="share-hd">
-            <router-link to="/" slot="left">
-                <div class="go-back ico" @click="goback"></div>
-            </router-link>
+            <div class="go-back ico" slot="left" @click="goback"></div>
             <div class="share-tab">
                 <mt-navbar v-model="selected">
                     <mt-tab-item id="1">推荐</mt-tab-item>

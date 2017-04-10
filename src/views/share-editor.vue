@@ -1,9 +1,7 @@
 <template>
     <div class="share-wapper">
         <div class="share-hd">
-            <router-link to="/" slot="left">
-                <div class="go-back ico" @click="goback"></div>
-            </router-link>
+            <div class="go-back ico" slot="left" @click="goback"></div>
             <span>写分享</span>
             <em @click="releaseShare">发布</em>
         </div>
@@ -50,7 +48,7 @@
     },
     methods: {
         goback: function () {
-            history.back();
+            this.$router.push('/#/')
         },
         uploadFile(data, callback) {
             $.ajax({
