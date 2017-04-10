@@ -118,7 +118,7 @@
                 </div>
                 <ul>
                     <li v-for="(i, l) in dateList.length/7">
-                        <span @click="onPopup(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)}">
+                        <span @click="onClick(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)}">
                             {{item.date}}<em v-if="item.value"></em>
                         </span>
                     </li>
@@ -212,7 +212,7 @@
                     this.getMothInfo();
                 }
             },
-            onPopup: function (item) {
+            onClick: function (item) {
                 if(!item.currentMonth) {
                     return;
                 }

@@ -28,7 +28,7 @@
   import foodCard from '../components/plan/food-card.vue';
   import sportCard from '../components/plan/sport-card.vue';
   import { getQuery } from '../libs/utils';
-  import { MessageBox } from 'mint-ui';
+  import { MessageBox, Indicator } from 'mint-ui';
   const type_map = {
     'breakfast': 1,
     'lunch': 2,
@@ -61,6 +61,7 @@
         location.href = '/';
       },
       fetchData: function () {
+        Indicator.open('加载中...');
         if (this.type != 'sport') {
           //早中晚 type: breakfast, lunch, dinners
           this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
@@ -69,8 +70,10 @@
               breakfast: data.breakfast,
               lunch: data.lunch,
               dinner: data.dinner
-            }
+            };
+            Indicator.close();
           }, () => {
+            Indicator.close();
             MessageBox('注意', '请求失败');
           });
         } else {
@@ -81,7 +84,9 @@
               list = res.body.massages[this.date];
             }
             this.sportList = list;
+            Indicator.close();
           }, () => {
+            Indicator.close();
             MessageBox('注意', '请求失败');
           });
         }

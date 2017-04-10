@@ -166,11 +166,11 @@
             handleHeatPlateTime: () => {
                 let dateTime = document.querySelectorAll('.date span');
                 let bdBot = document.querySelectorAll('.bd-bot');
-
                 if (dateTime.length < 5 && dateTime.length > 0) {
                     dateTime[0].className = 'item yellow';
                     bdBot[0].style.display = 'block';
                 } else if (dateTime.length > 0) {
+                    debugger
                     dateTime[2].className = 'item yellow';
                     bdBot[2].style.display = 'block';
 

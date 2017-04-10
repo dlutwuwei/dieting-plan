@@ -237,7 +237,7 @@
                 });
             },
             goback: function () {
-                history.back();
+                this.$router.push("/#/")
             }
         },
         mounted() {

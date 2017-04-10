@@ -12,7 +12,7 @@
 
         <!--<HeatPlate :heat-plate="heatPlate" v-if="type=='food'"></HeatPlate>-->
         <sportCard v-if="type=='sport'" :data="sportList" :date="date" :from="from" :type="type"></sportCard>
-        <foodCard v-if="type=='food'" :type="type" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
+        <foodCard v-if="type=='food'" :type="index" :title="titleMap[index]" :date="date" :from="from" :data="diet" v-for="(diet, index) in foodList"></foodCard>
     </div>
 </template>
 <script>
@@ -20,6 +20,7 @@
     import foodCard from '../components/plan/food-card.vue';
     import sportCard from '../components/plan/sport-card.vue';
     import { getQuery } from '../libs/utils';
+    import { Indicator } from 'mint-ui';
     export default {
         data() {
             return {
@@ -49,6 +50,7 @@
                 this.$router.push('/')
             },
             fetchData: function() {
+                Indicator.open('加载中...');
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/plan/datefood/time/${this.date}`).then(res => {
@@ -57,19 +59,24 @@
                             breakfast: data.breakfast,
                             lunch: data.lunch,
                             dinner: data.dinner
-                        }
+                        };
+                        Indicator.close();
                     },() => {
-                         MessageBox('注意', '请求失败');
+                        Indicator.close();
+                        MessageBox('注意', '请求失败');
                     });
                 } else {
+                    Indicator.open('加载中...');
                     // 运动
                     this.$http.get(`/plan/datasport/time/${this.date}`).then(res => {
                         let list = [];
                         if (res.body.success) {
                             list = res.body.massages[this.date];
-                        }
+                        };
                         this.sportList = list;
+                        Indicator.close();
                     }, () => {
+                        Indicator.close();
                         MessageBox('注意', '请求失败');
                     });
                 }
