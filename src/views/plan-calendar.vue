@@ -78,6 +78,11 @@
         font-style: normal;
         font-size: .14rem;
         color: #47a304;
+        background-color: #47a304;
+        margin: auto;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
     }
     .curr {
         background: #f2901e;
