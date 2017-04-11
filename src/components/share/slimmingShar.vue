@@ -12,6 +12,13 @@
                 display:block;
                 color:#fff;
             }
+            a:before{
+                content: '';
+                display: inline-block;
+                width:0px;
+                height:160px;
+                vertical-align:middle;
+            }
             h5{
                 position:absolute;
                 margin:0;
@@ -73,8 +80,12 @@
             }
         }
         .share-pic{
+            display:inline-block;
             width:100%;
             height:auto;
+            vertical-align:middle;
+            top:50%;
+            transform: translate(0,-50%);
         }
 
     }
@@ -89,8 +100,8 @@
                       {{item.time}}<span class="ico ico-follow"></span>{{item.click}}<span class="ico ico-flower"></span>{{item.laud}}
                   </div>
                  <div class="author-info">
-                      <!--<img :src="item.author.avatar_url" alt=""/>-->
-                      <p v-html="item.title"></p>
+                      <img v-if="item.author && item.author.pic" :src="item.author.pic" alt=""/>
+                      <p v-if="item.author && item.author.name">{{item.author.name}}</p>
                   </div>
               </router-link>
           </div>
