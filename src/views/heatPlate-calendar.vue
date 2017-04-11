@@ -78,6 +78,11 @@
         font-style: normal;
         font-size: .14rem;
         color: #47a304;
+        background-color: #47a304;
+        margin: auto;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
     }
     .curr {
         background: #f2901e;
@@ -244,12 +249,12 @@
             },
             getMothInfo: function(){
                 let postData = fmtDate(this.now, 'yyyy-MM');
-                this.$http.get(`/Weight/weightsearch?time=${postData}`).then(res => {
+                this.$http.get(`/plan/heatsearch/time/${postData}`).then(res => {
                     if(res.body.success) {
-                        this.weightList = res.body.data;
+                        this.weightList = res.body.massages;
                         let data = {};
                         this.weightList.forEach(item => {
-                            data[item.time] = parseFloat(item.weight).toFixed(1);
+                            data[item.time] = item.time;
                         });
                         this.weightData = data;
                     }
