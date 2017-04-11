@@ -612,6 +612,7 @@
                 float:left;
                 display:inline;
                 width: 1.7rem;
+                height: 2rem;
                 margin-top: .3rem;
                 margin-right: 0.3rem;
                 text-align:center;
