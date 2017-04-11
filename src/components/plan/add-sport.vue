@@ -65,11 +65,10 @@
                 }
             },
             save: function () {
-                if(!this.value) {
-                    MessageBox('注意', '需要填入数值')
+                if(this.value && this.value > 9999 || this.value < 0) {
+                    MessageBox('注意', '输入值不在正常范围内');
                     return;
                 }
-
                 let url = '/plan/updatesport';
                 if(!this.isUpdate) {
                     url = '/plan/addsport';

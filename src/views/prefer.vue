@@ -49,7 +49,7 @@
         },
         methods: {
             addMore: function () {
-                location.href = "/plan/listt/#/add/" + this.type + "?prefer=" + this.type;
+                location.href = `/plan/listt/#/add/${this.type}?prefer=${this.type}&return=${encodeURIComponent(location.href)}`;
             },
             select: function (item, e) {
                 if (!this.selected[this.type]) {
@@ -65,11 +65,11 @@
                         }
                     });
                     delete this.selected[this.type][index];
-                    return;
+                } else {
+                    item.value = true;
+                    this.selected[this.type].push(item);
                 }
-                item.value = true;
 
-                this.selected[this.type].push(item);
 
                 if(this.items){
                     localStorage.setItem('list' + this.type, JSON.stringify(this.items));

@@ -118,6 +118,10 @@
                 this.item.value = this.oldData;
             },
             save: function () {
+                if(this.item.value > 250 || this.item.value < 3) {
+                    MessageBox('注意', '体重输入不在正常范围内');
+                    return;
+                }
                 let postdata = {
                     weight: this.item.value,
                     time: this.dateString,
