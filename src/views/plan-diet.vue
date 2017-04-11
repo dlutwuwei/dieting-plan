@@ -93,7 +93,7 @@
                 }
             },
             goback: function () {
-                this.$router.push(`/detail/${this.type}?date=${this.date}`)
+                this.$router.push(`/detail/${this.type=='sport' ? 'sport' : 'food'}?date=${this.date}`)
             },
             deleteItem: function (item, i) {
                 MessageBox.confirm('确认删除此项计划?').then(action => {
