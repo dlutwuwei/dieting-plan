@@ -87,7 +87,11 @@
                 }
             },
             goback: function () {
-                location.href = '/#/index/record';
+                if(this.type=='sport') {
+                    location.href = '/'
+                } else {
+                    location.href = '/#/index/record';
+                }
             },
             popClose: function() {
                 this.popupVisible = false;
@@ -103,7 +107,7 @@
         created() {
             this.type = this.$route.params.type;
             this.date = getQuery('date');
-            this.addUrl = `/add/${this.type}?date=${this.date}`;
+            this.addUrl = `/add/${this.type}?date=${this.date}&return=${encodeURIComponent(location.href)}`;
         }
     }
 
