@@ -118,7 +118,7 @@
                 this.item.value = this.oldData;
             },
             save: function () {
-                if(this.item.value > 250 || this.item.value < 30) {
+                if(this.item.value > 250 || this.item.value < 3) {
                     MessageBox('注意', '体重输入不在正常范围内');
                     return;
                 }
