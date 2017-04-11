@@ -8,16 +8,18 @@
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">
-                <div class="item" v-for="item in items" @click="select(item, $event)">
-                    <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
-                    <div class="name">{{item.food_type}}</div>
-                    <div class="tagname" v-if="item.food_type_tag">{{item.food_type_tag}}</div>
-                </div>
-                <div class="add-item" v-if="type!='reason'">
-                    <div class="add-icon icon" @click="addMore">
-                    <span>+</span>
+                <div class="bd">
+                    <div class="item" v-for="item in items" @click="select(item, $event)">
+                        <div :class="{'selected': item.value, 'icon': true}"><img :src="'/Public/render/img/icons/'+item.icon" alt=""></div>
+                        <div class="name">{{item.food_type}}</div>
+                        <div class="tagname" v-if="item.food_type_tag">{{item.food_type_tag}}</div>
                     </div>
-                    <div class="name">自定义</div>
+                    <div class="add-item" v-if="type!='reason'">
+                        <div class="add-icon icon" @click="addMore">
+                        <span>+</span>
+                        </div>
+                        <div class="name">自定义</div>
+                    </div>
                 </div>
             </div>
             <div class="cell bottom">
@@ -27,6 +29,7 @@
     </transition>
 </template>
 <script>
+    require('../libs/flexible.js');
     const next = {
         breakfast: 'lunch',
         lunch: 'supper',
@@ -144,7 +147,7 @@
                 let data = window.data[this.type || 'breakfast'];
                 let adds = JSON.parse(localStorage.getItem('luming' + this.type) || '{}');
                 let list = JSON.parse(localStorage.getItem('list' + this.type) || '[]');
-                
+
                 // 如果已经有选中项
                 if(list.length > 0) {
                     data = list;
@@ -595,34 +598,41 @@
             color: #333;
         }
         .select-items {
-            overflow: hidden;
             padding: 0 25px;
-            display: flex;
+            /*display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
+            flex-wrap: wrap;*/
             padding-bottom: 100px;
+            overflow: hidden;
+            .bd{
+                width:6rem;
+            }
             .item,
             .add-item {
-                width: 85px;
-                margin-top: 15px;
+                float:left;
+                display:inline;
+                width: 1.7rem;
+                margin-top: .3rem;
+                margin-right: 0.3rem;
                 text-align:center;
                 .add-icon{
                     span{
-                        font-size: 70px;
+                        font-size: 1.4rem;
                         font-weight: 100;
                         color: #bbb;
+                        line-height:1rem;
                     }
                 }
             }
             .icon {
-                height: 76px;
-                width: 76px;
+                height: 1.5rem;
+                width: 1.5rem;
                 background: #ededed;
                 border-radius: 9999px;
                 text-align: center;
                 vertical-align: middle;
-                padding: 10px;
-                line-height: 46px;
+                padding: .1rem;
+                line-height: 1.5rem;
                 img {
                     width: 100%;
                 }
