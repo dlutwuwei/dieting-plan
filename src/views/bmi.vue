@@ -14,7 +14,6 @@
                 <div class="bmi-line"><img src="../assets/images/jianfei/bmi-line.png" alt=""></div>
             </div>
             <div class="description">{{notice}}</div>
-            <div class="buy-notice"><span class="text">点击购买</span></div>
         </div>
         <div class="terms"><input type="checkbox" v-model="agree" id="terms"><label for="terms">同意</label><label class="text" @click="popupTerms=true">《鸣鹿减肥法用户协议》</label></div>
         <div class="next-btn">
