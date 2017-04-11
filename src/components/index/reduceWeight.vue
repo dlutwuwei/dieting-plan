@@ -135,12 +135,12 @@
         },
         methods:{
             redirect(id) {
-                if (this.user_type == 0) {
-                    location.href = `/detail/input/${id}`;
-                } else if (this.user_type== 2) {
+                if (this.user_type== 2) {
                     location.href = '/prefer/prefer';
                 } else if (this.user_type == 3) {
                     location.href = '/buy/buy'
+                } else {
+                    location.href = `/detail/input/${id}`;
                 }
             },
         },
@@ -149,7 +149,7 @@
                 // if no user type
                 this.$http.get('/Info/usertype').then(res => {
                     if (res.body.success) {
-                        this.user_type = JSON.parse(res.body.data).type;
+                        this.user_type = JSON.parse(res.body.data).status;
                     }
                 }, () => {
                     MessageBox('注意', '获取用户信息失败');
