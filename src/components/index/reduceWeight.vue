@@ -135,9 +135,9 @@
         },
         methods:{
             redirect(id) {
-                if (this.user_type== 0) {
-                    location.href = '/prefer/prefer';
-                } else if (this.user_type == 1) {
+                if (this.user_type== 2) {
+                    location.href = '/prefer/prefer/foodRestrict';
+                } else if (this.user_type == 0) {
                     location.href = '/prefer/prefer';
                 } else if (this.user_type == 3) {
                     location.href = '/buy/buy'
