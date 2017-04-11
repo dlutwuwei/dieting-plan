@@ -71,7 +71,8 @@
                 }
             },
             save: function () {
-                if(!this.value) {
+                if(this.value && this.value > 9999 || this.value < 0) {
+                    MessageBox('注意', '输入值不在正常范围内');
                     return;
                 }
                 let url = '/plan/updatefood';
