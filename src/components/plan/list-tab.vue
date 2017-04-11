@@ -55,10 +55,11 @@
         props: ['darenList'],
         methods:{
             tab: function(index){
-                let ntype = this.type;
-                if( this.type == 'food' ) ntype = 'sport';
+                let type = getQuery('type');
+                let ntype = type;
+                if( index == 1 ) ntype = 'sport';
                 else ntype = 'food';
-                let url = location.href.replace('type='+this.type, 'type='+ ntype);
+                let url = location.href.replace('type='+type, 'type='+ ntype);
                 history.pushState(null, document.title, url)
                 var darenList = document.querySelectorAll('.list-content');
                 var navTabsA = document.querySelectorAll('.tab-hd span');
