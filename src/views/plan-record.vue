@@ -96,16 +96,6 @@
         },
         mounted() {
             this.fetchData();
-            if (!this.user_type) {
-                // if no user type
-                this.$http.get('/Info/usertype').then(res => {
-                    if (res.body.success) {
-                        this.user_type = JSON.parse(res.body.data).type;
-                    }
-                }, () => {
-                    MessageBox('注意', '获取用户信息失败');
-                });
-            }
         },
         created() {
             this.type = this.$route.params.type;

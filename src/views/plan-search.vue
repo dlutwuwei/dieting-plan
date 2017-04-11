@@ -63,8 +63,9 @@
                     localStorage.setItem('luming' + this.preferType, JSON.stringify(tmpPrefers));
                     location.href = '/prefer/prefer/' + this.preferType;
                     return;
+                } else {
+                    this.popupVisible = true;
                 }
-                this.popupVisible = true;
             },
             popClose: function() {
                 this.popupVisible = false;

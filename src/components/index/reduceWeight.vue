@@ -130,13 +130,32 @@
 <script>
     export default {
         props: {
-            reduceList: Array
+            reduceList: Array,
+            user_type: 0,
         },
         methods:{
             redirect(id) {
-                location.href = `/detail/input/${id}`;
+                if (this.user_type == 0) {
+                    location.href = `/detail/input/${id}`;
+                } else if (this.user_type== 2) {
+                    location.href = '/prefer/prefer';
+                } else if (this.user_type == 3) {
+                    location.href = '/buy/buy'
+                }
             },
         },
+        mounted() {
+            if (!this.user_type) {
+                // if no user type
+                this.$http.get('/Info/usertype').then(res => {
+                    if (res.body.success) {
+                        this.user_type = JSON.parse(res.body.data).type;
+                    }
+                }, () => {
+                    MessageBox('注意', '获取用户信息失败');
+                });
+            }
+        }
     }
 
 </script>

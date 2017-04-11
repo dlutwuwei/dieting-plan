@@ -68,9 +68,12 @@
                     return;
                 }
                 item.value = true;
-                //e.target.parentNode.classList.add('selected');
 
                 this.selected[this.type].push(item);
+
+                if(this.items){
+                    localStorage.setItem('list' + this.type, JSON.stringify(this.items));
+                }
             },
             post_prefer: function (e) {
                 // 发送饮食偏好
@@ -95,7 +98,6 @@
                     }, err => {
                         MessageBox('注意', '请求失败');
                     });
-
                 } else if (next[type] == null) {
 
                     if (type === 'sportRestrict') {
@@ -110,9 +112,6 @@
                         }
                         this.$http.post('/Restrict/addplace', restrict).then(response => {
                             let res = response.body;
-                            // if (res.success) {
-                            //     location.href = '/buy/buy?type=15';
-                            // }
                             location.href = '/buy/buy?type=1';
                         }, err => {
                             MessageBox('注意', '请求失败');
@@ -144,6 +143,13 @@
                 this.type = this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
                 let adds = JSON.parse(localStorage.getItem('luming' + this.type) || '{}');
+                let list = JSON.parse(localStorage.getItem('list' + this.type) || '[]');
+                
+                // 如果已经有选中项
+                if(list.length > 0) {
+                    data = list;
+                }
+
                 let moreItems = [];
                 Object.keys(adds).forEach(name => {
                     let item = adds[name];
