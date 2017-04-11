@@ -60,7 +60,8 @@
                 if (this.type != 'sport') {
                     //早中晚 type: breakfast, lunch, dinners
                     this.$http.get(`/record/recordsel?time=${this.date}`).then(res => {
-                        let data = res.body[this.date];
+                        let data = res.body.massages[this.date];
+                        debugger
                         if(data) {
                             let list = data[this.type];
                             list.pop();
