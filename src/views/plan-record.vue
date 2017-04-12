@@ -75,7 +75,7 @@
                     this.$http.get(`/record/sportsel?time=${this.date}`).then(res => {
                         let list = [];
                         if(res.body.success) {
-                            list = res.body.data;
+                            list = res.body.massages;
                         }                        
                         this.data = list;
                         Indicator.close();
