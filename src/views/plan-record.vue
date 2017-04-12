@@ -2,7 +2,6 @@
     <div>
         <mt-header title="添加记录">
             <mt-button slot="left" icon="back" @click="goback">返回</mt-button>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="food-card">
             <div class="food-item" :class="{'deleted': item.deleted, 'checked': item.checked}" v-for="(item, index) in data">
