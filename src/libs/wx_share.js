@@ -22,7 +22,7 @@ WxShare.prototype.init = function (config) {
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        "url": encodeURIComponent(window.location.href),
+        "url": encodeURIComponent(location.href.split('#')[0]),
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
