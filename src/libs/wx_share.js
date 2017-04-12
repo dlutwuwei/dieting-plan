@@ -133,13 +133,13 @@ WxShare.prototype.start = function () {
     var self = this;
 
     $.ajax({
-        get: 'post',
+        type: 'post',
         contentType:"application/json; charset=utf-8",
         url: '/Jsdk/jsdk',
         dataType: 'json',
-        data: {
+        data: JSON.stringify({
             url: location.href.split('#')[0]
-        },
+ 	}),
         success: function (result) {
             var res = result;
             if(res.success){
