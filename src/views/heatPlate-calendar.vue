@@ -158,14 +158,6 @@
             }
         },
         watch: {
-            // weightList(list) {
-            //     if(list&&this.weightData) {
-            //         list.forEach(item => {
-            //             this.weightData[item.time] = item.weight;
-            //         });
-            //     }
-            //     return list;
-            // }
         },
         created() {
             this.now = new Date();
@@ -222,12 +214,9 @@
                 }
             },
             onClick: function (item) {
-                if(!item.currentMonth) {
-                    return;
-                }
-                this.dataList.forEach( item => {
-                    item.selected = true;
-                })
+                this.dateList.forEach( item => {
+                    item.selected = false;
+                });
                 let nowdate = new Date();
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
