@@ -151,4 +151,4 @@ WxShare.prototype.start = function () {
 };
 
 var _url = location.href.replace('&', '#')
-location.href = _url;
+window.history.pushState({},0, _url)
