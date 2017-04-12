@@ -73,6 +73,9 @@
     .gray {
         color: #999;
     }
+    .green {
+        color: #47a304;
+    }
     em {
         display: block;
         font-style: normal;
@@ -123,7 +126,7 @@
                 </div>
                 <ul>
                     <li v-for="(i, l) in dateList.length/7">
-                        <span @click="onClick(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)}">
+                        <span @click="onClick(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': (item.date==now.getDate()&&now.getMonth()==new Date().getMonth()&&item.currentMonth)||item.selected}">
                             {{item.date}}<em v-if="item.value"></em>
                         </span>
                     </li>
@@ -155,14 +158,6 @@
             }
         },
         watch: {
-            // weightList(list) {
-            //     if(list&&this.weightData) {
-            //         list.forEach(item => {
-            //             this.weightData[item.time] = item.weight;
-            //         });
-            //     }
-            //     return list;
-            // }
         },
         created() {
             this.now = new Date();
@@ -182,7 +177,8 @@
                     return {
                         currentMonth: true,
                         date: index + 1,
-                        value: this.weightData[datestr]
+                        value: this.weightData[datestr],
+                        selected: false,
                     }
                 });
                 //获取当月1号的星期是为了确定在1号前需要插多少天
@@ -218,9 +214,9 @@
                 }
             },
             onClick: function (item) {
-                if(!item.currentMonth) {
-                    return;
-                }
+                this.dateList.forEach( item => {
+                    item.selected = false;
+                });
                 let nowdate = new Date();
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
@@ -228,20 +224,11 @@
                     Indicator.open('加载中...')
                     this.$http.get('/Plan/heatplate/time/' + fmtDate(new Date(calendarDataA), 'yyyy-MM-dd')).then(res => {
                         if(res.body.success) {
+                            item.selected = true;
                             this.heatPlate = res.body.massages;
                         }
                         Indicator.close();
                     });
-
-                    // this.popupVisible = true;
-                    // let now = this.now;
-                    // let year = now.getFullYear();
-                    // let tmpMonth = now.getMonth()+1;
-                    // let date = item.date;
-                    // this.selected = item;
-                    // this.selected.monthData = calendarDataA;
-                    // this.selected.value = item.value || 0;
-                    // this.dateString = `${year}-${tmpMonth<=9?'0'+tmpMonth:tmpMonth}-${date<=9?'0'+date:date}`;
                 }
             },
             popClose: function () {
