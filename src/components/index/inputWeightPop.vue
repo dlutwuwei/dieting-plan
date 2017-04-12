@@ -109,6 +109,7 @@
         props: ['popClose', 'data', 'dateString'],
         watch: {
             data(val) {
+                this.oldData = val.value;
                 this.item = val;
             }
         },
@@ -118,8 +119,9 @@
                 this.item.value = this.oldData;
             },
             save: function () {
-                if(this.item.value > 250 || this.item.value < 3) {
+                if(!this.item.value || (this.item.value > 250 || this.item.value < 3)) {
                     MessageBox('注意', '体重输入不在正常范围内');
+                    this.item.value = this.oldData;
                     return;
                 }
                 let postdata = {
@@ -159,8 +161,7 @@
 
         },
         mounted(){
-            this.oldData = this.data.value;
-
+            this.oldData = this.item.value;
         }
     }
 
