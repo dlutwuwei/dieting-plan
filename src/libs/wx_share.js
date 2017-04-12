@@ -133,7 +133,8 @@ WxShare.prototype.start = function () {
     var self = this;
 
     $.ajax({
-        method: 'post',
+        get: 'post',
+        contentType:"application/json; charset=utf-8",
         url: '/Jsdk/jsdk',
         dataType: 'json',
         data: {
