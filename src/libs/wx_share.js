@@ -141,7 +141,7 @@ WxShare.prototype.start = function () {
             url: location.href.split('#')[0]
         },
         success: function (result) {
-            var res = JSON.parse(result);
+            var res = result;
             if(res.success){
                 self.init(res.massages);
             }

@@ -5,7 +5,7 @@
             <img :src="item.icon" alt="">
             <div class="food-info">
                 <div class="food-name">{{item.name}}</div>
-                <div class="food-energy">{{item.kcal}}千卡/100克</div>
+                <div class="food-energy">{{parseInt(item.kcal*100/item.weight)}}千卡/100克</div>
             </div>
         </div>
         <div class="weight-select">
@@ -45,14 +45,14 @@
         props: ['data', 'type', 'isUpdate'],
         computed: {
             total: function () {
-                return (this.item.kcal * (this.value||0) / this.item.weight).toFixed(2);
+                return (this.item.kcal * (this.value||0) / this.item.weight).toFixed(0);
             }
         },
         watch: {
             data(val) {
-                this.value = this.data.weight;
+                this.value = parseInt(this.data.weight);
                 if(!val.weight) {
-                    val.weight = val.gram;
+                    val.weight = parseInt(val.gram);
                 }
                 this.item = val;
             }

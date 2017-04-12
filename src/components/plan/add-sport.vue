@@ -8,7 +8,7 @@
         <div class="sport-item line">
             <img :src="item.icon" alt="">
             <div class="food-name">{{item.name}}</div>
-            <div class="food-energy"><span class="orange">{{item.kcal}}</span>千卡/60分钟</div>
+            <div class="food-energy"><span class="orange">{{parseInt(item.kcal*60/item.lasttime)}}</span>千卡/60分钟</div>
         </div>
         <div class="sport-select line">
             <div class="sport-quantity">
@@ -39,12 +39,13 @@
                 return parseInt(this.item.kcal * this.value / this.item.lasttime);
             },
             value: function() {
-                return parseInt(this.inputVal||0);
+                return parseInt(this.inputVal || 0);
             }
         },
         props: ['data', 'type', 'isUpdate'],
         watch: {
             data(val) {
+                this.inputVal = '' + (this.data.lasttime || '');
                 this.item = val;//新增result的watch，监听变更并同步到myResult上
             },
             list(val) {
@@ -91,6 +92,7 @@
                 }, response => {
                      MessageBox('注意', '请求失败');
                 });
+                this.firstinput = true;
                 this.$emit('popClose');
             },
             record: function () {
@@ -112,6 +114,10 @@
                 this.$emit('popClose');
             },
             onClickValue: function(e) {
+                if(this.firstinput) {
+                    this.inputVal = '';
+                }
+                this.firstinput = false;
                 let val = e.target.getAttribute('value');
                 if(this.inputVal.indexOf('.') >= 0 && val=== '.') {
                     return;
@@ -133,6 +139,7 @@
             }
         },
         mounted() {
+            this.firstinput = true;
             this.date = getQuery('date');
             this.$http.get('/Info/usertype').then(res => {
                 if (res.body.success) {
