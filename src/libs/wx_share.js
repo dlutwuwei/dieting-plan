@@ -7,7 +7,7 @@ function WxShare() {
     this.shareData = {
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-        "link": encodeURIComponent(location.href) + '#/edit',
+        "link": location.href.split('#')[0] + '#/edit',
         //"link": location.href.split('#')[0], // 分享链接
         //"link": location.href.replace('#', '&'), // 分享链接
         "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
