@@ -7,7 +7,7 @@
 项目地址：（`git clone`）
 
 ```shell
-git clone https://github.com/dlutwuwei/dieting-plan.git
+git clone https://git.coding.net/dlutwuwei/dieting.git
 ```
 
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
