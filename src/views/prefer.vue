@@ -2,9 +2,9 @@
     <transition name="slide">
         <div class="prefer">
             <mt-header title="鸣鹿健康">
-                <!--<router-link v-if="type!='breakfast'" to="/prefer/prefer" slot="left">
+                <router-link v-if="type!='breakfast'" to="/prefer/prefer" slot="left">
                     <mt-button icon="back">返回</mt-button>
-                </router-link>-->
+                </router-link>
             </mt-header>
             <div class="title">{{title}}</div>
             <div class="select-items">

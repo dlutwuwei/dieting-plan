@@ -1,9 +1,9 @@
 <template>
     <div class="app bmi-page">
         <mt-header title="鸣鹿健康">
-            <a href="/" slot="left">
+            <!--<a href="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
-            </a>
+            </a>-->
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="bmi-container">
