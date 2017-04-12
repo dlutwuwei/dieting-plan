@@ -135,6 +135,7 @@ WxShare.prototype.start = function () {
     $.ajax({
         type: 'post',
         url: '/Jsdk/jsdk',
+        dataType: 'json',
         data: {
             url: location.href.split('#')[0]
         },
