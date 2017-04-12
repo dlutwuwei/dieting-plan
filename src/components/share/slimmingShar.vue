@@ -9,6 +9,7 @@
             background:#f5f5f5;
             overflow:hidden;
             a{
+                position:relative;
                 display:block;
                 color:#fff;
             }
@@ -80,12 +81,13 @@
             }
         }
         .share-pic{
+            position:absolute;
             display:inline-block;
             width:100%;
             height:auto;
             vertical-align:middle;
             top:50%;
-            transform: translate(0,-50%);
+            transform: translateY(-50%);
         }
 
     }
