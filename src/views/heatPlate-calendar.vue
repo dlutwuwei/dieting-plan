@@ -138,7 +138,7 @@
 
     import $ from 'webpack-zepto';
     import {fmtDate} from  "../libs/utils.js";
-    import { MessageBox } from 'mint-ui';
+    import { MessageBox, Indicator } from 'mint-ui';
     require('../libs/flexible.js');
 
     export default {
@@ -225,10 +225,12 @@
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
                 if(calendarDataB <= nowdate){
+                    Indicator.open('加载中...')
                     this.$http.get('/Plan/heatplate/time/' + fmtDate(new Date(calendarDataA), 'yyyy-MM-dd')).then(res => {
                         if(res.body.success) {
                             this.heatPlate = res.body.massages;
                         }
+                        Indicator.close();
                     });
 
                     // this.popupVisible = true;
@@ -273,10 +275,12 @@
         mounted() {
             this.getMothInfo();
             let date = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
+            Indicator.open('加载中...')
             this.$http.get('/Plan/heatplate/time/' + fmtDate(new Date(date), 'yyyy-MM-dd')).then(res => {
                 if(res.body.success) {
                     this.heatPlate = res.body.massages;
                 }
+                Indicator.close();
             });
         },
     }
