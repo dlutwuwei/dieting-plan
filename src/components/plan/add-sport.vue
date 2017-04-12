@@ -95,7 +95,7 @@
             },
             record: function () {
                 if(!this.value) return;
-                this.$http.post('/Plan/addsport', {
+                this.$http.post('/Record/sportadd', {
                     "pid": this.item.pid,
                     "name": this.item.name,
                     "kcal": this.item.kcal,

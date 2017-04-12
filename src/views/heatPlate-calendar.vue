@@ -225,7 +225,7 @@
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
                 if(calendarDataB <= nowdate){
-                    this.$http.get('/Plan/heatplate/time/' + calendarDataA).then(res => {
+                    this.$http.get('/Plan/heatplate/time/' + fmtDate(new Date(calendarDataA), 'yyyy-MM-dd')).then(res => {
                         if(res.body.success) {
                             this.heatPlate = res.body.massages;
                         }
@@ -273,7 +273,7 @@
         mounted() {
             this.getMothInfo();
             let date = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+this.now.getDate();
-            this.$http.get('/Plan/heatplate/time/' + date).then(res => {
+            this.$http.get('/Plan/heatplate/time/' + fmtDate(new Date(date), 'yyyy-MM-dd')).then(res => {
                 if(res.body.success) {
                     this.heatPlate = res.body.massages;
                 }
