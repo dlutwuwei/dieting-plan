@@ -2,9 +2,8 @@
     <div class="detail">
         <mt-header title="">
             <a href="/" slot="left">
-                <mt-button icon="back">返回首页</mt-button>
+                <mt-button icon="back">首页</mt-button>
             </a>
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="gender detail-item">
             <div class="detail-title">性别</div>

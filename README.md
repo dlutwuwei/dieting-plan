@@ -1,6 +1,4 @@
-## 注意：当前项目代码已经升级到2.0，采用vue-cli构建的2.0版本。1.x代码请看1.x分支。
-
-## 当前版本采用vue-cli搭建的版本。 非vue-cli的版本请看分支：not-vue-cli
+## 注意：当前项目代码已经升级到2.0，采用vue-cli构建的2.0版本。
 
 -------
 
@@ -9,7 +7,7 @@
 项目地址：（`git clone`）
 
 ```shell
-git clone https://github.com/dlutwuwei/dieting-plan.git
+git clone https://git.coding.net/dlutwuwei/dieting.git
 ```
 
 通过`npm`安装本地服务第三方依赖模块(需要已安装[Node.js](https://nodejs.org/))
