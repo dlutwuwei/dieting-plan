@@ -100,7 +100,7 @@
                 this.$http.post('/Record/sportadd', {
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": this.item.kcal,
+                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
                     "time": this.value,
                 }).then(response => {
                     if(response.body.success) {
