@@ -128,14 +128,14 @@
             <!--<span class="ico">....</span>-->
             <img :src="shareDetailInfo.titlepic" class="share-pic" alt=""/>
             <div class="author-info">
-                <!--<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>-->
-                <p>{{shareDetailInfo.title}}</p>
+                <img v-if="author.pic" :src="author.pic" alt=""/>
+                <p>{{author.name}}</p>
             </div>
         </div>
         <div class="detail-info">
             <div class="detail-info-hd">
                 <!--<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488119479&di=6253d2e2902471865de24c306d766c26&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2014-09-14%2F194112664.jpg" alt=""/>-->
-                <h5>{{author.name}}</h5>
+                <h5>{{shareDetailInfo.title}}</h5>
                 <p>{{shareDetailInfo.time}}</p>
             </div>
             <div class="detail-info-bd">
