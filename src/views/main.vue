@@ -96,7 +96,7 @@
         var wxShare = new WxShare();
         wxShare.start(shareData);
 
-        alert(shareData.link)
+        //alert(shareData.link)
       if(window.userInfo.type == 0) {
         location.href = '/buy/buy';
       }
