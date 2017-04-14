@@ -15,6 +15,10 @@ function WxShare() {
 }
 WxShare.prototype.init = function (config) {
     var self = this;
+    window.onhashchange=function(){
+        alert(location.href)
+        self.shareData.link = location.href;
+    }
     wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
