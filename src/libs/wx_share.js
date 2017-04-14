@@ -13,15 +13,12 @@ function WxShare() {
     this.successFun = null;
     this.cancellFun = null;
 }
-WxShare.prototype.successFun = function(){
-    var self = this;
-    alert(self.shareData.link)
-}
+
 WxShare.prototype.init = function (config) {
     var self = this;
     window.onhashchange=function(){
         alert(location.href)
-        self.shareData.link = location.href;
+        //self.shareData.link = location.href;
     }
     wx.config({
         "appId": config.appId,
