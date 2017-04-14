@@ -4,6 +4,7 @@ import $ from 'webpack-zepto';
 module.exports = WxShare;
 
 function WxShare() {
+    alert(location.href)
     this.shareData = {
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
@@ -20,6 +21,7 @@ WxShare.prototype.init = function (config) {
     var self = this;
 
     var hashChangeFire = function(){
+        alert(location.href)
         self.shareData.link = location.href;
     }
 
