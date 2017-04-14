@@ -4,15 +4,14 @@ import $ from 'webpack-zepto';
 module.exports = WxShare;
 
 function WxShare() {
-    alert(location.href)
-    this.shareData = {
+    /*this.shareData = {
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
         //"link": location.href.split('#')[0] +'#'+ location.href.split('#')[1],
         "link": location.href, // 分享链接
         //"link": location.href.replace('#', '&'), // 分享链接
         "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
-    };
+    };*/
     this.successFun = null;
     this.cancellFun = null;
 }
@@ -20,29 +19,11 @@ function WxShare() {
 WxShare.prototype.init = function (config) {
     var self = this;
 
-    var hashChangeFire = function(){
-        alert(location.href)
-        self.shareData.link = location.href;
-    }
-
-    if( ('onhashchange' in window) && ((typeof document.documentMode==='undefined') || document.documentMode==8)) {
-        // 浏览器支持onhashchange事件
-        window.onhashchange = hashChangeFire;  // TODO，对应新的hash执行的操作函数
-    } else {
-        // 不支持则用定时器检测的办法
-        setInterval(function() {
-            var ischanged = isHashChanged();  // TODO，检测hash值或其中某一段是否更改的函数
-            if(ischanged) {
-                hashChangeFire();  // TODO，对应新的hash执行的操作函数
-            }
-        }, 150);
-    }
-
-    wx.config({
+    self.config = {
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        //"url": encodeURIComponent(location.href.split('#')[0]),
+        "url": config.url,
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
@@ -50,7 +31,8 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQQ',
             'onMenuShareQZone'
         ]
-    });
+    };
+    wx.config(self.config);
     self.wxReady();
     self.wxError();
 
