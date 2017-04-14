@@ -10,7 +10,7 @@ import './assets/scss/common/reset.scss';
 import WxShare from './libs/wx_share.js';
 
 var wxShare = new WxShare();
-wxShare.start();
+wxShare.start(shareData);
 
 
 import { Swipe, SwipeItem, Popup, Header, Button } from 'mint-ui';
