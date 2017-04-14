@@ -2,13 +2,11 @@ import wx from './jweixin';
 import $ from 'webpack-zepto';
 module.exports = WxShare;
 function WxShare() {
-    this.shareData = {
+    this.shareData = {/*
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-        //"link": location.href.split('#')[0] +'#'+ location.href.split('#')[1],
         "link": 'www.baidu.com', // 分享链接
-        //"link": location.href.replace('#', '&'), // 分享链接
-        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',*/
     };
     this.successFun = null;
     this.cancellFun = null;
@@ -16,15 +14,11 @@ function WxShare() {
 
 WxShare.prototype.init = function (config) {
     var self = this;
-    window.onhashchange=function(){
-        alert(location.href)
-        //self.shareData.link = location.href;
-    }
-    wx.config({
+    self.config = {
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        //"url": encodeURIComponent(location.href.split('#')[0]),
+        "url": config.url,
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
@@ -32,7 +26,8 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQQ',
             'onMenuShareQZone'
         ]
-    });
+    };
+    wx.config(self.config);
     self.wxReady();
     self.wxError();
 };
