@@ -62,6 +62,7 @@
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
   import { MessageBox } from 'mint-ui';
+  import WxShare from '../libs/wx_share.js';
 
   export default {
     data() {
@@ -75,12 +76,6 @@
         mlSwiper: window.mlSwiper || [],
         heatPlate: window.heatPlate || [],
         weightCurve: window.weightCurveData || [],
-          shareData: {
-              "title": '鸣鹿健康',// 分享标题
-              "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-              "link": 'www.baidu.com', // 分享链接
-              "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
-          }
       }
     },
 
@@ -90,6 +85,18 @@
       }
     },
     mounted: function() {
+        var shareData = {
+            "title": '鸣鹿健康',// 分享标题
+                "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+                "link": 'www.baidu.com', // 分享链接
+                "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+        }
+
+
+        var wxShare = new WxShare();
+        wxShare.start(shareData);
+
+        alert(shareData.link)
       if(window.userInfo.type == 0) {
         location.href = '/buy/buy';
       }
