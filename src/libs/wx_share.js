@@ -7,7 +7,6 @@ function WxShare() {
     this.shareData = {
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-        //"link": location.href.split('#')[0] +'#'+ location.href.split('#')[1],
         "link": location.href, // 分享链接
         //"link": location.href.replace('#', '&'), // 分享链接
         "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
@@ -19,11 +18,11 @@ function WxShare() {
 WxShare.prototype.init = function (config) {
     var self = this;
 
-    self.config = {
+    wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        "url": config.url,
+        "url": encodeURIComponent(window.location.href),
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
@@ -31,8 +30,7 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQQ',
             'onMenuShareQZone'
         ]
-    };
-    wx.config(self.config);
+    });
     self.wxReady();
     self.wxError();
 
@@ -136,14 +134,12 @@ WxShare.prototype.start = function () {
 
     $.ajax({
         type: 'post',
-        contentType:"application/json; charset=utf-8",
         url: '/Jsdk/jsdk',
-        dataType: 'json',
-        data: JSON.stringify({
+        data: {
             url: location.href.split('#')[0]
- 	}),
+        },
         success: function (result) {
-            var res = result;
+            var res = JSON.parse(result);
             if(res.success){
                 self.init(res.massages);
             }
