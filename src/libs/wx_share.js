@@ -1,12 +1,11 @@
 import wx from './jweixin';
 import $ from 'webpack-zepto';
-
 module.exports = WxShare;
-
 function WxShare() {
     this.shareData = {
         "title": '鸣鹿健康',// 分享标题
         "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+        //"link": location.href.split('#')[0] +'#'+ location.href.split('#')[1],
         "link": location.href, // 分享链接
         //"link": location.href.replace('#', '&'), // 分享链接
         "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
@@ -14,15 +13,13 @@ function WxShare() {
     this.successFun = null;
     this.cancellFun = null;
 }
-
 WxShare.prototype.init = function (config) {
     var self = this;
-
     wx.config({
         "appId": config.appId,
         "nonceStr": config.nonceStr,
         "timestamp": config.timestamp,
-        "url": encodeURIComponent(window.location.href),
+        //"url": encodeURIComponent(location.href.split('#')[0]),
         "signature": config.signature,
         "jsApiList": [
             'onMenuShareTimeline',
@@ -33,9 +30,7 @@ WxShare.prototype.init = function (config) {
     });
     self.wxReady();
     self.wxError();
-
 };
-
 WxShare.prototype.wxReady = function () {
     var self = this;
     wx.ready(function () {
@@ -45,11 +40,9 @@ WxShare.prototype.wxReady = function () {
         self.shareQZone();
     });
 };
-
 /*分享到朋友圈*/
 WxShare.prototype.shareTimeline = function (success, canncel) {
     var self = this;
-
     wx.onMenuShareTimeline({
         title: self.shareData.title, // 分享标题
         link: self.shareData.link, // 分享链接
@@ -120,26 +113,24 @@ WxShare.prototype.shareQZone = function () {
         }
     });
 };
-
 WxShare.prototype.wxError = function () {
     wx.error(function (res) {
         //alert('分享初始化失败：' + res.errMsg);
     });
 };
-
-
 /*入口方法*/
 WxShare.prototype.start = function () {
     var self = this;
-
     $.ajax({
         type: 'post',
+        contentType:"application/json; charset=utf-8",
         url: '/Jsdk/jsdk',
-        data: {
+        dataType: 'json',
+        data: JSON.stringify({
             url: location.href.split('#')[0]
-        },
+        }),
         success: function (result) {
-            var res = JSON.parse(result);
+            var res = result;
             if(res.success){
                 self.init(res.massages);
             }
