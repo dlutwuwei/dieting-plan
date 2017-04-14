@@ -53,12 +53,6 @@
 </template>
 
 <script>
-    var shareData = {
-        "title": '鸣鹿健康',// 分享标题
-        "desc": '鸣鹿健康，减肥伙伴',// 分享描述
-        "link": 'www.baidu.com', // 分享链接
-        "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
-    }
   import "../assets/scss/common/reset.scss";
   import MlSwiper from '../components/index/mlSwiper.vue';//轮播图
   import ReduceWeight from '../components/index/reduceWeight.vue';//一分钟减肥计划
@@ -81,6 +75,12 @@
         mlSwiper: window.mlSwiper || [],
         heatPlate: window.heatPlate || [],
         weightCurve: window.weightCurveData || [],
+          shareData: {
+              "title": '鸣鹿健康',// 分享标题
+              "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+              "link": 'www.baidu.com', // 分享链接
+              "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+          }
       }
     },
 
