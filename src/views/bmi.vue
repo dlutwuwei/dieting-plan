@@ -120,7 +120,6 @@
             }
         },
         created() {
-            this.cid = getQuery('cid');
 
             var shareData = {
                 "title": '鸣鹿健康',// 分享标题
