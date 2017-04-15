@@ -109,6 +109,7 @@
         }
     }
     import { MessageBox } from 'mint-ui';
+    import WxShare from '../libs/wx_share.js';
     export default {
         data() {
             return {
@@ -117,6 +118,20 @@
                 agree: false,
                 popupTerms: false
             }
+        },
+        created() {
+            this.cid = getQuery('cid');
+
+            var shareData = {
+                "title": '鸣鹿健康',// 分享标题
+                "desc": '鸣鹿健康，瘦身伙伴',// 分享描述
+                "link": location.href, // 分享链接
+                "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+            }
+
+
+            var wxShare = new WxShare();
+            wxShare.start(shareData);
         },
         computed: {
             bmi: function () {
@@ -163,11 +178,11 @@
     .next-btn {
         text-align: center;
     }
-    
+
     .bmi-page {
         padding-bottom: 80px;
     }
-    
+
     .terms {
         margin: 17px 0 40px 0;
         text-align: center;
@@ -175,12 +190,12 @@
             color: blue;
         }
     }
-    
+
     .buy-notice {
         margin-bottom: 50px;
         padding: 0 12px;
     }
-    
+
     .description {
         font-size: 15px;
         padding: 18px 0;
@@ -189,7 +204,7 @@
         margin: 35px 10px 0 10px;
         color: #333;
     }
-    
+
     body {
         background: #f7f7f7;
     }
