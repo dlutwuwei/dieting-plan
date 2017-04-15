@@ -49,7 +49,7 @@
         created() {
             var shareData = {
                 "title": '鸣鹿健康',// 分享标题
-                "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+                "desc": '鸣鹿健康，瘦身伙伴',// 分享描述
                 "link": window.location.origin+'/share/listt#', // 分享链接
                 "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
             }
