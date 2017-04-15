@@ -27,6 +27,7 @@ WxShare.prototype.init = function (config) {
             'onMenuShareQZone'
         ]
     };
+    console.log(self.config.url)
     wx.config(self.config);
     self.wxReady();
     self.wxError();
