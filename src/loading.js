@@ -11,7 +11,7 @@ import MintUI from 'mint-ui';
 import VueResource from 'vue-resource';
 import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
-import WxShare from './libs/wx_share.js';
+/*import WxShare from './libs/wx_share.js';
 
 var shareData = {
     "title": '鸣鹿健康',// 分享标题
@@ -22,7 +22,7 @@ var shareData = {
 
 
 var wxShare = new WxShare();
-wxShare.start(shareData);
+wxShare.start(shareData);*/
 
 
 Vue.use(MintUI);

@@ -9,7 +9,7 @@ import 'mint-ui/lib/style.css';
 import './assets/scss/common/reset.scss';
 
 import { Header, Button } from 'mint-ui';
-
+/*
 import WxShare from './libs/wx_share.js';
 
 var shareData = {
@@ -21,7 +21,7 @@ var shareData = {
 
 
 var wxShare = new WxShare();
-wxShare.start(shareData);
+wxShare.start(shareData);*/
 
 
 Vue.component(Button.name, Button);

@@ -10,7 +10,7 @@ import './assets/scss/common/reset.scss';
 
 import { Field, Popup, Header, Button } from 'mint-ui';
 
-import WxShare from './libs/wx_share.js';
+/*import WxShare from './libs/wx_share.js';
 
 var shareData = {
     "title": '鸣鹿健康',// 分享标题
@@ -21,7 +21,7 @@ var shareData = {
 
 
 var wxShare = new WxShare();
-wxShare.start(shareData);
+wxShare.start(shareData);*/
 
 
 Vue.component(Button.name, Button);
