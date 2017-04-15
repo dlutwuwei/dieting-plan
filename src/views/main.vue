@@ -62,7 +62,7 @@
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
   import { MessageBox } from 'mint-ui';
-  import WxShare from '../libs/wx_share.js';
+  //import WxShare from '../libs/wx_share.js';
 
   export default {
     data() {
