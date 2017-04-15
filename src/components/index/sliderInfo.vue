@@ -57,6 +57,7 @@
 <script>
     import { getQuery } from '../../libs/utils';
     import { MessageBox } from 'mint-ui';
+    import WxShare from '../../libs/wx_share.js';
 
     export default {
         data() {
