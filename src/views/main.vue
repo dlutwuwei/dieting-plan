@@ -62,7 +62,7 @@
   import BottomBar from '../components/common/bottomBar.vue';//底部栏
   import OldUserPop from '../components/index/oldUserPop.vue';//老用户弹窗
   import { MessageBox } from 'mint-ui';
-  //import WxShare from '../libs/wx_share.js';
+  import WxShare from '../libs/wx_share.js';
 
   export default {
     data() {
@@ -80,7 +80,7 @@
     },
 
     beforeCreate: function(){
-        /*var shareData = {
+        var shareData = {
             "title": '鸣鹿健康',// 分享标题
             "desc": '鸣鹿健康，减肥伙伴',// 分享描述
             "link": 'www.baidu.com', // 分享链接
@@ -89,7 +89,7 @@
 
 
         var wxShare = new WxShare();
-        wxShare.start(shareData);*/
+        wxShare.start(shareData);
     },
 
     methods: {
