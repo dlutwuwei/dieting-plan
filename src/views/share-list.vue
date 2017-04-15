@@ -35,7 +35,7 @@
     import { MessageBox } from 'mint-ui';
     import { Indicator } from 'mint-ui';
     import { getQuery } from '../libs/utils';
-    //import WxShare from '../libs/wx_share.js';
+    import WxShare from '../libs/wx_share.js';
 
     export default {
         name: 'page-navbar',
@@ -47,7 +47,7 @@
             }
         },
         created() {
-            /*var shareData = {
+            var shareData = {
                 "title": '鸣鹿健康',// 分享标题
                 "desc": '鸣鹿健康，瘦身伙伴',// 分享描述
                 "link": window.location.origin+'/share/listt#', // 分享链接
@@ -56,7 +56,7 @@
 
 
             var wxShare = new WxShare();
-            wxShare.start(shareData);*/
+            wxShare.start(shareData);
         },
         components: {
             SlimmingShar,
