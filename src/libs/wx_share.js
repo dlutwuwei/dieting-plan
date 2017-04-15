@@ -120,8 +120,10 @@ WxShare.prototype.wxError = function () {
     });
 };
 /*入口方法*/
-WxShare.prototype.start = function () {
+WxShare.prototype.start = function (data) {
     var self = this;
+    self.shareData = data;
+
     $.ajax({
         type: 'post',
         contentType:"application/json; charset=utf-8",
