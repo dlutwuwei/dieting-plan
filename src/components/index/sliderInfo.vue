@@ -81,7 +81,7 @@
         },
         methods: {
             goback: function () {
-                history.back();
+                this.$router.push('/');
             },
             getSliderInfo: function(){
                 this.$http.get(`/share/news?cid=${this.cid}`).then(res => {

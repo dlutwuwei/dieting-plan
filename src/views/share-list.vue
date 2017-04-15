@@ -35,7 +35,7 @@
     import { MessageBox } from 'mint-ui';
     import { Indicator } from 'mint-ui';
     import { getQuery } from '../libs/utils';
-    import WxShare from '../libs/wx_share.js';
+    //import WxShare from '../libs/wx_share.js';
 
     export default {
         name: 'page-navbar',
