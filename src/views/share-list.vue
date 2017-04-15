@@ -35,6 +35,7 @@
     import { MessageBox } from 'mint-ui';
     import { Indicator } from 'mint-ui';
     import { getQuery } from '../libs/utils';
+    import WxShare from '../libs/wx_share.js';
 
     export default {
         name: 'page-navbar',
@@ -44,6 +45,19 @@
                 shareList: [],
                 myShareList: [],
             }
+        },
+        created() {
+            this.cid = getQuery('cid');
+            var shareData = {
+                "title": '鸣鹿健康',// 分享标题
+                "desc": '鸣鹿健康，减肥伙伴',// 分享描述
+                "link": location.href, // 分享链接
+                "img_url": 'https://a1.nicaifu.com/dora/201701/ed587c92d6f09f4_ojv93q.jpg',
+            }
+
+
+            var wxShare = new WxShare();
+            wxShare.start(shareData);
         },
         components: {
             SlimmingShar,
