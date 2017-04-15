@@ -79,7 +79,7 @@
       }
     },
 
-    beforeCreate: function{
+    beforeCreate: function(){
         var shareData = {
             "title": '鸣鹿健康',// 分享标题
             "desc": '鸣鹿健康，减肥伙伴',// 分享描述
