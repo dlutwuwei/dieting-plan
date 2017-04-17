@@ -10,7 +10,7 @@
             <div class="title">你的BMI指数为<span class="number">{{bmi}}</span><span class="text">（{{perform}}）</span></div>
             <div class="info">(身高：{{height}}，体重：{{weight}}kg)</div>
             <div class="line">
-                <div class="line-arrow"><img src="../assets/images/jianfei/bmi-arrow.png" v-bind:style="{'left': left + 'px'}"></div>
+                <div class="line-arrow"><img src="../assets/images/jianfei/bmi-arrow.png" v-bind:style="{'left': left + '%'}"></div>
                 <div class="bmi-line"><img src="../assets/images/jianfei/bmi-line.png" alt=""></div>
             </div>
             <div class="description">{{notice}}</div>
@@ -142,19 +142,19 @@
                 if (this.bmi <= 18.5) {
                     perform = '偏瘦';
                     notice = '您目前的体重属于瘦弱，请加强营养，健康增重。';
-                    this.left = 35;
+                    this.left = 9;
                 } else if (this.bmi <= 24) {
                     perform = '正常';
                     notice = '你的体重很标准，不需要刻意减肥。如果你想预防肥胖，可以参考我们推荐的健康饮食方案。良好的饮食习运动习惯有助于你保持身材，远离亚健康。';
-                    this.left = 90;
+                    this.left = 28;
                 } else if (this.bmi <= 28) {
                     perform = '超重';
                     notice = '你的体重已经超标，规律和节制的饮食以及适量的运动会帮助你减肥成功，建议你立刻减肥。';
-                    this.left = 135;
+                    this.left = 47;
                 } else {
                     perform = '肥胖';
                     notice = '你的体重属于肥胖，肥胖会加重你患上糖尿病、高血压等心血管疾病的风险，规律和节制的饮食以及适量的运动会帮助你减肥成功，建议你立刻减肥。';
-                    this.left = 220;
+                    this.left = 75;
                 }
                 this.notice = notice;
                 return perform;
@@ -166,8 +166,19 @@
                 if (!this.agree) {
                     MessageBox('注意', '请同意协议');
                     return;
+                } else {
+                    let data = JSON.parse(getQuery('data'));
+                    this.$http.post('/Info/infoadd', data).then(response => {
+                        let data = response.body;
+                        if (data.success) {
+                            location.href = '/prefer/prefer';
+                        } else {
+                            MessageBox('注意', '请求失败');
+                        }
+                    }, response => {
+                        MessageBox('注意', '抱歉，链接出现问题');
+                    });
                 }
-                location.href = '/prefer/prefer';
             }
         }
     }

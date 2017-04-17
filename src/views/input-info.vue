@@ -98,8 +98,8 @@
                     && this.reduce > 0
                     && this.activity > 0
                     && this.classid > 0) {
-
-                    this.$http.post('/Info/infoadd', {
+                    
+                    var data = {
                         "sex": this.gender, // 性别
                         "age": this.age, // 年龄
                         "height": this.height, //身高
@@ -108,20 +108,10 @@
                         "activity": this.activity, //目前活动量
                         "reduce": this.reduce, //  想怎么减
                         "classid": this.classid // 减肥计划类型id
-                    }).then(response => {
-                        let data = response.body;
-                        if (data.success) {
-                            this.$router.push({
-                                path: `/detail/bmi?w=${this.weight}&h=${this.height}`
-                            });
-                        } else {
-                            MessageBox('注意', '请求失败');
-                        }
-                    }, response => {
-                        MessageBox('注意', '抱歉，链接出现问题');
-                    });
+                    };
+
                     this.$router.push({
-                        path: `/detail/bmi?w=${this.weight}&h=${this.height}`
+                        path: `/detail/bmi?w=${this.weight}&h=${this.height}&data=${JSON.stringify(data)}`
                     });
                 } else {
                     MessageBox('注意', '信息填写不完整');
