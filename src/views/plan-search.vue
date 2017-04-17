@@ -41,6 +41,9 @@
         },
         watch: {
             search(val) {
+                if(val.length > 10) {
+                    return;
+                }
                 this.fetchData(val, this.type);
             }
         },
