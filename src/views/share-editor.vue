@@ -3,11 +3,11 @@
         <div class="share-hd">
             <div class="go-back ico" slot="left" @click="goback"></div>
             <span>写分享</span>
-            <em @click="releaseShare">发布</em>
+            <em v-if="" @click="releaseShare">发布</em>
         </div>
 
         <div class="share-editor-cen">
-            <mt-field label="标题" placeholder="" :attr="{ maxlength: 50 }"></mt-field>
+            <mt-field label="标题" placeholder="" :attr="{ minlength: 4,maxlength: 30 }"></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/*" />
@@ -24,7 +24,7 @@
             <div class="editor-text input-box">
                 <h5>正文
                     <!--<span>(文字和图片都可以)</span>--></h5>
-                <textarea name="" id="editor-textarea" cols="30" rows="10"></textarea>
+                <textarea name="" id="editor-textarea" cols="30" rows="10" minlength="4" maxlength="1000"></textarea>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
                 if (!error) {
                     self.id_card_img = result.massages;//获取图片地址
                     $('.sample').removeClass('id-no-uploaded');
-                    $('.sample').find('img').attr('src', self.id_card_img)
+                    $('.sample').find('img').attr('src', self.id_card_img).show();
                     $('.sample').find('div').show();
                     MessageBox('', '图片上传成功!');
                     $('.operate_loading_pc').hide();
@@ -128,20 +128,28 @@
             })
         },
         releaseShare() {
-            let title = $('.mint-field-core').val();
+            let title = $.trim($('.mint-field-core').val());
             let titlepic = $('.sample').find('img').attr('src');
-            let content = $('#editor-textarea').val();
+            let content = $.trim($('#editor-textarea').val());
 
-            if ($.trim(title) == "") {
+            if (title == "") {
                 MessageBox('注意', '请填写分享标题!');
                 return;
             }
-            if ($('.sample img').css('display') == "" || $('.sample img').css('display') == "none") {
-                MessageBox('注意', '请上传分享图片!');
+            if(title.length < 4 || title.length > 30){
+                MessageBox('注意', '标题长度应大于4个并小于30个字符');
                 return;
             }
-            if ($.trim(content) == "") {
+            if ($('.sample img').css('display') == "" || $('.sample img').css('display') == "none") {
+                MessageBox('注意', '请上传封面图片!');
+                return;
+            }
+            if (content == "") {
                 MessageBox('注意', '请填写分享内容!');
+                return;
+            }
+            if(content.length < 4 || content.length > 1000){
+                MessageBox('注意', '标题长度应大于4个并小于1000个字符');
                 return;
             }
             let reqBody = {
@@ -156,8 +164,8 @@
             ).then(res => {
                 /* 发布成功 */
                 $('.mint-field-core').val('');
-            $('.sample').find('img').attr('src', '').hide();
-            $('#editor-textarea').val('');
+                $('.sample').find('img').attr('src', '').hide();
+                $('#editor-textarea').val('');
             location.href = '/share/listt?from=myshare'
         }, res => {
             MessageBox('注意', '发布失败');
@@ -278,6 +286,7 @@
             height:160px;
             overflow:hidden;
             img {
+                display:none;
                 width: 100%;
                 height: auto;
             }

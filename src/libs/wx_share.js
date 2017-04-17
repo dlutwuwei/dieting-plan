@@ -122,7 +122,7 @@ WxShare.prototype.wxError = function () {
 WxShare.prototype.start = function (data) {
     var self = this;
     self.shareData = data;
-    console.log(self.shareData)
+    //console.log(self.shareData)
     $.ajax({
         type: 'post',
         contentType:"application/json; charset=utf-8",

@@ -187,6 +187,7 @@
                 this.shareDetailInfo = res.body.massages[0];
             this.author = res.body.massages[0].author;
             this.laudNum = this.shareDetailInfo.laud;
+            this.laudNum = this.laudNum > 9999 ? '9999+' : this.laudNum;
         },() => {
             MessageBox('注意', '请求失败');
         });

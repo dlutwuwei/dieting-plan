@@ -5,10 +5,10 @@
             <div class="share-tab">
                 <mt-navbar v-model="selected">
                     <mt-tab-item id="1">推荐</mt-tab-item>
-                    <mt-tab-item id="2">我的</mt-tab-item>
+                    <mt-tab-item id="2" v-if="uploadView">我的</mt-tab-item>
                 </mt-navbar>
             </div>
-            <router-link to="/edit"><div class="ico ico-1"></div></router-link>
+            <router-link to="/edit"><div class="ico ico-1" v-if="uploadView"></div></router-link>
         </div>
 
         <!-- tab-container -->
@@ -19,7 +19,7 @@
                 <!--e:瘦身分享-->
             </mt-tab-container-item>
             <mt-tab-container-item id="2">
-                <template v-if="myShareList && myShareList.length > 0">
+                <template v-if="myShareList && myShareList.length > 0 && uploadView">
                     <SlimmingShar :share-list="myShareList"></SlimmingShar>
                 </template>
                 <div class="write-share" v-else>
@@ -44,6 +44,7 @@
                 selected: '1',
                 shareList: [],
                 myShareList: [],
+                uploadView: true,
             }
         },
         created() {
@@ -62,6 +63,18 @@
             SlimmingShar,
         },
         methods: {
+            getUserInfoe(){
+                this.$http.get('/Info/usertype').then(response => {
+                    // get body data
+                    var res = JSON.parse(response.data.data)
+                    console.log(res.type)
+                    if(res.type == null || res.type != 3 || res.type != 7 || res.type != 9 || res.type != 15){
+                        this.uploadView = false;
+                    }
+                }, response => {
+                    MessageBox('注意', '获取信息失败');
+                });
+            },
             getShareList() {
                 this.$http.get('/Share/sharelist').then(response => {
                     // get body data
@@ -90,6 +103,7 @@
         },
         mounted() {
             Indicator.open('加载中...');
+            this.getUserInfoe();
             this.getShareList();
             this.getMyShareList();
 
