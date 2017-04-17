@@ -99,6 +99,18 @@
                     && this.activity > 0
                     && this.classid > 0) {
                     
+                    if( this.weight > 999 && this.weight < 1) {
+                        MessageBox('注意', '体重输入值超出范围');
+                        return;
+                    }
+                    if( this.age > 199 && this.age < 1) {
+                        MessageBox('注意', '年龄输入值超出范围');
+                        return;
+                    }
+                    if( this.height > 299 && this.height < 1) {
+                        MessageBox('注意', '身高输入值超出范围');
+                        return;
+                    }
                     var data = {
                         "sex": this.gender, // 性别
                         "age": this.age, // 年龄
