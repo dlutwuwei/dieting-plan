@@ -237,7 +237,6 @@
           overflow:hidden;
           .share-pic {
               width: 100%;
-              height: 160px;
           }
       }
   }

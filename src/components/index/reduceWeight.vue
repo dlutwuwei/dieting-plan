@@ -136,11 +136,17 @@
         methods:{
             redirect(id) {
                 if (this.user_type== 2) {
-                    location.href = '/prefer/prefer/foodRestrict';
+                    MessageBox.confirm('继续填写减肥信息？').then(action => {
+                        location.href = '/prefer/prefer/foodRestrict';
+                    });
                 } else if (this.user_type == 0) {
-                    location.href = '/prefer/prefer';
+                    MessageBox.confirm('继续填写减肥信息？').then(action => {
+                        location.href = '/prefer/prefer';
+                    });
                 } else if (this.user_type == 3) {
-                    location.href = '/buy/buy'
+                    MessageBox.confirm('信息已经填写完成，开启减肥计划？').then(action => {
+                        location.href = '/buy/buy'
+                    });
                 } else {
                     location.href = `/detail/input/${id}`;
                 }

@@ -4,7 +4,6 @@
             <!--<a href="/" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </a>-->
-            <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
         <div class="bmi-container">
             <div class="title">你的BMI指数为<span class="number">{{bmi}}</span><span class="text">（{{perform}}）</span></div>
