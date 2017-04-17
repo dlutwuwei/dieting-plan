@@ -66,7 +66,7 @@
                 }
             },
             save: function () {
-                if(this.value && this.value > 9999 || this.value < 0) {
+                if(this.value && this.value > 999 || this.value < 1) {
                     MessageBox('注意', '输入值不在正常范围内');
                     return;
                 }
@@ -78,12 +78,12 @@
                     "pid": this.item.pid,
                     "id": this.item.id,
                     "project": this.item.name,
-                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
+                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(1),
                     "longtime": this.value,
                     "time": this.date
                 }).then(response => {
                     if(response.body.success) {
-                        this.item.kcal = (this.item.kcal * this.value/this.item.lasttime).toFixed(2);
+                        this.item.kcal = (this.item.kcal * this.value/this.item.lasttime).toFixed(1);
                         this.item.lasttime = this.value;
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
                     } else {
@@ -100,7 +100,7 @@
                 this.$http.post('/Record/sportadd', {
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(2),
+                    "kcal": (this.item.kcal * this.value / this.item.lasttime).toFixed(1),
                     "time": this.value,
                 }).then(response => {
                     if(response.body.success) {

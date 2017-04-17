@@ -133,7 +133,7 @@
         },
         computed: {
             bmi: function () {
-                return calculateBmi(this.weight, this.height).toFixed(2);
+                return calculateBmi(this.weight, this.height).toFixed(1);
             },
             perform: function () {
                 let perform = '';

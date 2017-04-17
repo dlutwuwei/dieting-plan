@@ -71,7 +71,7 @@
                 }
             },
             save: function () {
-                if(this.value && this.value > 9999 || this.value < 0) {
+                if(this.value && this.value > 9999 || this.value < 1) {
                     MessageBox('注意', '输入值不在正常范围内');
                     return;
                 }
@@ -84,14 +84,14 @@
                     "id": this.item.id,
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(2),
+                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(1),
                     "weight": this.value,
                     "class": this.item.class,
                     "time": this.date,
                 }).then(response => {
                     let res = response.body;
                     if(res.success){
-                        this.item.kcal = ((this.item.kcal/this.item.weight)*this.value).toFixed(2);
+                        this.item.kcal = ((this.item.kcal/this.item.weight)*this.value).toFixed(1);
                         this.item.weight = this.value;
 
                         this.$router.push(`/diet/${this.type}?date=${this.date}`);
@@ -112,7 +112,7 @@
                     "class": type_map[this.type],
                     "pid": this.item.pid,
                     "name": this.item.name,
-                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(2),
+                    "kcal": (this.item.kcal*this.value/this.item.weight).toFixed(1),
                     "gram": this.value,
                     "energy": this.item.energy
                 }).then(response => {
