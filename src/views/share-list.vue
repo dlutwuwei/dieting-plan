@@ -67,7 +67,7 @@
                 this.$http.get('/Info/usertype').then(response => {
                     // get body data
                     var res = JSON.parse(response.data.data)
-                    console.log(res.type)
+                    alert(res.type)
                     if(res.type == null || res.type != 3 || res.type != 7 || res.type != 9 || res.type != 15){
                         this.uploadView = false;
                     }
