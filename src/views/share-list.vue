@@ -69,6 +69,7 @@
                     var res = JSON.parse(response.data.data)
                     alert(res.type)
                     if(res.type == null || res.type != 3 || res.type != 7 || res.type != 9 || res.type != 15){
+                        alert(res.type)
                         this.uploadView = false;
                     }
                 }, response => {
