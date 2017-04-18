@@ -8,7 +8,10 @@
 </template>
 <style lang="scss" scoped>
     .mint-header-title{
+        padding-top: 1px;
         overflow: auto;
+        height: 20px;
+        line-height: 20px;
     }
 </style>
 <script>
