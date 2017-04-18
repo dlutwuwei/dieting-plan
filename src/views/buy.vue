@@ -113,10 +113,7 @@
 </script>
 <style lang="scss">
     .mint-header-title{
-        padding-top: 3px;
         overflow: auto;
-        height: 35px;
-        line-height: 35px;
     }
     .buy-container {
         background-color: #f7f7f7;
