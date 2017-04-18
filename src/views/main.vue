@@ -134,6 +134,9 @@
 </script>
 
 <style lang="scss">
+    .mint-header-title{
+        overflow:auto;
+    }
   .ico:before {
     content: '';
     display: inline-block;
