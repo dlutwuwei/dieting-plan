@@ -23,6 +23,14 @@
       :onItemClick="(item, type)=>{ checkFood(item, type) }"></foodCard>
   </div>
 </template>
+<style lang="scss">
+    .mint-header-title{
+        padding-top: 3px;
+        overflow: auto;
+        height: 35px;
+        line-height: 35px;
+    }
+</style>
 <script>
   import HeatPlate from '../components/index/heatPlate.vue';
   import foodCard from '../components/plan/food-card.vue';

@@ -76,7 +76,7 @@
                         let list = [];
                         if(res.body.success) {
                             list = res.body.massages;
-                        }                        
+                        }
                         this.data = list;
                         Indicator.close();
                     }, () => {
@@ -112,5 +112,11 @@
 
 </script>
 <!-- css is same as plan-diet-->
-<style lang="scss">
+<style lang="scss" scoped>
+    .mint-header-title{
+        padding-top: 3px;
+        overflow: auto;
+        height: 35px;
+        line-height: 35px;
+    }
 </style>

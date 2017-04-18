@@ -1,4 +1,10 @@
 <style lang="scss" scoped>
+    .mint-header-title{
+        padding-top: 3px;
+        overflow: auto;
+        height: 35px;
+        line-height: 35px;
+    }
     .input-weight {
         background: #f7f7f7;
     .hd {

@@ -10,26 +10,34 @@
 
             <dt>关于项目</dt>
             <dd>采用vue.js重写的webapp。</dd>
-        
+
             <dt>源码地址</dt>
-            
+
             <dd>
                 <a href="https://github.com/dlutwuwei/Vue-cnodejs">
                     https://github.com/dlutwuwei/Vue-cnodejs</a>
             </dd>
-            
+
             <dt>意见反馈</dt>
             <dd>
                 <a href="https://github.com/dlutwuwei/Vue-cnodejs/issues">
                     发表意见或者提需求</a>
             </dd>
-            
+
             <dt>当前版本</dt>
             <dd>V2.0</dd>
 
         </dl>
     </div>
 </template>
+<style lang="scss" scoped>
+    .mint-header-title{
+        padding-top: 3px;
+        overflow: auto;
+        height: 35px;
+        line-height: 35px;
+    }
+</style>
 <script>
     export default {
         components: {
