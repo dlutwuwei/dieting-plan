@@ -1,5 +1,10 @@
 /* 热量盘 */
 <style lang="scss" scoped>
+    .mint-header-title{
+        overflow: auto;
+        height: 20px;
+        line-height: 20px;
+    }
     .heat-plate.mtop0{
         margin-top: 0;
     }
