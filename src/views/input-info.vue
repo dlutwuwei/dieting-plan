@@ -103,7 +103,7 @@
                         MessageBox('注意', '体重输入值超出范围');
                         return;
                     }
-                    if( this.age > 199 && this.age < 1) {
+                    if( this.age > 80 && this.age < 1) {
                         MessageBox('注意', '年龄输入值超出范围');
                         return;
                     }

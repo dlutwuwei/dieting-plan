@@ -1,11 +1,8 @@
 <template>
     <div class="buy-container">
         <mt-header title="鸣鹿健康">
-            <a v-if="type!=15" href="/" slot="left">
-                <mt-button icon="back">首页</mt-button>
-            </a>
         </mt-header>
-        <div class="buy-card" v-if="type!=15">
+        <div class="buy-card" v-if="type!=15 && type!=7">
             <div class="cell1 bottom">
                 <mt-button type="primary" size="normal" v-on:click="test15">15天免费试用</mt-button>
             </div>
