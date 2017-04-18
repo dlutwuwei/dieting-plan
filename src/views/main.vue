@@ -135,6 +135,7 @@
 
 <style lang="scss">
     .mint-header-title{
+        padding-top:3px;
         overflow: auto;
         height: 20px;
         line-height: 20px;
