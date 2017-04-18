@@ -159,7 +159,10 @@
                     }
                     return false;
                 });
-                data = list;
+
+                if(list.length > 0) {
+                    data = list;
+                }
 
                 let moreItems = [];
                 Object.keys(adds).forEach(name => {
