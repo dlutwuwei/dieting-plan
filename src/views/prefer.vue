@@ -145,13 +145,21 @@
             fetchData: function (e) {
                 this.type = this.$route.params.type || 'breakfast';
                 let data = window.data[this.type || 'breakfast'];
+
+                // 添加项
                 let adds = JSON.parse(localStorage.getItem('luming' + this.type) || '{}');
+
+                // 选中项
                 let list = JSON.parse(localStorage.getItem('list' + this.type) || '[]');
 
-                // 如果已经有选中项
-                if(list.length > 0) {
-                    data = list;
-                }
+                // 更新选择项
+                this.selected[this.type] = JSON.parse(localStorage.getItem('list' + this.type) || '[]').filter(item => {
+                    if(item.value) {
+                        return true;
+                    }
+                    return false;
+                });
+                data = list;
 
                 let moreItems = [];
                 Object.keys(adds).forEach(name => {
