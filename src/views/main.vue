@@ -136,8 +136,6 @@
 <style lang="scss">
     .mint-header-title{
         overflow: auto;
-        height: 16px;
-        line-height: 16px;
     }
   .ico:before {
     content: '';
