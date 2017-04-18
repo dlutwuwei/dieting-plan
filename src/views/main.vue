@@ -14,7 +14,7 @@
     <MlSwiper :ml-swiper="mlSwiper"></MlSwiper>
     <!--e:鸣鹿轮播图-->
 
-    <template v-if="+userInfo.type == 1">
+    <template v-if="userInfo.type!=7 && userInfo.type!=15 && userInfo.type!=9">
       <!--新用户-->
       <ReduceWeight :reduce-list="reduceList"></ReduceWeight>
       <!--e:一分钟减肥方案-->
