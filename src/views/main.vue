@@ -135,10 +135,10 @@
 
 <style lang="scss">
     .mint-header-title{
-        padding-top:3px;
+        padding-top: 3px;
         overflow: auto;
-        height: 20px;
-        line-height: 20px;
+        height: 35px;
+        line-height: 35px;
     }
   .ico:before {
     content: '';
