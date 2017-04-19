@@ -176,6 +176,10 @@
                 });
                 //将添加的值加入
                 data = data.concat(moreItems);
+                if(data.length > 45) {
+                    MessageBox('注意', '最多允许添加45项')
+                    data = data.slice(0, 45);
+                }
                 data.forEach(item => {
                     if (item.value === undefined) {
                         item.value = false;
