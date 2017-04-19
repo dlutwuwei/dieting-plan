@@ -70,6 +70,7 @@
         selected: '1',
         msg: 'Use Vue 2.0 Today!',
         userInfo: window.userInfo || {},
+        user_type: window.userInfo.type,
         sharePic: window.sharePic || '',
         reduceList: window.reduceList || [],
         darenList: window.darenList || {},
