@@ -32,6 +32,7 @@
             return {
                 item: this.data,
                 inputVal: '',
+                count: 999,
             }
         },
         computed: {
@@ -66,6 +67,10 @@
                 }
             },
             save: function () {
+                if(this.count > 45) {
+                    MessageBox('注意', '最多允许添加45项');
+                    return;
+                }
                 if(this.value && this.value > 999 || this.value < 1) {
                     MessageBox('注意', '输入值不在正常范围内');
                     return;
@@ -147,6 +152,11 @@
                 }
             }, () => {
                     MessageBox('注意', '获取用户信息失败');
+            });
+            this.$http.get(`/Plan/sportcount?time=${this.date}`).then(res => {
+                if (res.body.success) {
+                    this.count = res.body.massages[this.date];
+                }
             });
         }
     }

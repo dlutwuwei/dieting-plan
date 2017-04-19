@@ -11,7 +11,7 @@
         <div class="weight-select">
             <div class="food-text">
                 <div>{{total}}千卡</div>
-                <div>{{value}}克</div>
+                <div>{{value || 0}}克</div>
             </div>
             <div class="bd">
                 <div class="weight"><input type="number" @keyup="getNum" v-model="value" id="ruler-input" /><span>g</span></div>
@@ -40,6 +40,7 @@
             return {
                 item: this.data,
                 value: 0,
+                count: {},
             }
         },
         props: ['data', 'type', 'isUpdate'],
@@ -71,6 +72,11 @@
                 }
             },
             save: function () {
+                debugger
+                if(this.count[this.type] && this.count[this.type] > 45) {
+                    MessageBox('注意', '最多允许添加45项食物');
+                    return;
+                }
                 if(this.value && this.value > 9999 || this.value < 1) {
                     MessageBox('注意', '输入值不在正常范围内');
                     return;
@@ -160,6 +166,12 @@
                 }
             }, () => {
                     MessageBox('注意', '获取用户信息失败');
+            });
+        
+            this.$http.get(`/Plan/foodcount?time=${this.date}`).then(res => {
+                if (res.body.success) {
+                    this.count = res.body.massages[this.date];
+                }
             });
         }
     }
