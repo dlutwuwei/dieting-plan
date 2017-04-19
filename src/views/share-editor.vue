@@ -7,7 +7,7 @@
         </div>
 
         <div class="share-editor-cen">
-            <mt-field label="标题" placeholder="" :attr="{ minlength: 4,maxlength: 30 }"></mt-field>
+            <mt-field label="标题" placeholder="" :attr="{maxlength: 30 }"></mt-field>
             <div class="upload-pic input-box">
                 <div class="img-btn">
                     <input ref="inputfile" @change="fileChange" type="file" id="upfile" name="upfile" accept="image/*" />
@@ -136,8 +136,8 @@
                 MessageBox('注意', '请填写分享标题!');
                 return;
             }
-            if(title.length < 4 || title.length > 30){
-                MessageBox('注意', '标题长度应大于4个并小于30个字符');
+            if(title.length < 1 || title.length > 30){
+                MessageBox('注意', '标题长度应大于1个并小于30个字符');
                 return;
             }
             if ($('.sample img').css('display') == "" || $('.sample img').css('display') == "none") {
