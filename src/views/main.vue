@@ -99,7 +99,20 @@
     },
     mounted: function() {
 
-        //alert(shareData.link)
+      //alert(shareData.link)
+        if (this.user_type == 2) {
+            MessageBox.confirm('继续填写减肥信息？').then(action => {
+                location.href = '/prefer/prefer/foodRestrict';
+            });
+        } else if (this.user_type == 0) {
+            MessageBox.confirm('继续填写减肥信息？').then(action => {
+                location.href = '/prefer/prefer';
+            });
+        } else if (this.user_type == 3) {
+            MessageBox.confirm('信息已经填写完成，开启减肥计划？').then(action => {
+                location.href = '/buy/buy'
+            });
+        }
 
       this.$http.get('/plan/isfifteen').then(res => {
         if(res.body.success) {
