@@ -95,6 +95,12 @@
 
 </script>
 <style lang="scss">
+    .mint-header-title{
+        padding-top: 1px;
+        overflow: auto;
+        height: 20px;
+        line-height: 20px;
+    }
     .slider{
         margin-top:5px;
         height:50px;

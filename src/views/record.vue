@@ -35,6 +35,12 @@
     </div>
 </template>
 <style lang="scss">
+   .mint-header-title{
+       padding-top: 1px;
+       overflow: auto;
+       height: 20px;
+       line-height: 20px;
+   }
     .record-container {
         display: flex;
         flex-wrap: wrap;

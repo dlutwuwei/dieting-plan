@@ -9,7 +9,7 @@
             </a>
       </mt-header>
       <div class="plan-card food">
-          <a href="/plan/listt?type=food"><span>饮食计划</span></a> 
+          <a href="/plan/listt?type=food"><span>饮食计划</span></a>
       </div>
       <div class="plan-card sport">
           <a href="/plan/listt?type=sport"><span>运动计划</span></a>
@@ -28,6 +28,12 @@
     };
 </script>
 <style lang="scss">
+    .mint-header-title{
+        padding-top: 1px;
+        overflow: auto;
+        height: 20px;
+        line-height: 20px;
+    }
   .plan {
     .plan-card {
       display: block;

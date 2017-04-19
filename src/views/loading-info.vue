@@ -66,6 +66,12 @@
     }
 </script>
 <style lang="scss">
+    .mint-header-title{
+        padding-top: 1px;
+        overflow: auto;
+        height: 20px;
+        line-height: 20px;
+    }
     .laoding-info{
         padding:15px;
         p{

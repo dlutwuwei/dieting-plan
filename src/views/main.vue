@@ -70,6 +70,7 @@
         selected: '1',
         msg: 'Use Vue 2.0 Today!',
         userInfo: window.userInfo || {},
+        user_type: window.userInfo.type,
         sharePic: window.sharePic || '',
         reduceList: window.reduceList || [],
         darenList: window.darenList || {},
@@ -99,10 +100,21 @@
     },
     mounted: function() {
 
-        //alert(shareData.link)
-      if(window.userInfo.type == 0) {
-        location.href = '/buy/buy';
-      }
+      //alert(shareData.link)
+        if (this.user_type == 2) {
+            MessageBox.confirm('继续填写减肥信息？').then(action => {
+                location.href = '/prefer/prefer/foodRestrict';
+            });
+        } else if (this.user_type == 0) {
+            MessageBox.confirm('继续填写减肥信息？').then(action => {
+                location.href = '/prefer/prefer';
+            });
+        } else if (this.user_type == 3) {
+            MessageBox.confirm('信息已经填写完成，开启减肥计划？').then(action => {
+                location.href = '/buy/buy'
+            });
+        }
+
       this.$http.get('/plan/isfifteen').then(res => {
         if(res.body.success) {
           MessageBox.confirm('15天试用已经到期?').then(action => {
@@ -135,10 +147,10 @@
 
 <style lang="scss">
     .mint-header-title{
-        padding-top: 3px;
+        padding-top: 1px;
         overflow: auto;
-        height: 35px;
-        line-height: 35px;
+        height: 20px;
+        line-height: 20px;
     }
   .ico:before {
     content: '';
