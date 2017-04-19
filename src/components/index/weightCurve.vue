@@ -143,7 +143,7 @@
                                 }
                             },
                             symbol: 'circle',
-                            symbolSize: 5,
+                            symbolSize: 4,
                         }
                     ],
                     backgroundColor: '#fff'
