@@ -72,7 +72,6 @@
                 }
             },
             save: function () {
-                debugger
                 if(this.count[this.type] && this.count[this.type] > 45) {
                     MessageBox('注意', '最多允许添加45项食物');
                     return;
