@@ -15,7 +15,7 @@
     </div>
     <div class="cell bottom" v-if="!hideBtn && from != 'history'">
       <router-link :to="url" slot="left">
-        <mt-button type="primary" size="normal">修改食谱</mt-button>
+        <mt-button type="primary" size="normal">微调食谱</mt-button>
       </router-link>
     </div>
   </div>
