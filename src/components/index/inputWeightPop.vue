@@ -130,6 +130,9 @@
                 }
                 this.$http.post('/Weight/weightadd', postdata).then(res=>{
                     console,log(res.body)
+                    if(!res.body.success) {
+                        MessageBox('注意', '保存信息失败');
+                    }
                 }).then(res=>{
                     MessageBox('注意', '保存信息失败');
                 });
