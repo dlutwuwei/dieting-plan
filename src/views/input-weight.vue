@@ -193,7 +193,7 @@
 
                 //先将当月的日期塞入dateList
                 let dateList = Array.from({ length: currentMonthLength }, (val, index) => {
-                    let datestr = year+'-'+(tmpMonth<=9 ? '0' + (tmpMonth+1) : (tmpMonth+1))+'-'+ ((index+1)<=9?'0'+(index+1):(index+1));
+                    let datestr = year+'-'+(tmpMonth<9 ? '0' + (tmpMonth+1) : (tmpMonth+1))+'-'+ ((index+1)<=9?'0'+(index+1):(index+1));
                     return {
                         currentMonth: true,
                         date: index + 1,
