@@ -124,7 +124,7 @@
                     <mt-button icon="back" @click="goback">返回</mt-button>
                 </a>
             </mt-header>
-            <HeatPlate :heat-plate="heatPlate" :user-type="userInfo.type" :hide-title="true"></HeatPlate>
+            <HeatPlate :datetime="date" :heat-plate="heatPlate" :user-type="userInfo.type" :hide-title="true"></HeatPlate>
             <div class="hd"><em class="lt-hander" @click="prevMonth"><span class="lt-btn"></span></em>{{now.getFullYear()}}年{{now.getMonth() + 1}}月<em class="rt-hander" @click="nextMonth"><span class="rt-btn"></span></em></div>
             <div class="bd">
                 <div class="bd-hd">
@@ -132,7 +132,7 @@
                 </div>
                 <ul>
                     <li v-for="(i, l) in dateList.length/7">
-                        <span @click="onClick(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth, 'curr': item.selected}">
+                        <span @click="onClick(item)" v-for="(item, index) in dateList.slice(l*7, l*7+7)" :class="{'gray': !item.currentMonth || !item.value, 'curr': item.selected}">
                             {{item.date}}<em v-if="item.value"></em>
                         </span>
                     </li>
@@ -160,7 +160,8 @@
                 weightList: [],
                 weightData: {},
                 heatPlate:[],
-                userInfo: window.userInfo,
+                date: '',
+                userInfo: window.userInfo
             }
         },
         watch: {
@@ -220,9 +221,13 @@
                 }
             },
             onClick: function (item) {
+                if(!item.value) {
+                    return;
+                }
                 this.dateList.forEach( item => {
                     item.selected = false;
                 });
+                this.date = '2017-04-11'
                 let nowdate = new Date();
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));

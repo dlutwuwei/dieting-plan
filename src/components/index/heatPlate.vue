@@ -101,7 +101,7 @@
             </div>
             <div class="bd-bot" v-for="item in heatPlate">
                 <div class="info ncf-box">
-                    <a :href="userType==7 ? '/#/index/record' : '/plan/listt/#/check/food?date=' + date">
+                    <a :href="userType==7 ? '/#/index/record?date=' + date : '/plan/listt/#/check/food?date=' + date">
                         <div class="item">
                             <h5>摄入</h5>
                             <p>{{item.left}}</p>
@@ -130,7 +130,7 @@
     module.exports = {
         data() {
             return {
-                date: fmtDate(new Date, 'yyyy-MM-dd')
+                date: fmtDate(new Date(), 'yyyy-MM-dd')
             }
         },
         computed: {
@@ -139,6 +139,9 @@
             }
         },
         watch: {
+            datetime(val) {
+                this.date = this.datetime;
+            },
             heatPlate(val) {
                 setTimeout(()=>{
                     this.handleHeatPlateTime();
@@ -159,7 +162,8 @@
         props: {
             hideTitle: Boolean,
             userType: String,
-            heatPlate: Array //这样可以指定传入的类型，如果类型不对，会警告
+            heatPlate: Array, //这样可以指定传入的类型，如果类型不对，会警告
+            datetime: String
         },
         created() {
 
@@ -203,7 +207,6 @@
             }
         },
         mounted() {
-
             this.handleHeatPlateTime();
         }
     }
