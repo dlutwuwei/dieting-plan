@@ -92,6 +92,22 @@
         },
         methods: {
             post_info: function (e) {
+                let weight = this.weight || 0;
+                if( weight > 999 ||weight < 1) {
+                    MessageBox('注意', '体重未输入或者输入值超出范围');
+                    return;
+                }
+                let age = this.age || 0;
+                if( age > 80 || age < 1) {
+                    MessageBox('注意', '年龄未输入或者输入值超出范围');
+                    return;
+                }
+                let height = this.height || 0;
+                if( height > 299 || height < 1) {
+                    MessageBox('注意', '身高未输入或者输入值超出范围');
+                    return;
+                }
+    
                 if (this.gender
                     && this.age && this.height
                     && this.weight
@@ -99,18 +115,7 @@
                     && this.activity > 0
                     && this.classid > 0) {
                     
-                    if( this.weight > 999 && this.weight < 1) {
-                        MessageBox('注意', '体重输入值超出范围');
-                        return;
-                    }
-                    if( this.age > 80 && this.age < 1) {
-                        MessageBox('注意', '年龄输入值超出范围');
-                        return;
-                    }
-                    if( this.height > 299 && this.height < 1) {
-                        MessageBox('注意', '身高输入值超出范围');
-                        return;
-                    }
+                    
                     var data = {
                         "sex": this.gender, // 性别
                         "age": this.age, // 年龄
