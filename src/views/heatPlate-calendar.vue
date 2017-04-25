@@ -227,7 +227,7 @@
                 this.dateList.forEach( item => {
                     item.selected = false;
                 });
-                this.date = '2017-04-11'
+                this.date = item.value;
                 let nowdate = new Date();
                 let calendarDataA = this.now.getFullYear()+'-'+(this.now.getMonth()+1)+'-'+item.date;
                 let calendarDataB = new Date(Date.parse(calendarDataA .replace(/-/g,"/")));
