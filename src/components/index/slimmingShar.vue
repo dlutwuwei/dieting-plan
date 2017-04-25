@@ -32,11 +32,16 @@
                     color: #fff;
                 }
                 h5 {
-                    position: absolute;
                     margin: 0;
                     left: 16px;
                     top: 14px;
                     font-size: 15px;
+                    text-overflow: ellipsis;
+                    height: 20px;
+                    width: 91%;
+                    position: absolute;
+                    white-space: nowrap;
+                    overflow: hidden;
                 }
                 .share-info {
                     position: absolute;
