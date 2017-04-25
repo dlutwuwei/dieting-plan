@@ -149,7 +149,7 @@
                 return;
             }
             if(content.length < 4 || content.length > 1000){
-                MessageBox('注意', '标题长度应大于4个并小于1000个字符');
+                MessageBox('注意', '正文长度应大于4个并小于1000个字符');
                 return;
             }
             let reqBody = {
