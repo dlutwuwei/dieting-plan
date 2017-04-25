@@ -81,11 +81,11 @@
     }
 </style>
 <script>
-    import {fmtDate} from  "../libs/utils.js";
+    import {fmtDate, getQuery} from  "../libs/utils.js";
     export default {
         created() {
             let now = new Date();
-            this.date = fmtDate(now, 'yyyy-MM-dd');
+            this.date = getQuery('date') || fmtDate(now, 'yyyy-MM-dd');
             this.target = window.userInfo.type == '7'? 'record' : 'diet';
         },
         components: {
