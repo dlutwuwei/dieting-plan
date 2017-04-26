@@ -29,6 +29,8 @@
     import addFood from '../components/plan/add-food.vue';
     import addSport from '../components/plan/add-sport.vue';
     import { getQuery } from '../libs/utils';
+    import { MessageBox } from 'mint-ui';
+
     export default {
         data() {
             return {
@@ -62,7 +64,25 @@
                     // 偏好添加
                     let x = this.selected;
                     let tmpPrefers = JSON.parse(localStorage.getItem('luming' + this.preferType) || '{}');
-                    tmpPrefers[x.name] = x;
+
+                    // 默认数据
+                    let defaultData = localStorage.getItem('lumingdefault');
+                    if(defaultData) {
+                        let data = JSON.parse(defaultData)[this.preferType];
+                        let exist = data.find((item) => {
+                            return item.food_type === x.name;
+                        });
+                        if(exist) {
+                            MessageBox('注意', `所选${this.preferType.indexOf('sport')>=0?'运动':'食物'}已经添加`);
+                            return;
+                        }
+                    }
+                    if(tmpPrefers[x.name]) {
+                        MessageBox('注意', `所选${this.preferType.indexOf('sport')>=0?'运动':'食物'}已经添加`);
+                        return;
+                    } else {
+                        tmpPrefers[x.name] = x;
+                    }
                     localStorage.setItem('luming' + this.preferType, JSON.stringify(tmpPrefers));
                     location.href = '/prefer/prefer/' + this.preferType;
                     return;
