@@ -16,6 +16,7 @@
         overflow: hidden;
         vertical-align: middle;
         padding: 9px 15px 0px;
+        z-index:10;
     }
     span:before{
         background-position: -125px -50px;
@@ -31,8 +32,14 @@
         vertical-align: middle;
     }
     .share-pic{
-        width:100%;
-        height:160px;
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        vertical-align: middle;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%)
     }
     .author-info{
         position:absolute;
