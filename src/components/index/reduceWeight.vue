@@ -128,10 +128,11 @@
   </div>
 </template>
 <script>
+    import { MessageBox } from 'mint-ui';
+
     export default {
         props: {
             reduceList: Array,
-            user_type: window.userInfo.status,
         },
         methods:{
             redirect(id) {
@@ -153,6 +154,7 @@
             },
         },
         mounted() {
+            this.user_type = window.userInfo.status
         }
     }
 
