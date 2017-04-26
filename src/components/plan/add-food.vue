@@ -74,10 +74,12 @@
             save: function () {
                 if(this.count[this.type] && this.count[this.type] > 45) {
                     MessageBox('注意', '最多允许添加45项食物');
+                    this.$emit('popClose');
                     return;
                 }
-                if(this.value && this.value > 9999 || this.value < 1) {
+                if(this.value && (this.value > 9999 || this.value <= 1)) {
                     MessageBox('注意', '输入值不在正常范围内');
+                    this.$emit('popClose');
                     return;
                 }
                 let url = '/plan/updatefood';

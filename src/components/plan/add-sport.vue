@@ -69,10 +69,12 @@
             save: function () {
                 if(this.count > 45) {
                     MessageBox('注意', '最多允许添加45项');
+                    this.$emit('popClose');
                     return;
                 }
                 if(this.value && this.value > 999 || this.value < 1) {
                     MessageBox('注意', '输入值不在正常范围内');
+                    this.$emit('popClose');
                     return;
                 }
                 let url = '/plan/updatesport';
