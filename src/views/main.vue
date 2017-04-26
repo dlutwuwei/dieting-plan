@@ -118,7 +118,7 @@
       this.$http.get('/plan/isfifteen').then(res => {
         if(res.body.success) {
           MessageBox.confirm('15天试用已经到期, 继续购买计划').then(action => {
-            location.href = '/buy/buy';
+            location.href = '/buy/buy?type=15';
           });
         }
       });
