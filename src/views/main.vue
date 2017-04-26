@@ -111,7 +111,7 @@
             });
         } else if (this.user_type == 3) {
             MessageBox.confirm('信息已经填写完成，开启减肥计划？').then(action => {
-                location.href = '/buy/buy'
+                location.href = '/buy/buy?type=15'
             });
         }
 
