@@ -162,11 +162,13 @@
 
             // 异步加载图表
             if(this.weightCurve && this.weightCurve.length > 0){
-                this.showChart(this.weightCurve);
+                let nowArr = this.weightCurve.reverse();
+                let startArr = nowArr.splice(0, 1);
+                this.showChart(nowArr);
                 //默认把初始体重和最新体重输出
-                let weightCurveLen = this.weightCurve.length;
-                this.weightLtVal = this.weightCurve[0].value;
-                this.weightRtVal = this.weightCurve[weightCurveLen - 1].value;
+                let weightCurveLen = nowArr.length;
+                this.weightLtVal = startArr[0].value;
+                this.weightRtVal = nowArr[weightCurveLen - 1].value;
             }
         },
     }
