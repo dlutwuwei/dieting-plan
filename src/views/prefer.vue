@@ -81,6 +81,7 @@
             post_prefer: function (e) {
                 // 发送饮食偏好
                 let target;
+
                 let type = this.type || 'breakfast';
                 if (next[type || 'breakfast'] == 'foodRestrict') {
                     let data = {
@@ -194,6 +195,10 @@
             '$route': 'fetchData'
         },
         mounted() {
+            // 进入/prefer/prefer偏好首页，删除所有localstorage
+            if(!this.$route.params.type) {
+                localStorage.clear();
+            }
             this.type = this.$route.params.type || 'breakfast';
             let data = window.data[this.type];
             if(this.type==='reason') {
