@@ -195,10 +195,7 @@
             '$route': 'fetchData'
         },
         mounted() {
-            // 进入/prefer/prefer偏好首页，删除所有localstorage
-            if(!this.$route.params.type) {
-                localStorage.clear();
-            }
+ 
             this.type = this.$route.params.type || 'breakfast';
             let data = window.data[this.type];
             if(this.type==='reason') {
@@ -223,6 +220,10 @@
                 reason: '肥胖原因'
             };
             this.type = this.type || 'breakfast';
+            // 进入/prefer/prefer偏好首页，删除所有localstorage
+            if(!this.$route.params.type) {
+                localStorage.clear();
+            }
             localStorage.setItem('lumingdefault', JSON.stringify(window.data));
 
         }
