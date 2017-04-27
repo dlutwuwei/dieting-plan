@@ -3,7 +3,7 @@
     <mt-header title="鸣鹿健康">
       <router-link to="/" slot="left">
       </router-link>
-      <template v-if="userInfo.type > 1 && userInfo.type != 7">
+      <template v-if="userInfo.type == 15 || userInfo.type == 9">
         <router-link to="/index/myplan" slot="right">
           <mt-button>我的计划</mt-button>
         </router-link>
