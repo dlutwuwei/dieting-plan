@@ -98,7 +98,7 @@
                     return;
                 }
                 let age = this.age || 0;
-                if( age > 80 || age < 1) {
+                if( age > 80 || age < 11) {
                     MessageBox('注意', '年龄未输入或者输入值超出范围');
                     return;
                 }
