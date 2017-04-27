@@ -94,17 +94,17 @@
             post_info: function (e) {
                 let weight = this.weight || 0;
                 if( weight > 999 ||weight < 1) {
-                    MessageBox('注意', '体重未输入或者输入值超出范围');
+                    MessageBox('注意', '请输入1.0-999.0范围内的体重');
                     return;
                 }
                 let age = this.age || 0;
                 if( age > 80 || age < 11) {
-                    MessageBox('注意', '年龄未输入或者输入值超出范围');
+                    MessageBox('注意', '请输入11-80范围内的年龄');
                     return;
                 }
                 let height = this.height || 0;
                 if( height > 299 || height < 1) {
-                    MessageBox('注意', '身高未输入或者输入值超出范围');
+                    MessageBox('注意', '请输入1-299范围内的身高');
                     return;
                 }
     
