@@ -88,39 +88,39 @@
     }
 </style>
 <template>
-    <div class="heat-plate" :class="{mtop0: hideTitle}" v-if="heatPlate && heatPlate.length > 0">
-        <!--<router-link to="/index/record">
-            <div class="hd">热量盘</div>
-        </router-link>-->
-        <div class="hd" v-if="!hideTitle">热量盘
-            <router-link to="/index/heatPlate"><span class="ico ico-1"></span></router-link>
-        </div>
-        <div class="bd">
-            <div class="date ncf-box">
-                <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>
+    <div>
+        <div class="heat-plate" :class="{mtop0: hideTitle}" v-if="heatPlate && heatPlate.length > 0">
+            <div class="hd" v-if="!hideTitle">热量盘
+                <router-link to="/index/heatPlate"><span class="ico ico-1"></span></router-link>
             </div>
-            <div class="bd-bot" v-for="item in heatPlate">
-                <div class="info ncf-box">
-                    <a :href="userType==7 ? '/#/index/record?date=' + date : '/plan/listt/#/check/food?date=' + date">
-                        <div class="item">
-                            <h5>摄入</h5>
-                            <p>{{item.left}}</p>
-                        </div>
-                    </a>
-                    <div class="item">
-                        <h5>还可以吃/千卡</h5>
-                        <p>{{item.obtain}}</p>
-                    </div>
-                    <a :href="'/plan/listt/#/' + (userType==7 ? 'record' : 'check') + '/sport?date=' + date">
-                        <div class="item">
-                            <h5>运动</h5>
-                            <p>{{item.consume}}</p>
-                        </div>
-                    </a>
+            <div class="bd">
+                <div class="date ncf-box">
+                    <span class="item" v-for="(item, index) in heatPlate" v-on:click="dateTab" :data-index="index">{{item.date | handleTime}}</span>
                 </div>
-                <div class="evaluate">{{item.metrology}}</div>
+                <div class="bd-bot" v-for="item in heatPlate">
+                    <div class="info ncf-box">
+                        <a :href="userType==7 ? '/#/index/record?date=' + date : '/plan/listt/#/check/food?date=' + date">
+                            <div class="item">
+                                <h5>摄入</h5>
+                                <p>{{item.left}}</p>
+                            </div>
+                        </a>
+                        <div class="item">
+                            <h5>还可以吃/千卡</h5>
+                            <p>{{item.obtain}}</p>
+                        </div>
+                        <a :href="'/plan/listt/#/' + (userType==7 ? 'record' : 'check') + '/sport?date=' + date">
+                            <div class="item">
+                                <h5>运动</h5>
+                                <p>{{item.consume}}</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="evaluate">{{item.metrology}}</div>
+                </div>
             </div>
         </div>
+        <div v-if="heatPlate.message" class="heat-message">{{heatPlate.message}}</div>
     </div>
 </template>
 
