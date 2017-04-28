@@ -6,6 +6,14 @@
         height: 35px;
         line-height: 35px;*/
     }
+    .heat-message {
+        font-size: 16px;
+        text-align: center;
+        padding: 20px;
+        color: #f2901e;
+        background: #fff;
+        margin-top: 15px;
+    }
     .heat-plate.mtop0{
         margin-top: 0;
     }
